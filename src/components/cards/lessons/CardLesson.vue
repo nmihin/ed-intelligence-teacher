@@ -132,29 +132,11 @@
  </template>
 
  <script>
-    import $ from "jquery";
-    import Swiper from '../../../assets/js/swiper.min.js'
-    import '../../../assets/css/swiper.min.css';
-    
     export default {
         name: 'sidemenu',
         components: {
-          $,
-          Swiper
-        },
-        mounted: function() {
-              // SWIPER
-              // eslint-disable-next-line no-unused-vars
-              const swiper = new Swiper('.swiper-container', {
-                direction: 'vertical',
-                slidesPerView: 'auto',
-                freeMode: true,
-                scrollbar: {
-                  el: '.swiper-scrollbar',
-                },
-                mousewheel: true,
-              });
-        } 
+
+        }
     }
 
 </script>

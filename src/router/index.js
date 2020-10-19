@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Admin from "../pages/Admin";
 import Home from "../pages/Home";
-import LessonPlan from "../pages/LessonPlan";
+import LessonPlanBank from "../pages/LessonPlanBank";
+import GoogleClassrom from "../pages/GoogleClassrom";
 
 Vue.use(Router);
 
@@ -20,14 +20,14 @@ export default new Router({
         component: Home
       },
       {
-        path: "/admin",
-        name: "Admin",
-        component: Admin
+        path: "/lesson-plan-bank",
+        name: "Lesson Plan Bank",
+        component: LessonPlanBank
       },
       {
-        path: "/lesson-plan",
-        name: "Lesson Plan",
-        component: LessonPlan
+        path: "/google-classrom",
+        name: "Google Classrom",
+        component: GoogleClassrom
       }
     ]
   });

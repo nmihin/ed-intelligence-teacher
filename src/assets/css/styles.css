@@ -2190,6 +2190,116 @@ button[disabled="true"] {
   content: "";
 }
 
+.card-boxes.lessons_teacher {
+  padding-top: 0;
+  display: block;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.card-boxes.lessons_teacher {
+  overflow-y: hidden;
+}
+
+.card-boxes.lessons_teacher > li {
+  padding-top: 0;
+  display: block;
+}
+.card-boxes.lessons_teacher .card-box {
+  margin-left: 0;
+  width:100%;
+  padding:0;
+  margin-top:0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin-bottom: 30px;
+}
+.card-boxes.lessons_teacher .card-box .card-element {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.card-boxes.lessons_teacher .card-box .card-title {
+  padding:15px 30px;
+  margin-bottom: 0;
+  height: auto;
+  min-height: 55px;
+}
+
+.card-boxes.lessons_teacher .card-box .card-title h2 {
+  float: left;
+}
+
+.card-boxes.lessons_teacher .card-box .card-breadcrumb {
+  padding:0 30px 0 30px;
+}
+
+.card-boxes.lessons_teacher .card-box .card-content {
+  padding:15px 30px;
+  float: left;
+  margin-top: 0;
+}
+
+.card-boxes.lessons_teacher .card-box .card-content p {
+  color: var(--dark);
+}
+
+.card-boxes.lessons_teacher .card-box .card-footer {
+  padding:15px 30px;
+  float: left;
+  width: 100%;
+}
+
+.card-boxes.lessons_teacher .card-box .card-footer .icon {
+  background-color: var(--primary);
+  width: 36px;
+  height: 36px;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+}
+
+.card-boxes.lessons_teacher .card-box .card-footer .icon:before {
+  color: var(--white);
+}
+
+.card-boxes.lessons_teacher .card-breadcrumb {
+  float: left;
+  display: block;
+  width: 100%;
+}
+
+.card-boxes.lessons_teacher .card-breadcrumb > li {
+    float: left;
+    width: auto;
+    margin-right: 10px;
+    position: relative;
+}
+
+.card-boxes.lessons_teacher .card-breadcrumb > li:after {
+    content: "/";
+    position: absolute;
+    right: -7px;
+}
+
+.card-boxes.lessons_teacher .card-breadcrumb > li:last-child:after {
+  content: "";
+}
+
+.filter-card {
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin-bottom: 30px;
+  border-radius: 8px;
+  background-color: var(--white);
+  display: inline-block;
+  width: 100%;
+  padding: 20px 15px;
+}
+
 .footer {
   display: block;
   position: fixed;
