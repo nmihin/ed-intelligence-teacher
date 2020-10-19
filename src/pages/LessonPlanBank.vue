@@ -6,34 +6,37 @@
             <div class="row">
               <div class="col-4">
                 <md-menu md-size="medium" md-align-trigger>
-                  <md-button md-menu-trigger>Align with trigger</md-button>
+                  <md-button md-menu-trigger>Select Subject<i class="icon icon-arrow-gray"></i></md-button>
 
                   <md-menu-content>
-                    <md-menu-item>My Item 1</md-menu-item>
-                    <md-menu-item>My Item 2</md-menu-item>
-                    <md-menu-item>My Item 3</md-menu-item>
+                    <md-menu-item>
+                      <a href="#">English</a>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <a href="#">Matehematics</a>
+                    </md-menu-item>
                   </md-menu-content>
                 </md-menu>
               </div>
               <div class="col-4">
                 <md-menu md-size="medium" md-align-trigger>
-                  <md-button md-menu-trigger>Align with trigger</md-button>
+                  <md-button md-menu-trigger>Select Grade<i class="icon icon-arrow-gray"></i></md-button>
 
                   <md-menu-content>
-                    <md-menu-item>My Item 1</md-menu-item>
-                    <md-menu-item>My Item 2</md-menu-item>
-                    <md-menu-item>My Item 3</md-menu-item>
+                    <md-menu-item><a href="#">Grade 1</a></md-menu-item>
+                    <md-menu-item><a href="#">Grade 2</a></md-menu-item>
+                    <md-menu-item><a href="#">Grade 3</a></md-menu-item>
                   </md-menu-content>
                 </md-menu>
               </div>
               <div class="col-4">
                 <md-menu md-size="medium" md-align-trigger>
-                  <md-button md-menu-trigger>Align with trigger</md-button>
+                  <md-button md-menu-trigger>Select Strand<i class="icon icon-arrow-gray"></i></md-button>
 
                   <md-menu-content>
-                    <md-menu-item>My Item 1</md-menu-item>
-                    <md-menu-item>My Item 2</md-menu-item>
-                    <md-menu-item>My Item 3</md-menu-item>
+                    <md-menu-item><a href="#">Strand 1</a></md-menu-item>
+                    <md-menu-item><a href="#">Strand 2</a></md-menu-item>
+                    <md-menu-item><a href="#">Strand 3</a></md-menu-item>
                   </md-menu-content>
                 </md-menu>
               </div>            
@@ -68,7 +71,7 @@
                         </ul>
                         <div class="card-content">
                           <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                          <button class="button medium ed-btn__primary">CC.4.L.1</button>
+                          <router-link to="/lesson-plan"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
                         </div>
                         <div class="card-footer">
                           <i class="icon icon-lesson"></i><span>0 Resources</span>
@@ -100,7 +103,7 @@
                         </ul>
                         <div class="card-content">
                           <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                          <button class="button medium ed-btn__primary">CC.4.L.1</button>
+                          <router-link to="/lesson-plan"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
                         </div>
                         <div class="card-footer">
                           <i class="icon icon-lesson"></i><span>0 Resources</span>
@@ -132,7 +135,7 @@
                         </ul>
                         <div class="card-content">
                           <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                          <button class="button medium ed-btn__primary">CC.4.L.1</button>
+                          <router-link to="/lesson-plan"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
                         </div>
                         <div class="card-footer">
                           <i class="icon icon-lesson"></i><span>0 Resources</span>
@@ -164,7 +167,7 @@
                         </ul>
                         <div class="card-content">
                           <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                          <button class="button medium ed-btn__primary">CC.4.L.1</button>
+                          <router-link to="/lesson-plan"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
                         </div>
                         <div class="card-footer">
                           <i class="icon icon-lesson"></i><span>0 Resources</span>

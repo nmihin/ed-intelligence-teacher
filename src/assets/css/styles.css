@@ -1976,6 +1976,7 @@ ul.side-menu__results>li>ul>li a:hover {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  outline: none;
   -ms-flex-align: center;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1997,6 +1998,9 @@ ul.side-menu__results>li>ul>li a:hover {
   -o-transition: background-color 0.3s ease-out;
   transition: background-color 0.3s ease-out;
 }
+[class*="ed-btn"]:focus {
+  outline: none;
+}
 [class*="ed-btn"]:hover {
   -webkit-transition: background-color 0.3s ease-out;
   -moz-transition: background-color 0.3s ease-out;
@@ -2010,7 +2014,7 @@ ul.side-menu__results>li>ul>li a:hover {
 }
 .ed-btn__primary:hover {
   color: var(--white) !important;
-  background: var(--secondary) !important;
+  background: var(--tertiary) !important;
 }
 .ed-btn__secondary {
   color: var(--white) !important;
@@ -2298,6 +2302,18 @@ button[disabled="true"] {
   display: inline-block;
   width: 100%;
   padding: 20px 15px;
+}
+
+.filter-card .icon {
+  padding: 10px;
+}
+
+.filter-card .md-menu {
+  margin-left: 20%;
+}
+
+.filter-card .md-menu > a {
+  color: var(--primary) !important;
 }
 
 .footer {

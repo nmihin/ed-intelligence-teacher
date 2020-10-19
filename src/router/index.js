@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "../pages/Home";
+import LessonPlan from "../pages/LessonPlan";
 import LessonPlanBank from "../pages/LessonPlanBank";
 import GoogleClassrom from "../pages/GoogleClassrom";
 
@@ -18,6 +19,11 @@ export default new Router({
         path: "/home",
         name: "Home",
         component: Home
+      },
+      {
+        path: "/lesson-plan",
+        name: "Lesson Plan",
+        component: LessonPlan
       },
       {
         path: "/lesson-plan-bank",
