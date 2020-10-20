@@ -1753,14 +1753,39 @@ li:hover .megamenu {
   background: linear-gradient(to bottom, var(--primary) 0, var(--tertiary) 100%)
 }
 
-.side-menu-profile {
+.side-menu.single .side-menu-header {
+  border-radius: 30px 30px 0 0;
+}
+
+.side-menu.single .side-menu-content {
+  border:1px solid var(--gray);
+  border-radius: 0 0 15px 15px;
+  padding: 15px !important;
+}
+
+.side-menu.single .card-box {
+  border-bottom: 1px solid var(--gray);
+  padding: 15px 10px 0 10px;
+}
+
+.side-menu .side-menu-header h2 {
+  width: calc(100% - 100px);
+}
+
+.side-menu.single .card-box:last-child {
+  border-bottom: none;
+}
+
+.side-menu.single .side-menu-profile {
   display: flex;
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
 
 .side-menu-header img {
   height: 80px;
+  display: flex;
+  float: left;
   border-radius: 50%;
   border: 2px solid var(--white)
 }

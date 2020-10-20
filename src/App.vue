@@ -15,6 +15,7 @@ import Mobilemenu from './components/navigation/mobilemenu/Mobilemenu.vue'
 import Home from './pages/Home.vue'
 import Admin from './pages/GoogleClassrom.vue'
 import LessonPlanBank from './pages/LessonPlanBank.vue'
+import LessonPlanSingle from './pages/LessonPlanSingle.vue'
 import LessonPlan from './pages/LessonPlan.vue'
 import Footer from './components/layout/footer/Footer.vue'
 
@@ -27,6 +28,7 @@ export default {
     Home,
     Admin,
     LessonPlanBank,
+    LessonPlanSingle,
     LessonPlan,
     Footer
   },

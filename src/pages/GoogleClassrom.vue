@@ -1,18 +1,11 @@
-<template>   
-      <!-- Main Content -->
-      <div class="main-content">
-        <div class="container-fluid">
-        <div class="row">
-            Google Classrom
-      </div>
-      </div>
-      </div>
-      <!-- main-content-END -->
+<template>
+  <div>
+    
+  </div>
 </template>
 
 
 <script>
-
 export default {
   name: 'google-classrom',
   components: {

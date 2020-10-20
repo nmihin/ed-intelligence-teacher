@@ -26,7 +26,7 @@
                </ul>
                <div class="card-content">
                  <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                 <button class="button medium ed-btn__primary">CC.4.L.1</button>
+                 <router-link to="/lesson-plan-single"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
                </div>
                <div class="card-footer">
                  <i class="icon icon-lesson"></i><span>0 Resources</span>
@@ -58,7 +58,7 @@
                </ul>
                <div class="card-content">
                  <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                 <button class="button medium ed-btn__primary">CC.4.L.1</button>
+                                  <router-link to="/lesson-plan-single"><button class="button medium ed-btn__primary">CC.4.L.2</button></router-link>
                </div>
                <div class="card-footer">
                  <i class="icon icon-lesson"></i><span>0 Resources</span>
@@ -90,7 +90,7 @@
                </ul>
                <div class="card-content">
                  <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                 <button class="button medium ed-btn__primary">CC.4.L.1</button>
+                                  <router-link to="/lesson-plan-single"><button class="button medium ed-btn__primary">CC.4.L.3</button></router-link>
                </div>
                <div class="card-footer">
                  <i class="icon icon-lesson"></i><span>0 Resources</span>
@@ -122,7 +122,7 @@
                </ul>
                <div class="card-content">
                  <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                 <button class="button medium ed-btn__primary">CC.4.L.1</button>
+                                  <router-link to="/lesson-plan-single"><button class="button medium ed-btn__primary">CC.4.L.4</button></router-link>
                </div>
                <div class="card-footer">
                  <i class="icon icon-lesson"></i><span>0 Resources</span>

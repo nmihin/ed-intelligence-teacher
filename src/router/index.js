@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "../pages/Home";
 import LessonPlan from "../pages/LessonPlan";
 import LessonPlanBank from "../pages/LessonPlanBank";
+import LessonPlanSingle from "../pages/LessonPlanSingle";
 import GoogleClassrom from "../pages/GoogleClassrom";
 
 Vue.use(Router);
@@ -29,6 +30,11 @@ export default new Router({
         path: "/lesson-plan-bank",
         name: "Lesson Plan Bank",
         component: LessonPlanBank
+      },
+      {
+        path: "/lesson-plan-single",
+        name: "Lesson Plan Single",
+        component: LessonPlanSingle
       },
       {
         path: "/google-classrom",

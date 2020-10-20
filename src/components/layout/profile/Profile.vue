@@ -3,7 +3,7 @@
         <div class="user-profile">
           <div class="profile-tag">
             <img src="../../../assets/img/users/avatar-1.jpg" alt="User">
-            <span>Su.admin</span>
+            <span>Reanna</span>
             <i class="icon icon-arrow"></i>
           </div>
           <div class="user-menu">
