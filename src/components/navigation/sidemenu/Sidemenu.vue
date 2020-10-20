@@ -52,7 +52,7 @@
      </div>
    </div>
    <!-- Side Menu-END -->
- </template>
+ </template> 
 
 
 <script>
