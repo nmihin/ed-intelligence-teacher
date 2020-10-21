@@ -9,7 +9,7 @@
                     <router-link to="/lesson-plan-bank"><i class="icon icon-lesson"></i>Lesson Plan Bank</router-link>
                   </li>
                   <li>
-                    <router-link to="/google-classrom"><i class="icon icon-profile"></i>Google Classrom</router-link>
+                    <router-link to="/google-classrom"><i class="icon icon-profile"></i>Google Classroom</router-link>
                   </li>
                 </ul>
               </div>

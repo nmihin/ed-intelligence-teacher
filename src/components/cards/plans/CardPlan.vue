@@ -36,7 +36,7 @@
                       </div>
                       <div class="card-footer">
                         <div class="row">
-                          <div class="col-4"><i class="icon icon-box-profile"></i>
+                          <div class="col-4"><router-link to="/lesson-plan"><i class="icon icon-box-profile"></i></router-link>
                           <span>Lesson Plan</span>
                           </div>
                           <div class="col-4"><i class="icon icon-box-student"></i>
@@ -85,7 +85,7 @@
                       </div>
                       <div class="card-footer">
                         <div class="row">
-                          <div class="col-4"><i class="icon icon-box-profile"></i>
+                          <div class="col-4"><router-link to="/lesson-plan"><i class="icon icon-box-profile"></i></router-link>
                           <span>Lesson Plan</span>
                           </div>
                           <div class="col-4"><i class="icon icon-box-student"></i>
@@ -134,7 +134,7 @@
                       </div>
                       <div class="card-footer">
                         <div class="row">
-                          <div class="col-4"><i class="icon icon-box-profile"></i>
+                          <div class="col-4"><router-link to="/lesson-plan"><i class="icon icon-box-profile"></i></router-link>
                           <span>Lesson Plan</span>
                           </div>
                           <div class="col-4"><i class="icon icon-box-student"></i>
@@ -183,7 +183,7 @@
                       </div>
                       <div class="card-footer">
                         <div class="row">
-                          <div class="col-4"><i class="icon icon-box-profile"></i>
+                          <div class="col-4"><router-link to="/lesson-plan"><i class="icon icon-box-profile"></i></router-link>
                           <span>Lesson Plan</span>
                           </div>
                           <div class="col-4"><i class="icon icon-box-student"></i>
