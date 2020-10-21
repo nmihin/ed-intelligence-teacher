@@ -5,6 +5,8 @@ import LessonPlan from "../pages/LessonPlan";
 import LessonPlanBank from "../pages/LessonPlanBank";
 import LessonPlanSingle from "../pages/LessonPlanSingle";
 import GoogleClassrom from "../pages/GoogleClassrom";
+import ProfileSettings from "../pages/ProfileSettings";
+import ChangePassword from "../pages/ChangePassword";
 
 Vue.use(Router);
 
@@ -40,6 +42,16 @@ export default new Router({
         path: "/google-classrom",
         name: "Google Classrom",
         component: GoogleClassrom
+      },
+      {
+        path: "/profile-settings",
+        name: "Profile Settings",
+        component: ProfileSettings
+      },
+      {
+        path: "/change-password",
+        name: "Change Password",
+        component: ChangePassword
       }
     ]
   });

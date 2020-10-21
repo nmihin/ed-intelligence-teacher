@@ -9,10 +9,10 @@
           <div class="user-menu">
             <ul>
               <li>
-                <a href="#">
+                <router-link to="/profile-settings">
                   <i class="icon icon-profile"></i>
                   <span>My Profile</span>
-                </a>
+                </router-link>
               </li>
               <li>
                 <a href="#">
@@ -21,10 +21,10 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <router-link to="/change-password">
                   <i class="icon icon-m-password"></i>
                   <span>Change Password</span>
-                </a>
+                </router-link>
               </li>
               <li>
                 <a href="#">

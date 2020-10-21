@@ -16,6 +16,8 @@ import Home from './pages/Home.vue'
 import Admin from './pages/GoogleClassrom.vue'
 import LessonPlanBank from './pages/LessonPlanBank.vue'
 import LessonPlanSingle from './pages/LessonPlanSingle.vue'
+import ChangePassword from './pages/ChangePassword.vue'
+import ProfileSettings from './pages/ProfileSettings.vue'
 import LessonPlan from './pages/LessonPlan.vue'
 import Footer from './components/layout/footer/Footer.vue'
 
@@ -30,6 +32,8 @@ export default {
     LessonPlanBank,
     LessonPlanSingle,
     LessonPlan,
+    ChangePassword,
+    ProfileSettings,
     Footer
   },
   data() {
