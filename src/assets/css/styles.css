@@ -2668,6 +2668,11 @@ button.jqx-button.primary {
   background: var(--bluewood)
 }
 
+/* Material */
+.md-table {
+  width: 100%;
+}
+
 @media only screen and (max-width:1600px) {
   .main-content {
     max-width: 1280px
