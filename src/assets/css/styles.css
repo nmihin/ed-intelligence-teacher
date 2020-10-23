@@ -2863,6 +2863,10 @@ button.jqx-button.primary {
     position: fixed;
     bottom: 0;
   }
+  /* Material */
+  .md-button-content {
+   font-size: 12px;
+  }
 }
 
 @media only screen and (max-width:620px) {
@@ -2879,6 +2883,17 @@ button.jqx-button.primary {
   .card-boxes .d-flex .card-box:last-child {
     width: 100%
   }
+  /* Material */
+  .md-button-content {
+    display: grid;
+    font-size: 11px;
+   }
+   .filter-card .icon {
+     padding: 5px;
+   }
+   .filter-card .md-menu {
+     margin-left: 0;
+   }
 }
 
 @media only screen and (max-width:480px) {
