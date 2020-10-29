@@ -158,6 +158,10 @@ dl, ol, ul {
   --bluewood: #34495e !important;
 }
 
+body::selection {
+  background:var(--tertiary);
+}
+
 @font-face {
   font-family: "SF Pro Text";
   src: url(../../assets/fonts/Sfprotext/sfprotext-regular.ttf) format("truetype");
@@ -1510,6 +1514,16 @@ html {
   z-index: 1111
 }
 
+.user-menu ul li:last-child {
+  border-radius: 0 0 0 8px;
+}
+
+.user-profile .user-menu {
+  border-radius: 0 0 0 8px;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 .user-menu {
   position: absolute;
   right: 0;
@@ -1520,18 +1534,19 @@ html {
 }
 
 .user-menu a>.icon {
-  padding: 5px
+  padding: 5px;
+  margin-right: 5px;
 }
 
 .user-menu a>.icon:before {
-  color: var(--mediumgray)
+  color: var(--bluewood)
 }
 
 .user-menu ul li {
   display: block;
   background-color: var(--white);
   width: 100%;
-  padding: 20px 0;
+  padding: 8px 0;
   transition: all .25 ease-in-out;
   border-bottom: 1px solid var(--lightgray)
 }
@@ -1541,11 +1556,21 @@ html {
 }
 
 .user-menu ul li a {
-  color: var(--black);
+  color: var(--bluewood);
+  display: block;
+  padding: 20px;
   font-size: 14px;
-  padding: 0 25px;
+  padding: 10px 25px;
   font-weight: 500;
   text-decoration: none
+}
+
+.user-menu ul li a span {
+  color: var(--bluewood);
+}
+
+.user-menu ul li a:hover {
+  color: var(--bluewood);
 }
 
 .user-menu ul li img {
@@ -2304,6 +2329,7 @@ button[disabled="true"] {
 .card-boxes.lessons_teacher {
   padding-top: 0;
   display: block;
+  margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -2671,7 +2697,22 @@ button.jqx-button.primary {
 /* Material */
 .md-table {
   width: 100%;
+  background-color: var(--md-theme-default-background, #fff);
+  border-radius: 8px;
 }
+
+.md-table .md-table-cell {
+  padding: 12px 0;
+}
+
+/* Helpers */
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+
 
 @media only screen and (max-width:1600px) {
   .main-content {
