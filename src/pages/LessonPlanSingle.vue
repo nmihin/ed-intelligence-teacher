@@ -90,7 +90,7 @@
 <script>
 
 export default {
-  name: 'App',
+  name: 'lesson-plan-single',
   components: {
   }
 }

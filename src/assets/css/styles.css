@@ -234,6 +234,10 @@ h6 {
   font-style: italic
 }
 
+/*
+ICONS
+*/
+
 [class*=" icon-"],
 [class^=icon-] {
   font-family: icomoon!important;
@@ -432,6 +436,49 @@ h6 {
   content: "\e91e";
   color: var(--white)
 }
+
+.icon.notification {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  font-size: 24px;
+  background-color: var(--bluewood);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 50%;
+  position: absolute;
+  float: left;
+  bottom: 10px;
+  left: -25px;
+}
+
+.icon.notification:after {
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 20px;
+}
+
+.icon.attendance {
+  background-color: var(--green);
+}
+
+.icon.user {
+  background-color: var(--gray);
+}
+
+.icon.attendance:after {
+  content:'A';
+}
+
+.icon.user:after {
+  content:'U';
+}
+
 
 .card-boxes .card-box {
   border-radius: 8px;
@@ -2702,7 +2749,11 @@ button.jqx-button.primary {
 }
 
 .md-table .md-table-cell {
-  padding: 12px 0;
+  padding: 15px 0;
+}
+
+.md-table .md-table-cell .md-table-cell-container {
+
 }
 
 /* Helpers */

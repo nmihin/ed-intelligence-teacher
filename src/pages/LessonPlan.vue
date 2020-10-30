@@ -15,7 +15,7 @@
 import Sidemenu from '../components/navigation/sidemenu/Sidemenu.vue'
 
 export default {
-  name: 'App',
+  name: 'lesson-plan',
   components: {
     Sidemenu
   }

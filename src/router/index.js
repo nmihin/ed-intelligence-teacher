@@ -7,6 +7,7 @@ import LessonPlanSingle from "../pages/LessonPlanSingle";
 import GoogleClassrom from "../pages/GoogleClassrom";
 import ProfileSettings from "../pages/ProfileSettings";
 import ChangePassword from "../pages/ChangePassword";
+import Notifications from "../pages/Notifications";
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ export default new Router({
         path: "/change-password",
         name: "Change Password",
         component: ChangePassword
+      },
+      {
+        path: "/notifications",
+        name: "Notifications",
+        component: Notifications
       }
     ]
   });

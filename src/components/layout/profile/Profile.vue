@@ -27,10 +27,10 @@
                 </router-link>
               </li>
               <li>
-                <a href="#">
+                <router-link to="/notifications">
                   <i class="icon icon-m-notification"></i>
                   <span>Notifications</span>
-                </a>
+                </router-link>
               </li>
               <li>
                 <a href="#">

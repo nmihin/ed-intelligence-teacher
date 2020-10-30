@@ -28,7 +28,7 @@ import DateTimePicker from '../components/features/datetimepicker/DateTimePicker
 import Swiper from '../components/features/swiper/Swiper.vue'
 
 export default {
-  name: 'App',
+  name: 'home',
   components: {
     CardPlan,
     DateTimePicker,

@@ -5,22 +5,24 @@
         <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
           <md-table-toolbar>
             <div class="md-toolbar-section-start">
-              <h1 class="md-title">10 records</h1>
+              <h1 class="md-title">Notifications</h1>
             </div>
 
             <md-field md-clearable class="md-toolbar-section-end">
-              <md-input placeholder="Search by class..." v-model="search" @input="searchOnTable" />
+              <md-input placeholder="Search by notification..." v-model="search" @input="searchOnTable" />
             </md-field>
           </md-table-toolbar>
 
+          sn: 2,
+          date: "10 May 2017 11:21",
+          name: "Allen Hanson",
+          type: "Type 2"
+
           <md-table-row slot="md-table-row" slot-scope="{ item }">
             <md-table-cell md-label="SN" md-sort-by="sn" md-numeric>{{ item.sn }}</md-table-cell>
-            <md-table-cell md-label="Class" md-sort-by="class">{{ item.class }}</md-table-cell>
-            <md-table-cell md-label="Homeroom" md-sort-by="homeroom">{{ item.homeroom }}</md-table-cell>
-            <md-table-cell md-label="Room" md-sort-by="room">{{ item.room }}</md-table-cell>
-            <md-table-cell md-label="Code" md-sort-by="code">{{ item.code }}</md-table-cell>
-            <md-table-cell md-label="State" md-sort-by="state">{{ item.state }}</md-table-cell>
-            <md-table-cell md-label="Action" md-sort-by="action">{{ item.action }}</md-table-cell>
+            <md-table-cell md-label="Date" md-sort-by="date">{{ item.date }}</md-table-cell>
+            <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
+            <md-table-cell md-label="Type" md-sort-by="type"><i class="icon notification" :class='item.type'></i>{{ item.type }}</md-table-cell>
           </md-table-row>
         </md-table>
     </div>
@@ -50,46 +52,34 @@
   }
 
   export default {
-    name: 'google-classroom',
+    name: 'notifications',
     data: () => ({
       search: null,
       searched: [],
       users: [
         {
           sn: 1,
-          class: "Grade 1",
-          homeroom: "Grade 1",
-          room: "Newton 1",
-          code: "fz7iw2s",
-          state: "ACTIVE",
-          action: "view"
+          date: "10 May 2017 11:21",
+          name: "Leah Todd",
+          type: "user"
         },
         {
           sn: 2,
-          class: "Grade 2",
-          homeroom: "Grade 2",
-          room: "Newton 2",
-          code: "fz7iw2s",
-          state: "ACTIVE",
-          action: "view"
+          date: "10 May 2017 11:21",
+          name: "Allen Hanson",
+          type: "attendance"
         },
         {
           sn: 3,
-          class: "Grade 3",
-          homeroom: "Grade 3",
-          room: "Newton 3",
-          code: "fz7iw2s",
-          state: "ACTIVE",
-          action: "view"
+          date: "10 May 2017 11:21",
+          name: "Oscar Sullivan",
+          type: "attendance"
         },
         {
           sn: 4,
-          class: "Grade 4",
-          homeroom: "Grade 4",
-          room: "Newton 4",
-          code: "fz7iw2s",
-          state: "INACTIVE",
-          action: "view"
+          date: "10 May 2017 11:21",
+          name: "Minerva Duncan",
+          type: "user"
         }
       ]
     }),
