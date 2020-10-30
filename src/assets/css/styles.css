@@ -2152,7 +2152,7 @@ ul.side-menu__results>li>ul>li a:hover {
 }
 
 .side-menu.profile  .edit-profile .md-button-content {
-  position: relative;
+  position: initial;
 }
 
 .side-menu.profile  .edit-profile .icon {
@@ -2218,6 +2218,14 @@ ul.side-menu__results>li>ul>li a:hover {
   font-size: 15px
 }
 
+/* Modals */
+.modal-window > div {
+  padding: 25px;
+}
+
+.modal-window > div .button {
+  margin-left: 15px !important;
+}
 
 /* GZA buttons */
 [class*="ed-btn"] {

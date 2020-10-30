@@ -14,15 +14,21 @@
                     <router-link to="/profile-settings"  @click="showDialog = true"><i class="icon icon-edit"></i></router-link>
                 </md-button>
                 <!-- START EDIT IMAGE MODAL -->
-                  <md-dialog :md-active.sync="showDialog">
-                    <md-dialog-title>Preferences</md-dialog-title>
-                    <div><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at 
+                  <md-dialog :md-active.sync="showDialog" class="modal-window">
+                    <h2>Edit Image</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at 
                     voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut. Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
                     Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit 
-                    praesentium inventore ducimus ipsa aut.</p></div>
+                    praesentium inventore ducimus ipsa aut.</p>
+                    <v-image-input
+                        v-model="imageData"
+                        :image-quality="0.85"
+                        clearable
+                        image-format="jpeg"
+                    />
                     <md-dialog-actions>
-                      <md-button class="md-primary" @click="showDialog = false">Close</md-button>
-                      <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+                      <md-button class="button medium ed-btn__primary" @click="showDialog = false">Close</md-button>
+                      <md-button class="button medium ed-btn__primary" @click="showDialog = false">Save</md-button>
                     </md-dialog-actions>
                   </md-dialog>
                 <!-- END EDIT IMAGE MODAL --> 
@@ -125,9 +131,13 @@
 </template>
 
 <script>
+import VImageInput from 'vuetify-image-input';
+
 export default {
   name: "profile-settings",
-  components: {},
+  components: {
+    VImageInput
+  },
   data: () => ({
       showDialog: false
   })
