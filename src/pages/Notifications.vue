@@ -9,7 +9,7 @@
             </div>
 
             <md-field md-clearable class="md-toolbar-section-end">
-              <md-input placeholder="Search by notification..." v-model="search" @input="searchOnTable" />
+              <md-input placeholder="Search by type..." v-model="search" @input="searchOnTable" />
             </md-field>
           </md-table-toolbar>
 
@@ -45,7 +45,7 @@
 
   const searchByName = (items, term) => {
     if (term) {
-      return items.filter(item => toLower(item.class).includes(toLower(term)))
+      return items.filter(item => toLower(item.type).includes(toLower(term)))
     }
 
     return items
@@ -65,19 +65,19 @@
         },
         {
           sn: 2,
-          date: "10 May 2017 11:21",
+          date: "11 May 2017 11:21",
           name: "Allen Hanson",
           type: "attendance"
         },
         {
           sn: 3,
-          date: "10 May 2017 11:21",
+          date: "12 May 2017 11:21",
           name: "Oscar Sullivan",
           type: "attendance"
         },
         {
           sn: 4,
-          date: "10 May 2017 11:21",
+          date: "13 May 2017 11:21",
           name: "Minerva Duncan",
           type: "user"
         }

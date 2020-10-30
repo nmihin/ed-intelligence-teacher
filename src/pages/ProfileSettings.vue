@@ -4,11 +4,29 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-3 col-md-3">
-          <div class="side-menu single">
+          <div class="side-menu single profile">
             <div class="col-12 side-menu-header">
               <div class="side-menu-profile">
                 <img src="../assets/img/users/avatar-1.jpg" alt="User" />
                 <h2>Reanna Gulgowski Oberbrunerhoffman von Düsseldorf</h2>
+                <md-button @click="showDialog = true" class="edit-profile">
+                    <md-tooltip md-direction="top">Edit Image</md-tooltip>
+                    <router-link to="/profile-settings"  @click="showDialog = true"><i class="icon icon-edit"></i></router-link>
+                </md-button>
+                <!-- START EDIT IMAGE MODAL -->
+                  <md-dialog :md-active.sync="showDialog">
+                    <md-dialog-title>Preferences</md-dialog-title>
+                    <div><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at 
+                    voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut. Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                    Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit 
+                    praesentium inventore ducimus ipsa aut.</p></div>
+                    <md-dialog-actions>
+                      <md-button class="md-primary" @click="showDialog = false">Close</md-button>
+                      <md-button class="md-primary" @click="showDialog = false">Save</md-button>
+                    </md-dialog-actions>
+                  </md-dialog>
+                <!-- END EDIT IMAGE MODAL --> 
+
               </div>
             </div>
             <div class="col-12 side-menu-content">
@@ -110,5 +128,8 @@
 export default {
   name: "profile-settings",
   components: {},
+  data: () => ({
+      showDialog: false
+  })
 };
 </script>

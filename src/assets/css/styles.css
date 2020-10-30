@@ -2116,6 +2116,76 @@ ul.side-menu__results>li>ul>li a:hover {
   color: var(--primary)
 }
 
+.side-menu.profile {
+  float: left;
+  width: 100%;
+  display: inline-block;
+}
+
+.side-menu.profile .side-menu-profile {
+  display: inline-block;
+}
+
+.side-menu.profile .side-menu-header {
+  display: inline-block;
+  max-height: initial !important;
+  height: auto;
+}
+
+.side-menu.profile {
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 30px 30px 15px 15px;
+}
+
+.side-menu.profile  .edit-profile {
+  background: var(--auxiliary); 
+  font-size: 14px;
+  border-radius: 50%;
+  min-width: 30px;
+  width: 30px;
+  height: 30px;
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.side-menu.profile  .edit-profile .md-button-content {
+  position: relative;
+}
+
+.side-menu.profile  .edit-profile .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 16px;
+  text-align: center;
+}
+
+.side-menu.profile  .edit-profile .icon:before {
+  color:var(--white);
+}
+
+.side-menu.profile img {
+  height: auto !important;
+  max-height: 150px;
+  margin: 0 auto;
+  display: block;
+  float: initial;
+}
+
+.side-menu.profile .side-menu-header h2 {
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  line-height: 1.25;
+  font-size: 15px;
+}
+
 .search-box {
   text-align: left;
   float: left;
