@@ -39,10 +39,12 @@
                           <div class="col-4"><router-link to="/lesson-plan"><i class="icon icon-box-profile"></i></router-link>
                           <span>Lesson Plan</span>
                           </div>
-                          <div class="col-4"><i class="icon icon-box-student"></i>
+                          <div class="col-4">
+                          <router-link to="/lesson-plan"><i class="icon icon-box-student"></i></router-link>
                           <span>Student List</span>
                           </div>
-                          <div class="col-4"><i class="icon icon-box-confirm"></i>
+                          <div class="col-4">
+                          <router-link to="/lesson-plan"><i class="icon icon-box-confirm"></i></router-link>
                           <span>Attendance</span>
                           </div>
                         </div>
@@ -88,10 +90,12 @@
                           <div class="col-4"><router-link to="/lesson-plan"><i class="icon icon-box-profile"></i></router-link>
                           <span>Lesson Plan</span>
                           </div>
-                          <div class="col-4"><i class="icon icon-box-student"></i>
+                          <div class="col-4">
+                          <router-link to="/lesson-plan"><i class="icon icon-box-student"></i></router-link>
                           <span>Student List</span>
                           </div>
-                          <div class="col-4"><i class="icon icon-box-confirm"></i>
+                          <div class="col-4">
+                          <router-link to="/lesson-plan"><i class="icon icon-box-confirm"></i></router-link>
                           <span>Attendance</span>
                           </div>
                         </div>
@@ -137,10 +141,12 @@
                           <div class="col-4"><router-link to="/lesson-plan"><i class="icon icon-box-profile"></i></router-link>
                           <span>Lesson Plan</span>
                           </div>
-                          <div class="col-4"><i class="icon icon-box-student"></i>
+                          <div class="col-4">
+                          <router-link to="/lesson-plan"><i class="icon icon-box-student"></i></router-link>
                           <span>Student List</span>
                           </div>
-                          <div class="col-4"><i class="icon icon-box-confirm"></i>
+                          <div class="col-4">
+                          <router-link to="/lesson-plan"><i class="icon icon-box-confirm"></i></router-link>
                           <span>Attendance</span>
                           </div>
                         </div>
@@ -186,10 +192,12 @@
                           <div class="col-4"><router-link to="/lesson-plan"><i class="icon icon-box-profile"></i></router-link>
                           <span>Lesson Plan</span>
                           </div>
-                          <div class="col-4"><i class="icon icon-box-student"></i>
+                          <div class="col-4">
+                          <router-link to="/lesson-plan"><i class="icon icon-box-student"></i></router-link>
                           <span>Student List</span>
                           </div>
-                          <div class="col-4"><i class="icon icon-box-confirm"></i>
+                          <div class="col-4">
+                          <router-link to="/lesson-plan"><i class="icon icon-box-confirm"></i></router-link>
                           <span>Attendance</span>
                           </div>
                         </div>

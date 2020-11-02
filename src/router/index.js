@@ -8,6 +8,7 @@ import GoogleClassrom from "../pages/GoogleClassrom";
 import ProfileSettings from "../pages/ProfileSettings";
 import ChangePassword from "../pages/ChangePassword";
 import Notifications from "../pages/Notifications";
+import AddStudent from "../pages/AddStudent";
 
 Vue.use(Router);
 
@@ -58,6 +59,11 @@ export default new Router({
         path: "/notifications",
         name: "Notifications",
         component: Notifications
+      },
+      {
+        path: "/add-student",
+        name: "Add Student",
+        component: AddStudent
       }
     ]
   });

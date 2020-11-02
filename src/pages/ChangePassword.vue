@@ -35,7 +35,7 @@
                       </md-field>                    
                     </div>
                   </div>
-                  <button class="button medium ed-btn__primary right">Update Password</button>
+                  <button class="button medium ed-btn__primary right">Update password</button>
                 </div>
               </div>
             </div>

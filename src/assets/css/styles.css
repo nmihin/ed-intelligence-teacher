@@ -1154,6 +1154,10 @@ ICONS
   padding: 11px
 }
 
+.ed_card-boxes.upcoming .card-box .icon:hover::before {
+  opacity: 0.75;
+}
+
 .ed_card-boxes.upcoming .card-content>span {
   position: absolute;
   width: 60px;
@@ -2659,6 +2663,7 @@ button[disabled="true"] {
   height: 40px;
   line-height: 40px;
   width: 40px;
+  margin: 0 auto;
 }
 
 .timepicker-picker {

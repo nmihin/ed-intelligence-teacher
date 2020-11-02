@@ -39,7 +39,7 @@
               <!-- Box -->
               <div class="card-box">
                 <div class="card-title">
-                  <h2>My Test Lesson - English 1</h2>
+                  <h2>Teacher information</h2>
                 </div>
                 <div class="card-content">
                   <p>
@@ -58,7 +58,7 @@
               <!-- Box -->
               <div class="card-box">
                 <div class="card-title">
-                  <h2>My Test Lesson - English 1</h2>
+                  <h2>Edit information</h2>
                 </div>
                 <div class="card-content">
                   <div class="row">
@@ -119,6 +119,7 @@
                       </md-field>                    
                     </div>
                   </div>
+                  <button class="button medium ed-btn__primary right">Save changes</button>
                 </div>
               </div>
             </div>

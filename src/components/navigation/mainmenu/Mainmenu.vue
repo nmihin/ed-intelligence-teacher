@@ -11,6 +11,9 @@
                   <li>
                     <router-link to="/google-classrom"><i class="icon icon-profile"></i>Google Classroom</router-link>
                   </li>
+                  <li>
+                    <router-link to="/add-student"><i class="icon icon-student"></i>Add Student</router-link>
+                  </li>
                 </ul>
               </div>
                <!-- Main Menu-END -->
