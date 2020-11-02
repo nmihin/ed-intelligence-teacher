@@ -28,6 +28,7 @@
     "vue-router": "^3.4.7",
     "vue-swiper": "^0.5.0",
     "vuejs-datetimepicker": "^1.1.13",
+    "vuelidate": "^0.7.6",
     "vuetify-image-input": "^19.1.0"
   },
   "devDependencies": {

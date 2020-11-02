@@ -493,6 +493,18 @@ ICONS
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, .06)
 }
 
+.card-boxes .card-tab > div {
+  padding: 20px 30px;
+}
+
+.card-boxes .card-radio {
+  padding: 20px 30px 0 30px;
+}
+
+.card-boxes .card-tab > div:nth-child(even){
+  background-color: var(--bluegray);
+}
+
 .card-boxes .card-title {
   font-size: 20px;
   height: 40px
@@ -721,7 +733,16 @@ ICONS
 }
 
 .card-boxes.addstudent .card-box {
-  padding: 20px;
+  padding: 0;
+  border-radius: 30px 30px 8px 8px;
+}
+
+.card-boxes.addstudent .card-box .card-label {
+  width:100%;
+}
+
+.card-boxes.addstudent .card-box  .card-date-label {
+  position: absolute;
 }
 
 .top-box {
@@ -2843,14 +2864,102 @@ button.jqx-button.primary {
 
 }
 
+.md-radio.md-theme-default.md-checked .md-ripple {
+  color: var(--primary);
+}
+
+.md-radio.md-theme-default.md-checked .md-radio-container:after {
+  background-color: var(--primary);
+}
+
+.md-radio.md-theme-default.md-checked .md-radio-container {
+  border-color: var(--primary);
+}
+
 /*
 Wizard
 */
 .wizard-header {
   display: none;
 }
-.wizard-navigation {
-  
+.vue-form-wizard .wizard-nav-pills {
+  top:-4px;
+  border-radius: 30px 30px 0 0;
+  background: var(--primary);
+  background: -moz-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: -webkit-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: linear-gradient(to bottom, var(--primary) 0, var(--tertiary) 100%);
+}
+.vue-form-wizard .wizard-nav > li:before {
+  position: absolute;
+  content: '';
+  width: 2px;
+  height: 76px;
+  top:-10px;
+  right: 0;
+  background: var(--background);
+  transform: rotate(-45deg);
+}
+.vue-form-wizard .wizard-nav > li:after {
+  position: absolute;
+  content: '';
+  width: 2px;
+  height: 75px;
+  bottom:-10px;
+  right: 0;
+  background: var(--background);
+  transform: rotate(45deg);
+}
+.vue-form-wizard .wizard-nav > li:last-child::before,
+.vue-form-wizard .wizard-nav > li:last-child::after
+{
+  display: none;
+}
+.vue-form-wizard .wizard-icon-circle .wizard-icon-container {
+  background-color: transparent !important;
+  outline: none;
+}
+.vue-form-wizard .wizard-icon-circle.tab_shape {
+  background-color: transparent !important; 
+}
+.vue-form-wizard .wizard-nav-pills .stepTitle {
+  color: var(--secondary) !important;
+}
+.vue-form-wizard .wizard-nav-pills .stepTitle.active {
+  color: var(--white) !important;
+}
+.vue-form-wizard.md .wizard-nav-pills>li>a .wizard-icon {
+  width: 64px;
+  background-color: var(--auxiliary);
+  font-size: 21px !important;
+}
+.vue-form-wizard.md .wizard-nav-pills>li>a .wizard-icon:before {
+  color: var(--white);
+}
+.vue-form-wizard.md .wizard-nav-pills>li.active>a .wizard-icon {
+  width: 58px;
+  background-color: var(--tertiary);
+  outline: none;
+}
+.vue-form-wizard .wizard-icon-circle {
+  background-color: var(--white);
+  border-color: var(--white) !important;
+}
+.vue-form-wizard .wizard-nav>li {
+  padding: 10px 0;
+}
+.vue-form-wizard .wizard-nav>li>a {
+  z-index: 1;
+}
+.vue-form-wizard .wizard-tab-content {
+  padding: 0;
+}
+.vue-form-wizard.md .wizard-icon-circle {
+  height: 64px;
+  width: 64px;
+}
+.vue-form-wizard.md .wizard-icon-circle:focus {
+  outline: none;
 }
 
 /* Helpers */
@@ -3082,6 +3191,13 @@ Wizard
    }
    .filter-card .md-menu {
      margin-left: 0;
+   }
+}
+
+@media only screen and (max-width:600px) {
+   .vue-form-wizard .wizard-nav-pills .stepTitle {
+    font-size: 14px;
+    line-height: 1.25;
    }
 }
 
