@@ -720,6 +720,10 @@ ICONS
   left: 0
 }
 
+.card-boxes.addstudent .card-box {
+  padding: 20px;
+}
+
 .top-box {
   border-radius: 8px;
   background-color: var(--white);
@@ -2837,6 +2841,16 @@ button.jqx-button.primary {
 
 .md-table .md-table-cell .md-table-cell-container {
 
+}
+
+/*
+Wizard
+*/
+.wizard-header {
+  display: none;
+}
+.wizard-navigation {
+  
 }
 
 /* Helpers */
