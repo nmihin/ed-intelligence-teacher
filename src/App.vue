@@ -15,12 +15,14 @@ import Mobilemenu from './components/navigation/mobilemenu/Mobilemenu.vue'
 import Home from './pages/Home.vue'
 import Admin from './pages/GoogleClassrom.vue'
 import LessonPlanBank from './pages/LessonPlanBank.vue'
+import AddStudent from './pages/AddStudent.vue'
 import LessonPlanSingle from './pages/LessonPlanSingle.vue'
 import ChangePassword from './pages/ChangePassword.vue'
 import ProfileSettings from './pages/ProfileSettings.vue'
 import Notifications from './pages/Notifications.vue'
 import LessonPlan from './pages/LessonPlan.vue'
 import Footer from './components/layout/footer/Footer.vue'
+
 
 export default {
   name: 'App',
@@ -32,6 +34,7 @@ export default {
     Admin,
     LessonPlanBank,
     LessonPlanSingle,
+    AddStudent,
     LessonPlan,
     Notifications,
     ChangePassword,

@@ -7,6 +7,7 @@ import $ from 'jquery';
 import './assets/css/styles.css';
 import './assets/css/swiper.min.css';
 import './assets/css/bootstrap-grid.min.css';
+import './assets/css/ui-elements.css';
 import './assets/css/bootstrap.min.css';
 
 Vue.config.productionTip = false;

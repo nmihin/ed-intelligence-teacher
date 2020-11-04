@@ -10,7 +10,14 @@ import ChangePassword from "../pages/ChangePassword";
 import Notifications from "../pages/Notifications";
 import AddStudent from "../pages/AddStudent";
 
+import Element from 'element-ui'
+import FormWizard from "vue-form-wizard";
+import "vue-form-wizard/dist/vue-form-wizard.min.css";
+import locale from 'element-ui/lib/locale/lang/en';
+
 Vue.use(Router);
+Vue.use(Element, { locale })
+Vue.use(FormWizard);
 
 export default new Router({
     mode: "history",
