@@ -29,11 +29,11 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Student Notification Date" class="col-12">
-              <i class="icon icon-dots"></i>
+              <i class="icon icon-box-plan"></i>
               <el-date-picker prop="entryDate" v-model="model.entryDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             </el-form-item>
             <el-form-item label="Student Notification Date" prop="studentNotificationDate" class="col-12">
-              <i class="icon icon-dots"></i>
+              <i class="icon icon-box-plan"></i>
               <el-input v-model="model.studentNotificationDate" placeholder="Student Notification Date"></el-input>
             </el-form-item>
           </div>
@@ -46,7 +46,7 @@
               <el-input v-model="model.slotAcceptedDate" placeholder="Slot Accepted Date"></el-input>
             </el-form-item>
             <el-form-item label="Student Registration Date" class="col-12">
-              <i class="icon icon-dots"></i>
+              <i class="icon icon-box-plan"></i>
               <el-date-picker prop="studentRegistrationDate" v-model="model.studentRegistrationDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             </el-form-item>
             <el-form-item label="Last School Attended" prop="prefix" class="col-12">
@@ -85,8 +85,8 @@
               </el-select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
-            <el-form-item label="Tuition Amount" prop="tuitionAmount" class="col-12">
-              <el-input v-model="model.tuitionAmount" placeholder="Tuition Amount"></el-input>
+            <el-form-item label="Tuition Amount" class="col-12">
+              <el-input v-model="model.tuitionAmount" prop="tuitionAmount" placeholder="Tuition Amount"></el-input>
             </el-form-item>
       </div>
     </div>

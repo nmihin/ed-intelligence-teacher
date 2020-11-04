@@ -492,15 +492,15 @@ ICONS
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, .06)
 }
 
-.card-boxes .card-tab .el-form .icon-dots {
-  left: 0;
-  top: 48px;
+.card-boxes .card-tab .el-form .icon-box-plan {
+  left: 3px;
+  top: 47px;
   font-size: 12px;
   position: absolute;
   z-index: 1;
 }
 
-.card-boxes .card-tab .el-form .icon-dots:before {
+.card-boxes .card-tab .el-form .icon-box-plan:before {
   color: var(--bluewood);
 }
 

@@ -127,8 +127,8 @@
             <el-form-item label="LEP Status" prop="lepStatus" class="col-12">
               <el-input v-model="model.lepStatus" placeholder="LEP Status"></el-input>
             </el-form-item>
-            <el-form-item label="Social Security Number" prop="socialSecurityNumber" class="col-12">
-              <el-input v-model="model.socialSecurityNumber" placeholder="Social Security Number"></el-input>
+            <el-form-item label="Social Security Number" class="col-12">
+              <el-input v-model="model.socialSecurityNumber" prop="socialSecurityNumber" placeholder="Social Security Number"></el-input>
             </el-form-item>
           </div>
         </div>
@@ -183,21 +183,21 @@
         </div>
         <div class="card-content">
           <div class="row">
-            <el-form-item label="Weight" prop="weight" class="col-12">
-              <el-input v-model="model.weight" placeholder="Weight"></el-input>
+            <el-form-item label="Weight" class="col-12">
+              <el-input v-model="model.weight" prop="weight"  placeholder="Weight"></el-input>
             </el-form-item>
             <div class="col-12">
               <div class="row">
-                <el-form-item label="Height - feet" prop="heightFeet" class="col-6">
-                  <el-input v-model="model.heightFeet" placeholder="Height - feet"></el-input>
+                <el-form-item label="Height - feet" class="col-6">
+                  <el-input v-model="model.heightFeet" prop="heightFeet" placeholder="Height - feet"></el-input>
                 </el-form-item>
-                <el-form-item label="Height - inches" prop="heightInches" class="col-6">
-                  <el-input v-model="model.heightInches" placeholder="Height - inches"></el-input>
+                <el-form-item label="Height - inches" class="col-6">
+                  <el-input v-model="model.heightInches" prop="heightInches" placeholder="Height - inches"></el-input>
                 </el-form-item>
               </div>
             </div>
-            <el-form-item label="Birth Date" prop="heightInches" class="col-12">
-              <i class="icon icon-dots"></i>
+            <el-form-item label="Birth Date" class="col-12">
+              <i class="icon icon-box-plan"></i>
               <el-date-picker prop="birthDate" v-model="model.birthDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             </el-form-item>
             <el-upload
@@ -209,7 +209,7 @@
                 <button class="button medium ed-btn__primary">
                   <img v-if="model.imageUrl" :src="model.imageUrl" class="avatar">
                   <i v-else class="icon icon-profile"></i>
-                Upload Image</button> 
+                Upload Avatar Image</button> 
             </el-upload>
           </div>
         </div>
@@ -270,7 +270,7 @@ export default {
         lepStatus: "",
         mealStatus:"",
         nativeLanguage:"",
-        prefix: "-- title --",
+        prefix: "",
         race:"",
         socialSecurityNumber: "",
         specialNeedIndicator: "",
@@ -331,11 +331,43 @@ export default {
         ]
       },
       rules: {
+        birthDate: [
+          {
+            type: "date",
+            message: "Birth date should be date",
+            trigger: "change",
+          }      
+        ],
+        socialSecurityNumber: [
+          {
+            type: "number",
+            message: "Social security number should be number",
+            trigger: "change",
+          }
+        ],
+        weight: [
+          {
+            min:1,
+            max:3,
+            message: 'Lengt should be 1-3 numbers',
+            trigger: 'blur'
+          },
+          {
+            type: "number",
+            message: "Weight should be number",
+            trigger: "change",
+          }
+        ],
         heightFeet: [
           {
             max:1,
             message: 'Length should be 1',
             trigger: 'blur'
+          },
+          {
+            type: "number",
+            message: "Height should be number",
+            trigger: "change",
           }
         ],
         heightInches: [
@@ -344,6 +376,11 @@ export default {
             max:2,
             message: 'Length should be 1-2',
             trigger: 'blur'
+          },
+          {
+            type: "number",
+            message: "Height should be number",
+            trigger: "change",
           }
         ],
         prefix: [
