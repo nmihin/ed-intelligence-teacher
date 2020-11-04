@@ -9,13 +9,13 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Prefix" prop="prefix" class="col-12">
-              <el-select v-model="model.prefix" placeholder="Prefix">
-                <el-option v-for="pre in options.prefixOptions"
+              <select class="card-select" v-model="model.prefix" placeholder="Prefix">
+                <option v-for="pre in options.prefixOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="First Name" prop="firstName" class="col-12">
@@ -47,13 +47,13 @@
               <el-input v-model="model.city" placeholder="City"></el-input>
             </el-form-item>
             <el-form-item label="State" prop="state" class="col-12 col-md-4">
-              <el-select v-model="model.state" placeholder="State">
-                <el-option v-for="pre in options.stateOptions"
+              <select class="card-select"  v-model="model.state" placeholder="State">
+                <option v-for="pre in options.stateOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Zip Code" prop="zipCode" class="col-12 col-md-4">
@@ -63,43 +63,43 @@
               <el-input v-model="model.ward" placeholder="Ward"></el-input>
             </el-form-item>
             <el-form-item label="State Residency Status" prop="stateResidencyStatus" class="col-12 col-md-4">
-              <el-select v-model="model.stateResidencyStatus" placeholder="State Residency Status">
-                <el-option v-for="pre in options.stateResidencyStatusOptions"
+              <select class="card-select" v-model="model.stateResidencyStatus" placeholder="State Residency Status">
+                <option v-for="pre in options.stateResidencyStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="State/District Verified Residency" prop="stateVerifiedResidencyStatus" class="col-12 col-md-4">
-              <el-select v-model="model.stateVerifiedResidencyStatus" placeholder="State/District Verified Residency">
-                <el-option v-for="pre in options.stateVerifiedResidencyStatusOptions"
+              <select class="card-select" v-model="model.stateVerifiedResidencyStatus" placeholder="State/District Verified Residency">
+                <option v-for="pre in options.stateVerifiedResidencyStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Ward of State Indicator" prop="wardStateIndicator" class="col-12 col-md-4">
-              <el-select v-model="model.wardStateIndicator" placeholder="Ward of State Indicator">
-                <el-option v-for="pre in options.wardStateIndicatorOptions"
+              <select class="card-select" v-model="model.wardStateIndicator" placeholder="Ward of State Indicator">
+                <option v-for="pre in options.wardStateIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="At-Risk Indicator" prop="atRiskIndicator" class="col-12 col-md-4">
-              <el-select v-model="model.atRiskIndicator" placeholder="At-Risk Indicator">
-                <el-option v-for="pre in options.atRiskIndicatorOptions"
+              <select class="card-select" v-model="model.atRiskIndicator" placeholder="At-Risk Indicator">
+                <option v-for="pre in options.atRiskIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
           </div>
@@ -115,13 +115,13 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="LEP indicator" prop="lepIndicator" class="col-12">
-              <el-select v-model="model.lepIndicator" placeholder="LEP indicator">
-                <el-option v-for="pre in options.lepIndicatorOptions"
+              <select class="card-select" v-model="model.lepIndicator" placeholder="LEP indicator">
+                <option v-for="pre in options.lepIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="LEP Status" prop="lepStatus" class="col-12">
@@ -141,33 +141,33 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Ethnicity" prop="ethnicity" class="col-12">
-              <el-select v-model="model.ethnicity" placeholder="Ethnicity">
-                <el-option v-for="pre in options.ethnicityOptions"
+              <select class="card-select" v-model="model.ethnicity" placeholder="Ethnicity">
+                <option v-for="pre in options.ethnicityOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Race" prop="race" class="col-12">
-              <el-select v-model="model.race" placeholder="Race">
-                <el-option v-for="pre in options.raceOptions"
+              <select class="card-select" v-model="model.race" placeholder="Race">
+                <option v-for="pre in options.raceOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Free and reduced meal status" prop="mealStatus" class="col-12">
-              <el-select v-model="model.mealStatus" placeholder="Free and reduced meal status">
-                <el-option v-for="pre in options.mealStatusOptions"
+              <select class="card-select" v-model="model.mealStatus" placeholder="Free and reduced meal status">
+                <option v-for="pre in options.mealStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Native Language" prop="nativeLanguage" class="col-12">
@@ -183,7 +183,7 @@
         </div>
         <div class="card-content">
           <div class="row">
-            <el-form-item label="Weight" class="col-12">
+            <el-form-item label="Weight - lbs" class="col-12">
               <el-input v-model="model.weight" prop="weight"  placeholder="Weight"></el-input>
             </el-form-item>
             <div class="col-12">

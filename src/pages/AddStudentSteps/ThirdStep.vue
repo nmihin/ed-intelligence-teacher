@@ -9,32 +9,27 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Category" prop="category" class="col-12">
-              <el-select v-model="model.category" placeholder="Category">
-                <el-option v-for="pre in options.categoryOptions"
+              <select class="card-select" v-model="model.category" placeholder="Category">
+                <option v-for="pre in options.categoryOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Entry Code" prop="entryCode" class="col-12">
-              <el-select v-model="model.entryCode" placeholder="Entry Code">
-                <el-option v-for="pre in options.entryCodeOptions"
+              <select class="card-select" v-model="model.entryCode" placeholder="Entry Code">
+                <option v-for="pre in options.entryCodeOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Student Notification Date" class="col-12">
-              <i class="icon icon-box-plan"></i>
-              <el-date-picker prop="entryDate" v-model="model.entryDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
-            </el-form-item>
-            <el-form-item label="Student Notification Date" prop="studentNotificationDate" class="col-12">
-              <i class="icon icon-box-plan"></i>
-              <el-input v-model="model.studentNotificationDate" placeholder="Student Notification Date"></el-input>
+              <el-input v-model="model.studentNotificationDate" prop="studentNotificationDate" placeholder="Student Notification Date"></el-input>
             </el-form-item>
           </div>
         </div>
@@ -50,13 +45,13 @@
               <el-date-picker prop="studentRegistrationDate" v-model="model.studentRegistrationDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             </el-form-item>
             <el-form-item label="Last School Attended" prop="prefix" class="col-12">
-              <el-select v-model="model.lastSchoolAttended" placeholder="Last School Attended">
-                <el-option v-for="pre in options.lastSchoolAttendedOptions"
+              <select class="card-select" v-model="model.lastSchoolAttended" placeholder="Last School Attended">
+                <option v-for="pre in options.lastSchoolAttendedOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Last School Address" prop="lastSchoolAddress" class="col-12">
@@ -76,13 +71,13 @@
               <el-input v-model="model.uniqueStudentIdentifier" placeholder="Unique Student Identifier (USI)"></el-input>
             </el-form-item>
             <el-form-item label="Grade" prop="grade" class="col-12">
-              <el-select v-model="model.grade" placeholder="Grade">
-                <el-option v-for="pre in options.gradeOptions"
+              <select class="card-select" v-model="model.grade" placeholder="Grade">
+                <option v-for="pre in options.gradeOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </el-option>
-              </el-select>
+                </option>
+              </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Tuition Amount" class="col-12">

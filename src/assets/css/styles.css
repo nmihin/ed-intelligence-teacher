@@ -761,6 +761,7 @@ ICONS
 
 .card-boxes.addstudent {
   width:100%;
+  margin-bottom: 20px;
 }
 
 .card-boxes.addstudent .card-box {
@@ -2916,6 +2917,7 @@ Wizard
 .vue-form-wizard .wizard-nav-pills {
   top:-4px;
   max-height: 108px;
+  height:108px;
   border-radius: 30px 30px 0 0;
   background: var(--primary);
   background: -moz-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
@@ -3003,9 +3005,68 @@ Wizard
 }
 .vue-form-wizard .navbar .navbar-nav>li>a.wizard-btn, .vue-form-wizard .wizard-btn {
   border-radius: 30px;
-  padding: 15px 25px;;
+  padding: 12px 25px;;
+}
+.vue-form-wizard  .card-select {
+  -webkit-appearance: none;
+  background-color: #FFF;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #DCDFE6;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding: 0 15px;
+  -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+  transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+  width: 100%;
+}
+.el-date-picker__prev-btn {
+  display: block;
+  width:20px;
+  height: 20px;
+  position: relative;
+  outline: none;
+}
+.el-date-picker__next-btn {
+  display: block;
+  width:20px;
+  height: 20px;
+  position: relative;
+  outline: none;
+}
+.el-date-picker__prev-btn:focus,
+.el-date-picker__next-btn:focus
+{
+  outline: none;
+}
+.el-date-picker__prev-btn:after {
+  width:20px;
+  height: 1px;
+  position: absolute;
+  content: '<';
+  width:20px;
+  height: 20px;
+  font-size: 21px;
+  top:0;
 }
 
+.el-date-picker__next-btn:after {
+  width:20px;
+  height: 1px;
+  position: absolute;
+  content: '>';
+  width:20px;
+  height: 20px;
+  font-size: 21px;
+  top:0;
+
+}
 /*
 UI Elements
 */
@@ -3250,7 +3311,7 @@ UI Elements
 @media only screen and (max-width:600px) {
    .vue-form-wizard .wizard-nav-pills .stepTitle {
     font-size: 14px;
-    line-height: 1.25;
+    line-height: 1;
    }
 }
 
