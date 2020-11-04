@@ -28,8 +28,12 @@
               </el-select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
-            <el-date-picker prop="entryDate" v-model="model.entryDate" type="date" class="col-12" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
+            <el-form-item label="Student Notification Date" class="col-12">
+              <i class="icon icon-dots"></i>
+              <el-date-picker prop="entryDate" v-model="model.entryDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
+            </el-form-item>
             <el-form-item label="Student Notification Date" prop="studentNotificationDate" class="col-12">
+              <i class="icon icon-dots"></i>
               <el-input v-model="model.studentNotificationDate" placeholder="Student Notification Date"></el-input>
             </el-form-item>
           </div>
@@ -41,7 +45,10 @@
             <el-form-item label="Slot Accepted Date" prop="slotAcceptedDate" class="col-12">
               <el-input v-model="model.slotAcceptedDate" placeholder="Slot Accepted Date"></el-input>
             </el-form-item>
-            <el-date-picker prop="studentRegistrationDate" v-model="model.studentRegistrationDate" type="date" class="col-12" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
+            <el-form-item label="Student Registration Date" class="col-12">
+              <i class="icon icon-dots"></i>
+              <el-date-picker prop="studentRegistrationDate" v-model="model.studentRegistrationDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
+            </el-form-item>
             <el-form-item label="Last School Attended" prop="prefix" class="col-12">
               <el-select v-model="model.lastSchoolAttended" placeholder="Last School Attended">
                 <el-option v-for="pre in options.lastSchoolAttendedOptions"
@@ -130,6 +137,10 @@ export default {
       },
       options: {
         //OPTIONS
+        categoryOptions: [
+            {value: "category1", label: 'Category 1'},
+            {value: "category2", label: 'Category 2'},
+        ],
         ethnicityOptions: [
             {value: "continuing", label: 'Continuing'},
             {value: "entry", label: 'Entry'},    
@@ -180,6 +191,13 @@ export default {
             message: "Grade is required",
             trigger: "blur",
           },
+        ],
+        tuitionAmount: [
+          {
+            type: "number",
+            message: "Tuition is a number",
+            trigger: "change",
+          }
         ],
         tuitionIndicator: [
           {

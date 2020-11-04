@@ -186,13 +186,20 @@
             <el-form-item label="Weight" prop="weight" class="col-12">
               <el-input v-model="model.weight" placeholder="Weight"></el-input>
             </el-form-item>
-            <el-form-item label="Height - feet" prop="heightFeet" class="col-12">
-              <el-input v-model="model.heightFeet" placeholder="Height - feet"></el-input>
+            <div class="col-12">
+              <div class="row">
+                <el-form-item label="Height - feet" prop="heightFeet" class="col-6">
+                  <el-input v-model="model.heightFeet" placeholder="Height - feet"></el-input>
+                </el-form-item>
+                <el-form-item label="Height - inches" prop="heightInches" class="col-6">
+                  <el-input v-model="model.heightInches" placeholder="Height - inches"></el-input>
+                </el-form-item>
+              </div>
+            </div>
+            <el-form-item label="Birth Date" prop="heightInches" class="col-12">
+              <i class="icon icon-dots"></i>
+              <el-date-picker prop="birthDate" v-model="model.birthDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             </el-form-item>
-            <el-form-item label="Height - inches" prop="heightInches" class="col-12">
-              <el-input v-model="model.heightInches" placeholder="Height - inches"></el-input>
-            </el-form-item>
-            <el-date-picker prop="birthDate" v-model="model.birthDate" type="date" class="col-12" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             <el-upload
                 class="avatar-uploader col-12"
                 action="https://educationalschool.iteg.com.np/images"
@@ -324,6 +331,21 @@ export default {
         ]
       },
       rules: {
+        heightFeet: [
+          {
+            max:1,
+            message: 'Length should be 1',
+            trigger: 'blur'
+          }
+        ],
+        heightInches: [
+          {
+            min:1,
+            max:2,
+            message: 'Length should be 1-2',
+            trigger: 'blur'
+          }
+        ],
         prefix: [
           {
             required: true,

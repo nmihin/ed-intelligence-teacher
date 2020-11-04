@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     onComplete() {
-      alert("Yay. Done!");
+      alert("All required data submited!");
     },
     forceClearError() {
       this.$refs.wizard.tabs[this.activeTabIndex].validationError = null;
