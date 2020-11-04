@@ -10,21 +10,23 @@
           <div class="row">
             <el-form-item label="Category" prop="category" class="col-12">
               <el-select v-model="model.category" placeholder="Category">
-                <el-option v-for="pre in model.categoryOptions"
+                <el-option v-for="pre in options.categoryOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Entry Code" prop="entryCode" class="col-12">
               <el-select v-model="model.entryCode" placeholder="Entry Code">
-                <el-option v-for="pre in model.entryCodeOptions"
+                <el-option v-for="pre in options.entryCodeOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-date-picker prop="entryDate" v-model="model.entryDate" type="date" class="col-12" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             <el-form-item label="Student Notification Date" prop="studentNotificationDate" class="col-12">
@@ -42,12 +44,13 @@
             <el-date-picker prop="studentRegistrationDate" v-model="model.studentRegistrationDate" type="date" class="col-12" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             <el-form-item label="Last School Attended" prop="prefix" class="col-12">
               <el-select v-model="model.lastSchoolAttended" placeholder="Last School Attended">
-                <el-option v-for="pre in model.lastSchoolAttendedOptions"
+                <el-option v-for="pre in options.lastSchoolAttendedOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Last School Address" prop="lastSchoolAddress" class="col-12">
               <el-input v-model="model.lastSchoolAddress" placeholder="Last School Address"></el-input>
@@ -67,12 +70,13 @@
             </el-form-item>
             <el-form-item label="Grade" prop="grade" class="col-12">
               <el-select v-model="model.grade" placeholder="Grade">
-                <el-option v-for="pre in model.gradeOptions"
+                <el-option v-for="pre in options.gradeOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Tuition Amount" prop="tuitionAmount" class="col-12">
               <el-input v-model="model.tuitionAmount" placeholder="Tuition Amount"></el-input>
@@ -109,20 +113,22 @@ export default {
       model: {
         //DEFINITIONS
         category: "",
+        dualEnrollment: "",
         entryCode: "",
-        studentNotificationDate: "",
-        slotAcceptedDate: "",
-        studentRegistrationDate: "",
-        lastSchoolAttended: "",
+        grade: "",
         lastSchoolAddress: "",
+        lastSchoolAttended: "",
         lastSchoolCity: "",
         lastSchoolZipCode: "",
-        uniqueStudentIdentifier: "",
-        grade: "",
+        residencyIndicator: "",
+        slotAcceptedDate: "",
+        studentNotificationDate: "",
+        studentRegistrationDate: "",
         tuitionAmount: "",
         tuitionIndicator: "",
-        dualEnrollment: "",
-        residencyIndicator: "",
+        uniqueStudentIdentifier: ""
+      },
+      options: {
         //OPTIONS
         ethnicityOptions: [
             {value: "continuing", label: 'Continuing'},
@@ -147,49 +153,49 @@ export default {
         ]
       },
       rules: {
-        categoryOptions: [
+        category: [
           {
             required: true,
             message: "Category is required",
             trigger: "blur",
           },
         ],
-        entryCodeOptions: [
+        entryCode: [
           {
             required: true,
             message: "Entry Code is required",
             trigger: "blur",
           },
         ],
-        entryDateOptions: [
+        entryDate: [
           {
             required: true,
             message: "Entry date is required",
             trigger: "blur",
           },
         ],
-        gradeOptions: [
+        grade: [
           {
             required: true,
             message: "Grade is required",
             trigger: "blur",
           },
         ],
-        tuitionIndicatorOptions: [
+        tuitionIndicator: [
           {
             required: true,
             message: "Tuition Indicator is required",
             trigger: "blur",
           },
         ],
-        dualEnrollmentOptions: [
+        dualEnrollment: [
           {
             required: true,
             message: "Dual Enrollment is required",
             trigger: "blur",
           },
         ],
-        residencyIndicatorOptions: [
+        residencyIndicator: [
           {
             required: true,
             message: "Residency Indicator is required",

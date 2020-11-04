@@ -492,8 +492,15 @@ ICONS
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, .06)
 }
 
-.card-boxes .card-tab .el-form {
+.card-boxes .card-tab .el-form .icon-arrow {
+  right: 0;
+  top: 48px;
+  font-size: 12px;
+  position: absolute;
+}
 
+.card-boxes .card-tab .el-form .icon-arrow::before{
+  color: var(--bluewood);
 }
 
 .card-boxes .card-radio {
@@ -506,6 +513,10 @@ ICONS
 
 .card-boxes .card-tab .el-form > div:nth-child(even){
   background-color: var(--bluegray);
+}
+
+.card-boxes .card-tab .el-form .el-select {
+  width: 100%;
 }
 
 .card-boxes .card-title {
@@ -2973,6 +2984,9 @@ Wizard
 }
 .vue-form-wizard.md .wizard-icon-circle:focus {
   outline: none;
+}
+.vue-form-wizard .el-upload > button {
+  padding: 5px 25px;
 }
 /*
 UI Elements

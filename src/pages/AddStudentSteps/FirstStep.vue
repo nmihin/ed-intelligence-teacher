@@ -10,12 +10,13 @@
           <div class="row">
             <el-form-item label="Prefix" prop="prefix" class="col-12">
               <el-select v-model="model.prefix" placeholder="Prefix">
-                <el-option v-for="pre in model.prefixOptions"
+                <el-option v-for="pre in options.prefixOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="First Name" prop="firstName" class="col-12">
               <el-input v-model="model.firstName" placeholder="First name"></el-input>
@@ -47,12 +48,13 @@
             </el-form-item>
             <el-form-item label="State" prop="state" class="col-12 col-md-4">
               <el-select v-model="model.state" placeholder="State">
-                <el-option v-for="pre in model.stateOptions"
+                <el-option v-for="pre in options.stateOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Zip Code" prop="zipCode" class="col-12 col-md-4">
               <el-input v-model="model.zipCode" placeholder="Zip Code"></el-input>
@@ -62,39 +64,43 @@
             </el-form-item>
             <el-form-item label="State Residency Status" prop="stateResidencyStatus" class="col-12 col-md-4">
               <el-select v-model="model.stateResidencyStatus" placeholder="State Residency Status">
-                <el-option v-for="pre in model.stateResidencyStatusOptions"
+                <el-option v-for="pre in options.stateResidencyStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="State/District Verified Residency" prop="stateVerifiedResidencyStatus" class="col-12 col-md-4">
               <el-select v-model="model.stateVerifiedResidencyStatus" placeholder="State/District Verified Residency">
-                <el-option v-for="pre in model.stateVerifiedResidencyStatusOptions"
+                <el-option v-for="pre in options.stateVerifiedResidencyStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Ward of State Indicator" prop="wardStateIndicator" class="col-12 col-md-4">
               <el-select v-model="model.wardStateIndicator" placeholder="Ward of State Indicator">
-                <el-option v-for="pre in model.wardStateIndicatorOptions"
+                <el-option v-for="pre in options.wardStateIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="At-Risk Indicator" prop="atRiskIndicator" class="col-12 col-md-4">
               <el-select v-model="model.atRiskIndicator" placeholder="At-Risk Indicator">
-                <el-option v-for="pre in model.atRiskIndicatorOptions"
+                <el-option v-for="pre in options.atRiskIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
           </div>
         </div>
@@ -110,12 +116,13 @@
           <div class="row">
             <el-form-item label="LEP indicator" prop="lepIndicator" class="col-12">
               <el-select v-model="model.lepIndicator" placeholder="LEP indicator">
-                <el-option v-for="pre in model.lepIndicatorOptions"
+                <el-option v-for="pre in options.lepIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="LEP Status" prop="lepStatus" class="col-12">
               <el-input v-model="model.lepStatus" placeholder="LEP Status"></el-input>
@@ -135,30 +142,33 @@
           <div class="row">
             <el-form-item label="Ethnicity" prop="ethnicity" class="col-12">
               <el-select v-model="model.ethnicity" placeholder="Ethnicity">
-                <el-option v-for="pre in model.ethnicityOptions"
+                <el-option v-for="pre in options.ethnicityOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Race" prop="race" class="col-12">
               <el-select v-model="model.race" placeholder="Race">
-                <el-option v-for="pre in model.raceOptions"
+                <el-option v-for="pre in options.raceOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Free and reduced meal status" prop="mealStatus" class="col-12">
               <el-select v-model="model.mealStatus" placeholder="Free and reduced meal status">
-                <el-option v-for="pre in model.mealStatusOptions"
+                <el-option v-for="pre in options.mealStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
                 </el-option>
               </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Native Language" prop="nativeLanguage" class="col-12">
               <el-input v-model="model.nativeLanguage" placeholder="Native Language"></el-input>
@@ -185,11 +195,14 @@
             <el-date-picker prop="birthDate" v-model="model.birthDate" type="date" class="col-12" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             <el-upload
                 class="avatar-uploader col-12"
-                action=""
+                action="https://educationalschool.iteg.com.np/images"
+                :multiple="false"
                 accept="image/*"
                 :show-file-list="false">
-                <img v-if="model.imageUrl" :src="model.imageUrl" class="avatar">
-                <i v-else class="icon icon-profile"></i>
+                <button class="button medium ed-btn__primary">
+                  <img v-if="model.imageUrl" :src="model.imageUrl" class="avatar">
+                  <i v-else class="icon icon-profile"></i>
+                Upload Image</button> 
             </el-upload>
           </div>
         </div>
@@ -217,8 +230,8 @@
             </el-form-item>
             <el-form-item label="Gender" prop="gender" class="col-4 col-md-3">
               <el-radio-group v-model="model.gender">
-                <el-radio label="yes">Yes</el-radio>
-                <el-radio label="no">No</el-radio>
+                <el-radio label="male">Male</el-radio>
+                <el-radio label="female">Female</el-radio>
               </el-radio-group>
             </el-form-item>
           </div>
@@ -234,34 +247,36 @@ export default {
     return {
       model: {
         //DEFINITIONS
-        firstName: "",
-        lastName: "",
-        email: "",
-        streetAddress: "",
-        city: "",
-        state: "",
-        zipCode: "",
-        ward: "",
-        stateResidencyStatus: "",
-        stateVerifiedResidencyStatus: "",
-        wardStateIndicator: "",
         atRiskIndicator: "",
-        lepIndicator: "",
-        lepStatus: "",
-        socialSecurityNumber: "",
+        birthDate: "",
+        city: "",
+        email: "",
         ethnicity: "",
-        race:"",
-        mealStatus:"",
-        nativeLanguage:"",
-        weight:"",
+        firstName: "",
+        gender: "",
         heightFeet: "",
         heightInches: "",
-        birthDate: "",
-        imageUrl: "",
         homelesnessStatus: "",
-        specialNeedIndicator: "",
-        gender: "",
+        imageUrl: "",
+        lastName: "",
+        lepIndicator: "",
+        lepStatus: "",
+        mealStatus:"",
+        nativeLanguage:"",
         prefix: "-- title --",
+        race:"",
+        socialSecurityNumber: "",
+        specialNeedIndicator: "",
+        state: "",
+        stateResidencyStatus: "",
+        stateVerifiedResidencyStatus: "",
+        streetAddress: "",
+        ward: "",
+        wardStateIndicator: "",
+        weight:"",
+        zipCode: ""
+      },
+      options: {
         //OPTIONS
         prefixOptions: [
             {value: 'Mr.', label: 'Mr.'},
@@ -309,6 +324,13 @@ export default {
         ]
       },
       rules: {
+        prefix: [
+          {
+            required: true,
+            message: "Prefix is required",
+            trigger: "blur",
+          },
+        ],
         firstName: [
           {
             required: true,
@@ -377,21 +399,14 @@ export default {
             trigger: "blur",
           },
         ],
-        lepIndicatorOptions: [
+        lepIndicator: [
           {
             required: true,
             message: "LEP Indicator required",
             trigger: "blur",
           },
         ],
-        lepStatus: [
-          {
-            required: true,
-            message: "LEP Status required",
-            trigger: "blur",
-          },
-        ],
-        ethnicityOptions: [
+        ethnicity: [
           {
             required: true,
             message: "Ethnicity required",
@@ -405,7 +420,7 @@ export default {
             trigger: "blur",
           },
         ],
-        mealStatusOptions: [
+        mealStatus: [
           {
             required: true,
             message: "Free and reduced meal status required",

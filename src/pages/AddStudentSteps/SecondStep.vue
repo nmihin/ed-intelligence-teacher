@@ -14,14 +14,21 @@
             <el-form-item label="Last Name" prop="lastNamePrimaryParent" class="col-12">
               <el-input v-model="model.lastNamePrimaryParent" placeholder="Last name"></el-input>
             </el-form-item>
-            <el-form-item label="Contact Number" prop="contactNumberPrimaryParent" class="col-12">
+            <el-form-item label="Contact Number (XXX) XXX-XXXX" prop="contactNumberPrimaryParent" class="col-12">
               <el-input v-model="model.contactNumberPrimaryParent" placeholder="Contact Number"></el-input>
             </el-form-item>
             <el-form-item label="Email Address" prop="emailPrimaryParent" class="col-12">
               <el-input v-model="model.emailPrimaryParent" placeholder="Email Address"></el-input>
             </el-form-item>
             <el-form-item label="Parent/Guardian Relation" prop="parentGuardianRelationPrimaryParent" class="col-12">
-              <el-input v-model="model.parentGuardianRelationPrimaryParent" placeholder="Parent/Guardian Relation"></el-input>
+              <el-select v-model="model.parentGuardianRelationPrimaryParent" placeholder="Parent/Guardian Relation">
+                <el-option v-for="pre in options.parentGuardianRelationOptions"
+                          :key="pre.value"
+                          :label="pre.label"
+                          :value="pre.value">
+                </el-option>
+              </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
           </div>
         </div>
@@ -39,14 +46,21 @@
             <el-form-item label="Last Name" prop="lastNameSecondaryParent" class="col-12">
               <el-input v-model="model.lastNameSecondaryParent" placeholder="Last name"></el-input>
             </el-form-item>
-            <el-form-item label="Contact Number" prop="contactNumberSecondaryParent" class="col-12">
+            <el-form-item label="Contact Number (XXX) XXX-XXXX" prop="contactNumberSecondaryParent" class="col-12">
               <el-input v-model="model.contactNumberSecondaryParent" placeholder="Contact Number"></el-input>
             </el-form-item>
             <el-form-item label="Email Address" prop="emailSecondaryParent" class="col-12">
               <el-input v-model="model.emailSecondaryParent" placeholder="Email Address"></el-input>
             </el-form-item>
-            <el-form-item label="Parent/Guardian Relation" prop="parentGuardianRelationPrimaryParent" class="col-12">
-              <el-input v-model="model.parentGuardianRelationSecondaryParent" placeholder="Parent/Guardian Relation"></el-input>
+            <el-form-item label="Parent/Guardian Relation" prop="parentGuardianRelationSecondaryParent" class="col-12">
+              <el-select v-model="model.parentGuardianRelationSecondaryParent" placeholder="Parent/Guardian Relation">
+                <el-option v-for="pre in options.parentGuardianRelationOptions"
+                          :key="pre.value"
+                          :label="pre.label"
+                          :value="pre.value">
+                </el-option>
+              </el-select>
+              <i class="icon icon-arrow"></i>
             </el-form-item>
           </div>
         </div>
@@ -64,7 +78,7 @@
             <el-form-item label="Last Name" prop="lastNameEmergency" class="col-12">
               <el-input v-model="model.lastNameEmergency" placeholder="Last name"></el-input>
             </el-form-item>
-            <el-form-item label="Contact Number" prop="contactNumberEmergency" class="col-12">
+            <el-form-item label="Contact Number (XXX) XXX-XXXX" prop="contactNumberEmergency" class="col-12">
               <el-input v-model="model.contactNumberEmergency" placeholder="Contact Number"></el-input>
             </el-form-item>
             <el-form-item label="Email Address" prop="emailEmergency" class="col-12">
@@ -82,20 +96,30 @@ export default {
   data(){
 		return {
       model: {
-        firstNamePrimaryParent: "",
-        lastNamePrimaryParent: "",
-        contactNumberPrimaryParent: "",
-        emailPrimaryParent: "",
-        parentGuardianRelationPrimaryParent: "",
-        firstNameSecondaryParent: "",
-        lastNameSecondaryParent: "",
-        contactNumberSecondaryParent: "",
-        emailSecondaryParent: "",
-        parentGuardianRelationSecondaryParent: "",
-        firstNameEmergency: "",
-        lastNameEmergency: "",
         contactNumberEmergency: "",
+        contactNumberPrimaryParent: "",
+        contactNumberSecondaryParent: "",
         emailEmergency: "",
+        emailPrimaryParent: "",
+        emailSecondaryParent: "",
+        firstNameEmergency: "",
+        firstNamePrimaryParent: "",
+        firstNameSecondaryParent: "",
+        lastNameEmergency: "",
+        lastNamePrimaryParent: "",
+        lastNameSecondaryParent: "",
+        parentGuardianRelationPrimaryParent: "",
+        parentGuardianRelationSecondaryParent: ""
+      },
+      options: {
+        parentGuardianRelationOptions: [
+            {value: 'bfther', label: 'Bilogical Father'},
+            {value: 'bmother', label: 'Bilogical Mother'},
+            {value: 'smother', label: 'Stepmother'},
+            {value: 'sfather', label: 'Stepfather'},
+            {value: 'brother', label: 'Brother'},
+            {value: 'sister', label: 'Sister'},
+        ]
       },
       rules: {
         firstNamePrimaryParent: [
@@ -117,6 +141,12 @@ export default {
             required: true,
             message: "Contact number is required",
             trigger: "blur",
+          },
+          {
+            pattern: /^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/,
+            max: 20,
+            message: "Invalid phone",
+            trigger: "change",
           },
         ],
         emailPrimaryParent: [
@@ -157,6 +187,12 @@ export default {
             required: true,
             message: "Contact number is required",
             trigger: "blur",
+          },
+          {
+            pattern: /^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/,
+            max: 20,
+            message: "Invalid phone",
+            trigger: "change",
           },
         ],
         emailSecondaryParent: [
@@ -209,6 +245,12 @@ export default {
             required: true,
             message: "Contact number is required",
             trigger: "blur",
+          },
+          {
+            pattern: /^(1\s?)?((\([0-9]{3}\))|[0-9]{3})[\s\-]?[\0-9]{3}[\s\-]?[0-9]{4}$/,
+            max: 20,
+            message: "Invalid phone",
+            trigger: "change",
           },
         ],
       }
