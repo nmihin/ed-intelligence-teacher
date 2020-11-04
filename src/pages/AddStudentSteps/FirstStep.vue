@@ -245,6 +245,70 @@
         </div>
       </div>
     </div>
+    <div class="row" v-if="model.specialNeedIndicator==='yes'">
+      <!-- Special Need -->
+      <div class="col-12">
+        <div class="card-title">
+          <h2>Special Needs</h2>
+        </div>
+        <div class="card-content">
+          <div class="row">
+            <el-form-item label="SEDS LEA Type" prop="sedsLeaType" class="col-12 col-md-4">
+              <select class="card-select" v-model="model.sedsLeaType" placeholder="SEDS LEA Type">
+                <option v-for="pre in options.sedsLeaTypeOptions"
+                          :key="pre.value"
+                          :label="pre.label"
+                          :value="pre.value">
+                </option>
+              </select>
+              <i class="icon icon-arrow"></i>
+            </el-form-item>
+            <el-form-item label="SEDS School Type" prop="sedsSchoolType" class="col-12 col-md-4">
+              <select class="card-select" v-model="model.sedsSchoolType" placeholder="SEDS School Type">
+                <option v-for="pre in options.sedsSchoolTypeOptions"
+                          :key="pre.value"
+                          :label="pre.label"
+                          :value="pre.value">
+                </option>
+              </select>
+              <i class="icon icon-arrow"></i>
+            </el-form-item>
+            <el-form-item label="SEDS Primary Disability" prop="sedsPrimaryDisability" class="col-12 col-md-4">
+              <select class="card-select" v-model="model.sedsPrimaryDisability" placeholder="SEDS Primary Disability">
+                <option v-for="pre in options.sedsPrimaryDisabilityOptions"
+                          :key="pre.value"
+                          :label="pre.label"
+                          :value="pre.value">
+                </option>
+              </select>
+              <i class="icon icon-arrow"></i>
+            </el-form-item>
+            <el-form-item label="Special Need Level" prop="specialNeedLevel" class="col-12 col-md-4">
+              <select class="card-select" v-model="model.specialNeedLevel" placeholder="Special Need Level">
+                <option v-for="pre in options.specialNeedLevelOptions"
+                          :key="pre.value"
+                          :label="pre.label"
+                          :value="pre.value">
+                </option>
+              </select>
+              <i class="icon icon-arrow"></i>
+            </el-form-item>
+            <el-form-item label="SEDS SPED Environment" class="col-12 col-md-4">
+              <el-input v-model="model.sedsSpedEnvironment" prop="sedsSpedEnvironment"  placeholder="SEDS SPED Environment"></el-input>
+            </el-form-item>
+            <el-form-item label="SEDS SPED Environment Date" class="col-12 col-md-4">
+              <el-input v-model="model.sedsSpedEnvironmentDate" prop="sedsSpedEnvironmentDate"  placeholder="SEDS SPED Environment Date"></el-input>
+            </el-form-item>
+            <el-form-item label="Most recent IEP Date" class="col-12 col-md-4">
+              <el-input v-model="model.mostRecentIepDate" prop="mostRecentIepDate"  placeholder="Most recent IEP Date"></el-input>
+            </el-form-item>
+            <el-form-item label="Total Hours Out of General Ed Settings" class="col-12 col-md-4">
+              <el-input v-model="model.totalHoursEdSettings" prop="totalHoursEdSettings"  placeholder="Total Hours Out of General Ed Settings"></el-input>
+            </el-form-item>
+          </div>
+        </div>
+      </div>
+    </div>
   </el-form>
 </template>
 
@@ -269,15 +333,23 @@ export default {
         lepIndicator: "",
         lepStatus: "",
         mealStatus:"",
+        mostRecentIepDate:"",
         nativeLanguage:"",
         prefix: "",
         race:"",
+        sedsLeaType:"",
+        sedsSchoolType:"",
+        sedsPrimaryDisability:"",
+        sedsSpedEnvironment:"",
+        sedsSpedEnvironmentDate:"",
         socialSecurityNumber: "",
         specialNeedIndicator: "",
+        specialNeedLevel:"",
         state: "",
         stateResidencyStatus: "",
         stateVerifiedResidencyStatus: "",
         streetAddress: "",
+        totalHoursEdSettings:"",
         ward: "",
         wardStateIndicator: "",
         weight:"",
@@ -288,6 +360,22 @@ export default {
         prefixOptions: [
             {value: 'Mr.', label: 'Mr.'},
             {value: 'Ms.', label: 'Ms.'}
+        ],
+        sedsLeaTypeOptions: [
+            {value: 'sedsLeaType1', label: 'SEDS LEA Type 1'},
+            {value: 'sedsLeaType2', label: 'SEDS LEA Type 2'}
+        ],
+        sedsSchoolTypeOptions: [
+            {value: 'sedsSchoolType1', label: 'SEDS School Type 1'},
+            {value: 'sedsSchoolType2', label: 'SEDS School Type 2'}
+        ],
+        sedsPrimaryDisabilityOptions: [
+            {value: 'sedsPrimaryDisability1', label: 'SEDS Primary Disability 1'},
+            {value: 'sedsPrimaryDisability2', label: 'SEDS Primary Disability 2'}
+        ],
+        specialNeedLevelOptions: [
+            {value: 'specialNeedLevel1', label: 'Special Need Level 1'},
+            {value: 'specialNeedLevel2', label: 'Special Need Level 2'}
         ],
         stateOptions: [
             {value: 'Alabama', label: 'AL'},
@@ -415,6 +503,27 @@ export default {
             message: "Invalid email",
             trigger: "change",
           },
+        ],
+        sedsLeaType: [
+          {
+            required: true,
+            message: "SEDS LEA Type",
+            trigger: "blur",
+          },
+        ],
+        sedsPrimaryDisability: [
+          {
+            required: true,
+            message: "SEDS Primary Disability",
+            trigger: "blur",
+          }
+        ],
+        specialNeedLevel: [
+          {
+            required: true,
+            message: "Special Need Level",
+            trigger: "blur",
+          }
         ],
         streetAddress: [
           {
