@@ -518,7 +518,6 @@ ICONS
 }
 
 .card-boxes .card-box .icon {
-  position: relative;
   width: 30px;
   height: auto;
   object-fit: cover;
@@ -738,6 +737,10 @@ ICONS
 }
 
 .card-boxes.addstudent .card-box  .card-date-label {
+  position: absolute;
+}
+
+.card-boxes.addstudent .icon-arrow {
   position: absolute;
 }
 
@@ -1460,7 +1463,7 @@ html {
   left: 0;
   top: 0;
   float: left;
-  z-index: 999;
+  z-index: 5;
   display: flex;
   flex-basis: 150px;
   flex-shrink: 0
@@ -1878,6 +1881,7 @@ li:hover .megamenu {
   float: right;
   margin-right: 10px;
   padding: 2px;
+  display: block;
 }
 
 .side-menu.single .side-menu-options .card-element a span {
@@ -1958,6 +1962,15 @@ li:hover .megamenu {
   border-radius: 50%;
   padding: 7px;
   font-size: 14px;
+}
+
+.home-room .el-form-item {
+  padding: 0;
+}
+
+.home-room .el-form-item .icon-arrow {
+  right: 12px;
+  top: 54px;
 }
 
 .side-menu-header img {
@@ -2246,6 +2259,7 @@ ul.side-menu__results>li>ul>li a:hover {
 /* Modals */
 .modal-window > div {
   padding: 25px;
+  border-radius: 10px;
 }
 
 .modal-window > div .button {
@@ -2604,8 +2618,8 @@ button[disabled="true"] {
   margin-bottom: 0;
 }
 
-.filter-card .el-form-item .icon-arrow {
-  top:6px;
+.filter-card .icon-arrow {
+  top:6px !important;
 }
 
 .filter-card .el-form > div {

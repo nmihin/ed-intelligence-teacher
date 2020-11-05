@@ -7,7 +7,7 @@ import LessonPlanSingle from "../pages/LessonPlanSingle";
 import GoogleClassrom from "../pages/GoogleClassrom";
 import ProfileSettings from "../pages/ProfileSettings";
 import ChangePassword from "../pages/ChangePassword";
-import Notifications from "../pages/Notifications";
+import NotificationsTable from "../pages/NotificationsTable";
 import AddStudent from "../pages/AddStudent";
 
 import Element from 'element-ui'
@@ -64,9 +64,9 @@ export default new Router({
         component: ChangePassword
       },
       {
-        path: "/notifications",
-        name: "Notifications",
-        component: Notifications
+        path: "/notifications-table",
+        name: "NotificationsTable",
+        component: NotificationsTable
       },
       {
         path: "/add-student",

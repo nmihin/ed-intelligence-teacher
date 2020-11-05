@@ -4,6 +4,7 @@
     <Subheader />
     <Mobilemenu />
     <router-view></router-view>
+    <notifications group="notificationAlerts" />
     <Footer />
   </div>
 </template>
@@ -19,7 +20,7 @@ import AddStudent from './pages/AddStudent.vue'
 import LessonPlanSingle from './pages/LessonPlanSingle.vue'
 import ChangePassword from './pages/ChangePassword.vue'
 import ProfileSettings from './pages/ProfileSettings.vue'
-import Notifications from './pages/Notifications.vue'
+import NotificationsTable from './pages/NotificationsTable.vue'
 import LessonPlan from './pages/LessonPlan.vue'
 import Footer from './components/layout/footer/Footer.vue'
 
@@ -36,7 +37,7 @@ export default {
     LessonPlanSingle,
     AddStudent,
     LessonPlan,
-    Notifications,
+    NotificationsTable,
     ChangePassword,
     ProfileSettings,
     Footer
