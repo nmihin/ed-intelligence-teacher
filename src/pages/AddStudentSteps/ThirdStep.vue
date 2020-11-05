@@ -28,6 +28,10 @@
               </select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
+            <el-form-item label="Entry Date" class="col-12">
+              <i class="icon icon-box-plan"></i>
+              <el-date-picker prop="entryDate" v-model="model.entryDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
+            </el-form-item>
             <el-form-item label="Student Notification Date" class="col-12">
               <el-input v-model="model.studentNotificationDate" prop="studentNotificationDate" placeholder="Student Notification Date"></el-input>
             </el-form-item>

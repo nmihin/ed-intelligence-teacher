@@ -492,44 +492,8 @@ ICONS
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, .06)
 }
 
-.card-boxes .card-tab .el-form .icon-box-plan {
-  left: 3px;
-  top: 47px;
-  font-size: 12px;
-  position: absolute;
-  z-index: 1;
-}
-
-.card-boxes .card-tab .el-form .icon-box-plan:before {
-  color: var(--bluewood);
-}
-
-.card-boxes .card-tab .el-form .icon-arrow {
-  right: 0;
-  top: 48px;
-  font-size: 12px;
-  position: absolute;
-  z-index: 1;
-}
-
-.card-boxes .card-tab .el-form .icon-arrow::before{
-  color: var(--bluewood);
-}
-
 .card-boxes .card-radio {
   padding: 20px 30px 0 30px;
-}
-
-.card-boxes .card-tab .el-form > div {
-  padding: 20px 30px;
-}
-
-.card-boxes .card-tab .el-form > div:nth-child(even){
-  background-color: var(--bluegray);
-}
-
-.card-boxes .card-tab .el-form .el-select {
-  width: 100%;
 }
 
 .card-boxes .card-title {
@@ -2636,6 +2600,18 @@ button[disabled="true"] {
   color: var(--primary) !important;
 }
 
+.filter-card .el-form-item {
+  margin-bottom: 0;
+}
+
+.filter-card .el-form-item .icon-arrow {
+  top:6px;
+}
+
+.filter-card .el-form > div {
+  padding: 0;
+}
+
 .footer {
   display: block;
   bottom: 0;
@@ -3007,7 +2983,7 @@ Wizard
   border-radius: 30px;
   padding: 12px 25px;;
 }
-.vue-form-wizard  .card-select {
+.el-form  .card-select {
   -webkit-appearance: none;
   background-color: #FFF;
   background-image: none;
@@ -3026,6 +3002,47 @@ Wizard
   transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
   width: 100%;
 }
+.el-form .icon-box-plan {
+  left: 3px;
+  top: 47px;
+  font-size: 12px;
+  position: absolute;
+  z-index: 1;
+}
+
+.el-form .icon-box-plan:before {
+  color: var(--bluewood);
+}
+
+.el-form .icon-arrow {
+  right: 0;
+  top: 48px;
+  font-size: 12px;
+  position: absolute;
+  z-index: 1;
+}
+
+.el-form .icon-arrow::before{
+  color: var(--bluewood);
+}
+.el-form-item__label {
+  margin: 0;
+  line-height: 1.25;
+  width: 100%;
+  text-align: left !important;
+}
+.el-form > div {
+  padding: 20px 30px;
+}
+
+.el-form > div:nth-child(even){
+  background-color: var(--bluegray);
+}
+
+.el-form .el-select {
+  width: 100%;
+}
+
 .el-date-picker__prev-btn {
   display: block;
   width:20px;
@@ -3070,11 +3087,7 @@ Wizard
 /*
 UI Elements
 */
-.el-form-item__label {
-  margin: 0;
-  width: 100%;
-  text-align: left !important;
-}
+
 
 /* Helpers */
 .left {
@@ -3305,6 +3318,9 @@ UI Elements
    }
    .filter-card .md-menu {
      margin-left: 0;
+   }
+   .filter-card .el-form-item .icon-arrow {
+     top: 12px;
    }
 }
 
