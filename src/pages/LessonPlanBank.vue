@@ -46,7 +46,7 @@
               </div>
             </el-form>
             <div class="row">
-              <div class="side-menu__results card-boxes lessons_teacher">
+              <div v-lazy-container="{ selector: '.card-box' }" class="side-menu__results card-boxes lessons_teacher">
                         <!-- Box -->
                         <div class="card-box">
                           <div class="card-title">
@@ -174,7 +174,103 @@
                           <div class="card-footer">
                             <i class="icon icon-lesson"></i><span>0 Resources</span>
                           </div>
-                </div>
+                        </div>  
+                        <!-- Box -->
+                        <div class="card-box">
+                          <div class="card-title">
+                            <h2>My Test Lesson - English 5</h2>
+                          </div>
+                          <div class="card-element">
+                            <a href="#" class="edit">
+                              <i class="icon icon-edit"></i>
+                            </a>
+                            <a href="#" class="delete">
+                              <i class="icon icon-delete"></i>
+                            </a>
+                          </div>
+                          <ul class="card-breadcrumb">
+                            <li>
+                              Four
+                            </li>
+                            <li>
+                              English
+                            </li>
+                            <li>
+                              <a title="Language" href="#">Language</a>
+                            </li>
+                          </ul>
+                          <div class="card-content">
+                            <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
+                            <router-link to="/lesson-plan"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
+                          </div>
+                          <div class="card-footer">
+                            <i class="icon icon-lesson"></i><span>0 Resources</span>
+                          </div>
+                        </div>  
+                        <!-- Box -->
+                        <div class="card-box">
+                          <div class="card-title">
+                            <h2>My Test Lesson - English 6</h2>
+                          </div>
+                          <div class="card-element">
+                            <a href="#" class="edit">
+                              <i class="icon icon-edit"></i>
+                            </a>
+                            <a href="#" class="delete">
+                              <i class="icon icon-delete"></i>
+                            </a>
+                          </div>
+                          <ul class="card-breadcrumb">
+                            <li>
+                              Four
+                            </li>
+                            <li>
+                              English
+                            </li>
+                            <li>
+                              <a title="Language" href="#">Language</a>
+                            </li>
+                          </ul>
+                          <div class="card-content">
+                            <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
+                            <router-link to="/lesson-plan"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
+                          </div>
+                          <div class="card-footer">
+                            <i class="icon icon-lesson"></i><span>0 Resources</span>
+                          </div>
+                        </div>  
+                        <!-- Box -->
+                        <div class="card-box">
+                          <div class="card-title">
+                            <h2>My Test Lesson - English 7</h2>
+                          </div>
+                          <div class="card-element">
+                            <a href="#" class="edit">
+                              <i class="icon icon-edit"></i>
+                            </a>
+                            <a href="#" class="delete">
+                              <i class="icon icon-delete"></i>
+                            </a>
+                          </div>
+                          <ul class="card-breadcrumb">
+                            <li>
+                              Four
+                            </li>
+                            <li>
+                              English
+                            </li>
+                            <li>
+                              <a title="Language" href="#">Language</a>
+                            </li>
+                          </ul>
+                          <div class="card-content">
+                            <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
+                            <router-link to="/lesson-plan"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
+                          </div>
+                          <div class="card-footer">
+                            <i class="icon icon-lesson"></i><span>0 Resources</span>
+                          </div>
+                        </div>  
               </div>
             </div>
           </div>
