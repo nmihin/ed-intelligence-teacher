@@ -7,7 +7,7 @@
           <div class="card-box">
             <div class="card-content">
             <!-- <pre v-html="prettyJSON"></pre> -->
-            <form-wizard @on-complete="onComplete" validate-on-back ref="wizard" :start-index.sync="activeTabIndex" shape="circle" color="#02609B" error-color="#0799F5">
+            <form-wizard @on-complete="onComplete" ref="wizard" :start-index.sync="activeTabIndex" shape="circle" color="#02609B" error-color="#0799F5">
               <!-- 1. Step -->
               <tab-content title="1. Personal Information" icon="icon icon-m-profile" class="card-tab" :before-change="() => validate('firstStep')">
                 <first-step ref="firstStep" @on-validate="onStepValidate"></first-step>
