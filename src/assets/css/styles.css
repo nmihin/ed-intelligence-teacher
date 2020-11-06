@@ -1438,7 +1438,6 @@ html {
   overflow-x: hidden;
   font-size: 16px;
   position: relative;
-  height: 100%;
 }
 
 .theme-layout {
@@ -3063,6 +3062,7 @@ Wizard
   height: 20px;
   position: relative;
   outline: none;
+  margin-top: 0 !important;
 }
 .el-date-picker__next-btn {
   display: block;
@@ -3070,6 +3070,7 @@ Wizard
   height: 20px;
   position: relative;
   outline: none;
+  margin-top: 0 !important;
 }
 .el-date-picker__prev-btn:focus,
 .el-date-picker__next-btn:focus

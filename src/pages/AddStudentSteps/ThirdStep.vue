@@ -9,23 +9,23 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Category" prop="category" class="col-12">
-              <select class="card-select" v-model="model.category" placeholder="Category">
-                <option v-for="pre in options.categoryOptions"
+              <el-select v-model="model.category" placeholder="Category">
+                <el-option v-for="pre in options.categoryOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </option>
-              </select>
+                </el-option>
+              </el-select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Entry Code" prop="entryCode" class="col-12">
-              <select class="card-select" v-model="model.entryCode" placeholder="Entry Code">
-                <option v-for="pre in options.entryCodeOptions"
+              <el-select v-model="model.entryCode" placeholder="Entry Code">
+                <el-option v-for="pre in options.entryCodeOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </option>
-              </select>
+                </el-option>
+              </el-select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Entry Date" class="col-12">
@@ -49,13 +49,13 @@
               <el-date-picker prop="studentRegistrationDate" v-model="model.studentRegistrationDate" type="date" format="dd-MM-yyyy" value-format="yyyy-MM-dd"  placeholder="Pick a date"></el-date-picker>
             </el-form-item>
             <el-form-item label="Last School Attended" prop="prefix" class="col-12">
-              <select class="card-select" v-model="model.lastSchoolAttended" placeholder="Last School Attended">
-                <option v-for="pre in options.lastSchoolAttendedOptions"
+              <el-select v-model="model.lastSchoolAttended" placeholder="Last School Attended">
+                <el-option v-for="pre in options.lastSchoolAttendedOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </option>
-              </select>
+                </el-option>
+              </el-select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Last School Address" prop="lastSchoolAddress" class="col-12">
@@ -75,13 +75,13 @@
               <el-input v-model="model.uniqueStudentIdentifier" placeholder="Unique Student Identifier (USI)"></el-input>
             </el-form-item>
             <el-form-item label="Grade" prop="grade" class="col-12">
-              <select class="card-select" v-model="model.grade" placeholder="Grade">
-                <option v-for="pre in options.gradeOptions"
+              <el-select v-model="model.grade" placeholder="Grade">
+                <el-option v-for="pre in options.gradeOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </option>
-              </select>
+                </el-option>
+              </el-select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Tuition Amount" class="col-12">

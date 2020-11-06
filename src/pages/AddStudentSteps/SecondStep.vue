@@ -21,13 +21,13 @@
               <el-input v-model="model.emailPrimaryParent" placeholder="Email Address"></el-input>
             </el-form-item>
             <el-form-item label="Parent/Guardian Relation" prop="parentGuardianRelationPrimaryParent" class="col-12">
-              <select class="card-select" v-model="model.parentGuardianRelationPrimaryParent" placeholder="Parent/Guardian Relation">
-                <option v-for="pre in options.parentGuardianRelationOptions"
+              <el-select v-model="model.parentGuardianRelationPrimaryParent" placeholder="Parent/Guardian Relation">
+                <el-option v-for="pre in options.parentGuardianRelationOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </option>
-              </select>
+                </el-option>
+              </el-select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
           </div>
@@ -53,13 +53,13 @@
               <el-input v-model="model.emailSecondaryParent" placeholder="Email Address"></el-input>
             </el-form-item>
             <el-form-item label="Parent/Guardian Relation" prop="parentGuardianRelationSecondaryParent" class="col-12">
-              <select class="card-select" v-model="model.parentGuardianRelationSecondaryParent" placeholder="Parent/Guardian Relation">
-                <option v-for="pre in options.parentGuardianRelationOptions"
+              <el-select v-model="model.parentGuardianRelationSecondaryParent" placeholder="Parent/Guardian Relation">
+                <el-option v-for="pre in options.parentGuardianRelationOptions"
                           :key="pre.value"
                           :label="pre.label"
                           :value="pre.value">
-                </option>
-              </select>
+                </el-option>
+              </el-select>
               <i class="icon icon-arrow"></i>
             </el-form-item>
           </div>
