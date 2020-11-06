@@ -1,5 +1,5 @@
 <template>       
-  <el-form :model="model" :rules="rules" ref="form">
+  <el-form :model="form" :rules="rules" ref="form">
     <div class="row">
       <!-- Student Information -->
       <div class="col-12 col-md-4">
@@ -9,7 +9,7 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Prefix" prop="prefix" class="col-12">
-              <el-select v-model="model.prefix" placeholder="Prefix">
+              <el-select @change="updateForm('prefix', form.prefix)" v-model="form.prefix" placeholder="Prefix">
                 <el-option v-for="pre in options.prefixOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -19,16 +19,16 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="First Name" prop="firstName" class="col-12">
-              <el-input v-model="model.firstName" placeholder="First name"></el-input>
+              <el-input @input="updateForm('firstName', form.firstName)" v-model="form.firstName" placeholder="First name"></el-input>
             </el-form-item>
             <el-form-item label="Middle name" prop="middleName" class="col-12">
-              <el-input v-model="model.middleName" placeholder="First name"></el-input>
+              <el-input @input="updateForm('middleName', form.middleName)" v-model="form.middleName" placeholder="Middle name"></el-input>
             </el-form-item>
             <el-form-item label="Last Name" prop="lastName" class="col-12">
-              <el-input v-model="model.lastName" placeholder="Last name"></el-input>
+              <el-input @input="updateForm('lastName', form.lastName)" v-model="form.lastName" placeholder="Last name"></el-input>
             </el-form-item>
             <el-form-item label="Email Address" prop="email" class="col-12">
-              <el-input v-model="model.email" placeholder="Email"></el-input>
+              <el-input @input="updateForm('email', form.email)" v-model="form.email" placeholder="Email"></el-input>
             </el-form-item>
           </div>
         </div>
@@ -41,13 +41,13 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Street Address" prop="streetAddress" class="col-12 col-md-4">
-              <el-input v-model="model.streetAddress" placeholder="Street Address"></el-input>
+              <el-input @input="updateForm('streetAddress', form.streetAddress)" v-model="form.streetAddress" placeholder="Street Address"></el-input>
             </el-form-item>
             <el-form-item label="City" prop="city" class="col-12 col-md-4">
-              <el-input v-model="model.city" placeholder="City"></el-input>
+              <el-input @input="updateForm('city', form.city)" v-model="form.city" placeholder="City"></el-input>
             </el-form-item>
             <el-form-item label="State" prop="state" class="col-12 col-md-4">
-              <el-select v-model="model.state" placeholder="State">
+              <el-select @change="updateForm('state', form.state)" v-model="form.state" placeholder="State">
                 <el-option v-for="pre in options.stateOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -57,13 +57,13 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Zip Code" prop="zipCode" class="col-12 col-md-4">
-              <el-input v-model="model.zipCode" placeholder="Zip Code"></el-input>
+              <el-input @input="updateForm('zipCode', form.zipCode)"  v-model="form.zipCode" placeholder="Zip Code"></el-input>
             </el-form-item>
             <el-form-item label="Ward" prop="ward" class="col-12 col-md-4">
-              <el-input v-model="model.ward" placeholder="Ward"></el-input>
+              <el-input @input="updateForm('ward', form.ward)"  v-model="form.ward" placeholder="Ward"></el-input>
             </el-form-item>
             <el-form-item label="State Residency Status" prop="stateResidencyStatus" class="col-12 col-md-4">
-              <el-select v-model="model.stateResidencyStatus" placeholder="State Residency Status">
+              <el-select @change="updateForm('stateResidencyStatus', form.stateResidencyStatus)" v-model="form.stateResidencyStatus" placeholder="State Residency Status">
                 <el-option v-for="pre in options.stateResidencyStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -73,7 +73,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="State/District Verified Residency" prop="stateVerifiedResidencyStatus" class="col-12 col-md-4">
-              <el-select v-model="model.stateVerifiedResidencyStatus" placeholder="State/District Verified Residency">
+              <el-select @change="updateForm('stateVerifiedResidencyStatus', form.stateVerifiedResidencyStatus)" v-model="form.stateVerifiedResidencyStatus" placeholder="State/District Verified Residency">
                 <el-option v-for="pre in options.stateVerifiedResidencyStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -83,7 +83,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Ward of State Indicator" prop="wardStateIndicator" class="col-12 col-md-4">
-              <el-select v-model="model.wardStateIndicator" placeholder="Ward of State Indicator">
+              <el-select  @change="updateForm('wardStateIndicator', form.wardStateIndicator)" v-model="form.wardStateIndicator" placeholder="Ward of State Indicator">
                 <el-option v-for="pre in options.wardStateIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -93,7 +93,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="At-Risk Indicator" prop="atRiskIndicator" class="col-12 col-md-4">
-              <el-select v-model="model.atRiskIndicator" placeholder="At-Risk Indicator">
+              <el-select @change="updateForm('atRiskIndicator', form.atRiskIndicator)" v-model="form.atRiskIndicator" placeholder="At-Risk Indicator">
                 <el-option v-for="pre in options.atRiskIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -115,7 +115,7 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="LEP indicator" prop="lepIndicator" class="col-12">
-              <el-select v-model="model.lepIndicator" placeholder="LEP indicator">
+              <el-select @change="updateForm('lepIndicator', form.lepIndicator)" v-model="form.lepIndicator" placeholder="LEP indicator">
                 <el-option v-for="pre in options.lepIndicatorOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -125,10 +125,10 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="LEP Status" prop="lepStatus" class="col-12">
-              <el-input v-model="model.lepStatus" placeholder="LEP Status"></el-input>
+              <el-input @input="updateForm('lepStatus', form.lepStatus)"  v-model="form.lepStatus" placeholder="LEP Status"></el-input>
             </el-form-item>
             <el-form-item label="Social Security Number" class="col-12">
-              <el-input v-model="model.socialSecurityNumber" prop="socialSecurityNumber" placeholder="Social Security Number"></el-input>
+              <el-input @input="updateForm('socialSecurityNumber', form.socialSecurityNumber)"  v-model="form.socialSecurityNumber" prop="socialSecurityNumber" placeholder="Social Security Number"></el-input>
             </el-form-item>
           </div>
         </div>
@@ -141,7 +141,7 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Ethnicity" prop="ethnicity" class="col-12">
-              <el-select v-model="model.ethnicity" placeholder="Ethnicity">
+              <el-select @change="updateForm('ethnicity', form.ethnicity)" v-model="form.ethnicity" placeholder="Ethnicity">
                 <el-option v-for="pre in options.ethnicityOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -151,7 +151,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Race" prop="race" class="col-12">
-              <el-select v-model="model.race" placeholder="Race">
+              <el-select @change="updateForm('race', form.race)" v-model="form.race" placeholder="Race">
                 <el-option v-for="pre in options.raceOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -161,7 +161,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Free and reduced meal status" prop="mealStatus" class="col-12">
-              <el-select v-model="model.mealStatus" placeholder="Free and reduced meal status">
+              <el-select @change="updateForm('mealStatus', form.mealStatus)" v-model="form.mealStatus" placeholder="Free and reduced meal status">
                 <el-option v-for="pre in options.mealStatusOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -171,7 +171,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Native Language" prop="nativeLanguage" class="col-12">
-              <el-input v-model="model.nativeLanguage" placeholder="Native Language"></el-input>
+              <el-input @input="updateForm('nativeLanguage', form.nativeLanguage)"  v-model="form.nativeLanguage" placeholder="Native Language"></el-input>
             </el-form-item>
           </div>
         </div>
@@ -184,31 +184,30 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Weight - lbs" class="col-12">
-              <el-input v-model="model.weight" prop="weight"  placeholder="Weight"></el-input>
+              <el-input  @input="updateForm('weight', form.weight)"  v-model="form.weight" prop="weight"  placeholder="Weight"></el-input>
             </el-form-item>
             <div class="col-12">
               <div class="row">
                 <el-form-item label="Height - feet" class="col-6">
-                  <el-input v-model="model.heightFeet" prop="heightFeet" placeholder="Height - feet"></el-input>
+                  <el-input  @input="updateForm('heightFeet', form.heightFeet)"  v-model="form.heightFeet" prop="heightFeet" placeholder="Height - feet"></el-input>
                 </el-form-item>
                 <el-form-item label="Height - inches" class="col-6">
-                  <el-input v-model="model.heightInches" prop="heightInches" placeholder="Height - inches"></el-input>
+                  <el-input  @input="updateForm('heightInches', form.heightInches)"  v-model="form.heightInches" prop="heightInches" placeholder="Height - inches"></el-input>
                 </el-form-item>
               </div>
             </div>
-            <fg-input>
             <el-form-item label="Birth Date" class="col-12">
               <i class="icon icon-box-plan"></i>
               <el-date-picker 
+                @change="updateForm('birthDate', form.birthDate)"
                 prop="birthDate" 
-                v-model="model.birthDate" 
+                v-model="form.birthDate" 
                 type="date" 
                 format="dd-MM-yyyy" 
                 value-format="yyyy-MM-dd"  
                 placeholder="Pick a date">
             </el-date-picker>
             </el-form-item>
-            </fg-input>
             <el-upload
                 class="avatar-uploader col-12"
                 action="https://educationalschool.iteg.com.np/images"
@@ -216,7 +215,7 @@
                 accept="image/*"
                 :show-file-list="false">
                 <button class="button medium ed-btn__primary">
-                  <img v-if="model.imageUrl" :src="model.imageUrl" class="avatar">
+                  <img v-if="form.imageUrl" :src="form.imageUrl" class="avatar">
                   <i v-else class="icon icon-profile"></i>
                 Upload Avatar Image</button> 
             </el-upload>
@@ -233,19 +232,19 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="Homelessness Status" prop="homelesnessStatus" class="col-4 col-md-3">
-              <el-radio-group v-model="model.homelesnessStatus">
+              <el-radio-group @change="updateForm('homelesnessStatus', form.homelesnessStatus)" v-model="form.homelesnessStatus">
                 <el-radio label="yes">Yes</el-radio>
                 <el-radio label="no">No</el-radio>
               </el-radio-group>
             </el-form-item>
             <el-form-item label="Special Need Indicator" prop="specialNeedIndicator" class="col-4 col-md-3">
-              <el-radio-group v-model="model.specialNeedIndicator">
+              <el-radio-group  @change="updateForm('specialNeedIndicator', form.specialNeedIndicator)" v-model="form.specialNeedIndicator">
                 <el-radio label="yes">Yes</el-radio>
                 <el-radio label="no">No</el-radio>
               </el-radio-group>
             </el-form-item>
             <el-form-item label="Gender" prop="gender" class="col-4 col-md-3">
-              <el-radio-group v-model="model.gender">
+              <el-radio-group @change="updateForm('gender', form.gender)"  v-model="form.gender">
                 <el-radio label="male">Male</el-radio>
                 <el-radio label="female">Female</el-radio>
               </el-radio-group>
@@ -254,7 +253,7 @@
         </div>
       </div>
     </div>
-    <div class="row" v-if="model.specialNeedIndicator==='yes'">
+    <div class="row" v-if="form.specialNeedIndicator==='yes'">
       <!-- Special Need -->
       <div class="col-12">
         <div class="card-title">
@@ -263,7 +262,7 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="SEDS LEA Type" prop="sedsLeaType" class="col-12 col-md-4">
-              <el-select v-model="model.sedsLeaType" placeholder="SEDS LEA Type">
+              <el-select @change="updateForm('sedsLeaType', form.sedsLeaType)" v-model="form.sedsLeaType" placeholder="SEDS LEA Type">
                 <el-option v-for="pre in options.sedsLeaTypeOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -273,7 +272,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="SEDS School Type" prop="sedsSchoolType" class="col-12 col-md-4">
-              <el-select v-model="model.sedsSchoolType" placeholder="SEDS School Type">
+              <el-select @change="updateForm('sedsSchoolType', form.sedsSchoolType)" v-model="form.sedsSchoolType" placeholder="SEDS School Type">
                 <el-option v-for="pre in options.sedsSchoolTypeOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -283,7 +282,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="SEDS Primary Disability" prop="sedsPrimaryDisability" class="col-12 col-md-4">
-              <el-select v-model="model.sedsPrimaryDisability" placeholder="SEDS Primary Disability">
+              <el-select @change="updateForm('sedsPrimaryDisability', form.sedsPrimaryDisability)" v-model="form.sedsPrimaryDisability" placeholder="SEDS Primary Disability">
                 <el-option v-for="pre in options.sedsPrimaryDisabilityOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -293,7 +292,7 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="Special Need Level" prop="specialNeedLevel" class="col-12 col-md-4">
-              <el-select v-model="model.specialNeedLevel" placeholder="Special Need Level">
+              <el-select @change="updateForm('specialNeedLevel', form.specialNeedLevel)" v-model="form.specialNeedLevel" placeholder="Special Need Level">
                 <el-option v-for="pre in options.specialNeedLevelOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -303,16 +302,16 @@
               <i class="icon icon-arrow"></i>
             </el-form-item>
             <el-form-item label="SEDS SPED Environment" class="col-12 col-md-4">
-              <el-input v-model="model.sedsSpedEnvironment" prop="sedsSpedEnvironment"  placeholder="SEDS SPED Environment"></el-input>
+              <el-input  @input="updateForm('sedsSpedEnvironment', form.sedsSpedEnvironment)"  v-model="form.sedsSpedEnvironment" prop="sedsSpedEnvironment"  placeholder="SEDS SPED Environment"></el-input>
             </el-form-item>
             <el-form-item label="SEDS SPED Environment Date" class="col-12 col-md-4">
-              <el-input v-model="model.sedsSpedEnvironmentDate" prop="sedsSpedEnvironmentDate"  placeholder="SEDS SPED Environment Date"></el-input>
+              <el-input @input="updateForm('sedsSpedEnvironmentDate', form.sedsSpedEnvironmentDate)"  v-model="form.sedsSpedEnvironmentDate" prop="sedsSpedEnvironmentDate"  placeholder="SEDS SPED Environment Date"></el-input>
             </el-form-item>
             <el-form-item label="Most recent IEP Date" class="col-12 col-md-4">
-              <el-input v-model="model.mostRecentIepDate" prop="mostRecentIepDate"  placeholder="Most recent IEP Date"></el-input>
+              <el-input @input="updateForm('mostRecentIepDate', form.mostRecentIepDate)" v-model="form.mostRecentIepDate" prop="mostRecentIepDate"  placeholder="Most recent IEP Date"></el-input>
             </el-form-item>
             <el-form-item label="Total Hours Out of General Ed Settings" class="col-12 col-md-4">
-              <el-input v-model="model.totalHoursEdSettings" prop="totalHoursEdSettings"  placeholder="Total Hours Out of General Ed Settings"></el-input>
+              <el-input @input="updateForm('totalHoursEdSettings', form.totalHoursEdSettings)" v-model="form.totalHoursEdSettings" prop="totalHoursEdSettings"  placeholder="Total Hours Out of General Ed Settings"></el-input>
             </el-form-item>
           </div>
         </div>
@@ -325,7 +324,7 @@
 export default {
   data() {
     return {
-      model: {
+      form: {
         //DEFINITIONS
         atRiskIndicator: "",
         birthDate: "",
@@ -629,6 +628,19 @@ export default {
     };
   },
   methods: {
+    openStorage () {
+      return JSON.parse(localStorage.getItem('form'))
+    },
+    saveStorage (form) {
+      localStorage.setItem('form', JSON.stringify(form))
+    },
+    updateForm (input, value) {
+      this.form[input] = value
+      let storedForm = this.openStorage()
+      if (!storedForm) storedForm = {}
+      storedForm[input] = value
+      this.saveStorage(storedForm)
+    },
     validate() {
       return new Promise((resolve) => {
         this.$refs.form.validate((valid) => {
@@ -638,6 +650,15 @@ export default {
       });
     },
   },
+  created () {
+    const storedForm = this.openStorage()
+    if (storedForm) {
+      this.form = {
+        ...this.form,
+        ...storedForm
+      }
+    }
+  }
 };
 </script>
 

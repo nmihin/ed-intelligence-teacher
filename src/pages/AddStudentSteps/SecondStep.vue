@@ -1,5 +1,5 @@
 <template>
-<el-form :model="model" :rules="rules" ref="form">
+<el-form :model="form" :rules="rules" ref="form">
     <div class="row">
       <!-- Primary Parent / Guardian Information -->
       <div class="col-12 col-md-4">
@@ -9,19 +9,19 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="First Name" prop="firstNamePrimaryParent" class="col-12">
-              <el-input v-model="model.firstNamePrimaryParent" placeholder="First name"></el-input>
+              <el-input @input="updateForm('firstNamePrimaryParent', form.firstNamePrimaryParent)"  v-model="form.firstNamePrimaryParent" placeholder="First name"></el-input>
             </el-form-item>
             <el-form-item label="Last Name" prop="lastNamePrimaryParent" class="col-12">
-              <el-input v-model="model.lastNamePrimaryParent" placeholder="Last name"></el-input>
+              <el-input @input="updateForm('lastNamePrimaryParent', form.lastNamePrimaryParent)" v-model="form.lastNamePrimaryParent" placeholder="Last name"></el-input>
             </el-form-item>
             <el-form-item label="Contact Number (XXX) XXX-XXXX" prop="contactNumberPrimaryParent" class="col-12">
-              <el-input v-model="model.contactNumberPrimaryParent" placeholder="Contact Number"></el-input>
+              <el-input @input="updateForm('contactNumberPrimaryParent', form.contactNumberPrimaryParent)"  v-model="form.contactNumberPrimaryParent" placeholder="Contact Number"></el-input>
             </el-form-item>
             <el-form-item label="Email Address" prop="emailPrimaryParent" class="col-12">
-              <el-input v-model="model.emailPrimaryParent" placeholder="Email Address"></el-input>
+              <el-input @input="updateForm('emailPrimaryParent', form.emailPrimaryParent)"  v-model="form.emailPrimaryParent" placeholder="Email Address"></el-input>
             </el-form-item>
             <el-form-item label="Parent/Guardian Relation" prop="parentGuardianRelationPrimaryParent" class="col-12">
-              <el-select v-model="model.parentGuardianRelationPrimaryParent" placeholder="Parent/Guardian Relation">
+              <el-select @change="updateForm('parentGuardianRelationPrimaryParent', form.parentGuardianRelationPrimaryParent)"  v-model="form.parentGuardianRelationPrimaryParent" placeholder="Parent/Guardian Relation">
                 <el-option v-for="pre in options.parentGuardianRelationOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -41,19 +41,19 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="First Name" prop="firstNameSecondaryParent" class="col-12">
-              <el-input v-model="model.firstNameSecondaryParent" placeholder="First name"></el-input>
+              <el-input @input="updateForm('firstNameSecondaryParent', form.firstNameSecondaryParent)"  v-model="form.firstNameSecondaryParent" placeholder="First name"></el-input>
             </el-form-item>
             <el-form-item label="Last Name" prop="lastNameSecondaryParent" class="col-12">
-              <el-input v-model="model.lastNameSecondaryParent" placeholder="Last name"></el-input>
+              <el-input @input="updateForm('lastNameSecondaryParent', form.lastNameSecondaryParent)" v-model="form.lastNameSecondaryParent" placeholder="Last name"></el-input>
             </el-form-item>
             <el-form-item label="Contact Number (XXX) XXX-XXXX" prop="contactNumberSecondaryParent" class="col-12">
-              <el-input v-model="model.contactNumberSecondaryParent" placeholder="Contact Number"></el-input>
+              <el-input @input="updateForm('contactNumberSecondaryParent', form.contactNumberSecondaryParent)" v-model="form.contactNumberSecondaryParent" placeholder="Contact Number"></el-input>
             </el-form-item>
             <el-form-item label="Email Address" prop="emailSecondaryParent" class="col-12">
-              <el-input v-model="model.emailSecondaryParent" placeholder="Email Address"></el-input>
+              <el-input @input="updateForm('emailSecondaryParent', form.emailSecondaryParent)"  v-model="form.emailSecondaryParent" placeholder="Email Address"></el-input>
             </el-form-item>
             <el-form-item label="Parent/Guardian Relation" prop="parentGuardianRelationSecondaryParent" class="col-12">
-              <el-select v-model="model.parentGuardianRelationSecondaryParent" placeholder="Parent/Guardian Relation">
+              <el-select @change="updateForm('parentGuardianRelationSecondaryParent', form.parentGuardianRelationSecondaryParent)"  v-model="form.parentGuardianRelationSecondaryParent" placeholder="Parent/Guardian Relation">
                 <el-option v-for="pre in options.parentGuardianRelationOptions"
                           :key="pre.value"
                           :label="pre.label"
@@ -73,16 +73,16 @@
         <div class="card-content">
           <div class="row">
             <el-form-item label="First Name" prop="firstNameEmergency" class="col-12">
-              <el-input v-model="model.firstNameEmergency" placeholder="First name"></el-input>
+              <el-input @input="updateForm('firstNameEmergency', form.firstNameEmergency)"  v-model="form.firstNameEmergency" placeholder="First name"></el-input>
             </el-form-item>
             <el-form-item label="Last Name" prop="lastNameEmergency" class="col-12">
-              <el-input v-model="model.lastNameEmergency" placeholder="Last name"></el-input>
+              <el-input @input="updateForm('lastNameEmergency', form.lastNameEmergency)" v-model="form.lastNameEmergency" placeholder="Last name"></el-input>
             </el-form-item>
             <el-form-item label="Contact Number (XXX) XXX-XXXX" prop="contactNumberEmergency" class="col-12">
-              <el-input v-model="model.contactNumberEmergency" placeholder="Contact Number"></el-input>
+              <el-input @input="updateForm('contactNumberEmergency', form.contactNumberEmergency)" v-model="form.contactNumberEmergency" placeholder="Contact Number"></el-input>
             </el-form-item>
             <el-form-item label="Email Address" prop="emailEmergency" class="col-12">
-              <el-input v-model="model.emailEmergency" placeholder="Email Address"></el-input>
+              <el-input @input="updateForm('emailEmergency', form.emailEmergency)" v-model="form.emailEmergency" placeholder="Email Address"></el-input>
             </el-form-item>
           </div>
         </div>
@@ -95,7 +95,7 @@
 export default {
   data(){
 		return {
-      model: {
+      form: {
         contactNumberEmergency: "",
         contactNumberPrimaryParent: "",
         contactNumberSecondaryParent: "",
@@ -256,14 +256,35 @@ export default {
       }
 	}},
   methods: {
+    openStorage () {
+      return JSON.parse(localStorage.getItem('form'))
+    },
+    saveStorage (form) {
+      localStorage.setItem('form', JSON.stringify(form))
+    },
+    updateForm (input, value) {
+      this.form[input] = value
+      let storedForm = this.openStorage()
+      if (!storedForm) storedForm = {}
+      storedForm[input] = value
+      this.saveStorage(storedForm)
+    },
     validate() {
       return new Promise((resolve) => {
         this.$refs.form.validate((valid) => {
-          this.$emit('on-validate', valid, this.model)
+          this.$emit("on-validate", valid, this.model);
           resolve(valid);
         });
-      })
-
+      });
+    },
+  },
+  created () {
+    const storedForm = this.openStorage()
+    if (storedForm) {
+      this.form = {
+        ...this.form,
+        ...storedForm
+      }
     }
   }
 
