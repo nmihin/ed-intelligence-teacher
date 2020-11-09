@@ -5,6 +5,7 @@
       <div class="row side-by-side">
         <div class="col-xs-6 col-md-6 side">
           <div class="card-boxes manage-menu">
+            <div class="card-header"><i class="icon icon-profile"></i><h2 class="card-title">Assigned Menu Of Developer</h2></div>
             <!--NESTABLE-->
             <VueNestable
               v-model="nestableItems1"
@@ -13,13 +14,14 @@
               class="card-box"
             >
               <VueNestableHandle slot-scope="{ item }" :item="item">
-                <i class="icon icon-profile"></i> {{item.text}}
+                <i class="icon icon-profile"></i> {{item.text}} <a class="card-option" href="#"><i class="icon icon-delete"></i></a>
               </VueNestableHandle>
             </VueNestable>
           </div>
         </div>
         <div class="col-xs-6 col-md-6 side">
           <div class="card-boxes manage-menu">
+            <div class="card-header"><i class="icon icon-profile"></i><h2 class="card-title">Manage Menu List</h2></div>
             <!--NESTABLE-->
             <VueNestable
               v-model="nestableItems2"
@@ -28,7 +30,7 @@
               class="card-box"
             >
               <VueNestableHandle slot-scope="{ item }" :item="item">
-                <i class="icon icon-profile"></i>{{ item.text }}
+                <i class="icon icon-profile"></i>{{ item.text }}<a class="card-option" href="#"><i class="icon icon-edit"></i></a>
               </VueNestableHandle>
             </VueNestable>
           </div>
