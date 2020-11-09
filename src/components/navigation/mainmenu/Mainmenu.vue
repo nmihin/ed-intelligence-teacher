@@ -14,6 +14,9 @@
                   <li>
                     <router-link to="/add-student"><i class="icon icon-student"></i>Add Student</router-link>
                   </li>
+                  <li>
+                    <router-link to="/manage-menu">Manage Menu</router-link>
+                  </li>
                 </ul>
               </div>
                <!-- Main Menu-END -->

@@ -493,7 +493,7 @@ ICONS
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, .06)
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, .06);
 }
 
 .card-boxes .card-radio {
@@ -748,6 +748,124 @@ ICONS
   position: absolute;
 }
 
+/*
+Manage Menu
+*/
+.card-boxes.manage-menu {
+  width:100%;
+}
+
+.card-boxes.manage-menu .card-box {
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin-bottom: 30px;
+  border-radius: 8px;
+  background-color: var(--white);
+  height: 75vh;
+  padding: 30px 10px 30px 30px;
+}
+
+/*
+* Style for nestable
+*/
+.nestable {
+  position: relative;
+}
+.nestable-rtl {
+  direction: rtl;
+}
+.nestable .nestable-list {
+  margin: 0;
+  padding: 0 0 0 40px;
+  list-style-type: none;
+}
+.nestable-rtl .nestable-list {
+  padding: 0 40px 0 0;
+}
+.nestable > .nestable-list {
+  padding: 0;
+  overflow: scroll;
+  height: 100%;
+  padding-right: 10px;
+}
+.nestable-item,
+.nestable-item-copy {
+  margin: 10px 0 0;
+}
+.nestable-item:first-child,
+.nestable-item-copy:first-child {
+  margin-top: 0;
+}
+.nestable-item .nestable-list,
+.nestable-item-copy .nestable-list {
+  margin-top: 10px;
+}
+.nestable-item {
+  position: relative;
+}
+.nestable-item.is-dragging .nestable-list {
+  pointer-events: none;
+}
+.nestable-item.is-dragging * {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.nestable-item.is-dragging:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  border: 1px dashed var(--gray);
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.nestable-drag-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+.nestable-rtl .nestable-drag-layer {
+  left: auto;
+  right: 0;
+}
+.nestable-drag-layer > .nestable-list {
+  position: absolute;
+  padding: 5px;
+  border:5px solid transparent;
+  border-radius: 5px;
+  top: 0;
+  left: 0;
+  padding: 0;
+  background-color: rgba(43, 140, 202, 0.15);
+}
+.nestable-rtl .nestable-drag-layer > .nestable-list {
+  padding: 0;
+}
+.nestable [draggable="true"] {
+  cursor: move;
+}
+.nestable-handle {
+  display: inline-block;
+  width: 100%;
+}
+.nestable-item-content {
+  padding: 5px;
+  border-radius: 5px;
+  border:1px solid var(--gray);
+  background: var(--background);
+}
+.nestable-item-content .icon:before {
+  color: var(--bluewood);
+}
+
+/*
+Top box
+*/
 .top-box {
   border-radius: 8px;
   background-color: var(--white);

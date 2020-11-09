@@ -9,6 +9,7 @@ import ProfileSettings from "../pages/ProfileSettings";
 import ChangePassword from "../pages/ChangePassword";
 import NotificationsTable from "../pages/NotificationsTable";
 import AddStudent from "../pages/AddStudent";
+import ManageMenu from "../pages/ManageMenu";
 
 import Element from 'element-ui'
 import FormWizard from "vue-form-wizard";
@@ -16,14 +17,14 @@ import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import locale from 'element-ui/lib/locale/lang/en';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import VueRouter from 'vue-router';
-import VueBodyClass from 'vue-body-class';
+import VueNestable from 'vue-nestable';
 
 Vue.use(Router);
 Vue.use(Element, { locale });
 Vue.use(FormWizard);
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
+Vue.use(VueNestable);
 
 export default new Router({
     mode: "history",
@@ -46,8 +47,7 @@ export default new Router({
       {
         path: "/lesson-plan-bank",
         name: "Lesson Plan Bank",
-        component: LessonPlanBank,
-        meta: { bodyClass: 'full-height' }
+        component: LessonPlanBank
       },
       {
         path: "/lesson-plan-single",
@@ -78,6 +78,11 @@ export default new Router({
         path: "/add-student",
         name: "Add Student",
         component: AddStudent
+      },
+      {
+        path: "/manage-menu",
+        name: "Manage Menu",
+        component: ManageMenu
       }
     ]
   });
