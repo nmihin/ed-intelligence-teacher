@@ -177,7 +177,7 @@ export default {
     // INFINITE HANDLER
     loadMore() {
       this.busy = true;
-      this.axios.get("lesson-plan.json").then((response) => {
+      this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
         const append = response.data.slice(
           this.posts.length,
           this.posts.length + this.limit
