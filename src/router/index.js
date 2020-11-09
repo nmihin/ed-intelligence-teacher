@@ -16,6 +16,8 @@ import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import locale from 'element-ui/lib/locale/lang/en';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import VueRouter from 'vue-router';
+import VueBodyClass from 'vue-body-class';
 
 Vue.use(Router);
 Vue.use(Element, { locale });
@@ -44,7 +46,8 @@ export default new Router({
       {
         path: "/lesson-plan-bank",
         name: "Lesson Plan Bank",
-        component: LessonPlanBank
+        component: LessonPlanBank,
+        meta: { bodyClass: 'full-height' }
       },
       {
         path: "/lesson-plan-single",
