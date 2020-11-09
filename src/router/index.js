@@ -14,11 +14,14 @@ import Element from 'element-ui'
 import FormWizard from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import locale from 'element-ui/lib/locale/lang/en';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 Vue.use(Router);
-Vue.use(Element, { locale })
+Vue.use(Element, { locale });
 Vue.use(FormWizard);
 Vue.config.productionTip = false;
+Vue.use(VueAxios, axios);
 
 export default new Router({
     mode: "history",

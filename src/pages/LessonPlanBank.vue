@@ -7,78 +7,45 @@
                 <div class="row">
                   <div class="col-4">
                     <el-form-item prop="lessonPlanBankSubject">
-                      <select class="card-select" v-model="model.lessonPlanBankSubject" placeholder="Select Subject">
-                        <option v-for="pre in options.lessonPlanBankSubjectOptions"
+                      <el-select v-model="model.lessonPlanBankSubject" placeholder="Select Subject">
+                        <el-option v-for="pre in options.lessonPlanBankSubjectOptions"
                                   :key="pre.value"
                                   :label="pre.label"
                                   :value="pre.value">
-                        </option>
-                      </select>
+                        </el-option>
+                      </el-select>
                       <i class="icon icon-arrow"></i>
                     </el-form-item>
                   </div>
                   <div class="col-4">
                     <el-form-item prop="lessonPlanBankGrade">
-                      <select class="card-select" v-model="model.lessonPlanBankGrade" placeholder="Select Grade">
-                        <option v-for="pre in options.lessonPlanBankGradeOptions"
+                      <el-select v-model="model.lessonPlanBankGrade" placeholder="Select Grade">
+                        <el-option v-for="pre in options.lessonPlanBankGradeOptions"
                                   :key="pre.value"
                                   :label="pre.label"
                                   :value="pre.value">
-                        </option>
-                      </select>
+                        </el-option>
+                      </el-select>
                       <i class="icon icon-arrow"></i>
                     </el-form-item>
                   </div>
                   <div class="col-4">
                     <el-form-item prop="lessonPlanBankStrand">
-                      <select class="card-select" v-model="model.lessonPlanBankStrand" placeholder="Select Strand">
-                        <option v-for="pre in options.lessonPlanBankStrandOptions"
+                      <el-select v-model="model.lessonPlanBankStrand" placeholder="Select Strand">
+                        <el-option v-for="pre in options.lessonPlanBankStrandOptions"
                                   :key="pre.value"
                                   :label="pre.label"
                                   :value="pre.value">
-                        </option>
-                      </select>
+                        </el-option>
+                      </el-select>
                       <i class="icon icon-arrow"></i>
                     </el-form-item>
-                  </div>            
-                  
+                  </div>
                 </div>
               </div>
             </el-form>
             <div class="row">
-              <div v-lazy-container="{ selector: '.card-box' }" class="side-menu__results card-boxes lessons_teacher">
-                        <!-- Box -->
-                        <div class="card-box">
-                          <div class="card-title">
-                            <h2>My Test Lesson - English 1</h2>
-                          </div>
-                          <div class="card-element">
-                            <a href="#" class="edit">
-                              <i class="icon icon-edit"></i>
-                            </a>
-                            <a href="#" class="delete">
-                              <i class="icon icon-delete"></i>
-                            </a>
-                          </div>
-                          <ul class="card-breadcrumb">
-                            <li>
-                              Four
-                            </li>
-                            <li>
-                              English
-                            </li>
-                            <li>
-                              <a title="Language" href="#">Language</a>
-                            </li>
-                          </ul>
-                          <div class="card-content">
-                            <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                            <router-link to="/lesson-plan"><button class="button medium ed-btn__primary">CC.4.L.1</button></router-link>
-                          </div>
-                          <div class="card-footer">
-                            <i class="icon icon-lesson"></i><span>0 Resources</span>
-                          </div>
-                        </div>             
+              <div class="side-menu__results card-boxes lessons_teacher">
                         <!-- Box -->
                         <div class="card-box">
                           <div class="card-title">
@@ -271,6 +238,24 @@
                             <i class="icon icon-lesson"></i><span>0 Resources</span>
                           </div>
                         </div>  
+
+
+                    <!--<div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
+                      <li v-for="post in posts" v-bind:key="post">
+                        <div class="card">
+                          <header class="card-header">
+                            <p class="card-header-title">
+                              {{post.title}}
+                            </p>
+                          </header>
+                          <div class="card-content">
+                            <div class="content">
+                              <p>{{post.body}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </div>-->
               </div>
             </div>
           </div>
@@ -284,8 +269,11 @@ import { MdMenu, MdButton, MdList } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import { validationMixin } from "vuelidate";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
-import Element from 'element-ui'
- 
+import Element from 'element-ui';
+import InfiniteLoading from 'vue-infinite-loading';
+
+//const api = '//hn.algolia.com/api/v1/search_by_date?tags=story';
+
 export default {
   name: 'lesson-plan-bank',
   mixins: [validationMixin],
@@ -293,10 +281,16 @@ export default {
     MdMenu,
     MdButton,
     MdList,
-    Element
+    Element,
+    InfiniteLoading
   },
   data(){
 		return {
+          posts: [],
+    limit: 10,
+    busy: false,
+      page: 1,
+      list: [],
       model: {
         //DEFINITIONS
         lessonPlanBankSubject: "",
@@ -321,8 +315,11 @@ export default {
             {value: "strand2", label: 'Strand 2'},
         ],
       },
-      rules: {},
-      methods: {
+      rules: {}  
+    }
+  },
+  methods: {
+        // VALIDATE
         validate() {
           return new Promise((resolve) => {
             this.$refs.form.validate((valid) => {
@@ -330,10 +327,22 @@ export default {
               resolve(valid);
             });
           })
-
+        },
+        // INFINITE HANDLER
+        loadMore() {
+          this.busy = true;
+          this.axios.get("lesson-plan.json").then(response => {
+            const append = response.data.slice(
+              this.posts.length,
+              this.posts.length + this.limit
+            );
+            this.posts = this.posts.concat(append);
+            this.busy = false;
+          });
         }
-      }      
-    }
-  }
+  },
+  created() {
+    this.loadMore();
+  }  
 }
 </script>
