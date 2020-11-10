@@ -12,7 +12,7 @@
     :slidesToScroll="6"
     class="card-tab manage"
   >
-    <li v-for="(role, idx) in roles" v-bind:key="idx" v-bind:class="{ 'active': idx === 0 }" ><a v-on:click="updateData(idx)" href="#">{{idx}}</a></li>
+    <li v-for="(role, idx) in roles" v-bind:key="idx" v-bind:class="[{ active: selected === idx }]" v-on:click="selected = idx; updateData(idx)"><a href="#">{{idx}}</a></li>
   </VueSlickCarousel>
   <!-- tabs END-->
 </template>
@@ -32,7 +32,8 @@ export default {
   data: function() {
     return {
       refresh: 0,
-      roles: []
+      roles: [],
+      selected: "su_admin"
     };
   },
   methods: {
@@ -43,6 +44,7 @@ export default {
       });
     },
     updateData(idx){
+        // eslint-disable-next-line no-console
         this.$emit('loadData',idx);
     }
   },

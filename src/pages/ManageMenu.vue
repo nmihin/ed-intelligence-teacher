@@ -8,7 +8,7 @@
             <div class="card-header"><i class="icon icon-profile"></i><h2 class="card-title">Assigned Menu Of Developer</h2></div>
             <div class="card-box">
               <!--TABS-->
-              <Tabs @updateData="loadData($event)" />
+              <Tabs @loadData="onClickChild($event)" />
               <!--NESTABLE-->
               <VueNestable
                 v-model= posts.menuAssigned
@@ -65,30 +65,12 @@ export default {
     // LOAD TABS DATA
     loadMore() {
       this.axios.get("manage-menu.json").then((response) => {
-        /*
-        const append = response.data.slice(
-          this.posts.length,
-          this.posts.length + this.limit
-        );
-        this.posts = this.posts.concat(append);
-        */
         this.posts = response.data.su_admin[0];
       });
     },
-    loadData: function(idx){
-      // eslint-disable-next-line no-console
-      console.log(idx)
+    onClickChild: function(idx){
       this.axios.get("manage-menu.json").then((response) => {
-        /*
-        const append = response.data.slice(
-          this.posts.length,
-          this.posts.length + this.limit
-        );
-        this.posts = this.posts.concat(append);
-        */
-        this.posts = response.data.su_admin[0];
-        // eslint-disable-next-line no-console
-        console.log(this.posts)
+        this.posts = response.data[idx][0];
       });
     }
   },

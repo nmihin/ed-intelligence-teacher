@@ -118,8 +118,6 @@ import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import Element from "element-ui";
 import InfiniteLoading from "vue-infinite-loading";
 
-//const api = '//hn.algolia.com/api/v1/search_by_date?tags=story';
-
 export default {
   name: "lesson-plan-bank",
   mixins: [validationMixin],
@@ -186,7 +184,7 @@ export default {
         this.busy = false;
       });
     },
-  },
+  }, 
   mounted() {
     document.body.classList.add("full-height");
   },
