@@ -6,33 +6,37 @@
         <div class="col-xs-6 col-md-6 side">
           <div class="card-boxes manage-menu">
             <div class="card-header"><i class="icon icon-profile"></i><h2 class="card-title">Assigned Menu Of Developer</h2></div>
-            <!--NESTABLE-->
-            <VueNestable
-              v-model="nestableItems1"
-              cross-list
-              group="cross"
-              class="card-box"
-            >
-              <VueNestableHandle slot-scope="{ item }" :item="item">
-                <i class="icon icon-profile"></i> {{item.text}} <a class="card-option" href="#"><i class="icon icon-delete"></i></a>
-              </VueNestableHandle>
-            </VueNestable>
+            <div class="card-box">
+              <!--TABS-->
+              <Tabs />
+              <!--NESTABLE-->
+              <VueNestable
+                v-model="nestableItems1"
+                cross-list
+                group="cross"
+              >
+                <VueNestableHandle slot-scope="{ item }" :item="item">
+                  <i class="icon icon-profile"></i> {{item.text}} <a class="card-option" href="#"><i class="icon icon-delete"></i></a>
+                </VueNestableHandle>
+              </VueNestable>
+            </div>
           </div>
         </div>
         <div class="col-xs-6 col-md-6 side">
           <div class="card-boxes manage-menu">
             <div class="card-header"><i class="icon icon-profile"></i><h2 class="card-title">Manage Menu List</h2></div>
+            <div class="card-box">
             <!--NESTABLE-->
             <VueNestable
               v-model="nestableItems2"
               cross-list
               group="cross"
-              class="card-box"
             >
               <VueNestableHandle slot-scope="{ item }" :item="item">
                 <i class="icon icon-profile"></i>{{ item.text }}<a class="card-option" href="#"><i class="icon icon-edit"></i></a>
               </VueNestableHandle>
             </VueNestable>
+            </div>
           </div>
         </div>
       </div>
@@ -42,10 +46,12 @@
 
 <script>
 import { VueNestable, VueNestableHandle } from "vue-nestable";
+import  Tabs  from "../components/features/tabs/Tabs.vue";
 
 export default {
   name: "manage-menu",
   components: {
+    Tabs,
     VueNestable,
     VueNestableHandle,
   },

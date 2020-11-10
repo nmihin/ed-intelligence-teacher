@@ -762,13 +762,12 @@ Manage Menu
   border-radius: 0 0 8px 8px;
   background-color: var(--white);
   height: 75vh;
-  padding: 30px 10px 30px 30px;
+  padding: 0;
   margin: 0;
 }
 
 .card-boxes.manage-menu .card-box .card-option {
   float: right;
-  background-color: var(--bluewood);
   border-radius: 50%;
   width:28px;
   height:28px;
@@ -777,6 +776,14 @@ Manage Menu
 .card-boxes.manage-menu .card-box .card-option .icon {
   top:2px;
   position: relative;
+}
+
+.card-boxes.manage-menu .card-box .card-option .icon-delete {
+  background-color: var(--red);
+}
+
+.card-boxes.manage-menu .card-box .card-option .icon-edit {
+  background-color: var(--tertiary);
 }
 
 .card-boxes.manage-menu .card-box .card-option .icon:before {
@@ -797,7 +804,7 @@ Manage Menu
   float: left;
   padding: 10px;
   display: inline-block;
-  font-size: 24px;
+  font-size: 21px;
   margin: 0;
 }
 
@@ -807,6 +814,7 @@ Manage Menu
   display: flex;
   align-items: center;
   margin: 0;
+  font-size: 18px;
   line-height: 1.25;
 }
 
@@ -815,6 +823,9 @@ Manage Menu
 */
 .nestable {
   position: relative;
+  height:100%;
+  overflow: scroll;
+  padding: 15px 0 30px 15px;
 }
 .nestable-rtl {
   direction: rtl;
@@ -906,6 +917,50 @@ Manage Menu
 }
 .nestable-item-content .icon:before {
   color: var(--bluewood);
+}
+
+/*
+* Style for manage tabs
+*/
+.card-tab.manage {
+  float:left;
+  width: 100%;
+  background-color: var(--primary);
+  height:40px;
+  overflow: hidden;
+  padding-right: 30px;
+}
+.card-tab.manage li {
+  height: 40px;
+  position: relative;
+  text-align: center;
+  line-height: 1;
+  float: left;
+  padding: 0 16px;
+  border-right: 1px solid var(--secondary);
+}
+.card-tab.manage li a {
+  height:40px;
+  color: var(--white) !important;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-tab.manage li.active {
+  background-color:var(--white);
+}
+.card-tab.manage li.active:after {
+  
+}
+.card-tab.manage li.active a {
+  color: var(--primary) !important;
+}
+.card-tab.manage .slick-next {
+  display: block;
+  position: absolute;
+  right: 5px;
+  top: 21px;
 }
 
 /*
