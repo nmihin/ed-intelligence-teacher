@@ -8,14 +8,14 @@
             <div class="card-header"><i class="icon icon-profile"></i><h2 class="card-title">Assigned Menu Of Developer</h2></div>
             <div class="card-box">
               <!--TABS-->
-              <Tabs />
+              <Tabs @updateData="loadData($event)" />
               <!--NESTABLE-->
               <VueNestable
-                v-model="nestableItems1"
+                v-model= posts.menuAssigned
                 cross-list
                 group="cross"
               >
-                <VueNestableHandle slot-scope="{ item }" :item="item">
+                <VueNestableHandle slot-scope="{item}" :item="item">
                   <i class="icon icon-profile"></i> {{item.text}} <a class="card-option" href="#"><i class="icon icon-delete"></i></a>
                 </VueNestableHandle>
               </VueNestable>
@@ -28,7 +28,7 @@
             <div class="card-box">
             <!--NESTABLE-->
             <VueNestable
-              v-model="nestableItems2"
+              v-model = posts.menuList
               cross-list
               group="cross"
             >
@@ -55,103 +55,45 @@ export default {
     VueNestable,
     VueNestableHandle,
   },
+  props: ['idx'],
   data() {
     return {
-      nestableItems1: [
-        {
-          id: 0,
-          text: "Andy",
-        },
-        {
-          id: 1,
-          text: "Harry",
-          children: [
-            {
-              id: 2,
-              text: "David",
-            },
-          ],
-        },
-        {
-          id: 3,
-          text: "Lisa",
-        },
-        {
-          id: 5,
-          text: "Ricky",
-        },
-        {
-          id: 6,
-          text: "Nicky",
-        },
-        {
-          id: 7,
-          text: "Marky",
-        },
-        {
-          id: 8,
-          text: "Steve",
-        },
-        {
-          id: 9,
-          text: "Anne",
-        },
-        {
-          id: 10,
-          text: "John",
-        },
-        {
-          id: 11,
-          text: "Sam",
-        },
-        {
-          id: 12,
-          text: "Danny",
-        },
-        {
-          id: 13,
-          text: "Mary",
-        },
-        {
-          id: 14,
-          text: "Jane",
-        },
-        {
-          id: 15,
-          text: "Skylar",
-        },
-        {
-          id: 16,
-          text: "Nancy",
-        },
-        {
-          id: 17,
-          text: "Remy",
-        },
-        {
-          id: 18,
-          text: "Daphne",
-        },
-        {
-          id: 19,
-          text: "Livy",
-        },
-        {
-          id: 20,
-          text: "Sammy",
-        },
-      ],
-      nestableItems2: [
-        {
-          id: 4,
-          text: "Mike",
-        },
-        {
-          id: 5,
-          text: "Edgar",
-        },
-      ],
+      posts: [],
     };
   },
+  methods: {
+    // LOAD TABS DATA
+    loadMore() {
+      this.axios.get("manage-menu.json").then((response) => {
+        /*
+        const append = response.data.slice(
+          this.posts.length,
+          this.posts.length + this.limit
+        );
+        this.posts = this.posts.concat(append);
+        */
+        this.posts = response.data.su_admin[0];
+      });
+    },
+    loadData: function(idx){
+      // eslint-disable-next-line no-console
+      console.log(idx)
+      this.axios.get("manage-menu.json").then((response) => {
+        /*
+        const append = response.data.slice(
+          this.posts.length,
+          this.posts.length + this.limit
+        );
+        this.posts = this.posts.concat(append);
+        */
+        this.posts = response.data.su_admin[0];
+        // eslint-disable-next-line no-console
+        console.log(this.posts)
+      });
+    }
+  },
+  created() {
+    this.loadMore();
+  }
 };
 </script>

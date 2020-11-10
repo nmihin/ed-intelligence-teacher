@@ -1,0 +1,932 @@
+{
+  "su_admin": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 6,
+        "text": "Nicky"
+      },
+      {
+        "id": 7,
+        "text": "Marky"
+      },
+      {
+        "id": 8,
+        "text": "Steve"
+      },
+      {
+        "id": 9,
+        "text": "Anne"
+      },
+      {
+        "id": 10,
+        "text": "John"
+      },
+      {
+        "id": 11,
+        "text": "Sam"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "admin": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 10,
+        "text": "John"
+      },
+      {
+        "id": 11,
+        "text": "Sam"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "board": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 6,
+        "text": "Nicky"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "teacher": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 8,
+        "text": "Steve"
+      },
+      {
+        "id": 9,
+        "text": "Anne"
+      },
+      {
+        "id": 10,
+        "text": "John"
+      },
+      {
+        "id": 11,
+        "text": "Sam"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "student": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 6,
+        "text": "Nicky"
+      },
+      {
+        "id": 7,
+        "text": "Marky"
+      },
+      {
+        "id": 8,
+        "text": "Steve"
+      },
+      {
+        "id": 9,
+        "text": "Anne"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "parent": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 10,
+        "text": "John"
+      },
+      {
+        "id": 11,
+        "text": "Sam"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "developer": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 6,
+        "text": "Nicky"
+      },
+      {
+        "id": 7,
+        "text": "Marky"
+      },
+      {
+        "id": 8,
+        "text": "Steve"
+      },
+      {
+        "id": 9,
+        "text": "Anne"
+      },
+      {
+        "id": 10,
+        "text": "John"
+      },
+      {
+        "id": 11,
+        "text": "Sam"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "editor": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 6,
+        "text": "Nicky"
+      },
+      {
+        "id": 7,
+        "text": "Marky"
+      },
+      {
+        "id": 8,
+        "text": "Steve"
+      },
+      {
+        "id": 9,
+        "text": "Anne"
+      },
+      {
+        "id": 10,
+        "text": "John"
+      },
+      {
+        "id": 11,
+        "text": "Sam"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "superadmin": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 6,
+        "text": "Nicky"
+      },
+      {
+        "id": 7,
+        "text": "Marky"
+      },
+      {
+        "id": 8,
+        "text": "Steve"
+      },
+      {
+        "id": 9,
+        "text": "Anne"
+      },
+      {
+        "id": 10,
+        "text": "John"
+      },
+      {
+        "id": 11,
+        "text": "Sam"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }],
+  "contributor": [{
+    "menuAssigned": [
+      {
+        "id": 0,
+        "text": "Andy"
+      },
+      {
+        "id": 1,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 2,
+            "text": "David"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Lisa"
+      },
+      {
+        "id": 5,
+        "text": "Ricky"
+      },
+      {
+        "id": 6,
+        "text": "Nicky"
+      },
+      {
+        "id": 7,
+        "text": "Marky"
+      },
+      {
+        "id": 8,
+        "text": "Steve"
+      },
+      {
+        "id": 9,
+        "text": "Anne"
+      },
+      {
+        "id": 10,
+        "text": "John"
+      },
+      {
+        "id": 11,
+        "text": "Sam"
+      },
+      {
+        "id": 12,
+        "text": "Danny"
+      },
+      {
+        "id": 13,
+        "text": "Mary"
+      },
+      {
+        "id": 14,
+        "text": "Jane"
+      },
+      {
+        "id": 15,
+        "text": "Skylar"
+      },
+      {
+        "id": 16,
+        "text": "Nancy"
+      },
+      {
+        "id": 17,
+        "text": "Remy"
+      },
+      {
+        "id": 18,
+        "text": "Daphne"
+      },
+      {
+        "id": 19,
+        "text": "Livy"
+      },
+      {
+        "id": 20,
+        "text": "Sammy"
+      }
+    ],
+    "menuList": [
+      {
+        "id": 21,
+        "text": "Andy"
+      },
+      {
+        "id": 22,
+        "text": "Harry",
+        "children": [
+          {
+            "id": 23,
+            "text": "David"
+          }
+        ]
+      }
+    ]
+  }]
+}
