@@ -818,6 +818,28 @@ Manage Menu
   line-height: 1.25;
 }
 
+.card-boxes.manage-menu .add-menu {
+  position: absolute;
+  right: 30px;
+  top: 5px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+}
+
+.manage-menu-icons:before {
+  color: var(--bluewood);
+}
+
+.card-boxes.manage-menu  .el-select-dropdown__list {
+  max-width: 500px;
+}
+
+.card-boxes.manage-menu .el-select-dropdown__item {
+  width: 25%;
+  float: left;
+}
+
 /*
 * Style for nestable
 */
@@ -2487,6 +2509,25 @@ ul.side-menu__results>li>ul>li a:hover {
   margin-left: 15px !important;
 }
 
+.modal-window.manage-menu .md-dialog-container {
+  min-width: 40vw;
+}
+
+.modal-window.manage-menu .el-form-item, 
+.modal-window.manage-menu .md-dialog-actions
+{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.modal-window.manage-menu .card-content {
+  padding: 15px;
+}
+
+.modal-window.manage-menu .card-content .manage-menu-icons {
+  font-size: 20px;
+}
+
 /* GZA buttons */
 [class*="ed-btn"] {
   z-index: 1;
@@ -2535,23 +2576,21 @@ ul.side-menu__results>li>ul>li a:hover {
 }
 .ed-btn__secondary {
   color: var(--white) !important;
-  background: var(--secondary) !important;
+  background: var(--green) !important;
   border-radius: 7px !important;
 }
 .ed-btn__secondary:hover {
-  color: var(--dark) !important;
-  background: var(--tertiary) !important;
+  color: var(--white) !important;
+  background: var(--green) !important;
 }
 .ed-btn__tertiary {
-  color: var(--dark) !important;
-  background: var(--tertiary) !important;
-  border-radius: 2px !important;
-  border: 1px solid transparent;
+  color: var(--white) !important;
+  background: var(--red) !important;
+  border-radius: 7px !important;
 }
 .ed-btn__tertiary:hover {
-  color: var(--dark) !important;
-  background: var(--background) !important;
-  border: 1px solid var(--tertiary) !important;
+  color: var(--white) !important;
+  background: var(--red) !important;
 }
 .ed-btn-ghost__primary {
   color: var(--primary) !important;
