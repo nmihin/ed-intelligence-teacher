@@ -3,99 +3,92 @@
     "menuAssigned": [
       {
         "id": 0,
-        "text": "Andy"
+        "icon": "icon-add-account",
+        "label": "Add Account"
       },
       {
         "id": 1,
-        "text": "Harry",
+        "label": "General",
+        "icon": "icon-general",
         "children": [
           {
-            "id": 2,
-            "text": "David"
+            "id": 3,
+            "icon": "icon-assessment-weight",
+            "label": "Assessment Weight"
           }
         ]
       },
       {
-        "id": 3,
-        "text": "Lisa"
-      },
-      {
         "id": 5,
-        "text": "Ricky"
+        "icon": "icon-attendance-status-code",
+        "label": "Attendance Status Code"
       },
       {
         "id": 6,
-        "text": "Nicky"
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
       },
       {
         "id": 7,
-        "text": "Marky"
+        "icon": "icon-club-manager",
+        "label": "Club Manager"
       },
       {
         "id": 8,
-        "text": "Steve"
+        "icon": "icon-department-manager",
+        "label": "Department Manager"
       },
       {
         "id": 9,
-        "text": "Anne"
+        "icon": "icon-google-classroom",
+        "label": "Google Classroom"
       },
       {
         "id": 10,
-        "text": "John"
+        "icon": "icon-lesson-plan-bank",
+        "label": "Lesson Plan Bank"
       },
       {
         "id": 11,
-        "text": "Sam"
+        "icon": "icon-add-student",
+        "label": "Add Student"
       },
       {
         "id": 12,
-        "text": "Danny"
+        "icon": "icon-lms",
+        "label": "LMS"
       },
       {
         "id": 13,
-        "text": "Mary"
-      },
-      {
-        "id": 14,
-        "text": "Jane"
+        "icon": "icon-lesson-plan-overview",
+        "label": "Lesson Plan Overview"
       },
       {
         "id": 15,
-        "text": "Skylar"
+        "icon": "icon-site-map",
+        "label": "Site Map"
       },
       {
         "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
+        "icon": "icon-tests",
+        "label": "Tests"
       }
     ],
     "menuList": [
       {
         "id": 21,
-        "text": "Andy"
+        "icon": "icon-assessment-weight",
+        "label": "Assessment Weight"
       },
       {
         "id": 22,
-        "text": "Harry",
+        "icon": "icon-calendar-event",
+        "label": "Calendar Event",
         "children": [
           {
             "id": 23,
-            "text": "David"
+            "icon":"icon-teacher-feedback",
+            "label": "Teacher Feedback"
           }
         ]
       }
@@ -104,78 +97,41 @@
   "admin": [{
     "menuAssigned": [
       {
-        "id": 0,
-        "text": "Andy"
-      },
-      {
-        "id": 1,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 2,
-            "text": "David"
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "text": "Lisa"
-      },
-      {
-        "id": 10,
-        "text": "John"
-      },
-      {
-        "id": 11,
-        "text": "Sam"
-      },
-      {
         "id": 12,
-        "text": "Danny"
+        "icon": "icon-lms",
+        "label": "LMS"
       },
       {
         "id": 13,
-        "text": "Mary"
+        "icon": "icon-lesson-plan-overview",
+        "label": "Lesson Plan Overview"
       },
       {
         "id": 14,
-        "text": "Jane"
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
       },
       {
         "id": 15,
-        "text": "Skylar"
-      },
-      {
-        "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
+        "icon": "icon-site-map",
+        "label": "Site Map"
       }
     ],
     "menuList": [
       {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
+        "id": 3,
+        "icon": "icon-assessment-group",
+        "label": "Assessment Weight"
+      },
+      {
+        "id": 5,
+        "icon": "icon-attendance-status-code",
+        "label": "Attendance Status Code"
+      },
+      {
+        "id": 6,
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
       }
     ]
   }],
@@ -183,81 +139,87 @@
     "menuAssigned": [
       {
         "id": 0,
-        "text": "Andy"
+        "icon": "icon-add-account",
+        "label": "Add Account"
       },
       {
         "id": 1,
-        "text": "Harry",
+        "label": "General",
+        "icon": "icon-general",
         "children": [
           {
             "id": 2,
-            "text": "David"
+            "icon": "icon-assessment-group",
+            "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "text": "Lisa"
+        "icon": "icon-assessment-group",
+        "label": "Assessment Weight"
       },
       {
-        "id": 5,
-        "text": "Ricky"
-      },
-      {
-        "id": 6,
-        "text": "Nicky"
+        "id": 11,
+        "icon": "icon-add-student",
+        "label": "Add Student"
       },
       {
         "id": 12,
-        "text": "Danny"
+        "icon": "icon-lms",
+        "label": "LMS"
       },
       {
         "id": 13,
-        "text": "Mary"
+        "icon": "icon-lesson-plan-overview",
+        "label": "Lesson Plan Overview"
       },
       {
         "id": 14,
-        "text": "Jane"
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
       },
       {
         "id": 15,
-        "text": "Skylar"
+        "icon": "icon-site-map",
+        "label": "Site Map"
       },
       {
         "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
-      }
+        "icon": "icon-tests",
+        "label": "Tests"
+      }   
     ],
     "menuList": [
       {
-        "id": 21,
-        "text": "Andy"
+        "id": 5,
+        "icon": "icon-attendance-status-code",
+        "label": "Attendance Status Code"
       },
       {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
+        "id": 6,
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
+      },
+      {
+        "id": 7,
+        "icon": "icon-club-manager",
+        "label": "Club Manager"
+      },
+      {
+        "id": 8,
+        "icon": "icon-department-manager",
+        "label": "Department Manager"
+      },
+      {
+        "id": 9,
+        "icon": "icon-google-classroom",
+        "label": "Google Classroom"
+      },
+      {
+        "id": 10,
+        "icon": "icon-lesson-plan-bank",
+        "label": "Lesson Plan Bank"
       }
     ]
   }],
@@ -265,183 +227,175 @@
     "menuAssigned": [
       {
         "id": 0,
-        "text": "Andy"
+        "icon": "icon-add-account",
+        "label": "Add Account"
       },
       {
         "id": 1,
-        "text": "Harry",
+        "label": "General",
+        "icon": "icon-general",
         "children": [
           {
             "id": 2,
-            "text": "David"
+            "icon": "icon-assessment-group",
+            "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "text": "Lisa"
-      },
-      {
-        "id": 5,
-        "text": "Ricky"
-      },
-      {
-        "id": 8,
-        "text": "Steve"
-      },
-      {
-        "id": 9,
-        "text": "Anne"
-      },
-      {
-        "id": 10,
-        "text": "John"
-      },
-      {
-        "id": 11,
-        "text": "Sam"
-      },
-      {
-        "id": 12,
-        "text": "Danny"
-      },
-      {
-        "id": 13,
-        "text": "Mary"
-      },
-      {
-        "id": 14,
-        "text": "Jane"
-      },
-      {
-        "id": 15,
-        "text": "Skylar"
-      },
-      {
-        "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
+        "icon": "icon-assessment-group",
+        "label": "Assessment Weight"
       }
     ],
     "menuList": [
       {
-        "id": 21,
-        "text": "Andy"
+        "id": 5,
+        "icon": "icon-attendance-status-code",
+        "label": "Attendance Status Code"
       },
       {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
-      }
+        "id": 6,
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
+      },
+      {
+        "id": 7,
+        "icon": "icon-club-manager",
+        "label": "Club Manager"
+      },
+      {
+        "id": 8,
+        "icon": "icon-department-manager",
+        "label": "Department Manager"
+      },
+      {
+        "id": 9,
+        "icon": "icon-google-classroom",
+        "label": "Google Classroom"
+      },
+      {
+        "id": 10,
+        "icon": "icon-lesson-plan-bank",
+        "label": "Lesson Plan Bank"
+      },
+      {
+        "id": 11,
+        "icon": "icon-add-student",
+        "label": "Add Student"
+      },
+      {
+        "id": 12,
+        "icon": "icon-lms",
+        "label": "LMS"
+      },
+      {
+        "id": 13,
+        "icon": "icon-lesson-plan-overview",
+        "label": "Lesson Plan Overview"
+      },
+      {
+        "id": 14,
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
+      },
+      {
+        "id": 15,
+        "icon": "icon-site-map",
+        "label": "Site Map"
+      },
+      {
+        "id": 16,
+        "icon": "icon-tests",
+        "label": "Tests"
+      }     
     ]
   }],
   "student": [{
     "menuAssigned": [
       {
         "id": 0,
-        "text": "Andy"
+        "icon": "icon-add-account",
+        "label": "Add Account"
       },
       {
         "id": 1,
-        "text": "Harry",
+        "label": "General",
+        "icon": "icon-general",
         "children": [
           {
             "id": 2,
-            "text": "David"
+            "icon": "icon-assessment-group",
+            "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "text": "Lisa"
+        "icon": "icon-assessment-group",
+        "label": "Assessment Weight"
       },
       {
         "id": 5,
-        "text": "Ricky"
+        "icon": "icon-attendance-status-code",
+        "label": "Attendance Status Code"
       },
       {
         "id": 6,
-        "text": "Nicky"
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
       },
       {
         "id": 7,
-        "text": "Marky"
+        "icon": "icon-club-manager",
+        "label": "Club Manager"
       },
       {
         "id": 8,
-        "text": "Steve"
+        "icon": "icon-department-manager",
+        "label": "Department Manager"
       },
       {
         "id": 9,
-        "text": "Anne"
+        "icon": "icon-google-classroom",
+        "label": "Google Classroom"
       },
       {
-        "id": 13,
-        "text": "Mary"
+        "id": 10,
+        "icon": "icon-lesson-plan-bank",
+        "label": "Lesson Plan Bank"
       },
       {
         "id": 14,
-        "text": "Jane"
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
       },
       {
         "id": 15,
-        "text": "Skylar"
+        "icon": "icon-site-map",
+        "label": "Site Map"
       },
       {
         "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
+        "icon": "icon-tests",
+        "label": "Tests"
       }
     ],
     "menuList": [
       {
-        "id": 21,
-        "text": "Andy"
+        "id": 11,
+        "icon": "icon-add-student",
+        "label": "Add Student"
       },
       {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
+        "id": 12,
+        "icon": "icon-lms",
+        "label": "LMS"
+      },
+      {
+        "id": 13,
+        "icon": "icon-lesson-plan-overview",
+        "label": "Lesson Plan Overview"
       }
     ]
   }],
@@ -449,75 +403,97 @@
     "menuAssigned": [
       {
         "id": 0,
-        "text": "Andy"
+        "icon": "icon-add-account",
+        "label": "Add Account"
+      },
+      {
+        "id": 1,
+        "label": "General",
+        "icon": "icon-general",
+        "children": [
+          {
+            "id": 2,
+            "icon": "icon-assessment-group",
+            "label": "Assessment Group"
+          }
+        ]
       },
       {
         "id": 3,
-        "text": "Lisa"
+        "icon": "icon-assessment-group",
+        "label": "Assessment Weight"
       },
       {
         "id": 5,
-        "text": "Ricky"
+        "icon": "icon-attendance-status-code",
+        "label": "Attendance Status Code"
+      },
+      {
+        "id": 6,
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
+      },
+      {
+        "id": 7,
+        "icon": "icon-club-manager",
+        "label": "Club Manager"
+      },
+      {
+        "id": 8,
+        "icon": "icon-department-manager",
+        "label": "Department Manager"
+      },
+      {
+        "id": 9,
+        "icon": "icon-google-classroom",
+        "label": "Google Classroom"
       },
       {
         "id": 10,
-        "text": "John"
+        "icon": "icon-lesson-plan-bank",
+        "label": "Lesson Plan Bank"
       },
       {
         "id": 11,
-        "text": "Sam"
+        "icon": "icon-add-student",
+        "label": "Add Student"
       },
       {
         "id": 12,
-        "text": "Danny"
+        "icon": "icon-lms",
+        "label": "LMS"
       },
       {
         "id": 13,
-        "text": "Mary"
+        "icon": "icon-lesson-plan-overview",
+        "label": "Lesson Plan Overview"
       },
       {
         "id": 14,
-        "text": "Jane"
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
       },
       {
         "id": 15,
-        "text": "Skylar"
+        "icon": "icon-site-map",
+        "label": "Site Map"
       },
       {
         "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
-      }
+        "icon": "icon-tests",
+        "label": "Tests"
+      } 
     ],
     "menuList": [
       {
-        "id": 21,
-        "text": "Andy"
+        "id": 14,
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
       },
       {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
+        "id": 15,
+        "icon": "icon-site-map",
+        "label": "Site Map"
       }
     ]
   }],
@@ -525,407 +501,249 @@
     "menuAssigned": [
       {
         "id": 0,
-        "text": "Andy"
+        "icon": "icon-add-account",
+        "label": "Add Account"
       },
       {
         "id": 1,
-        "text": "Harry",
+        "label": "General",
+        "icon": "icon-general",
         "children": [
           {
             "id": 2,
-            "text": "David"
+            "icon": "icon-assessment-group",
+            "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "text": "Lisa"
+        "icon": "icon-assessment-group",
+        "label": "Assessment Weight"
       },
       {
         "id": 5,
-        "text": "Ricky"
+        "icon": "icon-attendance-status-code",
+        "label": "Attendance Status Code"
       },
       {
         "id": 6,
-        "text": "Nicky"
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
       },
       {
         "id": 7,
-        "text": "Marky"
+        "icon": "icon-club-manager",
+        "label": "Club Manager"
       },
       {
         "id": 8,
-        "text": "Steve"
+        "icon": "icon-department-manager",
+        "label": "Department Manager"
       },
       {
         "id": 9,
-        "text": "Anne"
+        "icon": "icon-google-classroom",
+        "label": "Google Classroom"
       },
       {
         "id": 10,
-        "text": "John"
-      },
-      {
-        "id": 11,
-        "text": "Sam"
-      },
-      {
-        "id": 12,
-        "text": "Danny"
+        "icon": "icon-lesson-plan-bank",
+        "label": "Lesson Plan Bank"
       },
       {
         "id": 13,
-        "text": "Mary"
+        "icon": "icon-lesson-plan-overview",
+        "label": "Lesson Plan Overview"
       },
       {
         "id": 14,
-        "text": "Jane"
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
       },
       {
         "id": 15,
-        "text": "Skylar"
+        "icon": "icon-site-map",
+        "label": "Site Map"
       },
       {
         "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
+        "icon": "icon-tests",
+        "label": "Tests"
       }
     ],
     "menuList": [
       {
-        "id": 21,
-        "text": "Andy"
+        "id": 11,
+        "icon": "icon-add-student",
+        "label": "Add Student"
       },
       {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
+        "id": 12,
+        "icon": "icon-lms",
+        "label": "LMS"
       }
     ]
   }],
   "editor": [{
     "menuAssigned": [
       {
+        "id": 11,
+        "icon": "icon-add-student",
+        "label": "Add Student"
+      },
+      {
+        "id": 12,
+        "icon": "icon-lms",
+        "label": "LMS"
+      }
+    ],
+    "menuList": [
+      {
         "id": 0,
-        "text": "Andy"
+        "icon": "icon-add-account",
+        "label": "Add Account"
       },
       {
         "id": 1,
-        "text": "Harry",
+        "label": "General",
+        "icon": "icon-general",
         "children": [
           {
             "id": 2,
-            "text": "David"
+            "icon": "icon-assessment-group",
+            "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "text": "Lisa"
-      },
-      {
-        "id": 5,
-        "text": "Ricky"
-      },
-      {
-        "id": 6,
-        "text": "Nicky"
-      },
-      {
-        "id": 7,
-        "text": "Marky"
-      },
-      {
-        "id": 8,
-        "text": "Steve"
-      },
-      {
-        "id": 9,
-        "text": "Anne"
-      },
-      {
-        "id": 10,
-        "text": "John"
-      },
-      {
-        "id": 11,
-        "text": "Sam"
-      },
-      {
-        "id": 12,
-        "text": "Danny"
-      },
-      {
-        "id": 13,
-        "text": "Mary"
-      },
-      {
-        "id": 14,
-        "text": "Jane"
-      },
-      {
-        "id": 15,
-        "text": "Skylar"
-      },
-      {
-        "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
-      }
-    ],
-    "menuList": [
-      {
-        "id": 21,
-        "text": "Andy"
-      },
-      {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
-      }
+        "icon": "icon-assessment-group",
+        "label": "Assessment Weight"
+      }  
     ]
   }],
   "superadmin": [{
     "menuAssigned": [
       {
         "id": 0,
-        "text": "Andy"
+        "icon": "icon-add-account",
+        "label": "Add Account"
       },
       {
         "id": 1,
-        "text": "Harry",
+        "label": "General",
+        "icon": "icon-general",
         "children": [
           {
             "id": 2,
-            "text": "David"
+            "icon": "icon-assessment-group",
+            "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "text": "Lisa"
+        "icon": "icon-assessment-group",
+        "label": "Assessment Weight"
       },
       {
         "id": 5,
-        "text": "Ricky"
+        "icon": "icon-attendance-status-code",
+        "label": "Attendance Status Code"
       },
       {
         "id": 6,
-        "text": "Nicky"
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
       },
       {
         "id": 7,
-        "text": "Marky"
+        "icon": "icon-club-manager",
+        "label": "Club Manager"
       },
       {
         "id": 8,
-        "text": "Steve"
+        "icon": "icon-department-manager",
+        "label": "Department Manager"
       },
       {
         "id": 9,
-        "text": "Anne"
+        "icon": "icon-google-classroom",
+        "label": "Google Classroom"
       },
       {
         "id": 10,
-        "text": "John"
+        "icon": "icon-lesson-plan-bank",
+        "label": "Lesson Plan Bank"
       },
       {
         "id": 11,
-        "text": "Sam"
+        "icon": "icon-add-student",
+        "label": "Add Student"
       },
       {
         "id": 12,
-        "text": "Danny"
+        "icon": "icon-lms",
+        "label": "LMS"
       },
       {
         "id": 13,
-        "text": "Mary"
-      },
-      {
-        "id": 14,
-        "text": "Jane"
-      },
-      {
-        "id": 15,
-        "text": "Skylar"
-      },
-      {
-        "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
+        "icon": "icon-lesson-plan-overview",
+        "label": "Lesson Plan Overview"
       }
     ],
     "menuList": [
       {
-        "id": 21,
-        "text": "Andy"
+        "id": 14,
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
       },
       {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
+        "id": 15,
+        "icon": "icon-site-map",
+        "label": "Site Map"
+      },
+      {
+        "id": 16,
+        "icon": "icon-tests",
+        "label": "Tests"
       }
     ]
   }],
   "contributor": [{
     "menuAssigned": [
       {
-        "id": 0,
-        "text": "Andy"
-      },
-      {
-        "id": 1,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 2,
-            "text": "David"
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "text": "Lisa"
-      },
-      {
-        "id": 5,
-        "text": "Ricky"
-      },
-      {
-        "id": 6,
-        "text": "Nicky"
-      },
-      {
-        "id": 7,
-        "text": "Marky"
-      },
-      {
-        "id": 8,
-        "text": "Steve"
-      },
-      {
-        "id": 9,
-        "text": "Anne"
-      },
-      {
-        "id": 10,
-        "text": "John"
-      },
-      {
-        "id": 11,
-        "text": "Sam"
-      },
-      {
-        "id": 12,
-        "text": "Danny"
-      },
-      {
-        "id": 13,
-        "text": "Mary"
-      },
-      {
         "id": 14,
-        "text": "Jane"
+        "icon": "icon-nwea-student-report",
+        "label": "NWEA Student Report"
       },
       {
         "id": 15,
-        "text": "Skylar"
+        "icon": "icon-site-map",
+        "label": "Site Map"
       },
       {
         "id": 16,
-        "text": "Nancy"
-      },
-      {
-        "id": 17,
-        "text": "Remy"
-      },
-      {
-        "id": 18,
-        "text": "Daphne"
-      },
-      {
-        "id": 19,
-        "text": "Livy"
-      },
-      {
-        "id": 20,
-        "text": "Sammy"
+        "icon": "icon-tests",
+        "label": "Tests"
       }
     ],
     "menuList": [
       {
-        "id": 21,
-        "text": "Andy"
+        "id": 6,
+        "icon": "icon-bulk-photo-upload",
+        "label": "Bulk Photo Upload"
       },
       {
-        "id": 22,
-        "text": "Harry",
-        "children": [
-          {
-            "id": 23,
-            "text": "David"
-          }
-        ]
+        "id": 7,
+        "icon": "icon-club-manager",
+        "label": "Club Manager"
+      },
+      {
+        "id": 8,
+        "icon": "icon-department-manager",
+        "label": "Department Manager"
       }
     ]
   }]

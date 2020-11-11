@@ -255,6 +255,57 @@ ICONS
   -moz-osx-font-smoothing: grayscale
 }
 
+.icon-add-account:before {
+  content: "\e925";
+}
+.icon-add-student:before {
+  content: "\e926";
+}
+.icon-assesment-group:before {
+  content: "\e927";
+}
+.icon-assessment-weight:before {
+  content: "\e928";
+}
+.icon-attendance-status-code:before {
+  content: "\e929";
+}
+.icon-bulk-photo-upload:before {
+  content: "\e92a";
+}
+.icon-calendar-event:before {
+  content: "\e92b";
+}
+.icon-club-manager:before {
+  content: "\e92c";
+}
+.icon-department-manager:before {
+  content: "\e92d";
+}
+.icon-general:before {
+  content: "\e92e";
+}
+.icon-google-classroom:before {
+  content: "\e92f";
+}
+.icon-lesson-plan-bank:before {
+  content: "\e930";
+}
+.icon-lesson-plan-overview:before {
+  content: "\e931";
+}
+.icon-lms:before {
+  content: "\e932";
+}
+.icon-site-map:before {
+  content: "\e933";
+}
+.icon-teacher-feedback:before {
+  content: "\e934";
+}
+.icon-tests:before {
+  content: "\e935";
+}
 
 .icon-add:before {
   content: "\e924";
@@ -930,6 +981,10 @@ Manage Menu
 .nestable-handle {
   display: inline-block;
   width: 100%;
+}
+.nestable-handle > .icon {
+  font-size: 16px;
+  font-weight: bold;
 }
 .nestable-item-content {
   padding: 5px;

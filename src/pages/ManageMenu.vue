@@ -16,7 +16,7 @@
                 group="cross"
               >
                 <VueNestableHandle slot-scope="{item}" :item="item">
-                  <i class="icon icon-profile"></i> {{item.text}} 
+                  <i class="icon" v-bind:class="item.icon"></i> {{item.label}} 
                   <a @click="deleteMenuModal = true" class="card-option" href="#">
                     <md-tooltip md-direction="top">Remove from menu</md-tooltip>
                     <i class="icon icon-delete"></i>
@@ -128,7 +128,7 @@
               group="cross"
             >
               <VueNestableHandle slot-scope="{ item }" :item="item">
-                <i class="icon icon-profile"></i>{{ item.text }}
+                <i class="icon" v-bind:class="item.icon"></i>{{ item.label }}
                 <a @click="editMenuModal = true" class="card-option" href="#">
                   <md-tooltip md-direction="top">Edit menu</md-tooltip>
                   <i class="icon icon-edit"></i>
@@ -173,14 +173,22 @@ export default {
       },
       options: {
         iconForLinkOptions: [
-          {value: 'icon-add', label: 'Add'},
-          {value: 'icon-logout', label: 'Logout'},
-          {value: 'icon-follow', label: 'Follow'},
-          {value: 'icon-add-lesson', label: 'Add Lesson'},
-          {value: 'icon-lesson', label: 'Lesson'},
-          {value: 'icon-students', label: 'Students'},
-          {value: 'icon-arrow', label: 'Arrow'},
-          {value: 'icon-attendence', label: 'Attendance'}
+          {value: 'icon-add-account', label: 'Add Account'},
+          {value: 'icon-add-student', label: 'Add Student'},
+          {value: 'icon-assesment-group', label: 'Assesment Group'},
+          {value: 'icon-assesment-weight', label: 'Assesment Weight'},
+          {value: 'icon-bulk-photo-upload', label: 'Bulk Photo Upload'},
+          {value: 'icon-calendar-event', label: 'Calendar Event'},
+          {value: 'icon-club-manager', label: 'Club Manager'},
+          {value: 'icon-department-manager', label: 'Department Manager'},
+          {value: 'icon-general', label: 'General'},
+          {value: 'icon-google-classroom', label: 'Google Classroom'},
+          {value: 'icon-lesson-plan-bank', label: 'Lesson Plan Bank'},
+          {value: 'icon-lesson-plan-overview', label: 'Lesson Plan Overview'},
+          {value: 'icon-lms', label: 'LMS'},
+          {value: 'icon-site-map', label: 'Site Map'},
+          {value: 'icon-teacher-feedback', label: 'Teacher Feedback'},
+          {value: 'icon-tests', label: 'Tests'}
         ]
       }
     };
