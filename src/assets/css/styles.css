@@ -2577,7 +2577,7 @@ ul.side-menu__results>li>ul>li a:hover {
 .ed-btn__secondary {
   color: var(--white) !important;
   background: var(--green) !important;
-  border-radius: 7px !important;
+  border-radius: 40px !important;
 }
 .ed-btn__secondary:hover {
   color: var(--white) !important;
@@ -2586,7 +2586,7 @@ ul.side-menu__results>li>ul>li a:hover {
 .ed-btn__tertiary {
   color: var(--white) !important;
   background: var(--red) !important;
-  border-radius: 7px !important;
+  border-radius: 40px !important;
 }
 .ed-btn__tertiary:hover {
   color: var(--white) !important;

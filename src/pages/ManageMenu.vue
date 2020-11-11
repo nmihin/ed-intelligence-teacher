@@ -16,7 +16,11 @@
                 group="cross"
               >
                 <VueNestableHandle slot-scope="{item}" :item="item">
-                  <i class="icon icon-profile"></i> {{item.text}} <a class="card-option" href="#"><i class="icon icon-delete"></i></a>
+                  <i class="icon icon-profile"></i> {{item.text}} 
+                  <a @click="deleteMenuModal = true" class="card-option" href="#">
+                    <md-tooltip md-direction="top">Remove from menu</md-tooltip>
+                    <i class="icon icon-delete"></i>
+                  </a>
                 </VueNestableHandle>
               </VueNestable>
             </div>
@@ -26,14 +30,14 @@
           <div class="card-boxes manage-menu">
             <div class="card-header">
               <i class="icon icon-profile"></i><h2 class="card-title">Manage Menu List</h2>
-              <md-button @click="showDialog = true" class="add-menu">
+              <md-button @click="addMenuModal = true" class="add-menu">
                     <md-tooltip md-direction="top">Add New Menu</md-tooltip>
                     <i class="icon icon-add"></i>
               </md-button>
             </div>
             <div class="card-box">
-                <!-- START EDIT IMAGE MODAL -->
-                  <md-dialog :md-active.sync="showDialog" class="modal-window manage-menu">
+                <!-- START ADD MENU MODAL -->
+                  <md-dialog :md-active.sync="addMenuModal" class="modal-window manage-menu">
                     <h2>Add Menu</h2>
                     <el-form :model="formManageMenu" ref="formManageMenu">
                         <!-- Menu Information -->
@@ -62,14 +66,61 @@
                             </div>
                             <div class="row">
                               <md-dialog-actions>
-                                <md-button class="button medium ed-btn__secondary" @click="showDialog = false">Add</md-button>
-                                <md-button class="button medium ed-btn__tertiary" @click="showDialog = false">Cancel</md-button>
+                                <md-button class="button medium ed-btn__secondary" @click="addMenuModal = false">Add</md-button>
+                                <md-button class="button medium ed-btn__tertiary" @click="addMenuModal = false">Cancel</md-button>
                               </md-dialog-actions>
                             </div>
                           </div>
                     </el-form>
                   </md-dialog>
-                <!-- END EDIT IMAGE MODAL --> 
+                <!-- END ADD MENU MODAL --> 
+                <!-- START EDIT MENU MODAL -->
+                  <md-dialog :md-active.sync="editMenuModal" class="modal-window manage-menu">
+                    <h2>Edit Menu</h2>
+                    <el-form :model="formManageMenu" ref="formManageMenu">
+                    <!-- Menu Information -->
+                          <div class="card-content">
+                            <div class="row">
+                              <el-form-item label="Edit Menu Title" prop="editMenuTitle">
+                                <el-input placeholder="Edit Menu Title"></el-input>
+                              </el-form-item>
+                            </div>
+                            <div class="row">
+                              <el-form-item label="Edit Menu Link" prop="editMenuLink">
+                                <el-input placeholder="Edit Menu Link"></el-input>
+                              </el-form-item>                          
+                            </div>
+                            <div class="row">
+                            <el-form-item label="Edit Icon for link" prop="editMenuIcon">
+                              <el-select placeholder="Edit Icon for link">
+                                <el-option v-for="pre in options.iconForLinkOptions"
+                                          :key="pre.value"
+                                          :label="pre.label"
+                                          :value="pre.value">
+                                </el-option>
+                              </el-select>
+                            </el-form-item>
+                            </div>
+                            <div class="row">
+                              <md-dialog-actions>
+                                <md-button class="button medium ed-btn__secondary" @click="editMenuModal = false">Save</md-button>
+                                <md-button class="button medium ed-btn__tertiary" @click="editMenuModal = false">Cancel</md-button>
+                              </md-dialog-actions>
+                            </div>
+                          </div>
+                    </el-form>
+                  </md-dialog>
+                <!-- END EDIT MENU MODAL --> 
+                <!-- DELETE FROM ROLE MENU START -->
+                  <md-dialog :md-active.sync="deleteMenuModal" class="modal-window manage-menu">
+                    <h2>Delete Menu</h2>
+                    <p>You are about to delete menu XXX. Are you sure you want to do this?</p>
+                    <md-dialog-actions>
+                      <md-button class="button medium ed-btn__tertiary" @click="deleteMenuModal = false">Delete</md-button>
+                      <md-button class="button medium ed-btn__primary" @click="deleteMenuModal = false">Cancel</md-button>
+                    </md-dialog-actions>
+                  </md-dialog>
+                <!-- DELETE FROM ROLE MENU END -->
             <!--NESTABLE-->
             <VueNestable
               v-model = posts.menuList
@@ -77,7 +128,11 @@
               group="cross"
             >
               <VueNestableHandle slot-scope="{ item }" :item="item">
-                <i class="icon icon-profile"></i>{{ item.text }}<a class="card-option" href="#"><i class="icon icon-edit"></i></a>
+                <i class="icon icon-profile"></i>{{ item.text }}
+                <a @click="editMenuModal = true" class="card-option" href="#">
+                  <md-tooltip md-direction="top">Edit menu</md-tooltip>
+                  <i class="icon icon-edit"></i>
+                </a>
               </VueNestableHandle>
             </VueNestable>
             </div>
@@ -102,14 +157,19 @@ export default {
   props: ["idx"],
   data() {
     return {
-      showDialog: false,
+      addMenuModal: false,
+      editMenuModal: false,
+      deleteMenuModal: false,
       posts: [],
       assignedMenuTitle: "su_admin",
       formManageMenu: {
         //DEFINITIONS
         addMenuLink: "",
         addMenuTitle: "",
-        addMenuIcon: ""
+        addMenuIcon: "",
+        editMenuLink: "",
+        editMenuTitle: "",
+        editMenuIcon: "",
       },
       options: {
         iconForLinkOptions: [
