@@ -24,7 +24,8 @@
                 <VueNestableHandle slot-scope="{ item }" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i> {{ item.label }}
                   <a
-                    @click="deleteMenuModal = true"
+                    @click="deleteMenuModal = true; deleteSelectedMenu(item)"
+                    
                     class="card-option"
                     href="#"
                   >
@@ -194,13 +195,13 @@
               >
                 <h2>Delete Menu</h2>
                 <p>
-                  You are about to delete menu XXX. Are you sure you want to do
+                  You are about to delete menu <span style="color:var(--primary)">"{{menuReadyForDeleteLabel}}"</span>. Are you sure you want to do
                   this?
                 </p>
                 <md-dialog-actions>
                   <md-button
                     class="button medium ed-btn__tertiary"
-                    @click="deleteMenuModal = false"
+                    @click="deleteMenuModal = false; deleteMenuConfirm()"
                     >Delete</md-button
                   >
                   <md-button
@@ -254,6 +255,8 @@ export default {
       loading: false,
       posts: [],
       menuOnChange: {},
+      menuReadyForDelete: 0,
+      menuReadyForDeleteLabel: "",
       assignedMenuTitle: "su_admin",
       formManageMenu: {
         //DEFINITIONS
@@ -289,7 +292,7 @@ export default {
   methods: {
     // LOAD TABS DATA
     loadMore() {
-      this.axios.get("manage-menu.json").then((response) => {
+      this.axios.get("https://github.com/nmihin/ed-intelligence-teacher__deploy/blob/master/manage-menu.json").then((response) => {
         localStorage.setItem('manageMenuJSONData', JSON.stringify(response.data));
         this.posts = response.data.su_admin[0];
       });
@@ -338,16 +341,32 @@ export default {
           
           // UPDATE STORAGE
           localStorage.setItem('manageMenuJSONData', JSON.stringify(manageMenuStorage))
+    },
+    deleteSelectedMenu(item){
+      this.menuReadyForDeleteID = item.id;
+      this.menuReadyForDeleteLabel = item.label;
+    },
+    deleteMenuConfirm(){
+      const manageMenuStorage = this.loadManageMenuStorage();
+      const menuID = this.menuReadyForDeleteID;
+
+      manageMenuStorage[this.assignedMenuTitle][0].menuAssigned = manageMenuStorage[this.assignedMenuTitle][0].menuAssigned.filter(function(item){
+          return item.id !== menuID;
+      });
+
+      // UPDATE STORAGE
+      localStorage.setItem('manageMenuJSONData', JSON.stringify(manageMenuStorage));
+      this.posts = manageMenuStorage[this.assignedMenuTitle][0];
     }
   },
   created() {
-    const getDataStorage = this.loadManageMenuStorage();
+    const manageMenuStorage = this.loadManageMenuStorage();
 
-    if (getDataStorage === null){
+    if (manageMenuStorage === null){
       this.loadMore();
     }
     else {
-      this.posts = getDataStorage[this.assignedMenuTitle][0]
+      this.posts = manageMenuStorage[this.assignedMenuTitle][0]
     }
   }
 };
