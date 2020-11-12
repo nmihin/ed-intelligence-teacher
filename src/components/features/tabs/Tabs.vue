@@ -37,6 +37,9 @@ export default {
     };
   },
   methods: {
+    loadManageMenuStorage() {
+      return JSON.parse(localStorage.getItem('manageMenuJSONData'))
+    },
     loadMore() {
         this.axios.get("manage-menu.json").then((response) => {
         this.roles = response.data;
@@ -49,7 +52,14 @@ export default {
     }
   },
   created() {
-    this.loadMore();
+    const getDataStorage = this.loadManageMenuStorage();
+
+    if (getDataStorage === null){
+      this.loadMore();
+    }
+    else {
+      this.roles = getDataStorage;
+    }
   }
 };
 </script>

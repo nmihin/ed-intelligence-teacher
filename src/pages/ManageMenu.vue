@@ -292,15 +292,18 @@ export default {
       this.axios.get("manage-menu.json").then((response) => {
         localStorage.setItem('manageMenuJSONData', JSON.stringify(response.data));
         this.posts = response.data.su_admin[0];
-        // eslint-disable-next-line no-console
-        console.log(this.posts)
       });
     },
     onClickChild: function (idx) {
-      this.axios.get("manage-menu.json").then((response) => {
-        this.posts = response.data[idx][0];
+      const getDataStorage = this.loadManageMenuStorage();
+      
+      if (getDataStorage === null){
+        this.loadMore();
+      }
+      else {
+        this.posts = getDataStorage[idx][0];
         this.assignedMenuTitle = idx;
-      });
+      }
     },
     updateForm (input, value) {
       this.formManageMenu[input] = value
