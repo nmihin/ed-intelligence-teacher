@@ -108,7 +108,7 @@
       },
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
@@ -120,7 +120,7 @@
     "menuList": [
       {
         "id": 3,
-        "icon": "icon-assessment-group",
+        "icon": "icon-assessment-weight",
         "label": "Assessment Weight"
       },
       {
@@ -149,14 +149,14 @@
         "children": [
           {
             "id": 2,
-            "icon": "icon-assessment-group",
+            "icon": "icon-assesment-group",
             "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "icon": "icon-assessment-group",
+        "icon": "icon-assessment-weight",
         "label": "Assessment Weight"
       },
       {
@@ -176,7 +176,7 @@
       },
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
@@ -237,14 +237,14 @@
         "children": [
           {
             "id": 2,
-            "icon": "icon-assessment-group",
+            "icon": "icon-assesment-group",
             "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "icon": "icon-assessment-group",
+        "icon": "icon-assessment-weight",
         "label": "Assessment Weight"
       }
     ],
@@ -296,7 +296,7 @@
       },
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
@@ -325,14 +325,14 @@
         "children": [
           {
             "id": 2,
-            "icon": "icon-assessment-group",
+            "icon": "icon-assesment-group",
             "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "icon": "icon-assessment-group",
+        "icon": "icon-assessment-weight",
         "label": "Assessment Weight"
       },
       {
@@ -367,7 +367,7 @@
       },
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
@@ -413,14 +413,14 @@
         "children": [
           {
             "id": 2,
-            "icon": "icon-assessment-group",
+            "icon": "icon-assesment-group",
             "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "icon": "icon-assessment-group",
+        "icon": "icon-assessment-weight",
         "label": "Assessment Weight"
       },
       {
@@ -470,7 +470,7 @@
       },
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
@@ -487,7 +487,7 @@
     "menuList": [
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
@@ -511,14 +511,14 @@
         "children": [
           {
             "id": 2,
-            "icon": "icon-assessment-group",
+            "icon": "icon-assesment-group",
             "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "icon": "icon-assessment-group",
+        "icon": "icon-assessment-weight",
         "label": "Assessment Weight"
       },
       {
@@ -558,7 +558,7 @@
       },
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
@@ -611,14 +611,14 @@
         "children": [
           {
             "id": 2,
-            "icon": "icon-assessment-group",
+            "icon": "icon-assesment-group",
             "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "icon": "icon-assessment-group",
+        "icon": "icon-assessment-weight",
         "label": "Assessment Weight"
       }  
     ]
@@ -637,14 +637,14 @@
         "children": [
           {
             "id": 2,
-            "icon": "icon-assessment-group",
+            "icon": "icon-assesment-group",
             "label": "Assessment Group"
           }
         ]
       },
       {
         "id": 3,
-        "icon": "icon-assessment-group",
+        "icon": "icon-assessment-weight",
         "label": "Assessment Weight"
       },
       {
@@ -696,7 +696,7 @@
     "menuList": [
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
@@ -715,7 +715,7 @@
     "menuAssigned": [
       {
         "id": 14,
-        "icon": "icon-nwea-student-report",
+        "icon": "icon-general",
         "label": "NWEA Student Report"
       },
       {
