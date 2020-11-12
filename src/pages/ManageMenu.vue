@@ -25,8 +25,10 @@
                 <VueNestableHandle slot-scope="{ item }" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i> {{ item.label }}
                   <a
-                    @click="deleteMenuModal = true; deleteSelectedMenu(item)"
-                    
+                    @click="
+                      deleteMenuModal = true;
+                      deleteSelectedMenu(item);
+                    "
                     class="card-option"
                     href="#"
                   >
@@ -55,47 +57,29 @@
                 class="modal-window manage-menu"
               >
                 <h2>Add Menu</h2>
-                <el-form :model="formManageMenu" ref="formManageMenu">
+                <el-form :model="formAddMenu" :rules="formAddMenu.rules" ref="formAddMenu">
                   <!-- Menu Information -->
                   <div class="card-content">
                     <div class="row">
-                      <el-form-item label="Menu Title" prop="addMenuTitle">
+                      <el-form-item prop="menuReadyForAddLabel" label="Menu Title">
                         <el-input
-                          @input="
-                            updateForm(
-                              'addMenuTitle',
-                              formManageMenu.addMenuTitle
-                            )
-                          "
-                          v-model="formManageMenu.addMenuTitle"
+                          @input="updateForm('menuReadyForAddLabel', formAddMenu.menuReadyForAddLabel)"  v-model="formAddMenu.menuReadyForAddLabel"
                           placeholder="Menu Title"
                         ></el-input>
                       </el-form-item>
                     </div>
                     <div class="row">
-                      <el-form-item label="Menu Link" prop="addMenuLink">
+                      <el-form-item prop="menuReadyForAddLink" label="Menu Link">
                         <el-input
-                          @input="
-                            updateForm(
-                              'addMenuLink',
-                              formManageMenu.addMenuLink
-                            )
-                          "
-                          v-model="formManageMenu.addMenuLink"
+                          @input="updateForm('menuReadyForAddLink', formAddMenu.menuReadyForAddLink)"  v-model="formAddMenu.menuReadyForAddLink"
                           placeholder="Menu Link"
                         ></el-input>
                       </el-form-item>
                     </div>
                     <div class="row">
-                      <el-form-item label="Icon for link" prop="addMenuIcon">
+                      <el-form-item prop="menuReadyForAddIcon" label="Icon for link">
                         <el-select
-                          @change="
-                            updateForm(
-                              'addMenuIcon',
-                              formManageMenu.addMenuIcon
-                            )
-                          "
-                          v-model="formManageMenu.addMenuIcon"
+                          @change="updateForm('menuReadyForAddIcon', formAddMenu.menuReadyForAddIcon)" v-model="formAddMenu.menuReadyForAddIcon"
                           placeholder="Icon for link"
                         >
                           <el-option
@@ -119,7 +103,7 @@
                       <md-dialog-actions>
                         <md-button
                           class="button medium ed-btn__secondary"
-                          @click="addMenuModal = false"
+                          @click="validate()"
                           >Add</md-button
                         >
                         <md-button
@@ -147,12 +131,20 @@
                         label="Edit Menu Title"
                         prop="editMenuTitle"
                       >
-                        <el-input prop="" v-model="menuReadyForEditLabel" placeholder="Edit Menu Title"></el-input>
+                        <el-input
+                          prop=""
+                          v-model="menuReadyForEditLabel"
+                          placeholder="Edit Menu Title"
+                        ></el-input>
                       </el-form-item>
                     </div>
                     <div class="row">
                       <el-form-item label="Edit Menu Link" prop="editMenuLink">
-                        <el-input prop="" v-model="menuReadyForEditLink" placeholder="Edit Menu Link"></el-input>
+                        <el-input
+                          prop=""
+                          v-model="menuReadyForEditLink"
+                          placeholder="Edit Menu Link"
+                        ></el-input>
                       </el-form-item>
                     </div>
                     <div class="row">
@@ -160,18 +152,23 @@
                         label="Edit Icon for link"
                         prop="editMenuIcon"
                       >
-                        <el-select v-model="menuReadyForEditIcon" placeholder="Edit Icon for link">
+                        <el-select
+                          v-model="menuReadyForEditIcon"
+                          placeholder="Edit Icon for link"
+                        >
                           <el-option
                             v-for="pre in options.iconForLinkOptions"
                             :key="pre.value"
                             :label="pre.label"
                             :value="pre.value"
                           >
-                            <span><i
+                            <span
+                              ><i
                                 class="manage-menu-icons icon"
                                 v-bind:class="pre.value"
                               ></i>
-                              {{pre.label}}</span>
+                              {{ pre.label }}</span
+                            >
                           </el-option>
                         </el-select>
                       </el-form-item>
@@ -180,7 +177,10 @@
                       <md-dialog-actions>
                         <md-button
                           class="button medium ed-btn__secondary"
-                          @click="editMenuModal = false; editMenuConfirm()"
+                          @click="
+                            editMenuModal = false;
+                            editMenuConfirm();
+                          "
                           >Save</md-button
                         >
                         <md-button
@@ -201,13 +201,18 @@
               >
                 <h2>Delete Menu</h2>
                 <p>
-                  You are about to delete menu <span style="color:var(--primary)">"{{menuReadyForDeleteLabel}}"</span>. Are you sure you want to do
-                  this?
+                  You are about to delete menu
+                  <span style="color:var(--primary)"
+                    >"{{ menuReadyForDeleteLabel }}"</span
+                  >. Are you sure you want to do this?
                 </p>
                 <md-dialog-actions>
                   <md-button
                     class="button medium ed-btn__tertiary"
-                    @click="deleteMenuModal = false; deleteMenuConfirm()"
+                    @click="
+                      deleteMenuModal = false;
+                      deleteMenuConfirm();
+                    "
                     >Delete</md-button
                   >
                   <md-button
@@ -228,7 +233,14 @@
               >
                 <VueNestableHandle slot-scope="{ item }" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i>{{ item.label }}
-                  <a @click="editMenuModal = true; editSelectedMenu(item)" class="card-option" href="#">
+                  <a
+                    @click="
+                      editMenuModal = true;
+                      editSelectedMenu(item);
+                    "
+                    class="card-option"
+                    href="#"
+                  >
                     <md-tooltip md-direction="top">Edit menu</md-tooltip>
                     <i class="icon icon-edit"></i>
                   </a>
@@ -256,19 +268,53 @@ export default {
   props: ["idx"],
   data() {
     return {
-      addMenuModal: false,
-      editMenuModal: false,
-      deleteMenuModal: false,
       loading: false,
       posts: [],
       menuOnChange: {},
+      // MODALS
+      addMenuModal: false,
+      editMenuModal: false,
+      deleteMenuModal: false,
+      // DEFAULT ROLE
+      assignedMenuTitle: "su_admin",
+      // DELETE MENU
       menuReadyForDeleteID: 0,
       menuReadyForDeleteLabel: "",
+      // EDIT MENU
       menuReadyForEditID: 0,
       menuReadyForEditLabel: "",
       menuReadyForEditLink: "",
       menuReadyForEditIcon: "",
-      assignedMenuTitle: "su_admin",
+      // ADD MENU
+      formAddMenu: {
+        menuReadyForAddLabel: "",
+        menuReadyForAddIcon: "",
+        menuReadyForAddLink: "",
+        menuReadyForAddID: 0,
+        rules: {
+          menuReadyForAddLabel: [
+            {
+              required: true,
+              message: "Menu Title is Required!",
+              trigger: "blur"
+            }
+          ],
+          menuReadyForAddIcon: [
+            {
+              required: true,
+              message: "Menu Icon is Required!",
+              trigger: "blur"
+            }
+          ],
+          menuReadyForAddLink: [
+            {
+              required: true,
+              message: "Menu Link is Required!",
+              trigger: "blur"
+            }
+          ]
+        }
+      },
       formManageMenu: {
         //DEFINITIONS
         addMenuLink: "",
@@ -280,142 +326,185 @@ export default {
       },
       options: {
         iconForLinkOptions: [
-          {value: 'icon-add-account', label: 'Add Account'},
-          {value: 'icon-add-student', label: 'Add Student'},
-          {value: 'icon-assesment-group', label: 'Assesment Group'},
-          {value: 'icon-assesment-weight', label: 'Assesment Weight'},
-          {value: 'icon-bulk-photo-upload', label: 'Bulk Photo Upload'},
-          {value: 'icon-calendar-event', label: 'Calendar Event'},
-          {value: 'icon-club-manager', label: 'Club Manager'},
-          {value: 'icon-department-manager', label: 'Department Manager'},
-          {value: 'icon-general', label: 'General'},
-          {value: 'icon-google-classroom', label: 'Google Classroom'},
-          {value: 'icon-lesson-plan-bank', label: 'Lesson Plan Bank'},
-          {value: 'icon-lesson-plan-overview', label: 'Lesson Plan Overview'},
-          {value: 'icon-lms', label: 'LMS'},
-          {value: 'icon-site-map', label: 'Site Map'},
-          {value: 'icon-teacher-feedback', label: 'Teacher Feedback'},
-          {value: 'icon-tests', label: 'Tests'}
-        ]
-      }
+          { value: "icon-add-account", label: "Add Account" },
+          { value: "icon-add-student", label: "Add Student" },
+          { value: "icon-assesment-group", label: "Assesment Group" },
+          { value: "icon-assesment-weight", label: "Assesment Weight" },
+          { value: "icon-bulk-photo-upload", label: "Bulk Photo Upload" },
+          { value: "icon-calendar-event", label: "Calendar Event" },
+          { value: "icon-club-manager", label: "Club Manager" },
+          { value: "icon-department-manager", label: "Department Manager" },
+          { value: "icon-general", label: "General" },
+          { value: "icon-google-classroom", label: "Google Classroom" },
+          { value: "icon-lesson-plan-bank", label: "Lesson Plan Bank" },
+          { value: "icon-lesson-plan-overview", label: "Lesson Plan Overview" },
+          { value: "icon-lms", label: "LMS" },
+          { value: "icon-site-map", label: "Site Map" },
+          { value: "icon-teacher-feedback", label: "Teacher Feedback" },
+          { value: "icon-tests", label: "Tests" },
+        ],
+      },
     };
   },
   methods: {
     // LOAD TABS DATA
     loadMore() {
       this.axios.get("manage-menu.json").then((response) => {
-        localStorage.setItem('manageMenuJSONData', JSON.stringify(response.data));
+        localStorage.setItem(
+          "manageMenuJSONData",
+          JSON.stringify(response.data)
+        );
         this.posts = response.data.su_admin[0];
       });
     },
-    onClickChild: function (idx) {
+    onClickChild: function(idx) {
       const getDataStorage = this.loadManageMenuStorage();
-      
-      if (getDataStorage === null){
+
+      if (getDataStorage === null) {
         this.loadMore();
-      }
-      else {
+      } else {
         this.posts = getDataStorage[idx][0];
         this.assignedMenuTitle = idx;
       }
     },
-    updateForm (input, value) {
-      this.formManageMenu[input] = value
-      let storedForm = this.openStorage()
-      if (!storedForm) storedForm = {}
-      storedForm[input] = value
-      this.saveStorage(storedForm)
-    },
     loadManageMenuStorage() {
-      return JSON.parse(localStorage.getItem('manageMenuJSONData'))
+      return JSON.parse(localStorage.getItem("manageMenuJSONData"));
     },
     // LEFT SIDE
     changedMenuAssigned(value, options) {
-          const role = this.assignedMenuTitle;
-          const manageMenuStorage = this.loadManageMenuStorage();
+      const role = this.assignedMenuTitle;
+      const manageMenuStorage = this.loadManageMenuStorage();
 
-          this.menuOnChange.menuAssigned = JSON.parse(JSON.stringify(options.items));
-          manageMenuStorage[role][0].menuAssigned = [];
-          manageMenuStorage[role][0].menuAssigned = this.menuOnChange.menuAssigned;
-          
-          // UPDATE STORAGE
-          localStorage.setItem('manageMenuJSONData', JSON.stringify(manageMenuStorage))
+      this.menuOnChange.menuAssigned = JSON.parse(
+        JSON.stringify(options.items)
+      );
+      manageMenuStorage[role][0].menuAssigned = [];
+      manageMenuStorage[role][0].menuAssigned = this.menuOnChange.menuAssigned;
+
+      // UPDATE STORAGE
+      localStorage.setItem(
+        "manageMenuJSONData",
+        JSON.stringify(manageMenuStorage)
+      );
     },
     // RIGHT SIDE
     changedMenuList(value, options) {
-          const role = this.assignedMenuTitle;
-          const manageMenuStorage = this.loadManageMenuStorage();
+      const role = this.assignedMenuTitle;
+      const manageMenuStorage = this.loadManageMenuStorage();
 
-          this.menuOnChange.menuList = JSON.parse(JSON.stringify(options.items));
-          manageMenuStorage[role][0].menuList = [];
-          manageMenuStorage[role][0].menuList = this.menuOnChange.menuList;
-          
-          // UPDATE STORAGE
-          localStorage.setItem('manageMenuJSONData', JSON.stringify(manageMenuStorage))
+      this.menuOnChange.menuList = JSON.parse(JSON.stringify(options.items));
+      manageMenuStorage[role][0].menuList = [];
+      manageMenuStorage[role][0].menuList = this.menuOnChange.menuList;
+
+      // UPDATE STORAGE
+      localStorage.setItem(
+        "manageMenuJSONData",
+        JSON.stringify(manageMenuStorage)
+      );
     },
-    editSelectedMenu(item){
+    updateForm (input, value) {
+      this.formAddMenu[input] = value;
+    },
+    validate() {
+      return new Promise((resolve) => {
+        this.$refs.formAddMenu.validate((valid) => {
+          this.$emit('on-validate', valid, this.model)
+          resolve(valid);
+          if(valid)
+            this.addNewMenu();
+        });
+      })
+    },
+    addNewMenu(){
+      const formAddData = JSON.parse(JSON.stringify(this.formAddMenu));
+
+      const manageMenuStorage = this.loadManageMenuStorage();
+      const role = this.assignedMenuTitle;
+
+      // FIND LARGEST ID
+      const maxId = manageMenuStorage[role][0].menuList.reduce(
+        (max, character) => (character.id > max ? character.id : max),
+        manageMenuStorage[role][0].menuList[0].id
+      );
+
+      const newMenu = {
+        "id": maxId+1,
+        "label": formAddData.menuReadyForAddLabel,
+        "link": formAddData.menuReadyForAddLink,
+        "icon": formAddData.menuReadyForAddIcon
+      }
+
+      manageMenuStorage[role][0].menuList.push(newMenu)
+      // UPDATE STORAGE
+      localStorage.setItem("manageMenuJSONData",JSON.stringify(manageMenuStorage));
+      this.posts = manageMenuStorage[this.assignedMenuTitle][0];
+      this.addMenuModal = false;
+    },
+    editSelectedMenu(item) {
       this.menuReadyForEditID = item.id;
       this.menuReadyForEditLabel = item.label;
       this.menuReadyForEditLink = item.link;
       this.menuReadyForEditIcon = item.icon;
-
-      // eslint-disable-next-line no-console
-      console.log(item)
     },
-    editMenuConfirm(){
+    editMenuConfirm() {
       const manageMenuStorage = this.loadManageMenuStorage();
-      const menuID = this.menuReadyForEditID;
 
-  /*
-      manageMenuStorage[this.assignedMenuTitle][0].menuList = manageMenuStorage[this.assignedMenuTitle][0].menuList.filter(function(item){
-          return item.id !== menuID;
-      });
-*/
-
-      let listMenuCopy = [...manageMenuStorage[this.assignedMenuTitle][0].menuList];
+      let listMenuCopy = [
+        ...manageMenuStorage[this.assignedMenuTitle][0].menuList,
+      ];
       let filteredDataSource = listMenuCopy.filter((item) => {
-            if (item.id === this.menuReadyForEditID ) {
-                item.id = this.menuReadyForEditID;
-                item.label = this.menuReadyForEditLabel;
-                item.link = this.menuReadyForEditLink;
-                item.icon = this.menuReadyForEditIcon;
-              }
-              return item;
+        if (item.id === this.menuReadyForEditID) {
+          item.id = this.menuReadyForEditID;
+          item.label = this.menuReadyForEditLabel;
+          item.link = this.menuReadyForEditLink;
+          item.icon = this.menuReadyForEditIcon;
+        }
+        return item;
       });
-          
-      // eslint-disable-next-line no-console
-      manageMenuStorage[this.assignedMenuTitle][0].menuList = filteredDataSource;
+
+      manageMenuStorage[
+        this.assignedMenuTitle
+      ][0].menuList = filteredDataSource;
 
       // UPDATE STORAGE
-      localStorage.setItem('manageMenuJSONData', JSON.stringify(manageMenuStorage));
+      localStorage.setItem(
+        "manageMenuJSONData",
+        JSON.stringify(manageMenuStorage)
+      );
       this.posts = manageMenuStorage[this.assignedMenuTitle][0];
     },
-    deleteSelectedMenu(item){
+    deleteSelectedMenu(item) {
       this.menuReadyForDeleteID = item.id;
       this.menuReadyForDeleteLabel = item.label;
     },
-    deleteMenuConfirm(){
+    deleteMenuConfirm() {
       const manageMenuStorage = this.loadManageMenuStorage();
       const menuID = this.menuReadyForDeleteID;
 
-      manageMenuStorage[this.assignedMenuTitle][0].menuAssigned = manageMenuStorage[this.assignedMenuTitle][0].menuAssigned.filter(function(item){
-          return item.id !== menuID;
+      manageMenuStorage[
+        this.assignedMenuTitle
+      ][0].menuAssigned = manageMenuStorage[
+        this.assignedMenuTitle
+      ][0].menuAssigned.filter(function(item) {
+        return item.id !== menuID;
       });
 
       // UPDATE STORAGE
-      localStorage.setItem('manageMenuJSONData', JSON.stringify(manageMenuStorage));
+      localStorage.setItem(
+        "manageMenuJSONData",
+        JSON.stringify(manageMenuStorage)
+      );
       this.posts = manageMenuStorage[this.assignedMenuTitle][0];
-    }
+    },
   },
   created() {
     const manageMenuStorage = this.loadManageMenuStorage();
 
-    if (manageMenuStorage === null){
+    if (manageMenuStorage === null) {
       this.loadMore();
+    } else {
+      this.posts = manageMenuStorage[this.assignedMenuTitle][0];
     }
-    else {
-      this.posts = manageMenuStorage[this.assignedMenuTitle][0]
-    }
-  }
+  },
 };
 </script>
