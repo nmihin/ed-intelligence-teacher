@@ -6,9 +6,9 @@
         <div class="col-xs-6 col-md-6 side">
           <div class="card-boxes manage-menu">
             <div class="card-header">
-              <i class="icon icon-profile"></i>
+              <i class="icon icon-menu-assigned"></i>
               <h2 class="card-title">
-                Assigned Menu Of {{ assignedMenuTitle }}
+                Assigned Menu of {{ assignedMenuTitle }}
               </h2>
             </div>
             <div class="card-box">
@@ -43,7 +43,7 @@
         <div class="col-xs-6 col-md-6 side">
           <div class="card-boxes manage-menu">
             <div class="card-header">
-              <i class="icon icon-profile"></i>
+              <i class="icon icon-menu-list"></i>
               <h2 class="card-title">Manage Menu List</h2>
               <md-button @click="addMenuModal = true" class="add-menu">
                 <md-tooltip md-direction="top">Add New Menu</md-tooltip>
@@ -268,6 +268,533 @@ export default {
   props: ["idx"],
   data() {
     return {
+      dummyData: [
+        {
+          "su_admin": [{
+            "menuAssigned": [
+              {
+                "id": 0,
+                "icon": "icon-add-account",
+                "label": "Add Account",
+                "link": "#"
+              },
+              {
+                "id": 1,
+                "label": "General",
+                "icon": "icon-general",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 3,
+                    "icon": "icon-assessment-weight",
+                    "label": "Assessment Weight",
+                    "link": "#"
+                  }
+                ]
+              },
+              {
+                "id": 5,
+                "icon": "icon-attendance-status-code",
+                "label": "Attendance Status Code",
+                "link": "#"
+              },
+              {
+                "id": 13,
+                "icon": "icon-lesson-plan-overview",
+                "label": "Lesson Plan Overview",
+                "link": "#"
+              },
+              {
+                "id": 15,
+                "icon": "icon-site-map",
+                "label": "Site Map",
+                "link": "#"
+              },
+              {
+                "id": 16,
+                "icon": "icon-tests",
+                "label": "Tests",
+                "link": "#"
+              }
+            ],
+            "menuList": [
+              {
+                "id": 21,
+                "icon": "icon-assessment-weight",
+                "label": "Assessment Weight",
+                "link": "#"
+              },
+              {
+                "id": 22,
+                "icon": "icon-calendar-event",
+                "label": "Calendar Event",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 23,
+                    "icon":"icon-teacher-feedback",
+                    "label": "Teacher Feedback",
+                    "link": "#"
+                  }
+                ]
+              }
+            ]
+          }],
+          "admin": [{
+            "menuAssigned": [
+              {
+                "id": 12,
+                "icon": "icon-lms",
+                "label": "LMS",
+                "link": "#"
+              },
+              {
+                "id": 15,
+                "icon": "icon-site-map",
+                "label": "Site Map",
+                "link": "#"
+              }
+            ],
+            "menuList": [
+              {
+                "id": 3,
+                "icon": "icon-assessment-weight",
+                "label": "Assessment Weight",
+                "link": "#"
+              },
+              {
+                "id": 5,
+                "icon": "icon-attendance-status-code",
+                "label": "Attendance Status Code",
+                "link": "#"
+              },
+              {
+                "id": 6,
+                "icon": "icon-bulk-photo-upload",
+                "label": "Bulk Photo Upload",
+                "link": "#"
+              }
+            ]
+          }],
+          "board": [{
+            "menuAssigned": [
+              {
+                "id": 0,
+                "icon": "icon-add-account",
+                "label": "Add Account",
+                "link": "#"
+              },
+              {
+                "id": 1,
+                "label": "General",
+                "icon": "icon-general",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 2,
+                    "icon": "icon-assesment-group",
+                    "label": "Assessment Group",
+                    "link": "#"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "icon": "icon-assessment-weight",
+                "label": "Assessment Weight",
+                "link": "#"
+              },
+              {
+                "id": 16,
+                "icon": "icon-tests",
+                "label": "Tests",
+                "link": "#"
+              }   
+            ],
+            "menuList": [
+              {
+                "id": 5,
+                "icon": "icon-attendance-status-code",
+                "label": "Attendance Status Code",
+                "link": "#"
+              },
+              {
+                "id": 10,
+                "icon": "icon-lesson-plan-bank",
+                "label": "Lesson Plan Bank",
+                "link": "#"
+              }
+            ]
+          }],
+          "teacher": [{
+            "menuAssigned": [
+              {
+                "id": 0,
+                "icon": "icon-add-account",
+                "label": "Add Account",
+                "link": "#"
+              },
+              {
+                "id": 1,
+                "label": "General",
+                "icon": "icon-general",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 2,
+                    "icon": "icon-assesment-group",
+                    "label": "Assessment Group",
+                    "link": "#"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "icon": "icon-assessment-weight",
+                "label": "Assessment Weight",
+                "link": "#"
+              }
+            ],
+            "menuList": [
+              {
+                "id": 5,
+                "icon": "icon-attendance-status-code",
+                "label": "Attendance Status Code",
+                "link": "#"
+              },
+              {
+                "id": 10,
+                "icon": "icon-lesson-plan-bank",
+                "label": "Lesson Plan Bank",
+                "link": "#"
+              },
+              {
+                "id": 11,
+                "icon": "icon-add-student",
+                "label": "Add Student",
+                "link": "#"
+              },
+              {
+                "id": 12,
+                "icon": "icon-lms",
+                "label": "LMS",
+                "link": "#"
+              }    
+            ]
+          }],
+          "student": [{
+            "menuAssigned": [
+              {
+                "id": 0,
+                "icon": "icon-add-account",
+                "label": "Add Account",
+                "link": "#"
+              },
+              {
+                "id": 1,
+                "label": "General",
+                "icon": "icon-general",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 2,
+                    "icon": "icon-assesment-group",
+                    "label": "Assessment Group",
+                    "link": "#"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "icon": "icon-assessment-weight",
+                "label": "Assessment Weight",
+                "link": "#"
+              },
+              {
+                "id": 8,
+                "icon": "icon-department-manager",
+                "label": "Department Manager",
+                "link": "#"
+              },
+              {
+                "id": 9,
+                "icon": "icon-google-classroom",
+                "label": "Google Classroom",
+                "link": "#"
+              },
+              {
+                "id": 16,
+                "icon": "icon-tests",
+                "label": "Tests",
+                "link": "#"
+              }
+            ],
+            "menuList": [
+              {
+                "id": 11,
+                "icon": "icon-add-student",
+                "label": "Add Student",
+                "link": "#"
+              },
+              {
+                "id": 13,
+                "icon": "icon-lesson-plan-overview",
+                "label": "Lesson Plan Overview",
+                "link": "#"
+              }
+            ]
+          }],
+          "parent": [{
+            "menuAssigned": [
+              {
+                "id": 0,
+                "icon": "icon-add-account",
+                "label": "Add Account",
+                "link": "#"
+              },
+              {
+                "id": 1,
+                "label": "General",
+                "icon": "icon-general",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 2,
+                    "icon": "icon-assesment-group",
+                    "label": "Assessment Group",
+                    "link": "#"
+                  }
+                ]
+              },
+              {
+                "id": 7,
+                "icon": "icon-club-manager",
+                "label": "Club Manager",
+                "link": "#"
+              },
+              {
+                "id": 13,
+                "icon": "icon-lesson-plan-overview",
+                "label": "Lesson Plan Overview",
+                "link": "#"
+              },
+              {
+                "id": 16,
+                "icon": "icon-tests",
+                "label": "Tests",
+                "link": "#"
+              } 
+            ],
+            "menuList": [
+              {
+                "id": 14,
+                "icon": "icon-general",
+                "label": "NWEA Student Report",
+                "link": "#"
+              },
+              {
+                "id": 15,
+                "icon": "icon-site-map",
+                "label": "Site Map",
+                "link": "#"
+              }
+            ]
+          }],
+          "developer": [{
+            "menuAssigned": [
+              {
+                "id": 0,
+                "icon": "icon-add-account",
+                "label": "Add Account",
+                "link": "#"
+              },
+              {
+                "id": 1,
+                "label": "General",
+                "icon": "icon-general",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 2,
+                    "icon": "icon-assesment-group",
+                    "label": "Assessment Group",
+                    "link": "#"
+                  }
+                ]
+              },
+              {
+                "id": 7,
+                "icon": "icon-club-manager",
+                "label": "Club Manager",
+                "link": "#"
+              },
+              {
+                "id": 8,
+                "icon": "icon-department-manager",
+                "label": "Department Manager",
+                "link": "#"
+              }
+            ],
+            "menuList": [
+              {
+                "id": 11,
+                "icon": "icon-add-student",
+                "label": "Add Student",
+                "link": "#"
+              },
+              {
+                "id": 12,
+                "icon": "icon-lms",
+                "label": "LMS",
+                "link": "#"
+              }
+            ]
+          }],
+          "editor": [{
+            "menuAssigned": [
+              {
+                "id": 11,
+                "icon": "icon-add-student",
+                "label": "Add Student",
+                "link": "#"
+              },
+              {
+                "id": 12,
+                "icon": "icon-lms",
+                "label": "LMS",
+                "link": "#"
+              }
+            ],
+            "menuList": [
+              {
+                "id": 0,
+                "icon": "icon-add-account",
+                "label": "Add Account",
+                "link": "#"
+              },
+              {
+                "id": 1,
+                "label": "General",
+                "icon": "icon-general",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 2,
+                    "icon": "icon-assesment-group",
+                    "label": "Assessment Group",
+                    "link": "#"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "icon": "icon-assessment-weight",
+                "label": "Assessment Weight",
+                "link": "#"
+              }  
+            ]
+          }],
+          "superadmin": [{
+            "menuAssigned": [
+              {
+                "id": 0,
+                "icon": "icon-add-account",
+                "label": "Add Account",
+                "link": "#"
+              },
+              {
+                "id": 1,
+                "label": "General",
+                "icon": "icon-general",
+                "link": "#",
+                "children": [
+                  {
+                    "id": 2,
+                    "icon": "icon-assesment-group",
+                    "label": "Assessment Group",
+                    "link": "#"
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "icon": "icon-assessment-weight",
+                "label": "Assessment Weight",
+                "link": "#"
+              },
+              {
+                "id": 8,
+                "icon": "icon-department-manager",
+                "label": "Department Manager",
+                "link": "#"
+              },
+              {
+                "id": 11,
+                "icon": "icon-add-student",
+                "label": "Add Student",
+                "link": "#"
+              }
+            ],
+            "menuList": [
+              {
+                "id": 14,
+                "icon": "icon-general",
+                "label": "NWEA Student Report",
+                "link": "#"
+              },
+              {
+                "id": 15,
+                "icon": "icon-site-map",
+                "label": "Site Map",
+                "link": "#"
+              },
+              {
+                "id": 16,
+                "icon": "icon-tests",
+                "label": "Tests",
+                "link": "#"
+              }
+            ]
+          }],
+          "contributor": [{
+            "menuAssigned": [
+              {
+                "id": 14,
+                "icon": "icon-general",
+                "label": "NWEA Student Report",
+                "link": "#"
+              },
+              {
+                "id": 15,
+                "icon": "icon-site-map",
+                "label": "Site Map",
+                "link": "#"
+              },
+              {
+                "id": 16,
+                "icon": "icon-tests",
+                "label": "Tests",
+                "link": "#"
+              }
+            ],
+            "menuList": [
+              {
+                "id": 6,
+                "icon": "icon-bulk-photo-upload",
+                "label": "Bulk Photo Upload",
+                "link": "#"
+              },
+              {
+                "id": 8,
+                "icon": "icon-department-manager",
+                "label": "Department Manager",
+                "link": "#"
+              }
+            ]
+          }]
+        }
+
+      ],
       loading: false,
       posts: [],
       menuOnChange: {},
@@ -329,7 +856,7 @@ export default {
           { value: "icon-add-account", label: "Add Account" },
           { value: "icon-add-student", label: "Add Student" },
           { value: "icon-assesment-group", label: "Assesment Group" },
-          { value: "icon-assesment-weight", label: "Assesment Weight" },
+          { value: "icon-assessment-weight", label: "Assesment Weight" },
           { value: "icon-bulk-photo-upload", label: "Bulk Photo Upload" },
           { value: "icon-calendar-event", label: "Calendar Event" },
           { value: "icon-club-manager", label: "Club Manager" },
@@ -349,13 +876,15 @@ export default {
   methods: {
     // LOAD TABS DATA
     loadMore() {
-      this.axios.get("manage-menu.json").then((response) => {
-        localStorage.setItem(
-          "manageMenuJSONData",
-          JSON.stringify(response.data)
-        );
+
+      this.posts = this.dummyData[0].su_admin[0];
+      localStorage.setItem("manageMenuJSONData",JSON.stringify(this.dummyData[0]));
+      /*
+      this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/manage-menu.json").then((response) => {
+        localStorage.setItem("manageMenuJSONData",JSON.stringify(response.data));
         this.posts = response.data.su_admin[0];
       });
+      */
     },
     onClickChild: function(idx) {
       const getDataStorage = this.loadManageMenuStorage();

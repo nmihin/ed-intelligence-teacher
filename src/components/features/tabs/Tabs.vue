@@ -41,7 +41,7 @@ export default {
       return JSON.parse(localStorage.getItem('manageMenuJSONData'))
     },
     loadMore() {
-        this.axios.get("manage-menu.json").then((response) => {
+        this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/manage-menu.json").then((response) => {
         this.roles = response.data;
         this.refresh++;
       });

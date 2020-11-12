@@ -255,6 +255,14 @@ ICONS
   -moz-osx-font-smoothing: grayscale
 }
 
+.icon-menu-assigned:before {
+  content: "\e936";
+  color: #fff;
+}
+.icon-menu-list:before {
+  content: "\e937";
+  color: #fff;
+}
 .icon-add-account:before {
   content: "\e925";
 }
@@ -873,6 +881,8 @@ Manage Menu
   margin: 0;
   font-size: 18px;
   line-height: 1.25;
+  top: 1px;
+  position: relative;
 }
 
 .card-boxes.manage-menu .add-menu {
