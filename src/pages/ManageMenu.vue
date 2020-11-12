@@ -20,6 +20,7 @@
                 cross-list
                 group="cross"
                 @change="changedMenuAssigned"
+                class="assigned-menu"
               >
                 <VueNestableHandle slot-scope="{ item }" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i> {{ item.label }}
@@ -146,12 +147,12 @@
                         label="Edit Menu Title"
                         prop="editMenuTitle"
                       >
-                        <el-input placeholder="Edit Menu Title"></el-input>
+                        <el-input prop="" v-model="menuReadyForEditLabel" placeholder="Edit Menu Title"></el-input>
                       </el-form-item>
                     </div>
                     <div class="row">
                       <el-form-item label="Edit Menu Link" prop="editMenuLink">
-                        <el-input placeholder="Edit Menu Link"></el-input>
+                        <el-input prop="" v-model="menuReadyForEditLink" placeholder="Edit Menu Link"></el-input>
                       </el-form-item>
                     </div>
                     <div class="row">
@@ -159,13 +160,18 @@
                         label="Edit Icon for link"
                         prop="editMenuIcon"
                       >
-                        <el-select placeholder="Edit Icon for link">
+                        <el-select v-model="menuReadyForEditIcon" placeholder="Edit Icon for link">
                           <el-option
                             v-for="pre in options.iconForLinkOptions"
                             :key="pre.value"
                             :label="pre.label"
                             :value="pre.value"
                           >
+                            <span><i
+                                class="manage-menu-icons icon"
+                                v-bind:class="pre.value"
+                              ></i>
+                              {{pre.label}}</span>
                           </el-option>
                         </el-select>
                       </el-form-item>
@@ -174,7 +180,7 @@
                       <md-dialog-actions>
                         <md-button
                           class="button medium ed-btn__secondary"
-                          @click="editMenuModal = false"
+                          @click="editMenuModal = false; editMenuConfirm()"
                           >Save</md-button
                         >
                         <md-button
@@ -218,10 +224,11 @@
                 cross-list
                 group="cross"
                 @change="changedMenuList"
+                class="list-menu"
               >
                 <VueNestableHandle slot-scope="{ item }" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i>{{ item.label }}
-                  <a @click="editMenuModal = true" class="card-option" href="#">
+                  <a @click="editMenuModal = true; editSelectedMenu(item)" class="card-option" href="#">
                     <md-tooltip md-direction="top">Edit menu</md-tooltip>
                     <i class="icon icon-edit"></i>
                   </a>
@@ -255,8 +262,12 @@ export default {
       loading: false,
       posts: [],
       menuOnChange: {},
-      menuReadyForDelete: 0,
+      menuReadyForDeleteID: 0,
       menuReadyForDeleteLabel: "",
+      menuReadyForEditID: 0,
+      menuReadyForEditLabel: "",
+      menuReadyForEditLink: "",
+      menuReadyForEditIcon: "",
       assignedMenuTitle: "su_admin",
       formManageMenu: {
         //DEFINITIONS
@@ -292,7 +303,7 @@ export default {
   methods: {
     // LOAD TABS DATA
     loadMore() {
-      this.axios.get("https://github.com/nmihin/ed-intelligence-teacher__deploy/blob/master/manage-menu.json").then((response) => {
+      this.axios.get("manage-menu.json").then((response) => {
         localStorage.setItem('manageMenuJSONData', JSON.stringify(response.data));
         this.posts = response.data.su_admin[0];
       });
@@ -341,6 +352,43 @@ export default {
           
           // UPDATE STORAGE
           localStorage.setItem('manageMenuJSONData', JSON.stringify(manageMenuStorage))
+    },
+    editSelectedMenu(item){
+      this.menuReadyForEditID = item.id;
+      this.menuReadyForEditLabel = item.label;
+      this.menuReadyForEditLink = item.link;
+      this.menuReadyForEditIcon = item.icon;
+
+      // eslint-disable-next-line no-console
+      console.log(item)
+    },
+    editMenuConfirm(){
+      const manageMenuStorage = this.loadManageMenuStorage();
+      const menuID = this.menuReadyForEditID;
+
+  /*
+      manageMenuStorage[this.assignedMenuTitle][0].menuList = manageMenuStorage[this.assignedMenuTitle][0].menuList.filter(function(item){
+          return item.id !== menuID;
+      });
+*/
+
+      let listMenuCopy = [...manageMenuStorage[this.assignedMenuTitle][0].menuList];
+      let filteredDataSource = listMenuCopy.filter((item) => {
+            if (item.id === this.menuReadyForEditID ) {
+                item.id = this.menuReadyForEditID;
+                item.label = this.menuReadyForEditLabel;
+                item.link = this.menuReadyForEditLink;
+                item.icon = this.menuReadyForEditIcon;
+              }
+              return item;
+      });
+          
+      // eslint-disable-next-line no-console
+      manageMenuStorage[this.assignedMenuTitle][0].menuList = filteredDataSource;
+
+      // UPDATE STORAGE
+      localStorage.setItem('manageMenuJSONData', JSON.stringify(manageMenuStorage));
+      this.posts = manageMenuStorage[this.assignedMenuTitle][0];
     },
     deleteSelectedMenu(item){
       this.menuReadyForDeleteID = item.id;

@@ -841,6 +841,12 @@ Manage Menu
   color: var(--white);
 }
 
+.card-boxes.manage-menu .assigned-menu .nestable-item .nestable-item .card-option, 
+.card-boxes.manage-menu .list-menu .nestable-item .nestable-item .card-option
+{
+  display: none;
+}
+
 .card-boxes.manage-menu .card-header {
   border: 0;
   padding: 10px;
