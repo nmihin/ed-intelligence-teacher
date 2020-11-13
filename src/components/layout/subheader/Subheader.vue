@@ -11,3 +11,29 @@
       </div>
       <!-- Sub Header END-->
 </template>
+<script>
+
+
+export default {
+  name: "subheader",
+  components: {
+ 
+  },
+  data() {
+    return {
+      breadcrumb: ""
+    }
+  },
+  watch: {
+      '$route':{
+        handler: (to, from) => {
+         //this.breadcrumb = to.name;
+        },
+          immediate: true
+      }
+  },
+  created() {
+
+  }
+}
+</script>

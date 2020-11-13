@@ -790,6 +790,12 @@ ICONS
   margin-bottom: 20px;
 }
 
+.card-boxes.addstudent > .card-box {
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin-top: 0;
+}
+
 .card-boxes.addstudent .card-box {
   padding: 0;
   border-radius: 30px 30px 8px 8px;
@@ -812,6 +818,7 @@ Manage Menu
 */
 .card-boxes.manage-menu {
   width:100%;
+  margin-bottom: 20px;
 }
 
 .card-boxes.manage-menu .card-box {
@@ -1463,7 +1470,10 @@ Top box
   margin-bottom: 0;
   padding-left: 10%;
   color: var(--primary);
-  height: 60px
+  height: 60px;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 10px 10px 0 0;
 }
 
 .ed_card-boxes.upcoming .card-title h2 {
@@ -1477,7 +1487,9 @@ Top box
   padding-bottom: 21px;
   float: left;
   width: 100%;
-  background-color: var(--white)
+  background-color: var(--white);
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .ed_card-boxes.upcoming .card-box .icon {
@@ -1600,7 +1612,9 @@ Top box
   width: 100%;
   border-radius: 0 0 10px 10px;
   margin-bottom: 25px;
-  padding-top: 0
+  padding-top: 0;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .ed_card-boxes.upcoming .card-footer>div>div {
@@ -2003,7 +2017,7 @@ html {
   display: inline-block;
   font-weight: 500;
   padding: 22px 0;
-  margin-right: 22px;
+  margin-right: 18px;
   font-size: 16px;
   line-height:1;
 }
@@ -3471,6 +3485,20 @@ UI Elements
   .container {
     max-width: 80%
   }
+  .search-box {
+    margin: 0!important;
+    position: absolute!important;
+    top: 60px;
+    right: 0
+  }
+  .search-box input {
+    padding: 13px 20px 13px 32px!important;
+    border-radius: 0 0 0 5px!important;
+    height: 45px;
+  }
+  .search-box .icon {
+    top: 14px!important
+  }
 }
 
 @media only screen and (max-width:1040px) {
@@ -3495,20 +3523,6 @@ UI Elements
   }
   .ed_card-boxes.aside .card-content figure {
     border-radius: 10px 10px 0 0
-  }
-  .search-box {
-    margin: 0!important;
-    position: absolute!important;
-    top: 60px;
-    right: 0
-  }
-  .search-box input {
-    padding: 13px 20px 13px 32px!important;
-    border-radius: 0 0 0 5px!important;
-    height: 45px;
-  }
-  .search-box .icon {
-    top: 14px!important
   }
   .card-boxes .d-flex,
   .top-boxes .d-flex {
