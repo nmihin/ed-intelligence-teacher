@@ -1050,9 +1050,6 @@ Manage Menu
 .card-tab.manage li.active {
   background-color:var(--white);
 }
-.card-tab.manage li.active:after {
-  
-}
 .card-tab.manage li.active a {
   color: var(--primary) !important;
 }
@@ -2586,8 +2583,40 @@ ul.side-menu__results>li>ul>li a:hover {
 
 /* Modals */
 .modal-window > div {
-  padding: 25px;
-  border-radius: 10px;
+  border-radius: 30px;
+}
+
+.modal-window .modal-title {
+  background: var(--primary);
+  background: -moz-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: -webkit-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: linear-gradient(to bottom, var(--primary) 0, var(--tertiary) 100%);
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--white);
+  padding: 20px 30px;
+}
+
+.modal-window  .md-dialog-container {
+  background: none;
+}
+
+.modal-window  .md-dialog-actions {
+  background: var(--background);
+  margin-bottom: 0 !important;
+  padding: 10px 30px;
+}
+
+.modal-window .modal-content {
+  padding: 20px;
+  border:0;
+  border-bottom: 1px solid var(--gray);
+  border-radius: 0;
+  overflow-y: auto;
+}
+
+.modal-window .modal-content p {
+  margin:0;
 }
 
 .modal-window > div .button {
@@ -2606,7 +2635,7 @@ ul.side-menu__results>li>ul>li a:hover {
 }
 
 .modal-window.manage-menu .card-content {
-  padding: 15px;
+  padding: 0 25px;
 }
 
 .modal-window.manage-menu .card-content .manage-menu-icons {

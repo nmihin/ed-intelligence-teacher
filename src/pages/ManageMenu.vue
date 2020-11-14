@@ -56,8 +56,9 @@
                 :md-active.sync="addMenuModal"
                 class="modal-window manage-menu"
               >
-                <h2>Add Menu</h2>
-                <el-form :model="formAddMenu" :rules="formAddMenu.rules" ref="formAddMenu">
+                <h2 class="modal-title">Add Menu</h2>
+                <div class="modal-content">
+                  <el-form :model="formAddMenu" :rules="formAddMenu.rules" ref="formAddMenu">
                   <!-- Menu Information -->
                   <div class="card-content">
                     <div class="row">
@@ -99,8 +100,10 @@
                         </el-select>
                       </el-form-item>
                     </div>
-                    <div class="row">
-                      <md-dialog-actions>
+                  </div>
+                  </el-form>
+                </div>
+                <md-dialog-actions>
                         <md-button
                           class="button medium ed-btn__secondary"
                           @click="validate()"
@@ -111,10 +114,7 @@
                           @click="addMenuModal = false"
                           >Cancel</md-button
                         >
-                      </md-dialog-actions>
-                    </div>
-                  </div>
-                </el-form>
+                </md-dialog-actions>
               </md-dialog>
               <!-- END ADD MENU MODAL -->
               <!-- START EDIT MENU MODAL -->
@@ -122,76 +122,76 @@
                 :md-active.sync="editMenuModal"
                 class="modal-window manage-menu"
               >
-                <h2>Edit Menu</h2>
-                <el-form :model="formManageMenu" ref="formManageMenu">
-                  <!-- Menu Information -->
-                  <div class="card-content">
-                    <div class="row">
-                      <el-form-item
-                        label="Edit Menu Title"
-                        prop="editMenuTitle"
-                      >
-                        <el-input
-                          prop=""
-                          v-model="menuReadyForEditLabel"
-                          placeholder="Edit Menu Title"
-                        ></el-input>
-                      </el-form-item>
-                    </div>
-                    <div class="row">
-                      <el-form-item label="Edit Menu Link" prop="editMenuLink">
-                        <el-input
-                          prop=""
-                          v-model="menuReadyForEditLink"
-                          placeholder="Edit Menu Link"
-                        ></el-input>
-                      </el-form-item>
-                    </div>
-                    <div class="row">
-                      <el-form-item
-                        label="Edit Icon for link"
-                        prop="editMenuIcon"
-                      >
-                        <el-select
-                          v-model="menuReadyForEditIcon"
-                          placeholder="Edit Icon for link"
+                <h2 class="modal-title">Edit Menu</h2>
+                <div class="modal-content">
+                  <el-form :model="formManageMenu" ref="formManageMenu">
+                    <!-- Menu Information -->
+                    <div class="card-content">
+                      <div class="row">
+                        <el-form-item
+                          label="Edit Menu Title"
+                          prop="editMenuTitle"
                         >
-                          <el-option
-                            v-for="pre in options.iconForLinkOptions"
-                            :key="pre.value"
-                            :label="pre.label"
-                            :value="pre.value"
+                          <el-input
+                            prop=""
+                            v-model="menuReadyForEditLabel"
+                            placeholder="Edit Menu Title"
+                          ></el-input>
+                        </el-form-item>
+                      </div>
+                      <div class="row">
+                        <el-form-item label="Edit Menu Link" prop="editMenuLink">
+                          <el-input
+                            prop=""
+                            v-model="menuReadyForEditLink"
+                            placeholder="Edit Menu Link"
+                          ></el-input>
+                        </el-form-item>
+                      </div>
+                      <div class="row">
+                        <el-form-item
+                          label="Edit Icon for link"
+                          prop="editMenuIcon"
+                        >
+                          <el-select
+                            v-model="menuReadyForEditIcon"
+                            placeholder="Edit Icon for link"
                           >
-                            <span
-                              ><i
-                                class="manage-menu-icons icon"
-                                v-bind:class="pre.value"
-                              ></i>
-                              {{ pre.label }}</span
+                            <el-option
+                              v-for="pre in options.iconForLinkOptions"
+                              :key="pre.value"
+                              :label="pre.label"
+                              :value="pre.value"
                             >
-                          </el-option>
-                        </el-select>
-                      </el-form-item>
+                              <span
+                                ><i
+                                  class="manage-menu-icons icon"
+                                  v-bind:class="pre.value"
+                                ></i>
+                                {{ pre.label }}</span
+                              >
+                            </el-option>
+                          </el-select>
+                        </el-form-item>
+                      </div>
                     </div>
-                    <div class="row">
-                      <md-dialog-actions>
-                        <md-button
-                          class="button medium ed-btn__secondary"
-                          @click="
-                            editMenuModal = false;
-                            editMenuConfirm();
-                          "
-                          >Save</md-button
-                        >
-                        <md-button
-                          class="button medium ed-btn__tertiary"
-                          @click="editMenuModal = false"
-                          >Cancel</md-button
-                        >
-                      </md-dialog-actions>
-                    </div>
-                  </div>
-                </el-form>
+                  </el-form>
+                </div>
+                <md-dialog-actions>
+                          <md-button
+                            class="button medium ed-btn__secondary"
+                            @click="
+                              editMenuModal = false;
+                              editMenuConfirm();
+                            "
+                            >Save</md-button
+                          >
+                          <md-button
+                            class="button medium ed-btn__tertiary"
+                            @click="editMenuModal = false"
+                            >Cancel</md-button
+                          >
+                </md-dialog-actions>
               </md-dialog>
               <!-- END EDIT MENU MODAL -->
               <!-- DELETE FROM ROLE MENU START -->
@@ -199,13 +199,15 @@
                 :md-active.sync="deleteMenuModal"
                 class="modal-window manage-menu"
               >
-                <h2>Delete Menu</h2>
+                <h2 class="modal-title">Delete Menu</h2>
+                <div class="modal-content">
                 <p>
                   You are about to delete menu
                   <span style="color:var(--primary)"
                     >"{{ menuReadyForDeleteLabel }}"</span
                   >. Are you sure you want to do this?
                 </p>
+                </div>
                 <md-dialog-actions>
                   <md-button
                     class="button medium ed-btn__tertiary"
@@ -231,7 +233,7 @@
                 @change="changedMenuList"
                 class="list-menu"
               >
-                <VueNestableHandle slot-scope="{ item }" :item="item">
+                <VueNestableHandle slot-scope="{item}" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i>{{ item.label }}
                   <a
                     @click="
@@ -1009,20 +1011,22 @@ export default {
     deleteMenuConfirm() {
       const manageMenuStorage = this.loadManageMenuStorage();
       const menuID = this.menuReadyForDeleteID;
+      const role = this.assignedMenuTitle;
 
-      manageMenuStorage[
-        this.assignedMenuTitle
-      ][0].menuAssigned = manageMenuStorage[
-        this.assignedMenuTitle
-      ][0].menuAssigned.filter(function(item) {
+      // FILTER MENU LIST
+      const menuDeleted = manageMenuStorage[this.assignedMenuTitle][0].menuAssigned.filter(function(item) {
+        return item.id === menuID;
+      });
+
+      // FILTER MENU ASSIGNED
+      manageMenuStorage[this.assignedMenuTitle][0].menuAssigned = manageMenuStorage[this.assignedMenuTitle][0].menuAssigned.filter(function(item) {
         return item.id !== menuID;
       });
 
+      manageMenuStorage[role][0].menuList.push(menuDeleted[0]);
+
       // UPDATE STORAGE
-      localStorage.setItem(
-        "manageMenuJSONData",
-        JSON.stringify(manageMenuStorage)
-      );
+      localStorage.setItem("manageMenuJSONData",JSON.stringify(manageMenuStorage));
       this.posts = manageMenuStorage[this.assignedMenuTitle][0];
     },
   },
