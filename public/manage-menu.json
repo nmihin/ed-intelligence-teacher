@@ -5,19 +5,22 @@
         "id": 0,
         "icon": "icon-add-account",
         "label": "Add Account",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 1,
         "label": "General",
         "icon": "icon-general",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 3,
             "icon": "icon-assessment-weight",
             "label": "Assessment Weight",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       },
@@ -25,25 +28,29 @@
         "id": 5,
         "icon": "icon-attendance-status-code",
         "label": "Attendance Status Code",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 13,
         "icon": "icon-lesson-plan-overview",
         "label": "Lesson Plan Overview",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 15,
         "icon": "icon-site-map",
         "label": "Site Map",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 16,
         "icon": "icon-tests",
         "label": "Tests",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ],
     "menuList": [
@@ -51,19 +58,22 @@
         "id": 21,
         "icon": "icon-assessment-weight",
         "label": "Assessment Weight",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 22,
         "icon": "icon-calendar-event",
         "label": "Calendar Event",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 23,
             "icon":"icon-teacher-feedback",
             "label": "Teacher Feedback",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       }
@@ -75,13 +85,15 @@
         "id": 12,
         "icon": "icon-lms",
         "label": "LMS",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 15,
         "icon": "icon-site-map",
         "label": "Site Map",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ],
     "menuList": [
@@ -89,19 +101,22 @@
         "id": 3,
         "icon": "icon-assessment-weight",
         "label": "Assessment Weight",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 5,
         "icon": "icon-attendance-status-code",
         "label": "Attendance Status Code",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 6,
         "icon": "icon-bulk-photo-upload",
         "label": "Bulk Photo Upload",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ]
   }],
@@ -111,19 +126,22 @@
         "id": 0,
         "icon": "icon-add-account",
         "label": "Add Account",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 1,
         "label": "General",
         "icon": "icon-general",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 2,
             "icon": "icon-assesment-group",
             "label": "Assessment Group",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       },
@@ -131,13 +149,15 @@
         "id": 3,
         "icon": "icon-assessment-weight",
         "label": "Assessment Weight",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 16,
         "icon": "icon-tests",
         "label": "Tests",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }   
     ],
     "menuList": [
@@ -145,13 +165,15 @@
         "id": 5,
         "icon": "icon-attendance-status-code",
         "label": "Attendance Status Code",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 10,
         "icon": "icon-lesson-plan-bank",
         "label": "Lesson Plan Bank",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ]
   }],
@@ -161,19 +183,22 @@
         "id": 0,
         "icon": "icon-add-account",
         "label": "Add Account",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 1,
         "label": "General",
         "icon": "icon-general",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 2,
             "icon": "icon-assesment-group",
             "label": "Assessment Group",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       },
@@ -181,7 +206,8 @@
         "id": 3,
         "icon": "icon-assessment-weight",
         "label": "Assessment Weight",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ],
     "menuList": [
@@ -189,25 +215,29 @@
         "id": 5,
         "icon": "icon-attendance-status-code",
         "label": "Attendance Status Code",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 10,
         "icon": "icon-lesson-plan-bank",
         "label": "Lesson Plan Bank",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 11,
         "icon": "icon-add-student",
         "label": "Add Student",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 12,
         "icon": "icon-lms",
         "label": "LMS",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }    
     ]
   }],
@@ -217,19 +247,22 @@
         "id": 0,
         "icon": "icon-add-account",
         "label": "Add Account",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 1,
         "label": "General",
         "icon": "icon-general",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 2,
             "icon": "icon-assesment-group",
             "label": "Assessment Group",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       },
@@ -237,25 +270,29 @@
         "id": 3,
         "icon": "icon-assessment-weight",
         "label": "Assessment Weight",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 8,
         "icon": "icon-department-manager",
         "label": "Department Manager",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 9,
         "icon": "icon-google-classroom",
         "label": "Google Classroom",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 16,
         "icon": "icon-tests",
         "label": "Tests",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ],
     "menuList": [
@@ -263,13 +300,15 @@
         "id": 11,
         "icon": "icon-add-student",
         "label": "Add Student",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 13,
         "icon": "icon-lesson-plan-overview",
         "label": "Lesson Plan Overview",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ]
   }],
@@ -279,19 +318,22 @@
         "id": 0,
         "icon": "icon-add-account",
         "label": "Add Account",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 1,
         "label": "General",
         "icon": "icon-general",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 2,
             "icon": "icon-assesment-group",
             "label": "Assessment Group",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       },
@@ -299,19 +341,22 @@
         "id": 7,
         "icon": "icon-club-manager",
         "label": "Club Manager",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 13,
         "icon": "icon-lesson-plan-overview",
         "label": "Lesson Plan Overview",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 16,
         "icon": "icon-tests",
         "label": "Tests",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       } 
     ],
     "menuList": [
@@ -319,13 +364,15 @@
         "id": 14,
         "icon": "icon-general",
         "label": "NWEA Student Report",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 15,
         "icon": "icon-site-map",
         "label": "Site Map",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ]
   }],
@@ -335,19 +382,22 @@
         "id": 0,
         "icon": "icon-add-account",
         "label": "Add Account",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 1,
         "label": "General",
         "icon": "icon-general",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 2,
             "icon": "icon-assesment-group",
             "label": "Assessment Group",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       },
@@ -355,13 +405,15 @@
         "id": 7,
         "icon": "icon-club-manager",
         "label": "Club Manager",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 8,
         "icon": "icon-department-manager",
         "label": "Department Manager",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ],
     "menuList": [
@@ -369,13 +421,15 @@
         "id": 11,
         "icon": "icon-add-student",
         "label": "Add Student",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 12,
         "icon": "icon-lms",
         "label": "LMS",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ]
   }],
@@ -385,13 +439,15 @@
         "id": 11,
         "icon": "icon-add-student",
         "label": "Add Student",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 12,
         "icon": "icon-lms",
         "label": "LMS",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ],
     "menuList": [
@@ -399,19 +455,22 @@
         "id": 0,
         "icon": "icon-add-account",
         "label": "Add Account",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 1,
         "label": "General",
         "icon": "icon-general",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 2,
             "icon": "icon-assesment-group",
             "label": "Assessment Group",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       },
@@ -419,7 +478,8 @@
         "id": 3,
         "icon": "icon-assessment-weight",
         "label": "Assessment Weight",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }  
     ]
   }],
@@ -429,19 +489,22 @@
         "id": 0,
         "icon": "icon-add-account",
         "label": "Add Account",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 1,
         "label": "General",
         "icon": "icon-general",
         "link": "#",
+        "apiAccess": [],
         "children": [
           {
             "id": 2,
             "icon": "icon-assesment-group",
             "label": "Assessment Group",
-            "link": "#"
+            "link": "#",
+            "apiAccess": []
           }
         ]
       },
@@ -449,19 +512,22 @@
         "id": 3,
         "icon": "icon-assessment-weight",
         "label": "Assessment Weight",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 8,
         "icon": "icon-department-manager",
         "label": "Department Manager",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 11,
         "icon": "icon-add-student",
         "label": "Add Student",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ],
     "menuList": [
@@ -469,19 +535,22 @@
         "id": 14,
         "icon": "icon-general",
         "label": "NWEA Student Report",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 15,
         "icon": "icon-site-map",
         "label": "Site Map",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 16,
         "icon": "icon-tests",
         "label": "Tests",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ]
   }],
@@ -491,19 +560,22 @@
         "id": 14,
         "icon": "icon-general",
         "label": "NWEA Student Report",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 15,
         "icon": "icon-site-map",
         "label": "Site Map",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 16,
         "icon": "icon-tests",
         "label": "Tests",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ],
     "menuList": [
@@ -511,13 +583,15 @@
         "id": 6,
         "icon": "icon-bulk-photo-upload",
         "label": "Bulk Photo Upload",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       },
       {
         "id": 8,
         "icon": "icon-department-manager",
         "label": "Department Manager",
-        "link": "#"
+        "link": "#",
+        "apiAccess": []
       }
     ]
   }]

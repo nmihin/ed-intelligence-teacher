@@ -100,6 +100,13 @@
                         </el-select>
                       </el-form-item>
                     </div>
+                    <div class="row">
+                        <el-form-item label="API Access" prop="menuReadyForAddAPI">
+                          <el-checkbox-group v-model="formAddMenu.menuReadyForAddAPI">
+                            <el-checkbox v-for="api in options.menuAPIAccessOptions" :label="api" :key="api"><span class="text-capitalize">{{api}}</span></el-checkbox>
+                          </el-checkbox-group>
+                        </el-form-item>
+                    </div>
                   </div>
                   </el-form>
                 </div>
@@ -172,6 +179,13 @@
                               >
                             </el-option>
                           </el-select>
+                        </el-form-item>
+                      </div>
+                      <div class="row">
+                        <el-form-item label="API Access" prop="menuReadyForEditAPI">
+                          <el-checkbox-group v-model="menuReadyForEditAPI">
+                            <el-checkbox v-for="api in options.menuAPIAccessOptions" :label="api" :key="api"><span class="text-capitalize">{{api}}</span></el-checkbox>
+                          </el-checkbox-group>
                         </el-form-item>
                       </div>
                     </div>
@@ -278,19 +292,22 @@ export default {
                 "id": 0,
                 "icon": "icon-add-account",
                 "label": "Add Account",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 1,
                 "label": "General",
                 "icon": "icon-general",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 3,
                     "icon": "icon-assessment-weight",
                     "label": "Assessment Weight",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               },
@@ -298,25 +315,29 @@ export default {
                 "id": 5,
                 "icon": "icon-attendance-status-code",
                 "label": "Attendance Status Code",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 13,
                 "icon": "icon-lesson-plan-overview",
                 "label": "Lesson Plan Overview",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 15,
                 "icon": "icon-site-map",
                 "label": "Site Map",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 16,
                 "icon": "icon-tests",
                 "label": "Tests",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ],
             "menuList": [
@@ -324,19 +345,22 @@ export default {
                 "id": 21,
                 "icon": "icon-assessment-weight",
                 "label": "Assessment Weight",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 22,
                 "icon": "icon-calendar-event",
                 "label": "Calendar Event",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 23,
                     "icon":"icon-teacher-feedback",
                     "label": "Teacher Feedback",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               }
@@ -348,13 +372,15 @@ export default {
                 "id": 12,
                 "icon": "icon-lms",
                 "label": "LMS",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 15,
                 "icon": "icon-site-map",
                 "label": "Site Map",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ],
             "menuList": [
@@ -362,19 +388,22 @@ export default {
                 "id": 3,
                 "icon": "icon-assessment-weight",
                 "label": "Assessment Weight",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 5,
                 "icon": "icon-attendance-status-code",
                 "label": "Attendance Status Code",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 6,
                 "icon": "icon-bulk-photo-upload",
                 "label": "Bulk Photo Upload",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ]
           }],
@@ -384,19 +413,22 @@ export default {
                 "id": 0,
                 "icon": "icon-add-account",
                 "label": "Add Account",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 1,
                 "label": "General",
                 "icon": "icon-general",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 2,
                     "icon": "icon-assesment-group",
                     "label": "Assessment Group",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               },
@@ -404,13 +436,15 @@ export default {
                 "id": 3,
                 "icon": "icon-assessment-weight",
                 "label": "Assessment Weight",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 16,
                 "icon": "icon-tests",
                 "label": "Tests",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }   
             ],
             "menuList": [
@@ -418,13 +452,15 @@ export default {
                 "id": 5,
                 "icon": "icon-attendance-status-code",
                 "label": "Attendance Status Code",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 10,
                 "icon": "icon-lesson-plan-bank",
                 "label": "Lesson Plan Bank",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ]
           }],
@@ -434,19 +470,22 @@ export default {
                 "id": 0,
                 "icon": "icon-add-account",
                 "label": "Add Account",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 1,
                 "label": "General",
                 "icon": "icon-general",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 2,
                     "icon": "icon-assesment-group",
                     "label": "Assessment Group",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               },
@@ -454,7 +493,8 @@ export default {
                 "id": 3,
                 "icon": "icon-assessment-weight",
                 "label": "Assessment Weight",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ],
             "menuList": [
@@ -462,25 +502,29 @@ export default {
                 "id": 5,
                 "icon": "icon-attendance-status-code",
                 "label": "Attendance Status Code",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 10,
                 "icon": "icon-lesson-plan-bank",
                 "label": "Lesson Plan Bank",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 11,
                 "icon": "icon-add-student",
                 "label": "Add Student",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 12,
                 "icon": "icon-lms",
                 "label": "LMS",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }    
             ]
           }],
@@ -490,19 +534,22 @@ export default {
                 "id": 0,
                 "icon": "icon-add-account",
                 "label": "Add Account",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 1,
                 "label": "General",
                 "icon": "icon-general",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 2,
                     "icon": "icon-assesment-group",
                     "label": "Assessment Group",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               },
@@ -510,25 +557,29 @@ export default {
                 "id": 3,
                 "icon": "icon-assessment-weight",
                 "label": "Assessment Weight",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 8,
                 "icon": "icon-department-manager",
                 "label": "Department Manager",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 9,
                 "icon": "icon-google-classroom",
                 "label": "Google Classroom",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 16,
                 "icon": "icon-tests",
                 "label": "Tests",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ],
             "menuList": [
@@ -536,13 +587,15 @@ export default {
                 "id": 11,
                 "icon": "icon-add-student",
                 "label": "Add Student",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 13,
                 "icon": "icon-lesson-plan-overview",
                 "label": "Lesson Plan Overview",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ]
           }],
@@ -552,19 +605,22 @@ export default {
                 "id": 0,
                 "icon": "icon-add-account",
                 "label": "Add Account",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 1,
                 "label": "General",
                 "icon": "icon-general",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 2,
                     "icon": "icon-assesment-group",
                     "label": "Assessment Group",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               },
@@ -572,19 +628,22 @@ export default {
                 "id": 7,
                 "icon": "icon-club-manager",
                 "label": "Club Manager",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 13,
                 "icon": "icon-lesson-plan-overview",
                 "label": "Lesson Plan Overview",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 16,
                 "icon": "icon-tests",
                 "label": "Tests",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               } 
             ],
             "menuList": [
@@ -592,13 +651,15 @@ export default {
                 "id": 14,
                 "icon": "icon-general",
                 "label": "NWEA Student Report",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 15,
                 "icon": "icon-site-map",
                 "label": "Site Map",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ]
           }],
@@ -608,19 +669,22 @@ export default {
                 "id": 0,
                 "icon": "icon-add-account",
                 "label": "Add Account",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 1,
                 "label": "General",
                 "icon": "icon-general",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 2,
                     "icon": "icon-assesment-group",
                     "label": "Assessment Group",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               },
@@ -628,13 +692,15 @@ export default {
                 "id": 7,
                 "icon": "icon-club-manager",
                 "label": "Club Manager",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 8,
                 "icon": "icon-department-manager",
                 "label": "Department Manager",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ],
             "menuList": [
@@ -642,13 +708,15 @@ export default {
                 "id": 11,
                 "icon": "icon-add-student",
                 "label": "Add Student",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 12,
                 "icon": "icon-lms",
                 "label": "LMS",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ]
           }],
@@ -658,13 +726,15 @@ export default {
                 "id": 11,
                 "icon": "icon-add-student",
                 "label": "Add Student",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 12,
                 "icon": "icon-lms",
                 "label": "LMS",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ],
             "menuList": [
@@ -672,19 +742,22 @@ export default {
                 "id": 0,
                 "icon": "icon-add-account",
                 "label": "Add Account",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 1,
                 "label": "General",
                 "icon": "icon-general",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 2,
                     "icon": "icon-assesment-group",
                     "label": "Assessment Group",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               },
@@ -692,7 +765,8 @@ export default {
                 "id": 3,
                 "icon": "icon-assessment-weight",
                 "label": "Assessment Weight",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }  
             ]
           }],
@@ -702,19 +776,22 @@ export default {
                 "id": 0,
                 "icon": "icon-add-account",
                 "label": "Add Account",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 1,
                 "label": "General",
                 "icon": "icon-general",
                 "link": "#",
+                "apiAccess": [],
                 "children": [
                   {
                     "id": 2,
                     "icon": "icon-assesment-group",
                     "label": "Assessment Group",
-                    "link": "#"
+                    "link": "#",
+                    "apiAccess": []
                   }
                 ]
               },
@@ -722,19 +799,22 @@ export default {
                 "id": 3,
                 "icon": "icon-assessment-weight",
                 "label": "Assessment Weight",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 8,
                 "icon": "icon-department-manager",
                 "label": "Department Manager",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 11,
                 "icon": "icon-add-student",
                 "label": "Add Student",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ],
             "menuList": [
@@ -742,19 +822,22 @@ export default {
                 "id": 14,
                 "icon": "icon-general",
                 "label": "NWEA Student Report",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 15,
                 "icon": "icon-site-map",
                 "label": "Site Map",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 16,
                 "icon": "icon-tests",
                 "label": "Tests",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ]
           }],
@@ -764,19 +847,22 @@ export default {
                 "id": 14,
                 "icon": "icon-general",
                 "label": "NWEA Student Report",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 15,
                 "icon": "icon-site-map",
                 "label": "Site Map",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 16,
                 "icon": "icon-tests",
                 "label": "Tests",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ],
             "menuList": [
@@ -784,18 +870,19 @@ export default {
                 "id": 6,
                 "icon": "icon-bulk-photo-upload",
                 "label": "Bulk Photo Upload",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               },
               {
                 "id": 8,
                 "icon": "icon-department-manager",
                 "label": "Department Manager",
-                "link": "#"
+                "link": "#",
+                "apiAccess": []
               }
             ]
           }]
         }
-
       ],
       loading: false,
       posts: [],
@@ -814,11 +901,15 @@ export default {
       menuReadyForEditLabel: "",
       menuReadyForEditLink: "",
       menuReadyForEditIcon: "",
+      menuReadyForEditAPI: [],
+      apiAccess: [],
+      checkedAPIAccess: [],
       // ADD MENU
       formAddMenu: {
         menuReadyForAddLabel: "",
         menuReadyForAddIcon: "",
         menuReadyForAddLink: "",
+        menuReadyForAddAPI: [],
         menuReadyForAddID: 0,
         rules: {
           menuReadyForAddLabel: [
@@ -854,6 +945,7 @@ export default {
         editMenuIcon: "",
       },
       options: {
+        menuAPIAccessOptions: ['get','post','patch','delete'],
         iconForLinkOptions: [
           { value: "icon-add-account", label: "Add Account" },
           { value: "icon-add-student", label: "Add Student" },
@@ -934,7 +1026,13 @@ export default {
       );
     },
     updateForm (input, value) {
+      
+      //let checkedCount = value.length;
+      //this.checkAll = checkedCount === this.checkedAPIAccess.length;
+      //this.isIndeterminate = checkedCount > 0 && checkedCount < this.checkedAPIAccess.length;
+      
       this.formAddMenu[input] = value;
+
     },
     validate() {
       return new Promise((resolve) => {
@@ -962,7 +1060,8 @@ export default {
         "id": maxId+1,
         "label": formAddData.menuReadyForAddLabel,
         "link": formAddData.menuReadyForAddLink,
-        "icon": formAddData.menuReadyForAddIcon
+        "icon": formAddData.menuReadyForAddIcon,
+        "apiAccess": formAddData.menuReadyForAddAPI
       }
 
       manageMenuStorage[role][0].menuList.push(newMenu)
@@ -976,6 +1075,7 @@ export default {
       this.menuReadyForEditLabel = item.label;
       this.menuReadyForEditLink = item.link;
       this.menuReadyForEditIcon = item.icon;
+      this.menuReadyForEditAPI = item.apiAccess;
     },
     editMenuConfirm() {
       const manageMenuStorage = this.loadManageMenuStorage();
@@ -983,12 +1083,14 @@ export default {
       let listMenuCopy = [
         ...manageMenuStorage[this.assignedMenuTitle][0].menuList,
       ];
+
       let filteredDataSource = listMenuCopy.filter((item) => {
         if (item.id === this.menuReadyForEditID) {
           item.id = this.menuReadyForEditID;
           item.label = this.menuReadyForEditLabel;
           item.link = this.menuReadyForEditLink;
           item.icon = this.menuReadyForEditIcon;
+          item.apiAccess = this.menuReadyForEditAPI;
         }
         return item;
       });
@@ -997,7 +1099,6 @@ export default {
         this.assignedMenuTitle
       ][0].menuList = filteredDataSource;
 
-      // UPDATE STORAGE
       localStorage.setItem(
         "manageMenuJSONData",
         JSON.stringify(manageMenuStorage)
@@ -1032,6 +1133,9 @@ export default {
   },
   created() {
     const manageMenuStorage = this.loadManageMenuStorage();
+
+    // eslint-disable-next-line no-console
+    console.log(this.apiAccess)
 
     if (manageMenuStorage === null) {
       this.loadMore();
