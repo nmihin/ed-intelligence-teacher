@@ -859,7 +859,6 @@ Manage Menu
   color: var(--white);
 }
 
-.card-boxes.manage-menu .assigned-menu .nestable-item .nestable-item .card-option, 
 .card-boxes.manage-menu .list-menu .nestable-item .nestable-item .card-option
 {
   display: none;

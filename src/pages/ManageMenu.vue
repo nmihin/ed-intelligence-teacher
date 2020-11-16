@@ -22,12 +22,12 @@
                 group="cross"
                 class="assigned-menu"
               >
-                <VueNestableHandle slot-scope="{ item }" :item="item">
+                <VueNestableHandle slot-scope="{item,index,isChild}" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i> {{ item.label }}
                   <a
                     @click="
                       deleteMenuModal = true;
-                      deleteSelectedMenu(item);
+                      deleteSelectedMenu(item,index,isChild);
                     "
                     class="card-option"
                     href="#"
@@ -896,6 +896,11 @@ export default {
       // DELETE MENU
       menuReadyForDeleteID: 0,
       menuReadyForDeleteLabel: "",
+      menuReadyForDeleteIcon: "",
+      menuReadyForDeleteLink: "",
+      menuReadyForDeleteAPI: "",
+      menuReadyForDeleteChildren: [],
+      menuReadyForDeleteIsChild: false,
       // EDIT MENU
       menuReadyForEditID: 0,
       menuReadyForEditLabel: "",
@@ -1027,10 +1032,6 @@ export default {
     },
     updateForm (input, value) {
       
-      //let checkedCount = value.length;
-      //this.checkAll = checkedCount === this.checkedAPIAccess.length;
-      //this.isIndeterminate = checkedCount > 0 && checkedCount < this.checkedAPIAccess.length;
-      
       this.formAddMenu[input] = value;
 
     },
@@ -1105,37 +1106,64 @@ export default {
       );
       this.posts = manageMenuStorage[this.assignedMenuTitle][0];
     },
-    deleteSelectedMenu(item) {
+    deleteSelectedMenu(item,index,isChild) {
       this.menuReadyForDeleteID = item.id;
       this.menuReadyForDeleteLabel = item.label;
+      this.menuReadyForDeleteLink = item.link;
+      this.menuReadyForDeleteIcon = item.icon;
+      this.menuReadyForDeleteAPI = item.apiAccess;
+      this.menuReadyForDeleteChildren = item.children;
+
+      this.menuReadyForDeleteIsChild = isChild;
+    },
+    flatFilter(nestedProp, compareKey, compareId, arr) {
+            return arr.filter(o => {
+              const keep = o[compareKey] != compareId;
+              if (keep && o[nestedProp]) {
+                o[nestedProp] = this.flatFilter(nestedProp, compareKey, compareId, o[nestedProp]);
+              }
+              return keep;
+            });
     },
     deleteMenuConfirm() {
       const manageMenuStorage = this.loadManageMenuStorage();
       const menuID = this.menuReadyForDeleteID;
       const role = this.assignedMenuTitle;
 
-      // FILTER MENU LIST
-      const menuDeleted = manageMenuStorage[this.assignedMenuTitle][0].menuAssigned.filter(function(item) {
-        return item.id === menuID;
-      });
+      if(!this.menuReadyForDeleteIsChild){
+          // FILTER MENU LIST
+          const menuDeleted = manageMenuStorage[this.assignedMenuTitle][0].menuAssigned.filter(function(item) {
+            return item.id === menuID;
+          });
+          // FILTER MENU ASSIGNED
+          manageMenuStorage[this.assignedMenuTitle][0].menuAssigned = manageMenuStorage[this.assignedMenuTitle][0].menuAssigned.filter(function(item) {
+            return item.id !== menuID;
+          });
+          manageMenuStorage[role][0].menuList.push(menuDeleted[0]);
+      }
+      else {
+          this.flatFilter('children','id', menuID, manageMenuStorage[this.assignedMenuTitle][0].menuAssigned)
 
-      // FILTER MENU ASSIGNED
-      manageMenuStorage[this.assignedMenuTitle][0].menuAssigned = manageMenuStorage[this.assignedMenuTitle][0].menuAssigned.filter(function(item) {
-        return item.id !== menuID;
-      });
+          const newMenu = {
+              "id": this.menuReadyForDeleteID,
+              "label": this.menuReadyForDeleteLabel,
+              "link": this.menuReadyForDeleteLink,
+              "icon": this.menuReadyForDeleteIcon,
+              "apiAccess": this.menuReadyForDeleteAPI,
+              "children": this.menuReadyForDeleteChildren
+            }
 
-      manageMenuStorage[role][0].menuList.push(menuDeleted[0]);
+            manageMenuStorage[role][0].menuList.push(newMenu)
+      }
 
+      
       // UPDATE STORAGE
       localStorage.setItem("manageMenuJSONData",JSON.stringify(manageMenuStorage));
       this.posts = manageMenuStorage[this.assignedMenuTitle][0];
-    },
+    }
   },
   created() {
     const manageMenuStorage = this.loadManageMenuStorage();
-
-    // eslint-disable-next-line no-console
-    console.log(this.apiAccess)
 
     if (manageMenuStorage === null) {
       this.loadMore();
