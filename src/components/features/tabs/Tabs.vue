@@ -2,20 +2,15 @@
   <!-- tabs START-->
   <VueSlickCarousel 
     v-if="roles.length !== 0"
-    :key="refresh"
-    :accessibility="true"	
-    :swipe="true"
-    :focusOnSelect="false"
-    :arrows="true"
-    :dots="false"
-    :slidesToShow="6"
-    :slidesToScroll="6"
+    v-bind="settings"
     class="card-tab manage"
   >
     <li v-for="(role, idx) in roles" v-bind:key="idx" v-bind:class="[{ active: selected === idx }]" v-on:click="selected = idx; updateData(idx)"><a href="#">{{idx}}</a></li>
   </VueSlickCarousel>
   <!-- tabs END-->
 </template>
+
+
 
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
@@ -33,7 +28,43 @@ export default {
     return {
       refresh: 0,
       roles: [],
-      selected: "su_admin"
+      selected: "su_admin",
+        settings: {
+          "key":"refresh",
+          "accessibility":true,	
+          "swipe":true,
+          "focusOnSelect":false,
+          "arrows":true,
+          "dots":false,
+          "slidesToShow":6,
+          "slidesToScroll":6,
+          "responsive" : [
+            {
+              "breakpoint": 1024,
+              "settings": {
+                "slidesToShow": 4,
+                "slidesToScroll": 4,
+                "infinite": true
+              }
+            },
+            {
+              "breakpoint": 768,
+              "settings": {
+                "slidesToShow": 5,
+                "slidesToScroll": 5,
+                "infinite": true
+              }
+            },
+            {
+              "breakpoint": 480,
+              "settings": {
+                "slidesToShow": 3,
+                "slidesToScroll": 3,
+                "infinite": true
+              }
+            }
+          ]
+        }
     };
   },
   methods: {

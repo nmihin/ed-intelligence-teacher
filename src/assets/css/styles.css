@@ -835,8 +835,11 @@ Manage Menu
 .card-boxes.manage-menu .card-box .card-option {
   float: right;
   border-radius: 50%;
-  width:28px;
-  height:28px;
+  width: 28px;
+  height: 28px;
+  z-index: 5;
+  right: 5px;
+  position: relative;
 }
 
 .card-boxes.manage-menu .card-box .card-option .icon {
@@ -1010,10 +1013,11 @@ Manage Menu
   font-weight: bold;
 }
 .nestable-item-content {
-  padding: 5px;
+  padding: 7px 5px;
   border-radius: 5px;
   border:1px solid var(--gray);
   background: var(--background);
+  top: 7px;
 }
 .nestable-item-content .icon:before {
   color: var(--bluewood);
@@ -2135,7 +2139,8 @@ li:hover .megamenu {
   z-index: 9999;
   width: 100%;
   border-top-right-radius: 25px;
-  border-top-left-radius: 25px
+  border-top-left-radius: 25px;
+  overflow: hidden;
 }
 
 .menu-mobile ul {
@@ -2558,17 +2563,37 @@ ul.side-menu__results>li>ul>li a:hover {
 
 .search-box .icon {
   position: absolute;
-  left: 10px;
-  top: 12px
+  left: 0;
+  top: 0;
+  background-color: var(--tertiary);
+  border-radius: 50%;
+  padding: 12px;
+}
+
+.search-box .icon + input {
+  width: 0;
+  transition: width 0.5s;
+}
+
+.search-box .icon.active + input {
+  transition: width 0.5s;
+  width: 220px;
+  background-color: var(--primary);
+}
+
+.search-box .icon:hover {
+  cursor: pointer;
+  opacity: 0.85;
 }
 
 .search-box input {
-  background-color: var(--auxiliary);
+  background-color: var(--primary);
   color: var(--white);
-  border-radius: 5px;
+  border-radius: 20px;
   border: 0 none;
   height: 40px;
-  padding: 0 20px 0 32px
+  text-indent: 30px;
+  padding: 0 20px 0 20px;
 }
 
 .search-box input:focus {
@@ -3494,6 +3519,25 @@ UI Elements
   }
 }
 
+@media only screen and (max-width:1340px) {
+  .search-box input {
+    width: 200px;
+  }
+  .dashboard-menu>ul li {
+    margin-right: 15px;
+    font-size: 15px;
+  }
+  .search-box {
+    margin: 0!important;
+    position: absolute!important;
+    top: 62px;
+    right: 15px;
+  }
+  .search-box input {
+    height: 40px;
+  }
+}
+
 @media only screen and (max-width:1280px) {
   .sub-header ul {
     margin-left: 12%
@@ -3513,20 +3557,6 @@ UI Elements
 @media only screen and (max-width:1100px) {
   .container {
     max-width: 80%
-  }
-  .search-box {
-    margin: 0!important;
-    position: absolute!important;
-    top: 60px;
-    right: 0
-  }
-  .search-box input {
-    padding: 13px 20px 13px 32px!important;
-    border-radius: 0 0 0 5px!important;
-    height: 45px;
-  }
-  .search-box .icon {
-    top: 14px!important
   }
 }
 
@@ -3682,6 +3712,9 @@ UI Elements
   .md-button-content {
    font-size: 12px;
   }
+  .search-box {
+    top:65px;
+  }
 }
 
 @media only screen and (max-width:620px) {
@@ -3712,12 +3745,29 @@ UI Elements
    .filter-card .el-form-item .icon-arrow {
      top: 12px;
    }
+   .modal-window.manage-menu .el-form-item, .modal-window.manage-menu .md-dialog-actions {
+    margin-bottom: 0;
+   }
+   .modal-window .modal-content {
+    padding: 5px;
+   }
+   .modal-window .modal-content .el-checkbox {
+    margin-right: 10px;
+   }
+   .modal-window .modal-content .el-checkbox__label {
+    padding-left: 5px;
+   }
 }
 
 @media only screen and (max-width:600px) {
    .vue-form-wizard .wizard-nav-pills .stepTitle {
-    font-size: 14px;
-    line-height: 1;
+      font-size: 14px;
+      line-height: 1;
+   }
+   .md-dialog-fullscreen {
+      width: auto;
+      height: auto;
+      max-width: 80%;
    }
 }
 

@@ -17,9 +17,9 @@
               <!--NESTABLE-->
               <VueNestable
                 v-model="posts.menuAssigned"
+                @change="changedMenuAssigned"
                 cross-list
                 group="cross"
-                @change="changedMenuAssigned"
                 class="assigned-menu"
               >
                 <VueNestableHandle slot-scope="{ item }" :item="item">
