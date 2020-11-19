@@ -10,6 +10,7 @@
                 <el-select
                   v-model="model.lessonPlanBankSubject"
                   placeholder="Select Subject"
+                  @change="filterList()"
                 >
                   <el-option
                     v-for="pre in options.lessonPlanBankSubjectOptions"
@@ -27,6 +28,7 @@
                 <el-select
                   v-model="model.lessonPlanBankGrade"
                   placeholder="Select Grade"
+                  @change="filterList()"
                 >
                   <el-option
                     v-for="pre in options.lessonPlanBankGradeOptions"
@@ -44,6 +46,7 @@
                 <el-select
                   v-model="model.lessonPlanBankStrand"
                   placeholder="Select Strand"
+                  @change="filterList()"
                 >
                   <el-option
                     v-for="pre in options.lessonPlanBankStrandOptions"
@@ -63,7 +66,7 @@
         <div class="side-menu__results card-boxes lessons_teacher">
           <!-- Box -->
           <div
-            v-infinite-scroll="loadMore"
+            v-infinite-scroll="infiniteScroll"
             infinite-scroll-disabled="busy"
             infinite-scroll-distance="limit"
           >
@@ -81,7 +84,7 @@
               </div>
               <ul class="card-breadcrumb">
                 <li>Four</li>
-                <li>
+                <li class="card-language">
                   {{ post.language }}
                 </li>
                 <li>
@@ -135,6 +138,7 @@ export default {
       busy: false,
       page: 1,
       list: [],
+      filterData: {},
       model: {
         //DEFINITIONS
         lessonPlanBankSubject: "",
@@ -145,18 +149,20 @@ export default {
         //OPTIONS
         lessonPlanBankSubjectOptions: [
           { value: "", label: "Select Subject" },
-          { value: "english", label: "English" },
-          { value: "mathematics", label: "Mathematics" },
+          { value: "English", label: "English" },
+          { value: "Mathematics", label: "Mathematics" },
         ],
         lessonPlanBankGradeOptions: [
           { value: "", label: "Select Grade" },
-          { value: "grade1", label: "Grade 1" },
-          { value: "grade2", label: "Grade 2" },
+          { value: "First", label: "First" },
+          { value: "Second", label: "Second" },
+          { value: "Third", label: "Third" }
         ],
         lessonPlanBankStrandOptions: [
           { value: "", label: "Select Strand" },
-          { value: "strand1", label: "Strand 1" },
-          { value: "strand2", label: "Strand 2" },
+          { value: "Business", label: "Business" },
+          { value: "Accountancy", label: "Accountancy" },
+          { value: "Management (BAM)", label: "Management (BAM)" }
         ],
       },
       rules: {},
@@ -175,14 +181,52 @@ export default {
     // INFINITE HANDLER
     loadMore() {
       this.busy = true;
-      this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
+      this.axios.get("lesson-plan.json").then((response) => {
         const append = response.data.slice(
           this.posts.length,
           this.posts.length + this.limit
         );
         this.posts = this.posts.concat(append);
+        localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(response.data));
         this.busy = false;
-      });
+      }); 
+    },
+    loadLessonPlanStorage() {
+      return JSON.parse(localStorage.getItem("lessonPlanBankJSONData"));
+    },
+    filterList() {
+      const lessonPlanStorage = this.loadLessonPlanStorage();
+
+      const language = this.model.lessonPlanBankSubject;
+      const grade = this.model.lessonPlanBankGrade;
+      const strand = this.model.lessonPlanBankStrand;
+
+      this.filterData = lessonPlanStorage.filter(function(item) {
+        if(language && !grade && !strand)
+          return item.language === language;
+        if(!language && grade && !strand)
+          return item.grade === grade;
+        if(!language && !grade && strand)
+          return item.strand === strand;
+        if(language && grade && !strand)
+          return (item.language === language && item.grade === grade);
+        if(language && !grade && strand)
+          return (item.language === language && item.strand === strand);
+        if(!language && grade && strand)
+          return (item.grade === grade && item.strand === strand);
+        if(language && grade && strand)
+          return (item.language === language && item.grade === grade && item.strand === strand);
+      }); 
+
+      this.posts = this.filterData;
+    },
+    infiniteScroll(){
+      console.log(this.filterData)
+      const append = response.data.slice(
+            this.posts.length,
+            this.posts.length + this.limit
+          );
+      this.posts = this.posts.concat(append);
     },
   }, 
   mounted() {
