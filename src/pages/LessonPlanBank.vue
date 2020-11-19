@@ -66,7 +66,7 @@
         <div class="side-menu__results card-boxes lessons_teacher">
           <!-- Box -->
           <div
-            v-infinite-scroll="infiniteScroll"
+            v-infinite-scroll="loadMore"
             infinite-scroll-disabled="busy"
             infinite-scroll-distance="limit"
           >
@@ -181,15 +181,24 @@ export default {
     // INFINITE HANDLER
     loadMore() {
       this.busy = true;
-      this.axios.get("lesson-plan.json").then((response) => {
-        const append = response.data.slice(
-          this.posts.length,
-          this.posts.length + this.limit
-        );
-        this.posts = this.posts.concat(append);
-        localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(response.data));
-        this.busy = false;
-      }); 
+      if(typeof this.filterData.length === 'undefined' || this.filterData.length === 0){
+        this.axios.get("lesson-plan.json").then((response) => {
+          const append = response.data.slice(
+            this.posts.length,
+            this.posts.length + this.limit
+          );
+          this.posts = this.posts.concat(append);
+          localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(response.data));
+          this.busy = false;
+        });
+      } 
+      else {
+          const append = this.filterData.slice(
+            this.posts.length,
+            this.posts.length + this.limit
+          );
+          this.posts = this.posts.concat(append);
+      }
     },
     loadLessonPlanStorage() {
       return JSON.parse(localStorage.getItem("lessonPlanBankJSONData"));
@@ -200,7 +209,14 @@ export default {
       const language = this.model.lessonPlanBankSubject;
       const grade = this.model.lessonPlanBankGrade;
       const strand = this.model.lessonPlanBankStrand;
-
+      
+      // NO-FILTER
+      if(!language && !grade && !strand){
+        this.filterData.length = 0;
+        this.loadMore();
+      }  
+        
+      // FILTER
       this.filterData = lessonPlanStorage.filter(function(item) {
         if(language && !grade && !strand)
           return item.language === language;
@@ -215,18 +231,20 @@ export default {
         if(!language && grade && strand)
           return (item.grade === grade && item.strand === strand);
         if(language && grade && strand)
-          return (item.language === language && item.grade === grade && item.strand === strand);
+          return (item.language === language && item.grade === grade && item.strand === strand);  
       }); 
 
-      this.posts = this.filterData;
+      this.posts = [];
+      const append = this.filterData.slice(
+          this.posts.length,
+          this.posts.length + this.limit
+      );
+      this.posts = this.posts.concat(append);
+
+      //this.posts = this.filterData;
     },
     infiniteScroll(){
-      console.log(this.filterData)
-      const append = response.data.slice(
-            this.posts.length,
-            this.posts.length + this.limit
-          );
-      this.posts = this.posts.concat(append);
+    
     },
   }, 
   mounted() {
