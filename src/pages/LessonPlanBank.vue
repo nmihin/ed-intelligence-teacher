@@ -105,6 +105,7 @@
               </div>
             </div>
           </div>
+          <div v-if="busy" class="preloader"><img src="../assets/images/preloader.gif" /></div>
         </div>
       </div>
     </div>
@@ -198,6 +199,7 @@ export default {
             this.posts.length + this.limit
           );
           this.posts = this.posts.concat(append);
+          this.busy = false;
       }
     },
     loadLessonPlanStorage() {
