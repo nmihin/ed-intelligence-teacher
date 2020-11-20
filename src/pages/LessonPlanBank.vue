@@ -104,7 +104,7 @@
               </md-dialog>
           <!-- END ADD CUSTOM STANDARD MODAL -->
 
-          <button @click="addCustomStandardModal = true" class="button medium ed-btn__primary add-custom-standard" href="#">
+          <button v-if="allFiltersSet" @click="addCustomStandardModal = true" class="button medium ed-btn__primary add-custom-standard" href="#">
             <i class="icon icon-add"></i>
             <span>Add Custom Standard</span>
           </button>
@@ -131,19 +131,15 @@
                 </a>
               </div>
               <ul class="card-breadcrumb">
-                <li>Four</li>
-                <li class="card-language">
-                  {{ post.language }}
-                </li>
-                <li>
-                  <a title="language" href="#">Language</a>
-                </li>
+                <li class="card-subject">{{post.subject}}</li>
+                <li class="card-grade">{{ post.grade }}</li>
+                <li class="card-strand">{{ post.strand }}</li>
               </ul>
               <div class="card-content">
                 <p>{{ post.body }}</p>
                 <router-link to="/lesson-plan/"
                   ><button class="button medium ed-btn__primary">
-                    CC.4.L.1
+                    {{post.type}}
                   </button></router-link
                 >
               </div>
@@ -186,9 +182,10 @@ export default {
       page: 1,
       list: [],
       filterData: {},
+      allFiltersSet: false,
       // MODALS
       addCustomStandardModal: false,
-      // ADD MENU
+      // ADD CUSTOM STANDARD
       formAddStandard: {
         standardReadyForAddIdentifierCode: "",
         standardReadyForAddPrivacy: "public",
@@ -251,16 +248,10 @@ export default {
       } 
       else {
           //FILTER SET
-          // eslint-disable-next-line no-console
           const append = this.filterData.slice(
             this.posts.length,
             this.posts.length + this.limit
           );
-
-          // eslint-disable-next-line no-console
-          console.log(append)
-          // eslint-disable-next-line no-console
-          console.log(this.posts)
 
           this.posts = this.posts.concat(append);
           this.busy = false;
@@ -272,33 +263,36 @@ export default {
     filterList() {
       const lessonPlanStorage = this.loadLessonPlanStorage();
 
-      const language = this.model.lessonPlanBankSubject;
+      const subject = this.model.lessonPlanBankSubject;
       const grade = this.model.lessonPlanBankGrade;
       const strand = this.model.lessonPlanBankStrand;
       
       //FILTER NOT SET
-      if(!language && !grade && !strand){
+      if(!subject && !grade && !strand){
         this.filterData.length = 0;
         this.loadMore();
       }  
         
       //FILTER SET
       this.filterData = lessonPlanStorage.filter(function(item) {
-        if(language && !grade && !strand)
-          return item.language === language;
-        if(!language && grade && !strand)
+        if(subject && !grade && !strand)
+          return item.subject === subject;
+        if(!subject && grade && !strand)
           return item.grade === grade;
-        if(!language && !grade && strand)
+        if(!subject && !grade && strand)
           return item.strand === strand;
-        if(language && grade && !strand)
-          return (item.language === language && item.grade === grade);
-        if(language && !grade && strand)
-          return (item.language === language && item.strand === strand);
-        if(!language && grade && strand)
+        if(subject && grade && !strand)
+          return (item.subject === subject && item.grade === grade);
+        if(subject && !grade && strand)
+          return (item.subject === subject && item.strand === strand);
+        if(!subject && grade && strand)
           return (item.grade === grade && item.strand === strand);
-        if(language && grade && strand)
-          return (item.language === language && item.grade === grade && item.strand === strand);  
+        if(subject && grade && strand)
+          return (item.subject === subject && item.grade === grade && item.strand === strand);  
       }); 
+
+      //ALL FILTERS SET
+      (subject && grade && strand) ? this.allFiltersSet = true: this.allFiltersSet = false;
 
       this.posts = [];
       const append = this.filterData.slice(
@@ -312,7 +306,7 @@ export default {
     },
     updateForm (input, value) {
       this.formAddStandard[input] = value;
-    },
+    }
   }, 
   mounted() {
     // MUST USE CLASS ON INFINITE SCROLL
