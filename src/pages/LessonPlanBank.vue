@@ -105,7 +105,7 @@
               </div>
             </div>
           </div>
-          <div v-if="busy" class="preloader"><img src="../assets/images/preloader.gif" /></div>
+          <div v-if="busy" class="preloader"><span><img src="../assets/images/preloader.gif" /> Loading...</span></div>
         </div>
       </div>
     </div>
@@ -120,7 +120,6 @@ import "vue-material/dist/vue-material.min.css";
 import { validationMixin } from "vuelidate";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import Element from "element-ui";
-import InfiniteLoading from "vue-infinite-loading";
 
 export default {
   name: "lesson-plan-bank",
@@ -129,8 +128,7 @@ export default {
     MdMenu,
     MdButton,
     MdList,
-    Element,
-    InfiniteLoading,
+    Element
   },
   data() {
     return {
@@ -183,6 +181,7 @@ export default {
     loadMore() {
       this.busy = true;
       if(typeof this.filterData.length === 'undefined' || this.filterData.length === 0){
+        //FILTER NOT SET
         this.axios.get("lesson-plan.json").then((response) => {
           const append = response.data.slice(
             this.posts.length,
@@ -191,13 +190,21 @@ export default {
           this.posts = this.posts.concat(append);
           localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(response.data));
           this.busy = false;
-        });
+        }).catch(error => error.response.data);
       } 
       else {
+          //FILTER SET
+          // eslint-disable-next-line no-console
           const append = this.filterData.slice(
             this.posts.length,
             this.posts.length + this.limit
           );
+
+          // eslint-disable-next-line no-console
+          console.log(append)
+          // eslint-disable-next-line no-console
+          console.log(this.posts)
+
           this.posts = this.posts.concat(append);
           this.busy = false;
       }
@@ -212,13 +219,13 @@ export default {
       const grade = this.model.lessonPlanBankGrade;
       const strand = this.model.lessonPlanBankStrand;
       
-      // NO-FILTER
+      //FILTER NOT SET
       if(!language && !grade && !strand){
         this.filterData.length = 0;
         this.loadMore();
       }  
         
-      // FILTER
+      //FILTER SET
       this.filterData = lessonPlanStorage.filter(function(item) {
         if(language && !grade && !strand)
           return item.language === language;
@@ -242,14 +249,13 @@ export default {
           this.posts.length + this.limit
       );
       this.posts = this.posts.concat(append);
-
-      //this.posts = this.filterData;
     },
     infiniteScroll(){
     
     },
   }, 
   mounted() {
+    // MUST USE CLASS ON INFINITE SCROLL
     document.body.classList.add("full-height");
   },
   destroyed() {

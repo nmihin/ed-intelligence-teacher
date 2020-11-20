@@ -3521,12 +3521,18 @@ UI Elements
   display: flex;
 }
 
+.preloader > span {
+  margin: 0 auto;
+  font-size: 14px;
+}
+
 .preloader img {
   width:40px;
   margin:0 auto;
   padding: 20px 0;
   position: relative;
   text-align: center;
+  right:5px;
 }
 
 
