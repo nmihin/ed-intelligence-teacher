@@ -2639,8 +2639,16 @@ ul.side-menu__results>li>ul>li a:hover {
   overflow-y: auto;
 }
 
+.modal-window .modal-footer {
+  background-color: var(--background);
+}
+
 .modal-window .modal-content p {
   margin:0;
+}
+
+.modal-window .modal-content .no-padding {
+  padding:0;
 }
 
 .modal-window > div .button {
@@ -2664,6 +2672,10 @@ ul.side-menu__results>li>ul>li a:hover {
 
 .modal-window.manage-menu .card-content .manage-menu-icons {
   font-size: 20px;
+}
+
+.modal-window.filter-modal .card-content {
+  padding:0 15px;
 }
 
 /* GZA buttons */
@@ -2894,6 +2906,7 @@ button[disabled="true"] {
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
+  margin-top: 15px;
 }
 
 .card-boxes.lessons_teacher {
@@ -2996,7 +3009,7 @@ button[disabled="true"] {
 .filter-card {
   -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   border-radius: 8px;
   background-color: var(--white);
   display: inline-block;
@@ -3533,6 +3546,23 @@ UI Elements
   position: relative;
   text-align: center;
   right:5px;
+}
+
+/* add-custom-standard */
+.add-custom-standard {
+  position: relative;
+  float: right;
+}
+
+.add-custom-standard > span {
+  padding-left: 10px;
+}
+
+.add-custom-standard > .icon {
+  font-size: 25px;
+  height: 25px;
+  width: 25px;
+  text-align: center;
 }
 
 

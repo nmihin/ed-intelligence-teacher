@@ -63,6 +63,54 @@
         </div>
       </el-form>
       <div class="row">
+        <div class="container-fluid">
+              <!-- START ADD CUSTOM STANDARD MODAL -->
+              <md-dialog :md-active.sync="addCustomStandardModal" class="modal-window filter-modal">
+                <h2 class="modal-title">Add Custom Lesson Standard</h2>
+                <div class="modal-content">
+                  <el-form :model="formAddStandard" ref="formAddStandard">
+                  <!-- Menu Information -->
+                  <div class="card-content">
+                    <div class="row">
+                      <el-form-item class="col-6" prop="standardReadyForAddIdentifierCode" label="Identifier Code">
+                        <el-input
+                          @input="updateForm('standardReadyForAddIdentifierCode', formAddStandard.standardReadyForAddIdentifierCode)"  v-model="formAddStandard.standardReadyForAddIdentifierCode"
+                          placeholder="Menu Title"
+                        ></el-input>
+                      </el-form-item>
+                      <el-form-item class="col-6" label="Privacy" prop="standardReadyForAddPrivacy">
+                        <el-radio-group  @change="updateForm('standardReadyForAddPrivacy', formAddStandard.standardReadyForAddPrivacy)" v-model="formAddStandard.standardReadyForAddPrivacy">
+                          <el-radio label="Public">Public</el-radio>
+                          <el-radio label="Private">Private</el-radio>
+                        </el-radio-group>
+                      </el-form-item>
+                    </div>
+                    <div class="row">
+                      <el-form-item class="col-12" prop="standardReadyForAddText" label="Custom Standard">
+                        <el-input
+                          type="textarea"
+                          @input="updateForm('standardReadyForAddText', formAddStandard.standardReadyForAddText)"  v-model="formAddStandard.standardReadyForAddText"
+                          placeholder="Custom Standard"
+                        ></el-input>
+                      </el-form-item>
+                    </div>
+                  </div>
+                  </el-form>
+                </div>
+                <div class="modal-footer">
+                  <button class="button medium ed-btn__secondary" @click="addCustomStandardModal = false">Submit</button>
+                  <button class="button medium ed-btn__tertiary" @click="addCustomStandardModal = false">Cancel</button>
+                </div>
+              </md-dialog>
+          <!-- END ADD CUSTOM STANDARD MODAL -->
+
+          <button @click="addCustomStandardModal = true" class="button medium ed-btn__primary add-custom-standard" href="#">
+            <i class="icon icon-add"></i>
+            <span>Add Custom Standard</span>
+          </button>
+        </div>
+      </div>
+      <div class="row">
         <div class="side-menu__results card-boxes lessons_teacher">
           <!-- Box -->
           <div
@@ -138,6 +186,15 @@ export default {
       page: 1,
       list: [],
       filterData: {},
+      // MODALS
+      addCustomStandardModal: false,
+      // ADD MENU
+      formAddStandard: {
+        standardReadyForAddIdentifierCode: "",
+        standardReadyForAddPrivacy: "public",
+        standardReadyForAddText: "",
+        standardReadyForAddID: 0
+      },
       model: {
         //DEFINITIONS
         lessonPlanBankSubject: "",
@@ -252,6 +309,9 @@ export default {
     },
     infiniteScroll(){
     
+    },
+    updateForm (input, value) {
+      this.formAddStandard[input] = value;
     },
   }, 
   mounted() {
