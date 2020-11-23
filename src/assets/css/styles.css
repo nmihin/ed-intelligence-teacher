@@ -2678,17 +2678,23 @@ ul.side-menu__results>li>ul>li a:hover {
   padding:0 10px;
 }
 
+.modal-window.filter-modal.standard {
+  max-height: 90vh;
+}
+
 .modal-window.filter-modal.standard .card-content-title  {
   font-size: 21px;
-  padding: 0 0 10px 0;
+  padding: 0 10px 10px 10px;
 }
 
 .modal-window.filter-modal.standard .card-content-info {
   padding: 10px;
+  width: 100%;
   border-radius: 10px;
   border: 1px solid var(--lightgray);
   background-color: var(--background);
   font-size:14px;
+  margin:0 10px;
 }
 
 .modal-window.filter-modal.standard .card-content-info h3 {
@@ -2697,6 +2703,16 @@ ul.side-menu__results>li>ul>li a:hover {
 
 .modal-window.filter-modal.standard .card-content-info .info {
   color: var(--red);
+}
+
+.modal-window.filter-modal.standard .el-form-item__content .card-content-info {
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0;
+  border: 1px solid var(--lightgray);
+  background-color: var(--background);
+  font-size: 12px;
+  line-height: 1.25;
 }
 
 /* GZA buttons */

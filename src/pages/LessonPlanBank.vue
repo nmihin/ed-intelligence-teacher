@@ -1,73 +1,111 @@
 <template>
   <!-- Main Content -->
   <div class="main-content">
-    <div class="container-fluid">
-      <el-form :model="model" :rules="rules" ref="form">
-        <div class="filter-card">
-          <div class="row">
-            <div class="col-4">
-              <el-form-item prop="lessonPlanBankSubject">
-                <el-select
-                  v-model="model.lessonPlanBankSubject"
-                  placeholder="Select Subject"
-                  @change="filterList()"
-                >
-                  <el-option
-                    v-for="pre in options.lessonPlanBankSubjectOptions"
-                    :key="pre"
-                    :label="pre"
-                    :value="pre"
+  <!-- START ADD NEW LESSON MODAL -->
+    <md-dialog
+                :md-active.sync="addNewLessonModal"
+                class="modal-window filter-modal standard"
+              >
+                <h2 class="modal-title">Add Lesson Plan</h2>
+                <div class="modal-content">
+
+                  <el-form
+                    :model="formAddLesson"
+                    :rules="formAddLesson.rules"
+                    ref="formAddLesson"
                   >
-                  </el-option>
-                </el-select>
-                <i class="icon icon-arrow"></i>
-              </el-form-item>
-            </div>
-            <div class="col-4">
-              <el-form-item prop="lessonPlanBankGrade">
-                <el-select
-                  :disabled="isDisabledGrade"
-                  v-model="model.lessonPlanBankGrade"
-                  placeholder="Select Grade"
-                  @change="filterList()"
-                >
-                  <el-option
-                    v-for="pre in options.lessonPlanBankGradeOptions"
-                    :key="pre"
-                    :label="pre"
-                    :value="pre"
+                    <!-- Menu Information -->
+                    <div class="card-content">
+                      <div class="row">
+                        <h2 class="col-12 card-content-title">Conventions of Standard English</h2>
+                        <div class="card-content-info">
+                          <h3>Fill in the fields below to complete your lesson plan. Content is required for each field.<span class="info">*</span></h3>
+                          <h3 class="info">For the protection and privacy of our students, please do not use any unique identifiers when generating any part of your lesson plan.</h3>
+                        </div>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddTitle" label="Lesson Plan Title">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddTitle',formAddLesson.lessonReadyForAddTitle)"
+                            v-model="formAddLesson.lessonReadyForAddTitle"
+                            placeholder="Lesson Plan Title"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddActivities" label="Lesson Plan Activities">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddActivities',formAddLesson.lessonReadyForAddActivities)"
+                            v-model="formAddLesson.lessonReadyForAddActivities"
+                            placeholder="Lesson Plan Activities"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddMaterials" label="Lesson Plan Materials">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddMaterials',formAddLesson.lessonReadyForAddMaterials)"
+                            v-model="formAddLesson.lessonReadyForAddMaterials"
+                            placeholder="Lesson Plan Materials"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddGuidedPractice" label="Lesson Plan Guided Practice">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddGuidedPractice',formAddLesson.lessonReadyForAddGuidedPractice)"
+                            v-model="formAddLesson.lessonReadyForAddGuidedPractice"
+                            placeholder="Lesson Plan Guided Practice"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddIndependentPractice" label="Lesson Plan Independent Practice">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddIndependentPractice',formAddLesson.lessonReadyForAddIndependentPractice)"
+                            v-model="formAddLesson.lessonReadyForAddIndependentPractice"
+                            placeholder="Lesson Plan Independent Practice"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddAssessment" label="Lesson Plan Assessment">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddAssessment',formAddLesson.lessonReadyForAddAssessment)"
+                            v-model="formAddLesson.lessonReadyForAddAssessment"
+                            placeholder="Lesson Plan Assessment"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddNotes" label="Lesson Plan Notes">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddNotes',formAddLesson.lessonReadyForAddNotes)"
+                            v-model="formAddLesson.lessonReadyForAddNotes"
+                            placeholder="Lesson Plan Notes"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddModifications" label="Lesson Plan Modifications and Accommodations">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddModifications',formAddLesson.lessonReadyForAddModifications)"
+                            v-model="formAddLesson.lessonReadyForAddModifications"
+                            placeholder="Lesson Plan Modifications and Accommodations"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddClosing" label="Lesson Plan Closing">
+                          <el-input type="textarea" @input="updateForm('lessonReadyForAddClosing',formAddLesson.lessonReadyForAddClosing)"
+                            v-model="formAddLesson.lessonReadyForAddClosing"
+                            placeholder="Lesson Plan Closing"
+                          ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-6" label="Share Lesson Plan" prop="lessonReadyForAddShare">
+                            <el-radio-group
+                              @change="updateForm('lessonReadyForAddShare',formAddLesson.lessonReadyForAddShare)" v-model="formAddLesson.lessonReadyForAddShare">
+                              <el-radio label="Yes">Yes</el-radio>
+                              <el-radio checked label="No">No</el-radio>
+                            </el-radio-group>
+                            <div class="card-content-info">check this box to have your lesson plan listed on the Archives page for other teacher to use.</div>
+                        </el-form-item>
+                      </div>
+                    </div>
+                  </el-form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    class="button medium ed-btn__secondary"
+                    @click="validate()"
                   >
-                  </el-option>
-                </el-select>
-                <i class="icon icon-arrow"></i>
-              </el-form-item>
-            </div>
-            <div class="col-4">
-              <el-form-item prop="lessonPlanBankStrand">
-                <el-select
-                  :disabled="isDisabledStrand"
-                  v-model="model.lessonPlanBankStrand"
-                  placeholder="Select Strand"
-                  @change="filterList()"
-                >
-                  <el-option
-                    v-for="pre in options.lessonPlanBankStrandOptions"
-                    :key="pre"
-                    :label="pre"
-                    :value="pre"
+                    Submit
+                  </button>
+                  <button
+                    class="button medium ed-btn__tertiary"
+                    @click="addNewLessonModal = false"
                   >
-                  </el-option>
-                </el-select>
-                <i class="icon icon-arrow"></i>
-              </el-form-item>
-            </div>
-          </div>
-        </div>
-      </el-form>
-      <div class="row">
-        <div class="container-fluid">
-          <!-- START ADD CUSTOM STANDARD MODAL -->
-          <md-dialog
+                    Cancel
+                  </button>
+                </div>
+    </md-dialog>
+  <!-- END ADD NEW LESSON MODAL -->
+  <!-- START ADD CUSTOM STANDARD MODAL -->
+    <md-dialog
             :md-active.sync="addCustomStandardModal"
             class="modal-window filter-modal"
           >
@@ -155,8 +193,73 @@
                 Cancel
               </button>
             </div>
-          </md-dialog>
-          <!-- END ADD CUSTOM STANDARD MODAL -->
+    </md-dialog>
+  <!-- END ADD CUSTOM STANDARD MODAL -->
+    <div class="container-fluid">
+      <el-form :model="model" :rules="rules" ref="form">
+        <div class="filter-card">
+          <div class="row">
+            <div class="col-4">
+              <el-form-item prop="lessonPlanBankSubject">
+                <el-select
+                  v-model="model.lessonPlanBankSubject"
+                  placeholder="Select Subject"
+                  @change="filterList()"
+                >
+                  <el-option
+                    v-for="pre in options.lessonPlanBankSubjectOptions"
+                    :key="pre"
+                    :label="pre"
+                    :value="pre"
+                  >
+                  </el-option>
+                </el-select>
+                <i class="icon icon-arrow"></i>
+              </el-form-item>
+            </div>
+            <div class="col-4">
+              <el-form-item prop="lessonPlanBankGrade">
+                <el-select
+                  :disabled="isDisabledGrade"
+                  v-model="model.lessonPlanBankGrade"
+                  placeholder="Select Grade"
+                  @change="filterList()"
+                >
+                  <el-option
+                    v-for="pre in options.lessonPlanBankGradeOptions"
+                    :key="pre"
+                    :label="pre"
+                    :value="pre"
+                  >
+                  </el-option>
+                </el-select>
+                <i class="icon icon-arrow"></i>
+              </el-form-item>
+            </div>
+            <div class="col-4">
+              <el-form-item prop="lessonPlanBankStrand">
+                <el-select
+                  :disabled="isDisabledStrand"
+                  v-model="model.lessonPlanBankStrand"
+                  placeholder="Select Strand"
+                  @change="filterList()"
+                >
+                  <el-option
+                    v-for="pre in options.lessonPlanBankStrandOptions"
+                    :key="pre"
+                    :label="pre"
+                    :value="pre"
+                  >
+                  </el-option>
+                </el-select>
+                <i class="icon icon-arrow"></i>
+              </el-form-item>
+            </div>
+          </div>
+        </div>
+      </el-form>
+      <div class="row">
+        <div class="container-fluid">
           <button
             v-if="allFiltersSet"
             @click="addCustomStandardModal = true"
@@ -170,16 +273,9 @@
       </div>
       <div class="row">
         <!-- All Posts -->
-        <div
-          v-if="!allFiltersSet"
-          class="side-menu__results card-boxes lessons_teacher"
-        >
-          <!-- Box -->
-          <div
-            v-infinite-scroll="loadMore"
-            infinite-scroll-disabled="busy"
-            infinite-scroll-distance="limit"
-          >
+        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
+          <!-- Lesson LOAD IF NOT ALL FILTERS SET-->
+          <div v-if="!allFiltersSet" class="side-menu__results card-boxes lessons_teacher">
             <div class="card-box" v-for="(post, idx) in posts" :key="idx">
               <div class="card-title">
                 <h2>{{ post.title }}</h2>
@@ -211,127 +307,29 @@
               </div>
             </div>
           </div>
+          <!-- Standard LOAD IF ALL FILTERS SET-->
+          <div v-if="allFiltersSet" class="side-menu__results card-boxes lessons_teacher standard">
+            <div class="card-box" v-for="(standard, idx) in standards" :key="idx">
+              <div class="card-content">
+                <p>{{ standard.customStandard }}</p>
+                <router-link to="/lesson-plan/"
+                  ><button class="button medium ed-btn__primary">
+                    {{ standard.type }}
+                  </button></router-link
+                >
+                <button
+                  @click="addNewLessonModal = true"
+                  class="button medium ed-btn__secondary add-lesson-plan"
+                  href="#"
+                >
+                  <md-tooltip md-direction="top">Add Lesson Plan</md-tooltip>
+                  <i class="icon icon-add"></i>
+                </button>
+              </div>
+            </div>
+          </div>
           <div v-if="busy" class="preloader">
             <span><img src="../assets/images/preloader.gif" /> Loading...</span>
-          </div>
-        </div>
-        <!-- Filtered Standards -->
-        <div
-          v-if="allFiltersSet"
-          class="side-menu__results card-boxes lessons_teacher standard"
-        >
-              <!-- START ADD CUSTOM STANDARD MODAL -->
-              <md-dialog
-                :md-active.sync="addNewLessonModal"
-                class="modal-window filter-modal standard"
-              >
-                <h2 class="modal-title">Add Lesson Plan</h2>
-                <div class="modal-content">
-
-                  <el-form
-                    :model="formAddLesson"
-                    :rules="formAddLesson.rules"
-                    ref="formAddLesson"
-                  >
-                    <!-- Menu Information -->
-                    <div class="card-content">
-                      <div class="row">
-                        <h2 class="col-12 card-content-title">Conventions of Standard English</h2>
-                        <div class="card-content-info">
-                          <h3>Fill in the fields below to complete your lesson plan. Content is required for each field.<span class="info">*</span></h3>
-                          <h3 class="info">For the protection and privacy of our students, please do not use any unique identifiers when generating any part of your lesson plan.</h3>
-                        </div>
-                        <el-form-item class="col-6" prop="lessonReadyForAddTitle" label="Lesson Plan Title">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddTitle',formAddLesson.lessonReadyForAddTitle)"
-                            v-model="formAddLesson.lessonReadyForAddTitle"
-                            placeholder="Lesson Plan Title"
-                          ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-6" prop="lessonReadyForAddActivities" label="Lesson Plan Activities">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddActivities',formAddLesson.lessonReadyForAddActivities)"
-                            v-model="formAddLesson.lessonReadyForAddActivities"
-                            placeholder="Lesson Plan Activities"
-                          ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-6" prop="lessonReadyForAddMaterials" label="Lesson Plan Materials">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddMaterials',formAddLesson.lessonReadyForAddMaterials)"
-                            v-model="formAddLesson.lessonReadyForAddMaterials"
-                            placeholder="Lesson Plan Materials"
-                          ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-6" prop="lessonReadyForAddGuidedPractice" label="Lesson Plan Guided Practice">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddGuidedPractice',formAddLesson.lessonReadyForAddGuidedPractice)"
-                            v-model="formAddLesson.lessonReadyForAddGuidedPractice"
-                            placeholder="Lesson Plan Guided Practice"
-                          ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-6" prop="lessonReadyForAddIndependentPractice" label="Lesson Plan Independent Practice">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddIndependentPractice',formAddLesson.lessonReadyForAddIndependentPractice)"
-                            v-model="formAddLesson.lessonReadyForAddIndependentPractice"
-                            placeholder="Lesson Plan Independent Practice"
-                          ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-6" prop="lessonReadyForAddAssessment" label="Lesson Plan Assessment">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddAssessment',formAddLesson.lessonReadyForAddAssessment)"
-                            v-model="formAddLesson.lessonReadyForAddAssessment"
-                            placeholder="Lesson Plan Assessment"
-                          ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-6" prop="lessonReadyForAddNotes" label="Lesson Plan Notes">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddNotes',formAddLesson.lessonReadyForAddNotes)"
-                            v-model="formAddLesson.lessonReadyForAddNotes"
-                            placeholder="Lesson Plan Notes"
-                          ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-6" prop="lessonReadyForAddModifications" label="Lesson Plan Modifications and Accommodations">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddModifications',formAddLesson.lessonReadyForAddModifications)"
-                            v-model="formAddLesson.lessonReadyForAddModifications"
-                            placeholder="Lesson Plan Modifications and Accommodations"
-                          ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-6" prop="lessonReadyForAddClosing" label="Lesson Plan Closing">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddClosing',formAddLesson.lessonReadyForAddClosing)"
-                            v-model="formAddLesson.lessonReadyForAddClosing"
-                            placeholder="Lesson Plan Closing"
-                          ></el-input>
-                        </el-form-item>
-                      </div>
-                    </div>
-                  </el-form>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    class="button medium ed-btn__secondary"
-                    @click="validate()"
-                  >
-                    Submit
-                  </button>
-                  <button
-                    class="button medium ed-btn__tertiary"
-                    @click="addNewLessonModal = false"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </md-dialog>
-              <!-- END ADD CUSTOM STANDARD MODAL -->
-          <div class="card-box" v-for="(standard, idx) in standards" :key="idx">
-            <div class="card-content">
-              <p>{{ standard.customStandard }}</p>
-              <router-link to="/lesson-plan/"
-                ><button class="button medium ed-btn__primary">
-                  {{ standard.type }}
-                </button></router-link
-              >
-              <button
-                @click="addNewLessonModal = true"
-                class="button medium ed-btn__secondary add-lesson-plan"
-                href="#"
-              >
-                <md-tooltip md-direction="top">Add Lesson Plan</md-tooltip>
-                <i class="icon icon-add"></i>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -404,6 +402,7 @@ export default {
         lessonReadyForAddNotes:"",
         lessonReadyForAddModifications:"",
         lessonReadyForAddClosing:"",
+        lessonReadyForAddShare: "No",
         rules: {
           lessonReadyForAddTitle: [
             {
@@ -425,7 +424,50 @@ export default {
               message: "Lesson Materials is Required!",
               trigger: "blur",
             },
-          ]   
+          ],
+          lessonReadyForAddGuidedPractice: [
+            {
+              required: true,
+              message: "Lesson Guided Practice is Required!",
+              trigger: "blur",
+            },
+          ], 
+          lessonReadyForAddIndependentPractice: [
+            {
+              required: true,
+              message: "Lesson Independent Practice is Required!",
+              trigger: "blur",
+            },
+          ],    
+          lessonReadyForAddAssessment: [
+            {
+              required: true,
+              message: "Lesson Assessment is Required!",
+              trigger: "blur",
+            },
+          ],
+          lessonReadyForAddNotes: [
+            {
+              required: true,
+              message: "Lesson Notes is Required!",
+              trigger: "blur",
+            },
+          ], 
+          lessonReadyForAddModifications: [
+            {
+              required: true,
+              message: "Lesson Modifications is Required!",
+              trigger: "blur",
+            },
+          ],    
+          lessonReadyForAddClosing: [
+            {
+              required: true,
+              message: "Lesson Closing is Required!",
+              trigger: "blur",
+            },
+          ],
+
         }
       },
       model: {
@@ -444,18 +486,13 @@ export default {
     };
   },
   methods: {
-    // INFINITE HANDLER
+    // INFINITE HANDLER - LESSON
     loadMore() {
       this.busy = true;
-      if (
-        typeof this.filterData.length === "undefined" ||
-        this.filterData.length === 0
-      ) {
-        //FILTER NOT SET
+      //IF ALL FILTERS NOT SET
+      if (typeof this.filterData.length === "undefined" ||this.filterData.length === 0) {
         //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
-        this.axios
-          .get("lesson-plan.json")
-          .then((response) => {
+        this.axios.get("lesson-plan.json").then((response) => {
             const append = response.data.slice(
               this.posts.length,
               this.posts.length + this.limit
@@ -474,15 +511,19 @@ export default {
           })
           .catch((error) => error.response.data);
       } else {
-        //FILTER SET
-        const append = this.filterData.slice(
-          this.posts.length,
-          this.posts.length + this.limit
-        );
+        //IF ALL FILTERS SET
+        //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
+        this.axios.get("lesson-plan-bank.json").then((response) => {
+              console.log(this.formAddStandard.standardReadyForAddIdentifierCode)
 
-        this.posts = this.posts.concat(append);
-        this.busy = false;
-      }
+              const append = response.data.slice(
+                this.standards.length,
+                this.standards.length + this.limit
+              );
+              this.standards = this.standards.concat(append);
+              this.busy = false;
+            }).catch((error) => error.response.data);
+        }
     },
     // LOCALSTORAGE
     loadLessonPlanStorage() {
@@ -565,23 +606,8 @@ export default {
           }
         );
         this.createIdentifierCode(subject, grade, strand);
-        this.formAddStandard.standardReadyForAddIdentifierCode =
-          this.formAddStandard.standardReadyForAddIdentifierCode +
-          "." +
-          (countNumberOfFilteredSelection.length + 1);
-
-        this.axios
-          .get("lesson-plan-bank.json")
-          .then((response) => {
-            this.standards = response.data;
-
-            localStorage.setItem(
-              "lessonPlanBankJSONData",
-              JSON.stringify(response.data)
-            );
-            this.busy = false;
-          })
-          .catch((error) => error.response.data);
+          //this.formAddStandard.standardReadyForAddIdentifierCode = this.formAddStandard.standardReadyForAddIdentifierCode + "." + (countNumberOfFilteredSelection.length + 1);
+          this.loadMore();
       } else {
         this.allFiltersSet = false;
       }
@@ -635,8 +661,7 @@ export default {
           this.gradeID = 1;
       }
 
-      this.formAddStandard.standardReadyForAddIdentifierCode =
-        "CS" + "." + this.gradeID + "." + this.strandID;
+      this.formAddStandard.standardReadyForAddIdentifierCode = "CS" + "." + this.gradeID + "." + this.strandID +".";
     },
     // UPDATE ON CHANGE
     updateForm(input, value) {
