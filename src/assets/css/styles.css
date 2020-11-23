@@ -2675,7 +2675,7 @@ ul.side-menu__results>li>ul>li a:hover {
 }
 
 .modal-window.filter-modal .card-content {
-  padding:0 15px;
+  padding:0 10px;
 }
 
 /* GZA buttons */
@@ -2959,6 +2959,10 @@ button[disabled="true"] {
 .card-boxes.lessons_teacher .card-box .card-content p {
   color: var(--dark);
   font-size: 14px;
+}
+
+.card-boxes.lessons_teacher.standard .card-box .card-content p {
+  width:calc(100% - 40px)
 }
 
 .card-boxes.lessons_teacher .card-box .card-footer {
@@ -3565,10 +3569,33 @@ UI Elements
   text-align: center;
 }
 
+.add-lesson-plan {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  height: 36px;
+  width: 36px;
+  padding: 0;
+}
+
+.add-lesson-plan > .icon {
+  font-size: 18px !important;
+  height: 18px !important;
+  width: 18px !important;
+  padding: 0 !important;
+  margin: auto;
+  text-align: center; 
+}
 
 @media only screen and (max-width:1600px) {
   .main-content {
     max-width: 1280px
+  }
+}
+
+@media only screen and (max-width:1400px) {
+  .sub-header ul {
+    margin-left: 8%
   }
 }
 

@@ -14,9 +14,9 @@
                 >
                   <el-option
                     v-for="pre in options.lessonPlanBankSubjectOptions"
-                    :key="pre.value"
-                    :label="pre.label"
-                    :value="pre.value"
+                    :key="pre"
+                    :label="pre"
+                    :value="pre"
                   >
                   </el-option>
                 </el-select>
@@ -26,15 +26,16 @@
             <div class="col-4">
               <el-form-item prop="lessonPlanBankGrade">
                 <el-select
+                  :disabled=isDisabledGrade
                   v-model="model.lessonPlanBankGrade"
                   placeholder="Select Grade"
                   @change="filterList()"
                 >
                   <el-option
                     v-for="pre in options.lessonPlanBankGradeOptions"
-                    :key="pre.value"
-                    :label="pre.label"
-                    :value="pre.value"
+                    :key="pre"
+                    :label="pre"
+                    :value="pre"
                   >
                   </el-option>
                 </el-select>
@@ -44,15 +45,16 @@
             <div class="col-4">
               <el-form-item prop="lessonPlanBankStrand">
                 <el-select
+                  :disabled=isDisabledStrand
                   v-model="model.lessonPlanBankStrand"
                   placeholder="Select Strand"
                   @change="filterList()"
                 >
                   <el-option
                     v-for="pre in options.lessonPlanBankStrandOptions"
-                    :key="pre.value"
-                    :label="pre.label"
-                    :value="pre.value"
+                    :key="pre"
+                    :label="pre"
+                    :value="pre"
                   >
                   </el-option>
                 </el-select>
@@ -68,19 +70,20 @@
               <md-dialog :md-active.sync="addCustomStandardModal" class="modal-window filter-modal">
                 <h2 class="modal-title">Add Custom Lesson Standard</h2>
                 <div class="modal-content">
-                  <el-form :model="formAddStandard" ref="formAddStandard">
+                  <el-form :model="formAddStandard" :rules="formAddStandard.rules" ref="formAddStandard">
                   <!-- Menu Information -->
                   <div class="card-content">
                     <div class="row">
                       <el-form-item class="col-6" prop="standardReadyForAddIdentifierCode" label="Identifier Code">
                         <el-input
+                          disabled
                           @input="updateForm('standardReadyForAddIdentifierCode', formAddStandard.standardReadyForAddIdentifierCode)"  v-model="formAddStandard.standardReadyForAddIdentifierCode"
                           placeholder="Menu Title"
                         ></el-input>
                       </el-form-item>
                       <el-form-item class="col-6" label="Privacy" prop="standardReadyForAddPrivacy">
                         <el-radio-group  @change="updateForm('standardReadyForAddPrivacy', formAddStandard.standardReadyForAddPrivacy)" v-model="formAddStandard.standardReadyForAddPrivacy">
-                          <el-radio label="Public">Public</el-radio>
+                          <el-radio checked label="Public">Public</el-radio>
                           <el-radio label="Private">Private</el-radio>
                         </el-radio-group>
                       </el-form-item>
@@ -98,7 +101,7 @@
                   </el-form>
                 </div>
                 <div class="modal-footer">
-                  <button class="button medium ed-btn__secondary" @click="addCustomStandardModal = false">Submit</button>
+                  <button class="button medium ed-btn__secondary" @click="validate()">Submit</button>
                   <button class="button medium ed-btn__tertiary" @click="addCustomStandardModal = false">Cancel</button>
                 </div>
               </md-dialog>
@@ -111,7 +114,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="side-menu__results card-boxes lessons_teacher">
+        <!-- All Posts -->
+        <div v-if="!allFiltersSet" class="side-menu__results card-boxes lessons_teacher">
           <!-- Box -->
           <div
             v-infinite-scroll="loadMore"
@@ -151,6 +155,23 @@
           </div>
           <div v-if="busy" class="preloader"><span><img src="../assets/images/preloader.gif" /> Loading...</span></div>
         </div>
+        <!-- Filtered Standards -->
+        <div v-if="allFiltersSet" class="side-menu__results card-boxes lessons_teacher standard">
+           <div class="card-box" v-for="(standard, idx) in standards" :key="idx">
+              <div class="card-content">
+                <p>{{ standard.customStandard }}</p>
+                <router-link to="/lesson-plan/"
+                  ><button class="button medium ed-btn__primary">
+                    {{standard.type}}
+                  </button></router-link
+                >
+                <button @click="addCustomStandardModal = true" class="button medium ed-btn__secondary add-lesson-plan" href="#">
+                  <md-tooltip md-direction="top">Add Lesson Plan</md-tooltip>
+                  <i class="icon icon-add"></i>
+                </button>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
   </div>
@@ -177,20 +198,37 @@ export default {
   data() {
     return {
       posts: [],
+      standards: [],
       limit: 5,
       busy: false,
       page: 1,
       list: [],
       filterData: {},
       allFiltersSet: false,
+      strandID: 0,
+      maxCustomId: 0,
+      gradeID: "",
+      isDisabledGrade:true,
+      isDisabledStrand:true,
+      filterBySubject: [],
+      filterByGrade: [],
       // MODALS
       addCustomStandardModal: false,
       // ADD CUSTOM STANDARD
       formAddStandard: {
         standardReadyForAddIdentifierCode: "",
-        standardReadyForAddPrivacy: "public",
+        standardReadyForAddPrivacy: "Public",
         standardReadyForAddText: "",
-        standardReadyForAddID: 0
+        standardReadyForAddID: 0,
+        rules: {
+          standardReadyForAddText: [
+            {
+              required: true,
+              message: "Custom Standard is Required!",
+              trigger: "blur"
+            }
+          ]
+        }
       },
       model: {
         //DEFINITIONS
@@ -200,49 +238,30 @@ export default {
       },
       options: {
         //OPTIONS
-        lessonPlanBankSubjectOptions: [
-          { value: "", label: "Select Subject" },
-          { value: "English", label: "English" },
-          { value: "Mathematics", label: "Mathematics" },
-        ],
-        lessonPlanBankGradeOptions: [
-          { value: "", label: "Select Grade" },
-          { value: "First", label: "First" },
-          { value: "Second", label: "Second" },
-          { value: "Third", label: "Third" }
-        ],
-        lessonPlanBankStrandOptions: [
-          { value: "", label: "Select Strand" },
-          { value: "Business", label: "Business" },
-          { value: "Accountancy", label: "Accountancy" },
-          { value: "Management (BAM)", label: "Management (BAM)" }
-        ],
+        lessonPlanBankSubjectOptions: [],
+        lessonPlanBankGradeOptions: [],
+        lessonPlanBankStrandOptions: [],
       },
       rules: {},
     };
   },
   methods: {
-    // VALIDATE
-    validate() {
-      return new Promise((resolve) => {
-        this.$refs.form.validate((valid) => {
-          this.$emit("on-validate", valid, this.model);
-          resolve(valid);
-        });
-      });
-    },
     // INFINITE HANDLER
     loadMore() {
       this.busy = true;
       if(typeof this.filterData.length === 'undefined' || this.filterData.length === 0){
         //FILTER NOT SET
+        //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
         this.axios.get("lesson-plan.json").then((response) => {
           const append = response.data.slice(
             this.posts.length,
             this.posts.length + this.limit
           );
           this.posts = this.posts.concat(append);
-          localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(response.data));
+
+          this.options.lessonPlanBankSubjectOptions = [...new Set(response.data.map(item => item.subject))];
+
+          localStorage.setItem("lessonPlanJSONData",JSON.stringify(response.data));
           this.busy = false;
         }).catch(error => error.response.data);
       } 
@@ -257,9 +276,15 @@ export default {
           this.busy = false;
       }
     },
+    // LOCALSTORAGE
     loadLessonPlanStorage() {
+      return JSON.parse(localStorage.getItem("lessonPlanJSONData"));
+    },
+    // LOCALSTORAGE
+    loadLessonPlanBankStorage() {
       return JSON.parse(localStorage.getItem("lessonPlanBankJSONData"));
     },
+    // FILTER DROP-DOWNS
     filterList() {
       const lessonPlanStorage = this.loadLessonPlanStorage();
 
@@ -271,7 +296,7 @@ export default {
       if(!subject && !grade && !strand){
         this.filterData.length = 0;
         this.loadMore();
-      }  
+      }
         
       //FILTER SET
       this.filterData = lessonPlanStorage.filter(function(item) {
@@ -291,8 +316,50 @@ export default {
           return (item.subject === subject && item.grade === grade && item.strand === strand);  
       }); 
 
-      //ALL FILTERS SET
-      (subject && grade && strand) ? this.allFiltersSet = true: this.allFiltersSet = false;
+      // SELECTED SUBJECT
+      if(subject){
+        this.filterBySubject = lessonPlanStorage.filter(function(item) {
+          return item.subject === subject;
+        });
+        this.options.lessonPlanBankGradeOptions = [...new Set(this.filterBySubject.map(item => item.grade))];
+        this.isDisabledGrade = false;
+      }
+      else{
+        this.isDisabledGrade = true;
+      }
+      
+      // SELECTED GRADE
+      if(subject && grade){
+        this.filterByGrade =  this.filterBySubject.filter(function(item) {
+          return item.grade === grade;
+        });
+        this.options.lessonPlanBankStrandOptions = [...new Set(this.filterByGrade.map(item => item.strand))];
+        this.isDisabledStrand = false;
+      } else {
+        this.isDisabledStrand = true;
+      }
+
+      // ALL FILTERS SET CHECK
+      if(subject && grade && strand){
+        this.allFiltersSet = true;
+
+        const countNumberOfFilteredSelection = lessonPlanStorage.filter(function(item){
+          return (item.subject === subject && item.grade === grade && item.strand === strand);
+        })
+        this.createIdentifierCode(subject,grade,strand);
+        this.formAddStandard.standardReadyForAddIdentifierCode = this.formAddStandard.standardReadyForAddIdentifierCode +"."+ (countNumberOfFilteredSelection.length+1);
+
+        this.axios.get("lesson-plan-bank.json").then((response) => {
+ 
+          this.standards = response.data;
+
+          localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(response.data));
+          this.busy = false;
+        }).catch(error => error.response.data);
+
+      } else {
+        this.allFiltersSet = false;
+      }
 
       this.posts = [];
       const append = this.filterData.slice(
@@ -301,11 +368,78 @@ export default {
       );
       this.posts = this.posts.concat(append);
     },
-    infiniteScroll(){
-    
+    // IDENTIFIER CODE CREATOR 
+    createIdentifierCode(subject,grade,strand){
+      // MAP STRAND
+      this.strandID = strand.replace(/[^A-Z]/g, '');
+
+      this.gradeID = 0;
+      // MAP GRADE
+      switch (grade) {
+          case "One": this.gradeID = 1;
+              break;
+          case "Two": this.gradeID = 2;
+              break;
+          case "Three": this.gradeID = 3;
+              break;
+          case "Four": this.gradeID = 4;
+              break;
+          case "Five": this.gradeID = 5;
+              break;
+          case "Six": this.gradeID = 6;
+              break;
+            case "Seven": this.gradeID = 7;
+              break;
+          case "Eight": this.gradeID = 8;
+              break;
+          case "Nine": this.gradeID = 9;
+              break;
+          case "Ten": this.gradeID = 10;
+              break;
+          default:
+              this.gradeID = 1;
+      }
+
+      this.formAddStandard.standardReadyForAddIdentifierCode = "CS"+"."+this.gradeID+"."+this.strandID;
     },
+    // UPDATE ON CHANGE
     updateForm (input, value) {
       this.formAddStandard[input] = value;
+    },
+    // VALIDATE FORM ADD STANDARD
+    validate() {
+      return new Promise((resolve) => {
+        this.$refs.formAddStandard.validate((valid) => {
+          this.$emit('on-validate', valid, this.model)
+          resolve(valid);
+          if(valid)
+            this.addCustomLessonStandard();
+        });
+    })
+    },
+    // ADD CUSTOM LESSON STANDARD
+    addCustomLessonStandard(){
+      const lessonPlanStorage = this.loadLessonPlanStorage();
+
+      // FIND LARGEST ID
+      this.maxCustomId = lessonPlanStorage.reduce(
+        (max, character) => (character.id > max ? character.id : max),
+        lessonPlanStorage[0].id
+      );
+
+      const newCustomStandard = {
+        "id": this.maxCustomId+1,
+        "title": this.formAddStandard.standardReadyForAddIdentifierCode,
+        "subject": this.model.lessonPlanBankSubject,
+        "grade": this.model.lessonPlanBankGrade,
+        "strand": this.model.lessonPlanBankStrand,
+        "type":"",
+        "resources":"",
+        "privacy": this.formAddStandard.standardReadyForAddPrivacy,
+        "body": this.formAddStandard.standardReadyForAddText
+      }
+
+      this.addCustomStandardModal = false;
     }
   }, 
   mounted() {
@@ -317,6 +451,6 @@ export default {
   },
   created() {
     this.loadMore();
-  },
-};
+  }
+}
 </script>
