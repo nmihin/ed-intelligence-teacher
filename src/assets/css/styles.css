@@ -255,13 +255,17 @@ ICONS
   -moz-osx-font-smoothing: grayscale
 }
 
+.icon-eye:before {
+  content: "\e938";
+  color:var(--white);
+}
 .icon-menu-assigned:before {
   content: "\e936";
-  color: #fff;
+  color:var(--white);
 }
 .icon-menu-list:before {
   content: "\e937";
-  color: #fff;
+  color:var(--white);
 }
 .icon-add-account:before {
   content: "\e925";
@@ -2639,6 +2643,10 @@ ul.side-menu__results>li>ul>li a:hover {
   overflow-y: auto;
 }
 
+.modal-window .modal-content .card-boxes.lessons_teacher {
+  overflow-y: initial;
+}
+
 .modal-window .modal-footer {
   background-color: var(--background);
 }
@@ -2713,6 +2721,11 @@ ul.side-menu__results>li>ul>li a:hover {
   background-color: var(--background);
   font-size: 12px;
   line-height: 1.25;
+}
+
+/* Infinite scroll */
+.infinite-scroll {
+  width: 100%;
 }
 
 /* GZA buttons */
@@ -3000,6 +3013,21 @@ button[disabled="true"] {
 
 .card-boxes.lessons_teacher.standard .card-box .card-content p {
   width:calc(100% - 40px)
+}
+
+.card-boxes.lessons_teacher.standard .ed-btn__primary > .icon {
+  font-size: 28px;
+  position: relative;
+  right: 5px;
+  height: 16px;
+  padding: 0;
+  text-align: center;
+  bottom: 6px;
+}
+
+.card-boxes.lessons_teacher.standard .ed-btn__primary > span {
+  float: left;
+  padding: 12px;
 }
 
 .card-boxes.lessons_teacher .card-box .card-footer {

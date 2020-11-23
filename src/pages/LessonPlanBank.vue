@@ -195,6 +195,48 @@
             </div>
     </md-dialog>
   <!-- END ADD CUSTOM STANDARD MODAL -->
+  <!-- START VIEW ALL LESSONS OF SELECTED STANDARD -->
+    <md-dialog :md-active.sync="viewLessonsModal" class="modal-window filter-modal">
+        <h2 class="modal-title">Lesson Standard Detail</h2>
+        <div class="modal-content">
+          <div v-if="viewLessonsModal" class="side-menu__results card-boxes lessons_teacher standard">
+            <div class="card-box" v-for="(post, idx) in standards[0].lessons" :key="idx">
+              <div class="card-title">
+                <h2>{{ post.title }}</h2>
+              </div>
+              <div class="card-element">
+                <a href="#" class="edit">
+                  <i class="icon icon-edit"></i>
+                </a>
+                <a href="#" class="delete">
+                  <i class="icon icon-delete"></i>
+                </a>
+              </div>
+              <ul class="card-breadcrumb">
+                <li class="card-subject">{{ standards[0].subject }}</li>
+                <li class="card-grade">{{ standards[0].grade }}</li>
+                <li class="card-strand">{{ standards[0].strand }}</li>
+              </ul>
+              <div class="card-content">
+                <p>{{ post.body }}</p>
+                <router-link to="/lesson-plan/"
+                  ><button class="button medium ed-btn__primary">
+                    {{ standards[0].type }}
+                  </button></router-link
+                >
+              </div>
+              <div class="card-footer">
+                <i class="icon icon-lesson"></i
+                ><span>{{ post.resources }} Resources</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="button medium ed-btn__tertiary" @click="viewLessonsModal = false">Close</button>
+        </div>
+    </md-dialog>
+  <!-- END VIEW ALL LESSONS OF SELECTED STANDARD -->
     <div class="container-fluid">
       <el-form :model="model" :rules="rules" ref="form">
         <div class="filter-card">
@@ -273,7 +315,7 @@
       </div>
       <div class="row">
         <!-- All Posts -->
-        <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
+        <div class="infinite-scroll" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="limit">
           <!-- Lesson LOAD IF NOT ALL FILTERS SET-->
           <div v-if="!allFiltersSet" class="side-menu__results card-boxes lessons_teacher">
             <div class="card-box" v-for="(post, idx) in posts" :key="idx">
@@ -312,11 +354,11 @@
             <div class="card-box" v-for="(standard, idx) in standards" :key="idx">
               <div class="card-content">
                 <p>{{ standard.customStandard }}</p>
-                <router-link to="/lesson-plan/"
-                  ><button class="button medium ed-btn__primary">
+                  <button  @click="viewLessonsModal = true" class="button medium ed-btn__primary left">
+                    <i class="icon icon-eye"></i>
                     {{ standard.type }}
-                  </button></router-link
-                >
+                  </button>
+                  <span>{{standards[0].lessons.length}} Lessons</span>
                 <button
                   @click="addNewLessonModal = true"
                   class="button medium ed-btn__secondary add-lesson-plan"
@@ -375,6 +417,7 @@ export default {
       // MODALS
       addCustomStandardModal: false,
       addNewLessonModal: false,
+      viewLessonsModal: false,
       // ADD CUSTOM STANDARD
       formAddStandard: {
         standardReadyForAddIdentifierCode: "",
@@ -488,9 +531,9 @@ export default {
   methods: {
     // INFINITE HANDLER - LESSON
     loadMore() {
-      this.busy = true;
       //IF ALL FILTERS NOT SET
       if (typeof this.filterData.length === "undefined" ||this.filterData.length === 0) {
+        this.busy = true;
         //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
         this.axios.get("lesson-plan.json").then((response) => {
             const append = response.data.slice(
@@ -503,26 +546,37 @@ export default {
               ...new Set(response.data.map((item) => item.subject)),
             ];
 
-            localStorage.setItem(
-              "lessonPlanJSONData",
-              JSON.stringify(response.data)
-            );
+            localStorage.setItem("lessonPlanJSONData",JSON.stringify(response.data));
             this.busy = false;
           })
           .catch((error) => error.response.data);
       } else {
         //IF ALL FILTERS SET
-        //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
-        this.axios.get("lesson-plan-bank.json").then((response) => {
-              console.log(this.formAddStandard.standardReadyForAddIdentifierCode)
+        this.busy = false;
+        const subject = this.model.lessonPlanBankSubject;
+        const grade = this.model.lessonPlanBankGrade;
+        const strand = this.model.lessonPlanBankStrand;
+        const lessonPlanBankStorage = this.loadLessonPlanBankStorage();
+        
+          if(lessonPlanBankStorage){
+            const filterSelect = lessonPlanBankStorage.filter(function(item) {
+                if (item.subject == subject && item.grade == grade && item.strand == strand) return item;
+            });
 
-              const append = response.data.slice(
-                this.standards.length,
-                this.standards.length + this.limit
-              );
-              this.standards = this.standards.concat(append);
-              this.busy = false;
-            }).catch((error) => error.response.data);
+            this.standards = filterSelect;
+          }
+          else{
+            //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
+            this.axios.get("lesson-plan-bank.json").then((response) => {
+
+                const filterSelect = response.data.filter(function(item) {
+                  if (item.subject == subject && item.grade == grade && item.strand == strand) return item;
+                });
+
+                this.standards = filterSelect;
+                localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(response.data));
+              }).catch((error) => error.response.data)
+          }  
         }
     },
     // LOCALSTORAGE
@@ -606,7 +660,8 @@ export default {
           }
         );
         this.createIdentifierCode(subject, grade, strand);
-          //this.formAddStandard.standardReadyForAddIdentifierCode = this.formAddStandard.standardReadyForAddIdentifierCode + "." + (countNumberOfFilteredSelection.length + 1);
+          
+          this.formAddStandard.standardReadyForAddIdentifierCode = this.formAddStandard.standardReadyForAddIdentifierCode + "." + (countNumberOfFilteredSelection.length + 1);
           this.loadMore();
       } else {
         this.allFiltersSet = false;
@@ -661,7 +716,7 @@ export default {
           this.gradeID = 1;
       }
 
-      this.formAddStandard.standardReadyForAddIdentifierCode = "CS" + "." + this.gradeID + "." + this.strandID +".";
+      this.formAddStandard.standardReadyForAddIdentifierCode = "CS" + "." + this.gradeID + "." + this.strandID;
     },
     // UPDATE ON CHANGE
     updateForm(input, value) {
