@@ -2678,6 +2678,27 @@ ul.side-menu__results>li>ul>li a:hover {
   padding:0 10px;
 }
 
+.modal-window.filter-modal.standard .card-content-title  {
+  font-size: 21px;
+  padding: 0 0 10px 0;
+}
+
+.modal-window.filter-modal.standard .card-content-info {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--lightgray);
+  background-color: var(--background);
+  font-size:14px;
+}
+
+.modal-window.filter-modal.standard .card-content-info h3 {
+  font-size:14px;
+}
+
+.modal-window.filter-modal.standard .card-content-info .info {
+  color: var(--red);
+}
+
 /* GZA buttons */
 [class*="ed-btn"] {
   z-index: 1;
