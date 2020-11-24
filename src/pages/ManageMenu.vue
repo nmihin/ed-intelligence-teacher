@@ -24,6 +24,7 @@
               >
                 <VueNestableHandle slot-scope="{item,index,isChild}" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i> {{ item.label }}
+                  <span class="card-box-api" v-for="(api, idx) in item.apiAccess" :key="idx">{{api}}</span>
                   <a
                     @click="
                       deleteMenuModal = true;
@@ -249,6 +250,7 @@
               >
                 <VueNestableHandle slot-scope="{item}" :item="item">
                   <i class="icon" v-bind:class="item.icon"></i>{{ item.label }}
+                  <span class="card-box-api" v-for="(api, idx) in item.apiAccess" :key="idx">{{api}}</span>
                   <a
                     @click="
                       editMenuModal = true;
@@ -293,7 +295,7 @@ export default {
                 "icon": "icon-add-account",
                 "label": "Add Account",
                 "link": "#",
-                "apiAccess": []
+                "apiAccess": ["Get","Post","Patch","Delete"]
               },
               {
                 "id": 1,
@@ -307,7 +309,7 @@ export default {
                     "icon": "icon-assessment-weight",
                     "label": "Assessment Weight",
                     "link": "#",
-                    "apiAccess": []
+                    "apiAccess": ["Get","Post","Patch","Delete"]
                   }
                 ]
               },
@@ -323,7 +325,7 @@ export default {
                 "icon": "icon-lesson-plan-overview",
                 "label": "Lesson Plan Overview",
                 "link": "#",
-                "apiAccess": []
+                "apiAccess": ["Get","Post"]
               },
               {
                 "id": 15,

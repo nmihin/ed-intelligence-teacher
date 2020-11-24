@@ -842,8 +842,9 @@ Manage Menu
   width: 28px;
   height: 28px;
   z-index: 5;
-  right: 5px;
-  position: relative;
+  right: 7px;
+  position: absolute;
+  top: 7px;
 }
 
 .card-boxes.manage-menu .card-box .card-option .icon {
@@ -1009,7 +1010,8 @@ Manage Menu
 }
 .nestable-handle {
   display: inline-block;
-  width: 100%;
+  line-height: 1.6;
+  width: calc(100% - 30px);
 }
 .nestable-handle > .icon {
   font-size: 16px;
@@ -1024,6 +1026,16 @@ Manage Menu
 }
 .nestable-item-content .icon:before {
   color: var(--bluewood);
+}
+.nestable-item .card-box-api {
+  color: var(--white);
+  background-color: var(--primary);
+  border-radius: 15px;
+  padding: 4px 9px;
+  font-size: 10px;
+  font-weight: 300;
+  margin-left: 3px;
+  text-transform: capitalize;
 }
 
 /*

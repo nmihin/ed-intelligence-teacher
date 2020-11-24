@@ -200,35 +200,40 @@
         <h2 class="modal-title">Lesson Standard Detail</h2>
         <div class="modal-content">
           <div v-if="viewLessonsModal" class="side-menu__results card-boxes lessons_teacher standard">
-            <div class="card-box" v-for="(post, idx) in standards[standardPreview].lessons" :key="idx">
-              <div class="card-title">
-                <h2>{{ post.title }}</h2>
+            <div v-if="standards[standardPreview].lessons.length !==0">
+              <div class="card-box" v-for="(post, idx) in standards[standardPreview].lessons" :key="idx">
+                <div class="card-title">
+                  <h2>{{ post.title }}</h2>
+                </div>
+                <div class="card-element">
+                  <a href="#" class="edit">
+                    <i class="icon icon-edit"></i>
+                  </a>
+                  <a href="#" class="delete">
+                    <i class="icon icon-delete"></i>
+                  </a>
+                </div>
+                <ul class="card-breadcrumb">
+                  <li class="card-subject">{{ standards[standardPreview].subject }}</li>
+                  <li class="card-grade">{{ standards[standardPreview].grade }}</li>
+                  <li class="card-strand">{{ standards[standardPreview].strand }}</li>
+                </ul>
+                <div class="card-content">
+                  <p>{{ post.body }}</p>
+                  <router-link to="/lesson-plan/"
+                    ><button class="button medium ed-btn__primary">
+                      {{ standards[standardPreview].type }}
+                    </button></router-link
+                  >
+                </div>
+                <div class="card-footer">
+                  <i class="icon icon-lesson"></i
+                  ><span>{{ post.resources }} Resources</span>
+                </div>
               </div>
-              <div class="card-element">
-                <a href="#" class="edit">
-                  <i class="icon icon-edit"></i>
-                </a>
-                <a href="#" class="delete">
-                  <i class="icon icon-delete"></i>
-                </a>
-              </div>
-              <ul class="card-breadcrumb">
-                <li class="card-subject">{{ standards[standardPreview].subject }}</li>
-                <li class="card-grade">{{ standards[standardPreview].grade }}</li>
-                <li class="card-strand">{{ standards[standardPreview].strand }}</li>
-              </ul>
-              <div class="card-content">
-                <p>{{ post.body }}</p>
-                <router-link to="/lesson-plan/"
-                  ><button class="button medium ed-btn__primary">
-                    {{ standards[standardPreview].type }}
-                  </button></router-link
-                >
-              </div>
-              <div class="card-footer">
-                <i class="icon icon-lesson"></i
-                ><span>{{ post.resources }} Resources</span>
-              </div>
+            </div>
+            <div v-if="standards[standardPreview].lessons.length ===0">
+              <h4>No Available Lessons</h4>
             </div>
           </div>
         </div>
@@ -535,8 +540,8 @@ export default {
       //IF ALL FILTERS NOT SET
       if (typeof this.filterData.length === "undefined" ||this.filterData.length === 0) {
         this.busy = true;
-        //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
-        this.axios.get("lesson-plan.json").then((response) => {
+        this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
+        //this.axios.get("lesson-plan.json").then((response) => {
             const append = response.data.slice(
               this.posts.length,
               this.posts.length + this.limit
@@ -567,9 +572,8 @@ export default {
             this.standards = filterSelect;
           }
           else{
-            //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
-            this.axios.get("lesson-plan-bank.json").then((response) => {
-
+            this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
+            //this.axios.get("lesson-plan-bank.json").then((response) => {
                 const filterSelect = response.data.filter(function(item) {
                   if (item.subject == subject && item.grade == grade && item.strand == strand) return item;
                 });
