@@ -29,48 +29,87 @@
                           ></el-input>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddActivities" label="Lesson Plan Activities">
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              (also known as the warm-up, do-now, etc.) Write the brief practice or activity that will occur in the beginning of the lesson to engage students and make the learning meaningful from the start.
+                            </md-tooltip>
+                          </i>
                           <el-input type="textarea" @input="updateForm('lessonReadyForAddActivities',formAddLesson.lessonReadyForAddActivities)"
                             v-model="formAddLesson.lessonReadyForAddActivities"
                             placeholder="Lesson Plan Activities"
                           ></el-input>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddMaterials" label="Lesson Plan Materials">
-                          <el-input type="textarea" @input="updateForm('lessonReadyForAddMaterials',formAddLesson.lessonReadyForAddMaterials)"
-                            v-model="formAddLesson.lessonReadyForAddMaterials"
-                            placeholder="Lesson Plan Materials"
-                          ></el-input>
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              What material(s) or piece(s) of information will the teacher show, tell, or introduce to help students acquire a newly or previously learned concept/ idea?
+                            </md-tooltip>
+                          </i>
+                          <el-checkbox-group @change="updateForm('lessonReadyForAddMaterials',formAddLesson.lessonReadyForAddMaterials)" v-model="formAddLesson.lessonReadyForAddMaterials">
+                            <el-checkbox v-for="material in options.lessonReadyForAddMaterialsOptions" :label="material" :key="material"><span class="text-capitalize">{{material}}</span></el-checkbox>
+                          </el-checkbox-group>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddGuidedPractice" label="Lesson Plan Guided Practice">
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              What will the teacher(s) and learner(s) do together to practice a newly or previously learned concept/ idea?
+                            </md-tooltip>
+                          </i>
                           <el-input type="textarea" @input="updateForm('lessonReadyForAddGuidedPractice',formAddLesson.lessonReadyForAddGuidedPractice)"
                             v-model="formAddLesson.lessonReadyForAddGuidedPractice"
                             placeholder="Lesson Plan Guided Practice"
                           ></el-input>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddIndependentPractice" label="Lesson Plan Independent Practice">
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              How will the learner(s) demonstrate their understanding of the newly or previously learned concept/ idea?
+                            </md-tooltip>
+                          </i>
                           <el-input type="textarea" @input="updateForm('lessonReadyForAddIndependentPractice',formAddLesson.lessonReadyForAddIndependentPractice)"
                             v-model="formAddLesson.lessonReadyForAddIndependentPractice"
                             placeholder="Lesson Plan Independent Practice"
                           ></el-input>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddAssessment" label="Lesson Plan Assessment">
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              What tools (selected response, extended constructed response, performance task, writing prompt, projects, etc.) are being used to ensure that students mastery levels are measured.
+                            </md-tooltip>
+                          </i>
                           <el-input type="textarea" @input="updateForm('lessonReadyForAddAssessment',formAddLesson.lessonReadyForAddAssessment)"
                             v-model="formAddLesson.lessonReadyForAddAssessment"
                             placeholder="Lesson Plan Assessment"
                           ></el-input>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddNotes" label="Lesson Plan Notes">
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              Utilize this field to create any additional comments about the lesson. 
+                            </md-tooltip>
+                          </i>
                           <el-input type="textarea" @input="updateForm('lessonReadyForAddNotes',formAddLesson.lessonReadyForAddNotes)"
                             v-model="formAddLesson.lessonReadyForAddNotes"
                             placeholder="Lesson Plan Notes"
                           ></el-input>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddModifications" label="Lesson Plan Modifications and Accommodations">
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              Write the additional supports that particular students will need to access the curriculum/ daily lesson.
+                            </md-tooltip>
+                          </i>
                           <el-input type="textarea" @input="updateForm('lessonReadyForAddModifications',formAddLesson.lessonReadyForAddModifications)"
                             v-model="formAddLesson.lessonReadyForAddModifications"
                             placeholder="Lesson Plan Modifications and Accommodations"
                           ></el-input>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddClosing" label="Lesson Plan Closing">
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              Closing is summative wrap-up or review of the instructional objective to ensure that the goal of the lesson was met, e.g.,'Today we learned about ___ and ___.  This is why we learned it and this is how we will use it in the future.
+                            </md-tooltip>
+                          </i>
                           <el-input type="textarea" @input="updateForm('lessonReadyForAddClosing',formAddLesson.lessonReadyForAddClosing)"
                             v-model="formAddLesson.lessonReadyForAddClosing"
                             placeholder="Lesson Plan Closing"
@@ -91,7 +130,7 @@
                 <div class="modal-footer">
                   <button
                     class="button medium ed-btn__secondary"
-                    @click="validate()"
+                    @click="validateAddLessonPlan()"
                   >
                     Submit
                   </button>
@@ -233,7 +272,7 @@
               </div>
             </div>
             <div v-if="standards[standardPreview].lessons.length ===0">
-              <h4>No Available Lessons</h4>
+              <h5>No Available Lessons</h5>
             </div>
           </div>
         </div>
@@ -309,7 +348,7 @@
         <div class="container-fluid">
           <button
             v-if="allFiltersSet"
-            @click="createIdentifierCode()"
+            @click="createIdentifierCode();addCustomStandardModal = true"
             class="button medium ed-btn__primary add-custom-standard"
             href="#"
           >
@@ -444,7 +483,7 @@ export default {
       formAddLesson: {
         lessonReadyForAddTitle:"",
         lessonReadyForAddActivities:"",
-        lessonReadyForAddMaterials:"",
+        lessonReadyForAddMaterials:[],
         lessonReadyForAddGuidedPractice:"",
         lessonReadyForAddIndependentPractice:"",
         lessonReadyForAddAssessment:"",
@@ -530,6 +569,7 @@ export default {
         lessonPlanBankSubjectOptions: [],
         lessonPlanBankGradeOptions: [],
         lessonPlanBankStrandOptions: [],
+        lessonReadyForAddMaterialsOptions: ['Visual','Audio','Kinesthetic (Physical)','Presentation','Visual,Demostration Two','VAP','Doc'],
       },
       rules: {},
     };
@@ -673,8 +713,6 @@ export default {
     },
     // IDENTIFIER CODE CREATOR
     createIdentifierCode() {
-      this.addCustomStandardModal = true
-
       const grade = this.model.lessonPlanBankGrade;
       const strand = this.model.lessonPlanBankStrand;
 
@@ -733,6 +771,46 @@ export default {
           if (valid) this.addCustomLessonStandard();
         });
       });
+    },
+    // VALIDATE ADD LESSON PLAN
+    validateAddLessonPlan(){
+      return new Promise((resolve) => {
+        this.$refs.formAddLesson.validate((valid) => {
+          this.$emit("on-validate", valid, this.model);
+          resolve(valid);
+          if (valid) this.addNewLesson();
+        });
+      }); 
+    },
+    // ADD NEW LESSON
+    addNewLesson() {
+      const lessonPlanStorage = this.loadLessonPlanStorage();
+      const lessonPlanBankStorage = this.loadLessonPlanBankStorage();
+
+      const maxId = lessonPlanStorage.reduce(function(prev, current) {
+          return (prev.id > current.id) ? prev : current
+      })
+
+      // NOT finished yet
+      //this.createIdentifierCode();
+
+      const newLesson = [{
+        id: maxId+1,
+        type: this.formAddStandard.standardReadyForAddIdentifierCode,
+        privacy: this.formAddStandard.standardReadyForAddPrivacy,
+        subject: this.model.lessonPlanBankSubject,
+        grade: this.model.lessonPlanBankGrade,
+        strand: this.model.lessonPlanBankStrand,
+        title: this.formAddLesson.lessonReadyForAddTitle,
+        resources: 0,
+        body: this.formAddLesson.standardReadyForAddText
+      }];
+
+      //lessonPlanBankStorage.push(newCustomStandard[0])
+
+      //localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(lessonPlanBankStorage));
+      //this.loadMore();
+      this.addCustomStandardModal = false;
     },
     // ADD CUSTOM LESSON STANDARD
     addCustomLessonStandard() {

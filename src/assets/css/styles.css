@@ -255,6 +255,10 @@ ICONS
   -moz-osx-font-smoothing: grayscale
 }
 
+.icon-information:before {
+  content: "\e939";
+  color:var(--white);
+}
 .icon-eye:before {
   content: "\e938";
   color:var(--white);
@@ -2653,6 +2657,17 @@ ul.side-menu__results>li>ul>li a:hover {
   border-bottom: 1px solid var(--gray);
   border-radius: 0;
   overflow-y: auto;
+}
+
+.modal-window .modal-content .el-form-item__content .icon-information {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  padding: 5px;
+  width: 24px;
+  height: 24px;
+  background:var(--primary);
+  border-radius: 50%;
 }
 
 .modal-window .modal-content .card-boxes.lessons_teacher {
