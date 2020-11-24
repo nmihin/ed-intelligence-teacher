@@ -200,7 +200,7 @@
         <h2 class="modal-title">Lesson Standard Detail</h2>
         <div class="modal-content">
           <div v-if="viewLessonsModal" class="side-menu__results card-boxes lessons_teacher standard">
-            <div class="card-box" v-for="(post, idx) in standards[0].lessons" :key="idx">
+            <div class="card-box" v-for="(post, idx) in standards[standardPreview].lessons" :key="idx">
               <div class="card-title">
                 <h2>{{ post.title }}</h2>
               </div>
@@ -213,15 +213,15 @@
                 </a>
               </div>
               <ul class="card-breadcrumb">
-                <li class="card-subject">{{ standards[0].subject }}</li>
-                <li class="card-grade">{{ standards[0].grade }}</li>
-                <li class="card-strand">{{ standards[0].strand }}</li>
+                <li class="card-subject">{{ standards[standardPreview].subject }}</li>
+                <li class="card-grade">{{ standards[standardPreview].grade }}</li>
+                <li class="card-strand">{{ standards[standardPreview].strand }}</li>
               </ul>
               <div class="card-content">
                 <p>{{ post.body }}</p>
                 <router-link to="/lesson-plan/"
                   ><button class="button medium ed-btn__primary">
-                    {{ standards[0].type }}
+                    {{ standards[standardPreview].type }}
                   </button></router-link
                 >
               </div>
@@ -354,11 +354,11 @@
             <div class="card-box" v-for="(standard, idx) in standards" :key="idx">
               <div class="card-content">
                 <p>{{ standard.customStandard }}</p>
-                  <button  @click="viewLessonsModal = true" class="button medium ed-btn__primary left">
+                  <button  @click="lessonsModalDataLoad(idx)" class="button medium ed-btn__primary left">
                     <i class="icon icon-eye"></i>
                     {{ standard.type }}
                   </button>
-                  <span class="card-content-number">{{standards[0].lessons.length}} Lesson(s)</span>
+                  <span class="card-content-number">{{standard.lessons.length}} Lesson(s), {{standard.privacy}}</span>
                 <button
                   @click="addNewLessonModal = true"
                   class="button medium ed-btn__secondary add-lesson-plan"
@@ -401,6 +401,7 @@ export default {
     return {
       posts: [],
       standards: [],
+      standardPreview:0,
       limit: 5,
       busy: false,
       page: 1,
@@ -661,6 +662,11 @@ export default {
       );
       this.posts = this.posts.concat(append);
     },
+    // PREVIEW LESSON MODAL
+    lessonsModalDataLoad(idx){
+      this.standardPreview = idx;
+      this.viewLessonsModal = true;
+    },
     // IDENTIFIER CODE CREATOR
     createIdentifierCode() {
       this.addCustomStandardModal = true
@@ -741,6 +747,7 @@ export default {
       lessonPlanBankStorage.push(newCustomStandard[0])
 
       localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(lessonPlanBankStorage));
+      this.loadMore();
       this.addCustomStandardModal = false;
     },
   },
