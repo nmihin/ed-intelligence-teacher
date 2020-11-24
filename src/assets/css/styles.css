@@ -1035,7 +1035,7 @@ Manage Menu
   font-size: 10px;
   font-weight: 300;
   margin-left: 3px;
-  text-transform: capitalize;
+  text-transform: lowercase;
 }
 
 /*
