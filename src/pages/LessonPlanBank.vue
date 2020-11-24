@@ -182,7 +182,7 @@
             <div class="modal-footer">
               <button
                 class="button medium ed-btn__secondary"
-                @click="validate()"
+                @click="validateAddStandard()"
               >
                 Submit
               </button>
@@ -304,7 +304,7 @@
         <div class="container-fluid">
           <button
             v-if="allFiltersSet"
-            @click="addCustomStandardModal = true"
+            @click="createIdentifierCode()"
             class="button medium ed-btn__primary add-custom-standard"
             href="#"
           >
@@ -358,7 +358,7 @@
                     <i class="icon icon-eye"></i>
                     {{ standard.type }}
                   </button>
-                  <span>{{standards[0].lessons.length}} Lessons</span>
+                  <span class="card-content-number">{{standards[0].lessons.length}} Lesson(s)</span>
                 <button
                   @click="addNewLessonModal = true"
                   class="button medium ed-btn__secondary add-lesson-plan"
@@ -557,7 +557,7 @@ export default {
         const grade = this.model.lessonPlanBankGrade;
         const strand = this.model.lessonPlanBankStrand;
         const lessonPlanBankStorage = this.loadLessonPlanBankStorage();
-        
+
           if(lessonPlanBankStorage){
             const filterSelect = lessonPlanBankStorage.filter(function(item) {
                 if (item.subject == subject && item.grade == grade && item.strand == strand) return item;
@@ -590,7 +590,6 @@ export default {
     // FILTER DROP-DOWNS
     filterList() {
       const lessonPlanStorage = this.loadLessonPlanStorage();
-
       const subject = this.model.lessonPlanBankSubject;
       const grade = this.model.lessonPlanBankGrade;
       const strand = this.model.lessonPlanBankStrand;
@@ -650,19 +649,7 @@ export default {
       if (subject && grade && strand) {
         this.allFiltersSet = true;
 
-        const countNumberOfFilteredSelection = lessonPlanStorage.filter(
-          function(item) {
-            return (
-              item.subject === subject &&
-              item.grade === grade &&
-              item.strand === strand
-            );
-          }
-        );
-        this.createIdentifierCode(subject, grade, strand);
-          
-          this.formAddStandard.standardReadyForAddIdentifierCode = this.formAddStandard.standardReadyForAddIdentifierCode + "." + (countNumberOfFilteredSelection.length + 1);
-          this.loadMore();
+        this.loadMore();
       } else {
         this.allFiltersSet = false;
       }
@@ -675,7 +662,12 @@ export default {
       this.posts = this.posts.concat(append);
     },
     // IDENTIFIER CODE CREATOR
-    createIdentifierCode(subject, grade, strand) {
+    createIdentifierCode() {
+      this.addCustomStandardModal = true
+
+      const grade = this.model.lessonPlanBankGrade;
+      const strand = this.model.lessonPlanBankStrand;
+
       // MAP STRAND
       this.strandID = strand.replace(/[^A-Z]/g, "");
 
@@ -716,14 +708,14 @@ export default {
           this.gradeID = 1;
       }
 
-      this.formAddStandard.standardReadyForAddIdentifierCode = "CS" + "." + this.gradeID + "." + this.strandID;
-    },
+      this.formAddStandard.standardReadyForAddIdentifierCode = "CS" + "." + this.gradeID + "." + this.strandID + "." + (this.standards.length + 1);
+   },
     // UPDATE ON CHANGE
     updateForm(input, value) {
       this.formAddStandard[input] = value;
     },
     // VALIDATE FORM ADD STANDARD
-    validate() {
+    validateAddStandard() {
       return new Promise((resolve) => {
         this.$refs.formAddStandard.validate((valid) => {
           this.$emit("on-validate", valid, this.model);
@@ -734,26 +726,21 @@ export default {
     },
     // ADD CUSTOM LESSON STANDARD
     addCustomLessonStandard() {
-      const lessonPlanStorage = this.loadLessonPlanStorage();
+      const lessonPlanBankStorage = this.loadLessonPlanBankStorage();
 
-      // FIND LARGEST ID
-      this.maxCustomId = lessonPlanStorage.reduce(
-        (max, character) => (character.id > max ? character.id : max),
-        lessonPlanStorage[0].id
-      );
-
-      const newCustomStandard = {
-        id: this.maxCustomId + 1,
-        title: this.formAddStandard.standardReadyForAddIdentifierCode,
+      const newCustomStandard = [{
+        type: this.formAddStandard.standardReadyForAddIdentifierCode,
+        privacy: this.formAddStandard.standardReadyForAddPrivacy,
         subject: this.model.lessonPlanBankSubject,
         grade: this.model.lessonPlanBankGrade,
         strand: this.model.lessonPlanBankStrand,
-        type: "",
-        resources: "",
-        privacy: this.formAddStandard.standardReadyForAddPrivacy,
-        body: this.formAddStandard.standardReadyForAddText,
-      };
+        customStandard: this.formAddStandard.standardReadyForAddText,
+        lessons: []
+      }];
 
+      lessonPlanBankStorage.push(newCustomStandard[0])
+
+      localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(lessonPlanBankStorage));
       this.addCustomStandardModal = false;
     },
   },

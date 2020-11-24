@@ -3025,6 +3025,11 @@ button[disabled="true"] {
   bottom: 6px;
 }
 
+.card-boxes.lessons_teacher.standard .card-content-number {
+  padding: 12px;
+  float: left;
+}
+
 .card-boxes.lessons_teacher.standard .ed-btn__primary > span {
   float: left;
   padding: 12px;
