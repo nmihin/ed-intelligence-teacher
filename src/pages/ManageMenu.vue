@@ -979,13 +979,11 @@ export default {
     loadMore() {
 
       this.posts = this.dummyData[0].su_admin[0];
-      localStorage.setItem("manageMenuJSONData",JSON.stringify(this.dummyData[0]));
-      /*
+      //localStorage.setItem("manageMenuJSONData",JSON.stringify(this.dummyData[0]));
       this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/manage-menu.json").then((response) => {
         localStorage.setItem("manageMenuJSONData",JSON.stringify(response.data));
         this.posts = response.data.su_admin[0];
       });
-      */
     },
     onClickChild: function(idx) {
       const getDataStorage = this.loadManageMenuStorage();
