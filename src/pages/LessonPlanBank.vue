@@ -22,11 +22,21 @@
                           <h3>Fill in the fields below to complete your lesson plan. Content is required for each field.<span class="info">*</span></h3>
                           <h3 class="info">For the protection and privacy of our students, please do not use any unique identifiers when generating any part of your lesson plan.</h3>
                         </div>
-                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddTitle" label="Lesson Plan Title">
+                        <el-form-item class="col-12 col-md-12" prop="lessonReadyForAddTitle" label="Lesson Plan Title">
                           <el-input type="textarea" @input="updateForm('lessonReadyForAddTitle',formAddLesson.lessonReadyForAddTitle)"
                             v-model="formAddLesson.lessonReadyForAddTitle"
                             placeholder="Lesson Plan Title"
                           ></el-input>
+                        </el-form-item>
+                        <el-form-item class="col-12 col-md-12" prop="lessonReadyForAddMaterials" label="Lesson Plan Materials">
+                          <i class="icon icon-information">
+                            <md-tooltip md-direction="top">
+                              What material(s) or piece(s) of information will the teacher show, tell, or introduce to help students acquire a newly or previously learned concept/ idea?
+                            </md-tooltip>
+                          </i>
+                          <el-checkbox-group @change="updateForm('lessonReadyForAddMaterials',formAddLesson.lessonReadyForAddMaterials)" v-model="formAddLesson.lessonReadyForAddMaterials">
+                            <el-checkbox v-for="material in options.lessonReadyForAddMaterialsOptions" :label="material" :key="material"><span class="text-capitalize">{{material}}</span></el-checkbox>
+                          </el-checkbox-group>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddActivities" label="Lesson Plan Activities">
                           <i class="icon icon-information">
@@ -38,16 +48,6 @@
                             v-model="formAddLesson.lessonReadyForAddActivities"
                             placeholder="Lesson Plan Activities"
                           ></el-input>
-                        </el-form-item>
-                        <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddMaterials" label="Lesson Plan Materials">
-                          <i class="icon icon-information">
-                            <md-tooltip md-direction="top">
-                              What material(s) or piece(s) of information will the teacher show, tell, or introduce to help students acquire a newly or previously learned concept/ idea?
-                            </md-tooltip>
-                          </i>
-                          <el-checkbox-group @change="updateForm('lessonReadyForAddMaterials',formAddLesson.lessonReadyForAddMaterials)" v-model="formAddLesson.lessonReadyForAddMaterials">
-                            <el-checkbox v-for="material in options.lessonReadyForAddMaterialsOptions" :label="material" :key="material"><span class="text-capitalize">{{material}}</span></el-checkbox>
-                          </el-checkbox-group>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddGuidedPractice" label="Lesson Plan Guided Practice">
                           <i class="icon icon-information">
@@ -258,7 +258,7 @@
                   <li class="card-strand">{{ standards[standardPreview].strand }}</li>
                 </ul>
                 <div class="card-content">
-                  <p>{{ post.body }}</p>
+                  <p>{{ standards[standardPreview].customStandard }}</p>
                   <router-link to="/lesson-plan/"
                     ><button class="button medium ed-btn__primary">
                       {{ standards[standardPreview].type }}
@@ -266,8 +266,14 @@
                   >
                 </div>
                 <div class="card-footer">
-                  <i class="icon icon-lesson"></i
-                  ><span>{{ post.resources }} Resources</span>
+                  <div class="card-user-profile">
+                    <img class="card-user-profile-image" src="../assets/img/users/avatar-1.jpg" alt="User">
+                    <h2 class="card-user-profile-username">Reanna Gulgowski Oberbrunerhoffman von Düsseldorf</h2>
+                    <h3 class="card-user-profile-role">Secondary Computer Teacher</h3>
+                  </div>
+                  <div class="card-user-resources">
+                    <i class="icon icon-lesson"></i><span>{{post.resources}} Resources</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -404,7 +410,7 @@
                   </button>
                   <span class="card-content-number">{{standard.lessons.length}} Lesson(s), {{standard.privacy}}</span>
                 <button
-                  @click="addNewLessonModal = true"
+                  @click="assignStrandId(idx,standard.customStandard);addNewLessonModal = true"
                   class="button medium ed-btn__secondary add-lesson-plan"
                   href="#"
                 >
@@ -479,7 +485,9 @@ export default {
           ],
         },
       },
-      // ADD LESSON
+      // ADD NEW LESSON
+      addNewLessonId: 0,
+      addNewLessonStandard: "",
       formAddLesson: {
         lessonReadyForAddTitle:"",
         lessonReadyForAddActivities:"",
@@ -580,8 +588,8 @@ export default {
       //IF ALL FILTERS NOT SET
       if (typeof this.filterData.length === "undefined" ||this.filterData.length === 0) {
         this.busy = true;
-        this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
-        //this.axios.get("lesson-plan.json").then((response) => {
+        //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
+        this.axios.get("lesson-plan.json").then((response) => {
             const append = response.data.slice(
               this.posts.length,
               this.posts.length + this.limit
@@ -612,8 +620,8 @@ export default {
             this.standards = filterSelect;
           }
           else{
-            this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
-            //this.axios.get("lesson-plan-bank.json").then((response) => {
+            //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
+            this.axios.get("lesson-plan-bank.json").then((response) => {
                 const filterSelect = response.data.filter(function(item) {
                   if (item.subject == subject && item.grade == grade && item.strand == strand) return item;
                 });
@@ -711,52 +719,42 @@ export default {
       this.standardPreview = idx;
       this.viewLessonsModal = true;
     },
+    // CONVERT GRADE TO NUMBER
+    gradeToNumber(grade){
+      switch (grade) {
+        case "One":
+          return 1;
+        case "Two":
+          return 2;
+        case "Three":
+          return 3;
+        case "Four":
+          return 4;
+        case "Five":
+          return 5;
+        case "Six":
+          return 6;
+        case "Seven":
+          return 7;
+        case "Eight":
+          return 8;
+        case "Nine":
+          return 9;
+        case "Ten":
+          return 10;
+        default:
+          return 1;
+      }
+    },
     // IDENTIFIER CODE CREATOR
     createIdentifierCode() {
-      const grade = this.model.lessonPlanBankGrade;
+      const gradeId = this.gradeToNumber(this.model.lessonPlanBankGrade);
       const strand = this.model.lessonPlanBankStrand;
 
       // MAP STRAND
       this.strandID = strand.replace(/[^A-Z]/g, "");
 
-      this.gradeID = 0;
-      // MAP GRADE
-      switch (grade) {
-        case "One":
-          this.gradeID = 1;
-          break;
-        case "Two":
-          this.gradeID = 2;
-          break;
-        case "Three":
-          this.gradeID = 3;
-          break;
-        case "Four":
-          this.gradeID = 4;
-          break;
-        case "Five":
-          this.gradeID = 5;
-          break;
-        case "Six":
-          this.gradeID = 6;
-          break;
-        case "Seven":
-          this.gradeID = 7;
-          break;
-        case "Eight":
-          this.gradeID = 8;
-          break;
-        case "Nine":
-          this.gradeID = 9;
-          break;
-        case "Ten":
-          this.gradeID = 10;
-          break;
-        default:
-          this.gradeID = 1;
-      }
-
-      this.formAddStandard.standardReadyForAddIdentifierCode = "CS" + "." + this.gradeID + "." + this.strandID + "." + (this.standards.length + 1);
+      this.formAddStandard.standardReadyForAddIdentifierCode = "CS" + "." + gradeId + "." + this.strandID + "." + (this.standards.length + 1);
    },
     // UPDATE ON CHANGE
     updateForm(input, value) {
@@ -782,35 +780,60 @@ export default {
         });
       }); 
     },
+    // ASSIGN STRAND ID
+    assignStrandId(id,text) {
+        this.addNewLessonId = id;
+        this.addNewLessonStandard = text;
+    },
     // ADD NEW LESSON
     addNewLesson() {
+      const gradeId = this.gradeToNumber(this.model.lessonPlanBankGrade);
+      const strand = this.model.lessonPlanBankStrand;
+
+      // MAP STRAND
+      this.strandID = strand.replace(/[^A-Z]/g, "");
+
       const lessonPlanStorage = this.loadLessonPlanStorage();
       const lessonPlanBankStorage = this.loadLessonPlanBankStorage();
+
+      const identifierCode = "CC" + "." + gradeId + "." + this.strandID + "." + (this.addNewLessonId+1);
 
       const maxId = lessonPlanStorage.reduce(function(prev, current) {
           return (prev.id > current.id) ? prev : current
       })
 
-      // NOT finished yet
-      //this.createIdentifierCode();
-
       const newLesson = [{
-        id: maxId+1,
-        type: this.formAddStandard.standardReadyForAddIdentifierCode,
+        id: maxId.id+1,
+        type: identifierCode,
         privacy: this.formAddStandard.standardReadyForAddPrivacy,
         subject: this.model.lessonPlanBankSubject,
         grade: this.model.lessonPlanBankGrade,
         strand: this.model.lessonPlanBankStrand,
         title: this.formAddLesson.lessonReadyForAddTitle,
         resources: 0,
-        body: this.formAddLesson.standardReadyForAddText
+        body: this.addNewLessonStandard,
+        activities: this.formAddLesson.lessonReadyForAddActivities,
+        materials: this.formAddLesson.lessonReadyForAddMaterials,
+        guidedPractices: this.formAddLesson.lessonReadyForAddGuidedPractice,
+        independentPractices: this.formAddLesson.lessonReadyForAddIndependentPractice,
+        assessment: this.formAddLesson.lessonReadyForAddAssessment,
+        notes: this.formAddLesson.lessonReadyForAddNotes,
+        modificationsAccommodations: this.formAddLesson.lessonReadyForAddModifications,
+        closing: this.formAddLesson.lessonReadyForAddClosing,
+        share: this.formAddLesson.lessonReadyForAddShare
       }];
 
-      //lessonPlanBankStorage.push(newCustomStandard[0])
+      // UPDATE LESSON LIST JSON
+      lessonPlanStorage.push(newLesson[0])
+      localStorage.setItem("lessonPlanJSONData",JSON.stringify(lessonPlanStorage));
 
-      //localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(lessonPlanBankStorage));
-      //this.loadMore();
-      this.addCustomStandardModal = false;
+      // UPDATE STRAND LIST JSON
+      const selectedStrandIndex = lessonPlanBankStorage.findIndex((obj => obj.type == identifierCode));
+      lessonPlanBankStorage[selectedStrandIndex].lessons.push(newLesson[0]);
+      localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(lessonPlanBankStorage));
+
+      this.loadMore();
+      this.addNewLessonModal = false;
     },
     // ADD CUSTOM LESSON STANDARD
     addCustomLessonStandard() {
