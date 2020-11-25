@@ -263,11 +263,9 @@
                 </ul>
                 <div class="card-content">
                   <p>{{ standards[standardPreview].customStandard }}</p>
-                  <router-link to="/lesson-plan/"
-                    ><button class="button medium ed-btn__primary">
+                    <button @click="lessonSelected(post.id)" class="button medium ed-btn__primary">
                       {{ standards[standardPreview].type }}
-                    </button></router-link
-                  >
+                    </button>
                 </div>
                 <div class="card-footer">
                   <div class="row">
