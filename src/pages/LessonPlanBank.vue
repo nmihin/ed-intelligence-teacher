@@ -8,7 +8,6 @@
               >
                 <h2 class="modal-title">Add Lesson Plan</h2>
                 <div class="modal-content">
-
                   <el-form
                     :model="formAddLesson"
                     :rules="formAddLesson.rules"
@@ -48,6 +47,7 @@
                             v-model="formAddLesson.lessonReadyForAddActivities"
                             placeholder="Lesson Plan Activities"
                           ></el-input>
+                          <vue-dropzone ref="addNewLessonFilesUpload.dropzoneActivities" class="card-file-upload" id="dropzoneActivities" :options="addNewLessonFilesUpload.dropzoneActivities"></vue-dropzone>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddGuidedPractice" label="Lesson Plan Guided Practice">
                           <i class="icon icon-information">
@@ -59,6 +59,7 @@
                             v-model="formAddLesson.lessonReadyForAddGuidedPractice"
                             placeholder="Lesson Plan Guided Practice"
                           ></el-input>
+                          <vue-dropzone class="card-file-upload" id="dropzoneGuidedPractice" :options="addNewLessonFilesUpload.dropzoneGuidedPractice"></vue-dropzone>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddIndependentPractice" label="Lesson Plan Independent Practice">
                           <i class="icon icon-information">
@@ -70,6 +71,7 @@
                             v-model="formAddLesson.lessonReadyForAddIndependentPractice"
                             placeholder="Lesson Plan Independent Practice"
                           ></el-input>
+                          <vue-dropzone class="card-file-upload" id="dropzoneIndependentPractice" :options="addNewLessonFilesUpload.dropzoneIndependentPractice"></vue-dropzone>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddAssessment" label="Lesson Plan Assessment">
                           <i class="icon icon-information">
@@ -81,6 +83,7 @@
                             v-model="formAddLesson.lessonReadyForAddAssessment"
                             placeholder="Lesson Plan Assessment"
                           ></el-input>
+                          <vue-dropzone class="card-file-upload" id="dropzoneAssessment" :options="addNewLessonFilesUpload.dropzoneAssessment"></vue-dropzone>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddNotes" label="Lesson Plan Notes">
                           <i class="icon icon-information">
@@ -92,6 +95,7 @@
                             v-model="formAddLesson.lessonReadyForAddNotes"
                             placeholder="Lesson Plan Notes"
                           ></el-input>
+                          <vue-dropzone class="card-file-upload" id="dropzoneNotes" :options="addNewLessonFilesUpload.dropzoneNotes"></vue-dropzone>
                         </el-form-item>
                         <el-form-item class="col-12 col-md-6" prop="lessonReadyForAddModifications" label="Lesson Plan Modifications and Accommodations">
                           <i class="icon icon-information">
@@ -266,13 +270,17 @@
                   >
                 </div>
                 <div class="card-footer">
-                  <div class="card-user-profile">
-                    <img class="card-user-profile-image" src="../assets/img/users/avatar-1.jpg" alt="User">
-                    <h2 class="card-user-profile-username">Reanna Gulgowski Oberbrunerhoffman von Düsseldorf</h2>
-                    <h3 class="card-user-profile-role">Secondary Computer Teacher</h3>
-                  </div>
-                  <div class="card-user-resources">
-                    <i class="icon icon-lesson"></i><span>{{post.resources}} Resources</span>
+                  <div class="row">
+                    <div class="card-user-profile col-12 col-md-8">
+                      <img class="card-user-profile-image" src="../assets/img/users/avatar-1.jpg" alt="User">
+                      <h2 class="card-user-profile-username">Reanna Gulgowski Oberbrunerhoffman von Düsseldorf</h2>
+                      <h3 class="card-user-profile-role">Secondary Computer Teacher</h3>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="card-user-resources">
+                        <i class="icon icon-lesson"></i><span>{{post.resources}} Resources</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -387,11 +395,9 @@
               </ul>
               <div class="card-content">
                 <p>{{ post.body }}</p>
-                <router-link to="/lesson-plan/"
-                  ><button class="button medium ed-btn__primary">
+                <button @click="lessonSelected(post.id)" class="button medium ed-btn__primary">
                     {{ post.type }}
-                  </button></router-link
-                >
+                </button>
               </div>
               <div class="card-footer">
                 <i class="icon icon-lesson"></i
@@ -437,6 +443,8 @@ import "vue-material/dist/vue-material.min.css";
 import { validationMixin } from "vuelidate";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import Element from "element-ui";
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
 
 export default {
   name: "lesson-plan-bank",
@@ -446,6 +454,7 @@ export default {
     MdButton,
     MdList,
     Element,
+    vueDropzone: vue2Dropzone
   },
   data() {
     return {
@@ -580,6 +589,58 @@ export default {
         lessonReadyForAddMaterialsOptions: ['Visual','Audio','Kinesthetic (Physical)','Presentation','Visual,Demostration Two','VAP','Doc'],
       },
       rules: {},
+      addNewLessonFilesUpload: {
+        dropzoneActivities: {
+              url: 'https://httpbin.org/post',
+              maxFilesize: 3,
+              maxFiles: 4,
+              chunking: false,
+              thumbnailWidth: 150,
+              thumbnailHeight: 150,
+              addRemoveLinks: true,
+              acceptedFiles:".jpg,.jpeg,.png,.gif,.doc,.xls,.ppt"
+        },
+        dropzoneGuidedPractice: {
+              url: 'https://httpbin.org/post',
+              maxFilesize: 3,
+              maxFiles: 4,
+              chunking: false,
+              thumbnailWidth: 150,
+              thumbnailHeight: 150,
+              addRemoveLinks: true,
+              acceptedFiles:".jpg,.jpeg,.png,.gif,.doc,.xls,.ppt"
+        },
+        dropzoneIndependentPractice: {
+              url: 'https://httpbin.org/post',
+              maxFilesize: 3,
+              maxFiles: 4,
+              chunking: false,
+              thumbnailWidth: 150,
+              thumbnailHeight: 150,
+              addRemoveLinks: true,
+              acceptedFiles:".jpg,.jpeg,.png,.gif,.doc,.xls,.ppt"
+        },
+        dropzoneAssessment: {
+              url: 'https://httpbin.org/post',
+              maxFilesize: 3,
+              maxFiles: 4,
+              chunking: false,
+              thumbnailWidth: 150,
+              thumbnailHeight: 150,
+              addRemoveLinks: true,
+              acceptedFiles:".jpg,.jpeg,.png,.gif,.doc,.xls,.ppt"
+        },
+        dropzoneNotes: {
+              url: 'https://httpbin.org/post',
+              maxFilesize: 3,
+              maxFiles: 4,
+              chunking: false,
+              thumbnailWidth: 150,
+              thumbnailHeight: 150,
+              addRemoveLinks: true,
+              acceptedFiles:".jpg,.jpeg,.png,.gif,.doc,.xls,.ppt"
+        }
+      }
     };
   },
   methods: {
@@ -588,8 +649,8 @@ export default {
       //IF ALL FILTERS NOT SET
       if (typeof this.filterData.length === "undefined" ||this.filterData.length === 0) {
         this.busy = true;
-        //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
-        this.axios.get("lesson-plan.json").then((response) => {
+        this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
+        //this.axios.get("lesson-plan.json").then((response) => {
             const append = response.data.slice(
               this.posts.length,
               this.posts.length + this.limit
@@ -620,8 +681,8 @@ export default {
             this.standards = filterSelect;
           }
           else{
-            //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
-            this.axios.get("lesson-plan-bank.json").then((response) => {
+            this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
+            //this.axios.get("lesson-plan-bank.json").then((response) => {
                 const filterSelect = response.data.filter(function(item) {
                   if (item.subject == subject && item.grade == grade && item.strand == strand) return item;
                 });
@@ -745,6 +806,10 @@ export default {
         default:
           return 1;
       }
+    },
+    // LESSON SELECTED
+    lessonSelected(id){
+      this.$router.push({path:'/lesson-plan-single/'+id})
     },
     // IDENTIFIER CODE CREATOR
     createIdentifierCode() {

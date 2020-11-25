@@ -50,7 +50,7 @@ export default new Router({
         component: LessonPlanBank
       },
       {
-        path: "/lesson-plan-single",
+        path: "/lesson-plan-single/:id",
         name: "Lesson Plan Single",
         component: LessonPlanSingle
       },

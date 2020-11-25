@@ -1,149 +1,214 @@
- <template> 
-      <!-- Main Content -->
-      <div class="main-content">
-        <div class="container-fluid">
-          <div class="row">
-              <div class="col-xs-12 col-md-12">
-                    <div class="side-menu single">
-                        <div class="col-12 side-menu-header">
-                            <div class="side-menu-profile">
-                                <img src="../assets/img/users/avatar-1.jpg" alt="User">
-                                <h2>Reanna Gulgowski Oberbrunerhoffman von Düsseldorf</h2>
-                            </div>
-                        </div>
-                        <div class="col-12 side-menu-options">
-                                <div class="card-element">
-                                  <a href="#"  @click="showDialog = true">
-                                    <i class="icon icon-add"></i>
-                                    <span>Allocate lesson plan</span>
-                                  </a>
-                                  <!-- START EDIT IMAGE MODAL -->
-                                    <md-dialog :md-active.sync="showDialog" class="modal-window home-room">
-                                      <h2>Allocate to Home Room</h2>
-                                      <el-form :model="model" ref="model">
-                                        <el-form-item prop="homeRoom" label="Home Room">
-                                          <select class="card-select" v-model="model.homeRoom" placeholder="Home Room">
-                                            <option v-for="pre in options.homeRoomOptions"
-                                                      :key="pre.value"
-                                                      :label="pre.label"
-                                                      :value="pre.value">
-                                            </option>
-                                          </select>
-                                          <i class="icon icon-arrow"></i>
-                                        </el-form-item>
-                                      </el-form>
-                                      <md-dialog-actions>
-                                          <md-button class="button medium ed-btn__primary" @click="showDialog = false">Cancel</md-button>
-                                          <md-button class="button medium ed-btn__primary" v-on:click="saveData(); showDialog = false; showToast()">Save Data</md-button>
-                                      </md-dialog-actions>
-                                    </md-dialog>
-                                  <!-- END EDIT IMAGE MODAL --> 
-                                  <a href="#">
-                                    <i class="icon icon-lesson"></i>
-                                    <span>1 Allocated</span>
-                                  </a>
-                                </div>
-                        </div>
-                        <div class="col-12 side-menu-content">
-                            <!-- Box -->
-                            <div class="card-box">
-                              <div class="card-element">
-                                <a href="#" class="edit">
-                                  <i class="icon icon-edit"></i>
-                                </a>
-                              </div>
-                              <div class="card-title">
-                                <h2>My Test Lesson - English 1</h2>
-                              </div>
-                              <div class="card-content">
-                                <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                              </div>
-                            </div>  
-                            <!-- Box -->
-                            <div class="card-box">
-                              <div class="card-element">
-                                <a href="#" class="edit">
-                                  <i class="icon icon-edit"></i>
-                                </a>
-                              </div>
-                              <div class="card-title">
-                                <h2>My Test Lesson - English 2</h2>
-                              </div>
-                              <div class="card-content">
-                                <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                              </div>
-                            </div>  
-                            <!-- Box -->
-                            <div class="card-box">
-                              <div class="card-title">
-                                <h2>My Test Lesson - English 3</h2>
-                              </div>
-                              <div class="card-content">
-                                <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                              </div>
-                            </div>  
-                            <!-- Box -->
-                            <div class="card-box">
-                              <div class="card-title">
-                                <h2>My Test Lesson - English 4</h2>
-                              </div>
-                              <div class="card-content">
-                                <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                              </div>
-                            </div>  
-                            <!-- Box -->
-                            <div class="card-box">
-                              <div class="card-title">
-                                <h2>My Test Lesson - English 5</h2>
-                              </div>
-                              <div class="card-content">
-                                <p>Conventions of standard English: Demostrate command of the conventions of the standard English grammar and usage when writing or speaking.</p>
-                              </div>
-                            </div>  
-                        </div>
-                    </div>
+<template>
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- START ALLOCATE TO HOME ROOM MODAL -->
+    <md-dialog :md-active.sync="showDialog" class="modal-window filter-modal standard">
+      <h2 class="modal-title">Allocate to Home Room</h2>
+      <div class="modal-content">
+        <el-form :model="model" ref="model">
+          <el-form-item prop="homeRoom" label="Home Room">
+            <select
+              class="card-select"
+              v-model="model.homeRoom"
+              placeholder="Home Room"
+            >
+              <option
+                v-for="pre in options.homeRoomOptions"
+                :key="pre.value"
+                :label="pre.label"
+                :value="pre.value"
+              >
+              </option>
+            </select>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="modal-footer">
+                  <button
+                    class="button medium ed-btn__secondary"
+                    v-on:click="saveData();showDialog = false;showToast();"
+                  >
+                    Save Data
+                  </button>
+                  <button
+                    class="button medium ed-btn__tertiary"
+                    @click="showDialog = false"
+                  >
+                    Cancel
+                  </button>
+      </div>
+    </md-dialog>
+    <!-- END ALLOCATE TO HOME ROOM MODAL -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <div class="side-menu single">
+            <div class="col-12 side-menu-header">
+              <div class="side-menu-profile">
+                <img src="../assets/img/users/avatar-1.jpg" alt="User" />
+                <h2>Reanna Gulgowski Oberbrunerhoffman von Düsseldorf</h2>
               </div>
+            </div>
+            <div class="col-12 side-menu-options">
+              <div class="card-element">
+                <a href="#" @click="showDialog = true">
+                  <i class="icon icon-add"></i>
+                  <span>Allocate lesson plan</span>
+                </a>
+                <a href="#">
+                  <i class="icon icon-lesson"></i>
+                  <span>1 Allocated</span>
+                </a>
+              </div>
+            </div>
+            <div class="col-12 side-menu-content">
+              <!-- Box -->
+              <div class="card-box">
+                <div class="card-title">
+                  <h2>{{ post[0].title }}</h2>
+                </div>
+                <div class="card-content">
+                  <p>{{ post[0].body }}</p>
+                </div>
+              </div>
+              <!-- Box -->
+              <div class="card-box">
+                <div class="card-title">
+                  <h2>Activities</h2>
+                </div>
+                <div class="card-content">
+                  <p>{{ post[0].activities }}</p>
+                </div>
+              </div>
+              <!-- Box -->
+              <div class="card-box">
+                <div class="card-title">
+                  <h2>Guided Practice</h2>
+                </div>
+                <div class="card-content">
+                  <p>{{ post[0].guidedPractices }}</p>
+                </div>
+              </div>
+              <!-- Box -->
+              <div class="card-box">
+                <div class="card-title">
+                  <h2>Independent Practice</h2>
+                </div>
+                <div class="card-content">
+                  <p>{{ post[0].independentPractices }}</p>
+                </div>
+              </div>
+              <!-- Box -->
+              <div class="card-box">
+                <div class="card-title">
+                  <h2>Assessment</h2>
+                </div>
+                <div class="card-content">
+                  <p>{{ post[0].assessment }}</p>
+                </div>
+              </div>
+              <!-- Box -->
+              <div class="card-box">
+                <div class="card-title">
+                  <h2>Notes</h2>
+                </div>
+                <div class="card-content">
+                  <p>{{ post[0].notes }}</p>
+                </div>
+              </div>
+              <!-- Box -->
+              <div class="card-box">
+                <div class="card-title">
+                  <h2>Modifications</h2>
+                </div>
+                <div class="card-content">
+                  <p>{{ post[0].modificationsAccommodations }}</p>
+                </div>
+              </div>
+              <!-- Box -->
+              <div class="card-box">
+                <div class="card-title">
+                  <h2>closing</h2>
+                </div>
+                <div class="card-content">
+                  <p>{{ post[0].closing }}</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-       </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { validationMixin } from "vuelidate";
-import Element from 'element-ui'
+import Element from "element-ui";
 export default {
-  name: 'lesson-plan-single',
+  name: "lesson-plan-single",
   mixins: [validationMixin],
   components: {
-    Element
-  }, 
+    Element,
+  },
+  data() {
+    return {
+      lessonId: 0,
+      post: [],
+      showDialog: false,
+      model: {
+        //DEFINITIONS
+        homeRoom: "",
+      },
+      options: {
+        homeRoomOptions: [
+          { value: "homeroom1", label: "Home Room 1" },
+          { value: "homeroom2", label: "Home Room 2" },
+          { value: "homeroom3", label: "Home Room 3" },
+        ],
+      },
+    };
+  },
   methods: {
+    loadMore() {
+      const lessonPlanStorage = this.loadLessonPlanStorage();
+      const Lid = parseInt(this.$route.params.id);
+
+      /*
+      this.post = lessonPlanStorage.filter(function(item) {
+        return item.id === this.lessonId;
+      });
+*/
+
+      this.post = lessonPlanStorage.filter(function(lesson) {
+        return lesson.id === Lid;
+      });
+
+      //this.posts =
+
+      /*
+        this.busy = true;
+        this.axios.get("single-lesson-plan/"+this.lessonId).then((response) => {
+            response.data
+            this.busy = false;
+        }).catch((error) => error.response.data);
+        */
+    },
     showToast() {
       this.$notify({
         group: "notificationAlerts",
         title: "Lesson Plan Followed",
-        text: "lesson plan for the selected home room XXX have been successfully allocated."
+        text:
+          "lesson plan for the selected home room XXX have been successfully allocated.",
       });
     },
-    saveData(){
-
-    }
+    // LOCALSTORAGE
+    loadLessonPlanStorage() {
+      return JSON.parse(localStorage.getItem("lessonPlanJSONData"));
+    },
   },
-  data(){
-    return {
-      showDialog: false,
-      model: {
-        //DEFINITIONS
-        homeRoom: ""
-      },
-      options: {
-        homeRoomOptions: [
-          {value:"homeroom1", label: "Home Room 1"},
-          {value:"homeroom2", label: "Home Room 2"},
-          {value:"homeroom3", label: "Home Room 3"}
-        ]
-      }
-    }
-  }
-}
+  created() {
+    this.loadMore();
+  },
+};
 </script>
