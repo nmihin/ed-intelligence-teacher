@@ -44,6 +44,19 @@
       </div>
     </md-dialog>
     <!-- END ALLOCATE TO HOME ROOM MODAL -->
+
+    <!-- START ALLOCATE TO HOME ROOM MODAL -->
+    <md-dialog :md-active.sync="showDocumentPreview" class="modal-window filter-modal document">
+      <h2 class="modal-title">Document Preview</h2>
+      <div class="modal-content">
+         <VueDocPreview value="newteach.pbworks.com%2Ff%2Fele%2Bnewsletter.docx" type="office" />
+      </div>
+      <div class="modal-footer">
+        <button class="button medium ed-btn__tertiary" @click="showDocumentPreview = false">
+          Close
+        </button>
+      </div>
+    </md-dialog>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-md-12">
@@ -86,23 +99,21 @@
                 </div>
                 <h6>Attached documents:</h6>
                 <ul class="document-uploaded">
-                  <li class="type-image">
-                    <a href="styleguide.pdf">
-                      <span class="document-name">lesson-plan-bank.jpg</span>
+                  <li @click="showDocumentPreview = true"  class="type-image">           
+                      <span class="document-name">lesson-plan-bank.docx</span>
                       <span class="icon icon-download-word"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
-                    </a>
                   </li>
-                  <li class="type-xls">
-                    <span class="document-name">lesson-plan-bank.xls</span>
-                    <span class="icon icon-download-excel"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                  <li @click="showDocumentPreview = true" class="type-xls">
+                      <span class="document-name">lesson-plan-bank.xls</span>
+                      <span class="icon icon-download-excel"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
                   </li>
-                  <li class="type-ppt">
-                    <span class="document-name">lesson-plan-bank.ppt</span>
-                    <span class="icon icon-download-powerpoint"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                  <li @click="showDocumentPreview = true" class="type-ppt">
+                      <span class="document-name">lesson-plan-bank.ppt</span>
+                      <span class="icon icon-download-powerpoint"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
                   </li>
-                  <li class="type-img">
-                    <span class="document-name">lesson-plan-bank.img</span>
-                    <span class="icon icon-download-image"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
+                  <li @click="showDocumentPreview = true" class="type-img"> 
+                      <span class="document-name">lesson-plan-bank.img</span>
+                      <span class="icon icon-download-image"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
                   </li>
                 </ul>
               </div>
@@ -179,18 +190,21 @@
 <script>
 import { validationMixin } from "vuelidate";
 import Element from "element-ui";
+import VueDocPreview from 'vue-doc-preview';
 
 export default {
   name: "lesson-plan-single",
   mixins: [validationMixin],
   components: {
-    Element
+    Element,
+    VueDocPreview
   },
   data() {
     return {
       lessonId: 0,
       post: [],
       showDialog: false,
+      showDocumentPreview: false,
       isActiveModifications: false,
       isActiveClosing: false,
       model: {
@@ -211,25 +225,10 @@ export default {
       const lessonPlanStorage = this.loadLessonPlanStorage();
       const Lid = parseInt(this.$route.params.id);
 
-      /*
-      this.post = lessonPlanStorage.filter(function(item) {
-        return item.id === this.lessonId;
-      });
-*/
-
       this.post = lessonPlanStorage.filter(function (lesson) {
         return lesson.id === Lid;
       });
 
-      //this.posts =
-
-      /*
-        this.busy = true;
-        this.axios.get("single-lesson-plan/"+this.lessonId).then((response) => {
-            response.data
-            this.busy = false;
-        }).catch((error) => error.response.data);
-        */
     },
     showToast() {
       this.$notify({

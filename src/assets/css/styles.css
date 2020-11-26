@@ -2925,6 +2925,18 @@ ul.side-menu__results>li>ul>li a:hover {
   line-height: 1.25;
 }
 
+.modal-window.filter-modal.document .md-dialog {
+  height: 80vh;
+}
+
+.modal-window.filter-modal.document .md-dialog-container {
+  width: 80vw;
+}
+
+.modal-window.filter-modal.document .md-dialog-container iframe {
+  height: 62vh;
+}
+
 .modal-window .el-form-item__label {
   line-height: 1.5;
   padding: 10px 0;
