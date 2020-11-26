@@ -10,18 +10,17 @@
       <div class="modal-content">
         <el-form :model="model" ref="model">
           <el-form-item prop="homeRoom" label="Home Room">
-            <select
-              class="card-select"
+            <el-select
               v-model="model.homeRoom"
               placeholder="Home Room"
             >
-              <option
+              <el-option
                 v-for="pre in options.homeRoomOptions"
                 :key="pre.value"
                 :label="pre.label"
                 :value="pre.value"
-              ></option>
-            </select>
+              ></el-option>
+            </el-select>
           </el-form-item>
         </el-form>
       </div>
@@ -67,7 +66,7 @@
                 </a>
               </div>
             </div>
-            <div v-bind:class="activePanel" class="col-12 side-menu-content single-lesson">
+            <div class="col-12 side-menu-content single-lesson">
               <!-- Box -->
               <div class="card-box">
                 <div class="card-title">
@@ -85,6 +84,27 @@
                 <div class="card-content">
                   <p>{{ post[0].activities }}</p>
                 </div>
+                <h6>Attached documents:</h6>
+                <ul class="document-uploaded">
+                  <li class="type-image">
+                    <a href="styleguide.pdf">
+                      <span class="document-name">lesson-plan-bank.jpg</span>
+                      <span class="icon icon-download-word"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                    </a>
+                  </li>
+                  <li class="type-xls">
+                    <span class="document-name">lesson-plan-bank.xls</span>
+                    <span class="icon icon-download-excel"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                  </li>
+                  <li class="type-ppt">
+                    <span class="document-name">lesson-plan-bank.ppt</span>
+                    <span class="icon icon-download-powerpoint"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                  </li>
+                  <li class="type-img">
+                    <span class="document-name">lesson-plan-bank.img</span>
+                    <span class="icon icon-download-image"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
+                  </li>
+                </ul>
               </div>
               <!-- Box -->
               <div class="card-box">
@@ -159,11 +179,12 @@
 <script>
 import { validationMixin } from "vuelidate";
 import Element from "element-ui";
+
 export default {
   name: "lesson-plan-single",
   mixins: [validationMixin],
   components: {
-    Element,
+    Element
   },
   data() {
     return {
