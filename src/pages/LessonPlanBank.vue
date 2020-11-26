@@ -647,8 +647,8 @@ export default {
       //IF ALL FILTERS NOT SET
       if (typeof this.filterData.length === "undefined" ||this.filterData.length === 0) {
         this.busy = true;
-        this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
-        //this.axios.get("lesson-plan.json").then((response) => {
+        //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan.json").then((response) => {
+        this.axios.get("lesson-plan.json").then((response) => {
             const append = response.data.slice(
               this.posts.length,
               this.posts.length + this.limit
@@ -679,8 +679,8 @@ export default {
             this.standards = filterSelect;
           }
           else{
-            this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
-            //this.axios.get("lesson-plan-bank.json").then((response) => {
+            //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/lesson-plan-bank.json").then((response) => {
+            this.axios.get("lesson-plan-bank.json").then((response) => {
                 const filterSelect = response.data.filter(function(item) {
                   if (item.subject == subject && item.grade == grade && item.strand == strand) return item;
                 });

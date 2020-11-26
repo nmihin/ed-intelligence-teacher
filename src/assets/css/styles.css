@@ -2774,6 +2774,49 @@ ul.side-menu__results>li>ul>li a:hover {
   width: 100%;
 }
 
+/* Expand panel */
+.expand-panel {
+  width: 100%;
+  background-color: var(--gray);
+  text-align: center;
+  line-height: 1.5;
+  padding: 8px 0;
+  -webkit-transition: background-color 0.3s ease-out;
+  -moz-transition: background-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out;
+  position: absolute;
+  bottom: 0;
+  -webkit-box-shadow: 0px -11px 26px 6px rgba(255,255,255,1);
+  -moz-box-shadow: 0px -11px 26px 6px rgba(255,255,255,1);
+  box-shadow: 0px -11px 26px 6px rgba(255,255,255,1);
+}
+
+.expand-panel:hover {
+  cursor: pointer;
+  color: var(--white);
+  background-color: var(--primary);
+  -webkit-transition: background-color 0.3s ease-out;
+  -moz-transition: background-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out;
+}
+
+.expand-panel:hover > .icon:before {
+  color: var(--white);
+}
+
+.expand-panel > .icon {
+  padding: 5px 7px;
+  font-size: 12px;
+  position: relative;
+  display: inline-block;
+}
+
+.expand-panel.expanded > .icon {
+  transform: rotate(180deg);
+}
+
 /* GZA buttons */
 [class*="ed-btn"] {
   z-index: 1;
@@ -3188,6 +3231,39 @@ button[disabled="true"] {
 
 .filter-card .el-form > div {
   padding: 0;
+}
+
+.single-lesson .collapsible {
+  max-height: 200px;
+  overflow:hidden;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.single-lesson .collapsible > p {
+  margin-bottom: 40px;
+}
+
+.single-lesson .collapsible.active {
+  max-height: initial;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.single-lesson .collapsible.active .expand-panel {
+  -webkit-box-shadow: 0 0 0 0 rgba(255,255,255,1);
+  -moz-box-shadow: 0 0 0 0 rgba(255,255,255,1);
+  box-shadow: 0 0 0 0 rgba(255,255,255,1);
+}
+
+.single-lesson .collapsible.active .expand-panel > .icon {
+  transform: rotate(180deg);
 }
 
 .footer {

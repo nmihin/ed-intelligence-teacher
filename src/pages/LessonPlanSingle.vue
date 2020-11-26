@@ -2,7 +2,10 @@
   <!-- Main Content -->
   <div class="main-content">
     <!-- START ALLOCATE TO HOME ROOM MODAL -->
-    <md-dialog :md-active.sync="showDialog" class="modal-window filter-modal standard">
+    <md-dialog
+      :md-active.sync="showDialog"
+      class="modal-window filter-modal standard"
+    >
       <h2 class="modal-title">Allocate to Home Room</h2>
       <div class="modal-content">
         <el-form :model="model" ref="model">
@@ -17,25 +20,28 @@
                 :key="pre.value"
                 :label="pre.label"
                 :value="pre.value"
-              >
-              </option>
+              ></option>
             </select>
           </el-form-item>
         </el-form>
       </div>
       <div class="modal-footer">
-                  <button
-                    class="button medium ed-btn__secondary"
-                    v-on:click="saveData();showDialog = false;showToast();"
-                  >
-                    Save Data
-                  </button>
-                  <button
-                    class="button medium ed-btn__tertiary"
-                    @click="showDialog = false"
-                  >
-                    Cancel
-                  </button>
+        <button
+          class="button medium ed-btn__secondary"
+          v-on:click="
+            saveData();
+            showDialog = false;
+            showToast();
+          "
+        >
+          Save Data
+        </button>
+        <button
+          class="button medium ed-btn__tertiary"
+          @click="showDialog = false"
+        >
+          Cancel
+        </button>
       </div>
     </md-dialog>
     <!-- END ALLOCATE TO HOME ROOM MODAL -->
@@ -61,7 +67,7 @@
                 </a>
               </div>
             </div>
-            <div class="col-12 side-menu-content">
+            <div v-bind:class="activePanel" class="col-12 side-menu-content single-lesson">
               <!-- Box -->
               <div class="card-box">
                 <div class="card-title">
@@ -117,21 +123,29 @@
                 </div>
               </div>
               <!-- Box -->
-              <div class="card-box">
+              <div :class="{ active: isActiveModifications }" class="card-box collapsible">
                 <div class="card-title">
                   <h2>Modifications</h2>
                 </div>
                 <div class="card-content">
                   <p>{{ post[0].modificationsAccommodations }}</p>
+                  <div @click="isActiveModifications = !isActiveModifications" class="expand-panel collapsed">
+                    <span v-if="!isActiveModifications">Expand</span>
+                    <span v-if="isActiveModifications">Collapse</span>
+                    <i class="icon icon-arrow-gray"></i></div>
                 </div>
               </div>
               <!-- Box -->
-              <div class="card-box">
+              <div :class="{ active: isActiveClosing }" class="card-box collapsible">
                 <div class="card-title">
                   <h2>closing</h2>
                 </div>
                 <div class="card-content">
                   <p>{{ post[0].closing }}</p>
+                  <div @click="isActiveClosing = !isActiveClosing" class="expand-panel collapsed">
+                    <span v-if="!isActiveClosing">Expand</span>
+                    <span v-if="isActiveClosing">Collapse</span>
+                    <i class="icon icon-arrow-gray"></i></div>
                 </div>
               </div>
             </div>
@@ -156,6 +170,8 @@ export default {
       lessonId: 0,
       post: [],
       showDialog: false,
+      isActiveModifications: false,
+      isActiveClosing: false,
       model: {
         //DEFINITIONS
         homeRoom: "",
@@ -180,7 +196,7 @@ export default {
       });
 */
 
-      this.post = lessonPlanStorage.filter(function(lesson) {
+      this.post = lessonPlanStorage.filter(function (lesson) {
         return lesson.id === Lid;
       });
 
