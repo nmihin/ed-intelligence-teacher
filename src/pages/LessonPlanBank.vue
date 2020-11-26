@@ -817,7 +817,7 @@ export default {
       // MAP STRAND
       this.strandID = strand.replace(/[^A-Z]/g, "");
 
-      this.formAddStandard.standardReadyForAddIdentifierCode = "CS" + "." + gradeId + "." + this.strandID + "." + (this.standards.length + 1);
+      this.formAddStandard.standardReadyForAddIdentifierCode = "CC" + "." + gradeId + "." + this.strandID + "." + (this.standards.length + 1);
    },
     // UPDATE ON CHANGE
     updateForm(input, value) {
@@ -891,6 +891,7 @@ export default {
       localStorage.setItem("lessonPlanJSONData",JSON.stringify(lessonPlanStorage));
 
       // UPDATE STRAND LIST JSON
+      console.log(identifierCode)
       const selectedStrandIndex = lessonPlanBankStorage.findIndex((obj => obj.type == identifierCode));
       lessonPlanBankStorage[selectedStrandIndex].lessons.push(newLesson[0]);
       localStorage.setItem("lessonPlanBankJSONData",JSON.stringify(lessonPlanBankStorage));
