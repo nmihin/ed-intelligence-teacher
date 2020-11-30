@@ -86,7 +86,7 @@ export default {
         this.posts = schedulerPlanStorage;
       } else {
         this.axios
-          .get("scheduler-plan.json")
+          .get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/scheduler-plan.json")
           .then((response) => {
             this.posts = response.data;
             localStorage.setItem(

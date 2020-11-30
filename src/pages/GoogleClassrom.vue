@@ -74,7 +74,7 @@
           this.busy = false;
         }
         else {
-          this.axios.get("google-classroom.json").then((response) => {
+          this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/google-classroom.json").then((response) => {
 
               this.totalSize = response.data.length;
 
@@ -82,8 +82,6 @@
                 this.posts.length,
                 this.posts.length + this.pageSize
               );
-
-              console.log(this.posts)
 
               this.posts = append;
 
