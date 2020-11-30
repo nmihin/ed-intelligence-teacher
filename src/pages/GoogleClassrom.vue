@@ -2,49 +2,29 @@
   <!-- Main Content -->
   <div class="main-content">
     <div class="container-fluid">
-         <el-table
-    :data="displayData"
-    style="width: 100%">
-    <el-table-column
-        prop="name"
-        label="Nombre">
-    </el-table-column>
-</el-table>
-
-<el-divider></el-divider>
-
-<div style="text-align: center">
-    <el-pagination
-        background
-        layout="prev, pager, next"
-        @current-change="handleCurrentChange"
-        :page-size="pageSize"
-        :total="total">
-    </el-pagination>
-</div>
-        <!--
-        <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
-          <md-table-toolbar>
-            <div class="md-toolbar-section-start">
-              <h1 class="md-title">10 records</h1>
-            </div>
-
-            <md-field md-clearable class="md-toolbar-section-end">
-              <md-input placeholder="Search by class..." v-model="search" @input="searchOnTable" />
-            </md-field>
-          </md-table-toolbar>
-
-          <md-table-row slot="md-table-row" slot-scope="{ item }">
-            <md-table-cell md-label="SN" md-sort-by="sn" md-numeric>{{ item.sn }}</md-table-cell>
-            <md-table-cell md-label="Class" md-sort-by="class">{{ item.class }}</md-table-cell>
-            <md-table-cell md-label="Homeroom" md-sort-by="homeroom">{{ item.homeroom }}</md-table-cell>
-            <md-table-cell md-label="Room" md-sort-by="room">{{ item.room }}</md-table-cell>
-            <md-table-cell md-label="Code" md-sort-by="code">{{ item.code }}</md-table-cell>
-            <md-table-cell md-label="State" md-sort-by="state">{{ item.state }}</md-table-cell>
-            <md-table-cell md-label="Action" md-sort-by="action">{{ item.action }}</md-table-cell>
-          </md-table-row>
-        </md-table>
-        -->
+      <el-table
+        ref="singleTable"
+        :data="posts"
+        highlight-current-row
+        style="width: 100%">
+        <el-table-column property="sn" label="SN" width="120"></el-table-column>
+        <el-table-column property="class" label="Class" width="120"></el-table-column>
+        <el-table-column property="homeroom" label="Homeroom"></el-table-column>
+        <el-table-column property="room" label="Room"></el-table-column>
+        <el-table-column property="code" label="Code"></el-table-column>
+        <el-table-column property="state" label="State"></el-table-column>
+        <el-table-column property="action" label="Action"></el-table-column>
+      </el-table>
+      <el-pagination
+          background
+          layout="prev, pager, next"
+          @current-change="handleCurrentChange"
+          :page-size="pageSize"
+          :total="totalSize">
+      </el-pagination>
+      <div v-if="busy" class="preloader">
+        <span><img src="../assets/images/preloader.gif" /> Loading...</span>
+      </div>
     </div>
   </div>
 </template>
@@ -52,102 +32,98 @@
 
 <script>
   import Vue from 'vue'
-  
-  import VueMaterial from 'vue-material'
-  import 'vue-material/dist/vue-material.min.css'
-  import 'vue-material/dist/theme/default.css'
-
-  Vue.use(VueMaterial)
-
-  const toLower = text => {
-    return text.toString().toLowerCase()
-  }
-
-  const searchByName = (items, term) => {
-    if (term) {
-      return items.filter(item => toLower(item.class).includes(toLower(term)))
-    }
-
-    return items
-  }
 
   export default {
     name: 'google-classroom',
+    // DATA
     data: () => ({
        filtered: [],
        search: '',
        page: 1,
-       pageSize: 4,
-       total: 0,
-      //search: null,
-      searched: [],
-      users: [
-        {
-          sn: 1,
-          class: "Grade 1",
-          homeroom: "Grade 1",
-          room: "Newton 1",
-          code: "fz7iw2s",
-          state: "ACTIVE",
-          action: "view"
-        },
-        {
-          sn: 2,
-          class: "Grade 2",
-          homeroom: "Grade 2",
-          room: "Newton 2",
-          code: "fz7iw2s",
-          state: "ACTIVE",
-          action: "view"
-        },
-        {
-          sn: 3,
-          class: "Grade 3",
-          homeroom: "Grade 3",
-          room: "Newton 3",
-          code: "fz7iw2s",
-          state: "ACTIVE",
-          action: "view"
-        },
-        {
-          sn: 4,
-          class: "Grade 4",
-          homeroom: "Grade 4",
-          room: "Newton 4",
-          code: "fz7iw2s",
-          state: "INACTIVE",
-          action: "view"
-        }
-      ]
+       pageSize: 5,
+       totalSize: 0,
+       posts: [],
+       busy: true
     }),
-computed: {
-    displayData() {
-        if(this.search == null) return this.categories;
-      
-        this.filtered = this.categories.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()));
-        
-        this.total = this.filtered.length;
-
-        return this.filtered.slice(this.pageSize * this.page - this.pageSize, this.pageSize * this.page);
-    }
-},
+    // METHODS
     methods: {
+      loadMore() {
+        this.busy = true;
+        const googleClassroomStorage = this.loadGoogleClassroomStorage();
+
+        if(googleClassroomStorage){
+          
+          this.totalSize = googleClassroomStorage.length;
+
+          console.log(this.posts.length)
+          console.log(this.posts.length + this.pageSize)
+          /*
+          const append = googleClassroomStorage.slice(
+            this.posts.length,
+            this.posts.length + this.pageSize
+          );
+          */
+          const append = googleClassroomStorage.slice(
+            this.posts.length,
+            this.posts.length + this.pageSize
+          );
+
+          console.log(JSON.parse(JSON.stringify(googleClassroomStorage)))
+
+          this.posts = append;
+          this.busy = false;
+        }
+        else {
+          this.axios.get("google-classroom.json").then((response) => {
+
+              this.totalSize = response.data.length;
+
+              const append = response.data.slice(
+                this.posts.length,
+                this.posts.length + this.pageSize
+              );
+
+              console.log(this.posts)
+
+              this.posts = append;
+
+              //this.posts = response.data;
+              
+              this.current_page= response.current_page;
+              this.per_page = response.per_page;
+              this.total = response.total;
+              this.next_page_url = response.next_page_url;
+
+              localStorage.setItem("googleClassroomStorageJSONData",JSON.stringify(response.data));
+              this.busy = false;
+            }).catch((error) => error.response.data)
+        }  
+      },
+      // LOCALSTORAGE
+      loadGoogleClassroomStorage() {
+        return JSON.parse(localStorage.getItem("googleClassroomStorageJSONData"));
+      },
       handleCurrentChange(val) {
-        this.page = val;
-    },
-      searchOnTable () {
-        this.searched = searchByName(this.users, this.search)
+          this.busy = true;
+          const googleClassroomStorage = this.loadGoogleClassroomStorage();
+        
+          this.page = val;
+
+          this.totalSize = googleClassroomStorage.length;
+
+          const append = googleClassroomStorage.slice(
+            (this.page - 1)*this.pageSize,
+            ((this.page - 1)*this.pageSize)+this.pageSize
+          );
+
+          //console.log(JSON.parse(JSON.stringify(googleClassroomStorage)))
+
+          this.posts = append;
+          this.busy = false;
       }
-    },
-    created () {
-      this.searched = this.users
-    }
+  },
+  created() {
+    this.loadMore();
+  }
   }
 </script>
-
-<style lang="scss" scoped>
-  .md-field {
-    max-width: 300px;
-  }
-</style>
-
