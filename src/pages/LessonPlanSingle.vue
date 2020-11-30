@@ -48,11 +48,12 @@
     <!-- START ALLOCATE TO HOME ROOM MODAL -->
     <md-dialog :md-active.sync="showDocumentPreview" class="modal-window filter-modal document">
       <h2 class="modal-title">Document Preview</h2>
-      <div class="modal-content">
-         <VueDocPreview value="newteach.pbworks.com%2Ff%2Fele%2Bnewsletter.docx" type="office" />
+      <div class="modal-content">     
+        <img v-if="showImage" src="https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher/main/public/Styleguide-Ed-Intelligence_home.png" />
+        <VueDocPreview v-if="!showImage" value="newteach.pbworks.com%2Ff%2Fele%2Bnewsletter.docx" type="office" />
       </div>
       <div class="modal-footer">
-        <button class="button medium ed-btn__tertiary" @click="showDocumentPreview = false">
+        <button class="button medium ed-btn__tertiary" @click="showDocumentPreview = false; showImage=false">
           Close
         </button>
       </div>
@@ -99,19 +100,19 @@
                 </div>
                 <h6>Attached documents:</h6>
                 <ul class="document-uploaded">
-                  <li @click="showDocumentPreview = true"  class="type-image">           
+                  <li @click="displayModalDocument('document')" class="type-image">           
                       <span class="document-name">lesson-plan-bank.docx</span>
                       <span class="icon icon-download-word"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
                   </li>
-                  <li @click="showDocumentPreview = true" class="type-xls">
+                  <li @click="displayModalDocument('document')" class="type-xls">
                       <span class="document-name">lesson-plan-bank.xls</span>
                       <span class="icon icon-download-excel"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
                   </li>
-                  <li @click="showDocumentPreview = true" class="type-ppt">
+                  <li @click="displayModalDocument('document')" class="type-ppt">
                       <span class="document-name">lesson-plan-bank.ppt</span>
                       <span class="icon icon-download-powerpoint"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
                   </li>
-                  <li @click="showDocumentPreview = true" class="type-img"> 
+                  <li @click="displayModalDocument('image')" class="type-img"> 
                       <span class="document-name">lesson-plan-bank.img</span>
                       <span class="icon icon-download-image"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
                   </li>
@@ -205,6 +206,7 @@ export default {
       post: [],
       showDialog: false,
       showDocumentPreview: false,
+      showImage: false,
       isActiveModifications: false,
       isActiveClosing: false,
       model: {
@@ -229,6 +231,15 @@ export default {
         return lesson.id === Lid;
       });
 
+    },
+    displayModalDocument(type){
+        this.showDocumentPreview = true;
+        console.log(type)
+        if(type=="image") {
+          this.showImage = true;
+        }else {
+          this.showImage = false;
+        }
     },
     showToast() {
       this.$notify({
