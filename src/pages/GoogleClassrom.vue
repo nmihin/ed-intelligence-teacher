@@ -31,8 +31,6 @@
 
 
 <script>
-  import Vue from 'vue'
-
   export default {
     name: 'google-classroom',
     // DATA
@@ -55,20 +53,10 @@
           
           this.totalSize = googleClassroomStorage.length;
 
-          console.log(this.posts.length)
-          console.log(this.posts.length + this.pageSize)
-          /*
           const append = googleClassroomStorage.slice(
             this.posts.length,
             this.posts.length + this.pageSize
           );
-          */
-          const append = googleClassroomStorage.slice(
-            this.posts.length,
-            this.posts.length + this.pageSize
-          );
-
-          console.log(JSON.parse(JSON.stringify(googleClassroomStorage)))
 
           this.posts = append;
           this.busy = false;
