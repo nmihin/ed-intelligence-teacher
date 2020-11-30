@@ -1,8 +1,7 @@
 <template>
   <!-- Main Content -->
   <div class="main-content">
-    <div class="container-fluid">
-      <div class="row">
+    <div class="container-fluid student-list">
         <el-select @change="updatePagination()" v-model="value" placeholder="Records">
           <el-option
             v-for="item in recordsOptions"
@@ -11,7 +10,7 @@
             :value="item.value">
           </el-option>
         </el-select>
-      </div>
+        <span class="records">Records</span>
       <el-table
         ref="singleTable"
         :data="posts"
