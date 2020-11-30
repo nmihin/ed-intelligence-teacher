@@ -2,6 +2,27 @@
   <!-- Main Content -->
   <div class="main-content">
     <div class="container-fluid">
+         <el-table
+    :data="displayData"
+    style="width: 100%">
+    <el-table-column
+        prop="name"
+        label="Nombre">
+    </el-table-column>
+</el-table>
+
+<el-divider></el-divider>
+
+<div style="text-align: center">
+    <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-change="handleCurrentChange"
+        :page-size="pageSize"
+        :total="total">
+    </el-pagination>
+</div>
+        <!--
         <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
           <md-table-toolbar>
             <div class="md-toolbar-section-start">
@@ -23,6 +44,7 @@
             <md-table-cell md-label="Action" md-sort-by="action">{{ item.action }}</md-table-cell>
           </md-table-row>
         </md-table>
+        -->
     </div>
   </div>
 </template>
@@ -52,7 +74,12 @@
   export default {
     name: 'google-classroom',
     data: () => ({
-      search: null,
+       filtered: [],
+       search: '',
+       page: 1,
+       pageSize: 4,
+       total: 0,
+      //search: null,
       searched: [],
       users: [
         {
@@ -93,7 +120,21 @@
         }
       ]
     }),
+computed: {
+    displayData() {
+        if(this.search == null) return this.categories;
+      
+        this.filtered = this.categories.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()));
+        
+        this.total = this.filtered.length;
+
+        return this.filtered.slice(this.pageSize * this.page - this.pageSize, this.pageSize * this.page);
+    }
+},
     methods: {
+      handleCurrentChange(val) {
+        this.page = val;
+    },
       searchOnTable () {
         this.searched = searchByName(this.users, this.search)
       }

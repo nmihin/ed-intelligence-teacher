@@ -1751,11 +1751,11 @@ Top box
   right: -20px;
   width: 60px;
   top: 10%;
-  height: 100%;
   border-radius: 10px;
   background-color: var(--bluegray);
   border: 1px solid var(--lightgray);
-  width: 50px
+  width: 50px;
+  overflow: hidden;
 }
 
 .ed_card-boxes.upcoming .card-weeks ul {
@@ -1771,12 +1771,16 @@ Top box
   text-align: center;
   padding: 10px 0;
   font-weight: 700;
-  color: var(--primary);
-  border-bottom: 1px solid var(--lightgray)
+  color: var(--lightgray);
+  border-bottom: 1px solid var(--lightgray);
 }
 
-.ed_card-boxes.upcoming .card-weeks ul li:last-child {
-  border-bottom: 0
+.ed_card-boxes.upcoming .card-weeks ul li.selected-day {
+  color: var(--primary);
+}
+
+.ed_card-boxes.upcoming .card-weeks ul div:last-child li {
+  border-bottom: 0;
 }
 
 .ed_card-boxes.upcoming .card-footer {
