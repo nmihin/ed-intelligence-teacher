@@ -45,15 +45,11 @@
               <span>Lesson Plan</span>
             </div>
             <div class="col-4">
-              <router-link to="/lesson-plan"
-                ><i class="icon icon-box-student"></i
-              ></router-link>
+              <i @click="studentListSelected('1')" class="icon icon-box-student card-footer-student-list"></i>
               <span>Student List</span>
             </div>
             <div class="col-4">
-              <router-link to="/lesson-plan"
-                ><i class="icon icon-box-confirm"></i
-              ></router-link>
+              <i @click="attendanceSelected('1')" class="icon icon-box-confirm card-footer-attendance"></i>
               <span>Attendance</span>
             </div>
           </div>
@@ -99,6 +95,14 @@ export default {
     },
     loadSchedulerPlanStorage() {
       return JSON.parse(localStorage.getItem("schedulerPlanJSONData"));
+    },
+    // LESSON SELECTED
+    studentListSelected(id){
+      this.$router.push({path:'/student-list/'+id})
+    },
+    // ATTENDANCE SELECTED
+    attendanceSelected(id){
+      this.$router.push({path:'/attendance/'+id})
     },
   },
   created() {

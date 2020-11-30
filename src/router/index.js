@@ -10,6 +10,8 @@ import ChangePassword from "../pages/ChangePassword";
 import NotificationsTable from "../pages/NotificationsTable";
 import AddStudent from "../pages/AddStudent";
 import ManageMenu from "../pages/ManageMenu";
+import StudentList from "../pages/StudentList";
+import Attendance from "../pages/Attendance";
 
 import Element from 'element-ui'
 import FormWizard from "vue-form-wizard";
@@ -83,6 +85,16 @@ export default new Router({
         path: "/manage-menu",
         name: "Manage Menu",
         component: ManageMenu
+      },
+      {
+        path: "/student-list/:id",
+        name: "Student list",
+        component: StudentList
+      },
+      {
+        path: "/attendance/:id",
+        name: "Student list",
+        component: Attendance
       }
     ]
   });

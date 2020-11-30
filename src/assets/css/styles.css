@@ -1382,6 +1382,11 @@ Top box
   margin-right: 4%
 }
 
+.ed_card-boxes.upcoming .card-footer .card-footer-student-list:hover, 
+.ed_card-boxes.upcoming .card-footer .card-footer-attendance:hover {
+  cursor:pointer;
+}
+
 .ed_card-boxes .user-profile:hover .user-menu {
   opacity: 1;
   z-index: 1111
