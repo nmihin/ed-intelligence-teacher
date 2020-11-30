@@ -1965,6 +1965,10 @@ html {
   position: relative
 }
 
+.md-theme-default :not(input):not(textarea)::selection {
+  background-color:var(--auxiliary);
+}
+
 .main-content {
   padding-bottom: 80px;
   width: 100%;
@@ -2511,8 +2515,19 @@ li:hover .megamenu {
   width:100px;
 }
 
+.student-list .student-list-search {
+  left: 0;
+  top: 0;
+  background-color: var(--tertiary) !important;
+  padding: 12px;
+}
+
 .student-list .records {
   padding-left: 10px;
+}
+
+.student-list .student-list-search > .icon {
+  color: var(--white);
 }
 
 .side-menu-header h2 {

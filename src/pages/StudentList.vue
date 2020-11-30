@@ -2,15 +2,22 @@
   <!-- Main Content -->
   <div class="main-content">
     <div class="container-fluid student-list">
-        <el-select @change="updatePagination()" v-model="value" placeholder="Records">
-          <el-option
-            v-for="item in recordsOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <span class="records">Records</span>
+        <div class="row">
+          <div class="col-6 col-md-8">
+            <el-select @change="updatePagination()" v-model="value" placeholder="Records">
+              <el-option
+                v-for="item in recordsOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+            <span class="records">Records</span>
+          </div>
+          <div class="col-6 col-md-4">
+            <el-input @input="searchFilter()" placeholder="Search name..." v-model="searchName"></el-input>
+          </div>
+        </div>
       <el-table
         ref="singleTable"
         :data="posts"
@@ -52,6 +59,7 @@ export default {
        posts: [],
        busy: true,
        value: 10,
+       searchName:"",
        recordsOptions: [{
           value: 5,
           label: '5'
@@ -145,7 +153,16 @@ export default {
         );
 
         this.posts = append;
+      },
+      searchFilter(){
+        this.busy = true;
 
+        this.updatePagination();
+
+        this.posts = this.posts.filter(data => data.name.toLowerCase().includes(this.searchName.toLowerCase()));
+
+        this.busy = false;
+        return this.posts;
       }
     },
     created() {
