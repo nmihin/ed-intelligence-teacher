@@ -45,11 +45,11 @@
               <span>Lesson Plan</span>
             </div>
             <div class="col-4">
-              <i @click="studentListSelected('1')" class="icon icon-box-student card-footer-student-list"></i>
+              <i @click="studentListSelected(post.id)" class="icon icon-box-student card-footer-student-list"></i>
               <span>Student List</span>
             </div>
             <div class="col-4">
-              <i @click="attendanceSelected('1')" class="icon icon-box-confirm card-footer-attendance"></i>
+              <i @click="attendanceSelected(post.id)" class="icon icon-box-confirm card-footer-attendance"></i>
               <span>Attendance</span>
             </div>
           </div>
