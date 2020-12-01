@@ -2526,7 +2526,64 @@ li:hover .megamenu {
   padding-left: 10px;
 }
 
-.student-list .student-list-search > .icon {
+.student-list .student-list-preview {
+  float: left;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  position: relative;
+}
+
+.student-list .student-list-preview:hover {
+  cursor: pointer;
+}
+
+.student-list .student-list-preview > .icon {
+  width: 30px;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 20px;
+  background-color: var(--green);
+  position: relative;
+  right:10px;
+  top:4px;
+}
+
+.student-list .student-list-preview > .icon:before {
+  color: var(--white);
+}
+
+.student-list .student-list-edit {
+  float: right;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  left:10px;
+}
+
+.student-list .student-list-edit:hover {
+  cursor: pointer;
+}
+
+.student-list .student-list-edit > .icon {
+  width: 30px;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 7px;
+  font-size: 14px;
+  background-color: var(--tertiary);
+  right: 20px;
+  position: relative;
+  top:4px;
+}
+
+.student-list .student-list-edit > .icon:before {
   color: var(--white);
 }
 

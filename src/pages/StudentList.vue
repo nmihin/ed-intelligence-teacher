@@ -23,11 +23,20 @@
         :data="posts"
         highlight-current-row
         style="width: 100%">
-        <el-table-column property="sn" label="SN" width="120"></el-table-column>
-        <el-table-column property="name" label="Name" width="120"></el-table-column>
-        <el-table-column property="usi" label="USI"></el-table-column>
-        <el-table-column property="grade" label="Grade"></el-table-column>
-        <el-table-column property="action" label="Action"></el-table-column>
+        <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
+        <el-table-column sortable property="name" label="Name"></el-table-column>
+        <el-table-column sortable property="usi" label="USI"></el-table-column>
+        <el-table-column sortable property="grade" label="Grade"></el-table-column>
+        <el-table-column width="64" property="action" label="Action">
+            <div class="student-list-edit" slot-scope="scope" v-if="scope.row.action.includes('edit')">
+              <i class="icon icon-edit"></i>
+            </div>
+        </el-table-column>
+        <el-table-column width="100" property="action">
+            <div class="student-list-preview" slot-scope="scope" v-if="scope.row.action.includes('preview')">
+              <i class="icon icon-eye"></i>
+            </div>
+        </el-table-column>
       </el-table>
       <el-pagination
           background
@@ -130,14 +139,30 @@ export default {
         
           this.page = val;
 
-          this.totalSize = studentListStorage.length;
+          // CHECK IF SEARCH EMPTY
+          if(this.searchName === ''){
+            this.totalSize = studentListStorage.length;
 
-          const append = studentListStorage.slice(
-            (this.page - 1)*this.pageSize,
-            ((this.page - 1)*this.pageSize)+this.pageSize
-          );
+            const append = studentListStorage.slice(
+              (this.page - 1)*this.pageSize,
+              ((this.page - 1)*this.pageSize)+this.pageSize
+            );
 
-          this.posts = append;
+            this.posts = append;
+          }
+          else {
+            this.posts = studentListStorage.filter(data => data.name.toLowerCase().includes(this.searchName.toLowerCase()));
+
+            this.totalSize = this.posts.length;
+
+            const append = this.posts.slice(
+              (this.page - 1)*this.pageSize,
+              ((this.page - 1)*this.pageSize)+this.pageSize
+            );
+
+            this.posts = append;
+          }
+
           this.busy = false;
       },
       updatePagination() {
@@ -157,9 +182,9 @@ export default {
       searchFilter(){
         this.busy = true;
 
-        this.updatePagination();
-
-        this.posts = this.posts.filter(data => data.name.toLowerCase().includes(this.searchName.toLowerCase()));
+        const studentListStorage = this.loadStudentlistStorage();
+        this.posts = studentListStorage.filter(data => data.name.toLowerCase().includes(this.searchName.toLowerCase()));
+        this.totalSize = this.posts.length;
 
         this.busy = false;
         return this.posts;
