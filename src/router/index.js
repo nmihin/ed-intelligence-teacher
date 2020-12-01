@@ -12,6 +12,7 @@ import AddStudent from "../pages/AddStudent";
 import ManageMenu from "../pages/ManageMenu";
 import StudentList from "../pages/StudentList";
 import Attendance from "../pages/Attendance";
+import SearchResults from "../pages/SearchResults";
 
 import Element from 'element-ui'
 import FormWizard from "vue-form-wizard";
@@ -85,6 +86,11 @@ export default new Router({
         path: "/manage-menu",
         name: "Manage Menu",
         component: ManageMenu
+      },
+      {
+        path: "/search-results",
+        name: "Search Results",
+        component: SearchResults   
       },
       {
         path: "/student-list/:id",
