@@ -4,111 +4,159 @@
     "name": "Vivienne Labadie Becker",
     "usi": 6942065233,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "649-531-8188",
+    "avatar": "../assets/images/avatars/avatar-1.jpg",
+    "guardian-name": "Henri Mcgowan"
   },
   {
     "sn": 2,
     "name": "Hugh Whelan",
     "usi": 6942065234,
     "grade": "Two",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "549-531-8188",
+    "avatar": "../assets/images/avatars/avatar-2.jpg",
+    "guardian-name": "Milan Clarkson"
   },
   {
     "sn": 3,
     "name": "Gracey Guevara",
     "usi": 6942065232,
     "grade": "Three",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "449-531-8188",
+    "avatar": "../assets/images/avatars/avatar-3.jpg",
+    "guardian-name": "Milan Clarkson"
   },
   {
     "sn": 4,
     "name": "Leanne Lester",
     "usi": 6942065634,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "349-531-8188",
+    "avatar": "../assets/images/avatars/avatar-4.jpg",
+    "guardian-name": "Dominick Whittle"
   },
   {
     "sn": 5,
     "name": "Abdirahman Galvan",
     "usi": 6942065734,
     "grade": "Three",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "249-531-8188",
+    "avatar": "../assets/images/avatars/avatar-5.jpg",
+    "guardian-name": "Eshaal Redman"
   },
   {
     "sn": 6,
     "name": "Abdirahman Galvan",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "149-531-8188",
+    "avatar": "../assets/images/avatars/avatar-6.jpg",
+    "guardian-name": "Ronnie Oneal"
   },
   {
     "sn": 7,
     "name": "Bronwen Beck",
     "usi": 6842065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "659-531-8188",
+    "avatar": "../assets/images/avatars/avatar-7.jpg",
+    "guardian-name": "Asiya Hale"
   },
   {
     "sn": 8,
     "name": "Lucia Moore",
     "usi": 6942065234,
     "grade": "Three",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "669-531-8188",
+    "avatar": "../assets/images/avatars/avatar-8.jpg",
+    "guardian-name": "Jamie-Leigh Frey"
   },
   {
     "sn": 9,
     "name": "Veronica Cantrell",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "679-531-8188",
+    "avatar": "../assets/images/avatars/avatar-9.jpg",
+    "guardian-name": "Bruno Frazier"
   },
   {
     "sn": 10,
     "name": "Alannah Bass",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "689-531-8188",
+    "avatar": "../assets/images/avatars/avatar-10.jpg",
+    "guardian-name": "Aishah Turner"
   },
   {
     "sn": 11,
     "name": "Perry Devine",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "699-531-8188",
+    "avatar": "../assets/images/avatars/avatar-11.jpg",
+    "guardian-name": "Neal Lambert"
   },
   {
     "sn": 12,
     "name": "Cora Chan",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "611-531-8188",
+    "avatar": "../assets/images/avatars/avatar-12.jpg",
+    "guardian-name": "Darryl Delarosa"
   },
   {
     "sn": 13,
     "name": "Brett Haynes",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "622-531-8188",
+    "avatar": "../assets/images/avatars/avatar-13.jpg",
+    "guardian-name": "Kiri Thorpe"
   },
   {
     "sn": 14,
     "name": "Gus Montgomery",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "633-531-8188",
+    "avatar": "../assets/images/avatars/avatar-14.jpg",
+    "guardian-name": "Scarlett Snow"
   },
   {
     "sn": 15,
     "name": "Rogan Marin",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "644-531-8188",
+    "avatar": "../assets/images/avatars/avatar-15.jpg",
+    "guardian-name": "Rhea Kirkpatrick"
   },
   {
     "sn": 16,
     "name": "Lyra Peterson",
     "usi": 6942065234,
     "grade": "One",
-    "action": ["edit","preview"]
+    "action": ["edit","preview"],
+    "phone": "655-531-8188",
+    "avatar": "../assets/images/avatars/avatar-16.jpg",
+    "guardian-name": "Isla-Grace Willis"
   }
 ]

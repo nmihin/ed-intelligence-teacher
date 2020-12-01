@@ -93,6 +93,11 @@ export default new Router({
         component: SearchResults   
       },
       {
+        path: "/search-results/:searchResults",
+        name: "Search Results",
+        component: SearchResults
+      },
+      {
         path: "/student-list/:id",
         name: "Student list",
         component: StudentList

@@ -234,7 +234,7 @@ export default {
     },
     displayModalDocument(type){
         this.showDocumentPreview = true;
-        console.log(type)
+
         if(type=="image") {
           this.showImage = true;
         }else {

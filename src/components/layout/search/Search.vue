@@ -5,7 +5,7 @@
                   v-bind:class="{ active: showMobileMenu }"
                   v-on:click="showMobileMenu = !showMobileMenu"
                 ></i>
-                <input type="text" placeholder="Search and enter...">
+                <input v-on:keyup.enter="onSearch" v-model="searchResults" type="text" placeholder="Search and enter...">
               </div>
               <!-- Search-END-->
               
@@ -18,7 +18,13 @@ export default {
   },
   data() {
     return {
-       showMobileMenu: false
+      showMobileMenu: false,
+      searchResults:""
+    }
+  },
+  methods: {
+    onSearch(){
+      this.$router.push({path:'/search-results/'+this.searchResults});
     }
   }
 }
