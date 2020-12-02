@@ -29,6 +29,7 @@
         <!-- LIST VIEW -->
         <el-table
           v-if="viewType ==='list'"
+          stripe
           ref="singleTable"
           :data="posts"
           highlight-current-row

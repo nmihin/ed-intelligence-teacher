@@ -23,6 +23,7 @@ import ProfileSettings from './pages/ProfileSettings.vue'
 import NotificationsTable from './pages/NotificationsTable.vue'
 import LessonPlan from './pages/LessonPlan.vue'
 import SearchResults from './pages/SearchResults.vue'
+import CodeBook from './pages/CodeBook.vue'
 import Footer from './components/layout/footer/Footer.vue'
 
 
@@ -42,6 +43,7 @@ export default {
     ChangePassword,
     ProfileSettings,
     SearchResults,
+    CodeBook,
     Footer
   },
   data() {

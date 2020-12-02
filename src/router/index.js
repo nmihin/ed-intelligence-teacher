@@ -13,6 +13,7 @@ import ManageMenu from "../pages/ManageMenu";
 import StudentList from "../pages/StudentList";
 import Attendance from "../pages/Attendance";
 import SearchResults from "../pages/SearchResults";
+import CodeBook from "../pages/CodeBook";
 
 import Element from 'element-ui'
 import FormWizard from "vue-form-wizard";
@@ -106,6 +107,11 @@ export default new Router({
         path: "/attendance/:id",
         name: "Student list",
         component: Attendance
+      },
+      {
+        path: "/code-book",
+        name: "Code Book",
+        component: CodeBook
       }
     ]
   });

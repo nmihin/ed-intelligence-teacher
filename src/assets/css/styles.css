@@ -258,6 +258,18 @@ ICONS
   -moz-osx-font-smoothing: grayscale
 }
 
+.icon-absence:before {
+  content: "\e95a";
+  color: #fff;
+}
+.icon-entry:before {
+  content: "\e95b";
+  color: #fff;
+}
+.icon-exit:before {
+  content: "\e95c";
+  color: #fff;
+}
 .icon-download-excel .path1:before {
   content: "\e93a";
   color: #45a15e;
@@ -1867,6 +1879,133 @@ Top box
   position: relative;
   float: left
 }
+
+/* CODE BOOK PAGE */
+.code-book .border-card {
+  width: 100%;
+}
+
+.code-book .el-tabs {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.code-book .el-table {
+  border:1px solid var(--lightgray);
+  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.code-book .records {
+  padding-left: 10px;
+}
+
+.code-book .add-element {
+  padding: 10px 25px;
+  float: right;
+  margin: 0 0 10px 10px !important;
+}
+
+.code-book .add-element .icon-add {
+  font-size: 18px;
+  padding-right: 8px;
+}
+
+.code-book .element-edit .icon-edit {
+  width: 30px;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 7px;
+  font-size: 14px;
+  background-color: var(--tertiary);
+  position: relative;
+}
+
+.code-book .element-edit {
+  float: left;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.code-book .element-edit .icon-edit:before {
+  color: var(--white);
+}
+
+.code-book .element-delete .icon-delete {
+  width: 30px;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 7px;
+  font-size: 14px;
+  background-color: var(--red);
+  position: relative;
+}
+
+.code-book .element-delete {
+  float: left;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.code-book .element-delete .icon-delete:before {
+  color: var(--white);
+}
+
+.code-book .el-tabs__header {
+  height: 52px;
+  padding-top: 9px;
+  padding-left: 15px;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid var(--white) !important;
+  background: var(--primary);
+  background: -moz-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: -webkit-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: linear-gradient(to bottom, var(--primary) 0, var(--tertiary) 100%)
+}
+
+.code-book .el-tabs__header .el-tabs__item {
+  height: 42px;
+  line-height: 48px;
+  padding: 0 25px;
+  border-radius: 8px 8px 0 0;
+  border: 0 !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  background: var(--auxiliary);
+  margin-right: 8px;
+}
+
+.code-book .el-tabs__header .el-tabs__item span {
+  color: var(--white);
+  bottom: 3px;
+  position: relative;
+}
+
+.code-book .el-tabs__header .el-tabs__item.is-active span {
+  color: var(--tertiary);
+}
+
+.code-book .el-tabs__header .el-tabs__item.is-active .icon:before {
+  color: var(--tertiary);
+}
+
+.code-book .label-icon > .icon {
+  font-size: 20px;
+  top: 3px;
+  position: relative;
+} 
 
 /* SEARCH PAGE */
 .search-results .card-box {

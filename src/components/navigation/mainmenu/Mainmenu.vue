@@ -6,6 +6,9 @@
                     <router-link to="/home"><i class="icon icon-home"></i>Home</router-link>
                   </li>
                   <li>
+                    <router-link to="/code-book"><i class="icon icon-reports"></i>Code Book</router-link>
+                  </li>
+                  <li>
                     <router-link to="/lesson-plan-bank"><i class="icon icon-lesson"></i>Lesson Plan Bank</router-link>
                   </li>
                   <li>
