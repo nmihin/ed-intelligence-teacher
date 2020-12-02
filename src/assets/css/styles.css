@@ -1933,6 +1933,10 @@ Top box
   margin-top: 5px;
 }
 
+.code-book .element-edit:hover {
+  cursor: pointer;
+}
+
 .code-book .element-edit .icon-edit:before {
   color: var(--white);
 }
@@ -1947,6 +1951,10 @@ Top box
   font-size: 14px;
   background-color: var(--red);
   position: relative;
+}
+
+.code-book .element-delete:hover {
+  cursor: pointer;
 }
 
 .code-book .element-delete {
@@ -1983,7 +1991,7 @@ Top box
   border: 0 !important;
   margin-top: 0 !important;
   margin-left: 0 !important;
-  background: var(--auxiliary);
+  background: var(--primary);
   margin-right: 8px;
 }
 
