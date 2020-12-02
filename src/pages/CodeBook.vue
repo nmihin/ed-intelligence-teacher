@@ -1,7 +1,7 @@
 <template>
   <!-- Main Content -->
   <div class="main-content">
-    <!-- START ADD MENU MODAL -->
+    <!-- START ADD CODE MODAL -->
     <md-dialog
                 :md-active.sync="addCodeModal"
                 class="modal-window manage-menu"
@@ -87,8 +87,95 @@
                         >
                 </md-dialog-actions>
     </md-dialog>
-    <!-- END ADD MENU MODAL -->
-    <!-- DELETE FROM ROLE MENU START -->
+    <!-- END ADD CODE MODAL -->
+    <!-- START EDIT CODE MODAL -->
+    <md-dialog
+                :md-active.sync="editCodeModal"
+                class="modal-window manage-menu"
+              >
+                <h2 class="modal-title">Edit Code</h2>
+                <div class="modal-content">
+                  <el-form :model="formEditCode" :rules="formEditCode.rules" ref="formEditCode">
+                  <!-- Menu Information -->
+                  <div class="card-content">
+                    <div class="row">
+                      <el-form-item v-if="tabSelected === 'entry' || tabSelected === 'exit'" class="col-6" prop="codeReadyForEditCode" label="Code">
+                        <el-input
+                          v-model="formEditCode.codeReadyForEditCode"
+                          placeholder="Code"
+                        ></el-input>
+                      </el-form-item>
+                      <el-form-item v-if="tabSelected === 'entry' || tabSelected === 'exit'" class="col-6" prop="codeReadyForEditCategory" label="Category">
+                        <el-input
+                          v-model="formEditCode.codeReadyForEditCategory"
+                          placeholder="Category"
+                        ></el-input>
+                      </el-form-item>
+                      <el-form-item v-if="tabSelected === 'entry' || tabSelected === 'exit'" class="col-12" prop="codeReadyForEditCodename" label="Code Name">
+                        <el-input
+                         type="textarea"
+                          v-model="formEditCode.codeReadyForEditCodename"
+                          placeholder="Code Name"
+                        ></el-input>
+                      </el-form-item>
+                      <el-form-item v-if="tabSelected === 'entry' || tabSelected === 'exit'" class="col-12" prop="codeReadyForEditUsageGuidelines" label="Usage Guidelines">
+                        <el-input
+                          type="textarea"
+                          v-model="formEditCode.codeReadyForEditUsageGuidelines"
+                          placeholder="Usage Guidelines"
+                        ></el-input>
+                      </el-form-item>
+                      <el-form-item v-if="tabSelected === 'entry' || tabSelected === 'exit'" class="col-12" prop="codeReadyForEditAdditionalGuidelines" label="Additional Guidelines">
+                        <el-input
+                          type="textarea"
+                          v-model="formEditCode.codeReadyForEditAdditionalGuidelines"
+                          placeholder="Additional Guidelines"
+                        ></el-input>
+                      </el-form-item>
+                      <el-form-item v-if="tabSelected === 'attendance'" class="col-12" prop="codeReadyForEditStatus" label="Attendance Status">
+                            <el-radio-group v-model="formEditCode.codeReadyForEditStatus">
+                                <el-radio label="Absent">Absent</el-radio>
+                                <el-radio label="Present">Present</el-radio>
+                            </el-radio-group>
+                      </el-form-item>
+                      <el-form-item v-if="tabSelected === 'attendance' || tabSelected === 'absentreason'" class="col-6" prop="codeReadyForEditADTValue" label="ADT Value">
+                        <el-input
+                          v-model="formEditCode.codeReadyForEditADTValue"
+                          placeholder="ADT Value"
+                        ></el-input>
+                      </el-form-item>
+                      <el-form-item v-if="tabSelected === 'attendance' || tabSelected === 'absentreason'" class="col-6" prop="codeReadyForEditADTDecriptor" label="ADT Decriptor">
+                        <el-input
+                          v-model="formEditCode.codeReadyForEditADTDecriptor"
+                          placeholder="ADT Value Descriptor"
+                        ></el-input>
+                      </el-form-item>
+                      <el-form-item v-if="tabSelected === 'attendance' || tabSelected === 'absentreason'" class="col-12" prop="codeReadyForEditDescription" label="Description">
+                        <el-input
+                          type="textarea"
+                          v-model="formEditCode.codeReadyForEditDescription"
+                          placeholder="Full Description"
+                        ></el-input>
+                      </el-form-item>
+                    </div>
+                  </div>
+                  </el-form>
+                </div>
+                <md-dialog-actions>
+                        <md-button
+                          class="button medium ed-btn__secondary"
+                          @click="validateEditForm()"
+                          >Save</md-button
+                        >
+                        <md-button
+                          class="button medium ed-btn__tertiary"
+                          @click="editCodeModal = false"
+                          >Cancel</md-button
+                        >
+                </md-dialog-actions>
+    </md-dialog>
+    <!-- END EDIT CODE MODAL -->
+    <!-- DELETE CODE START -->
     <md-dialog
       :md-active.sync="deleteCodeModal"
       class="modal-window manage-menu"
@@ -120,14 +207,14 @@
         >
       </md-dialog-actions>
     </md-dialog>
-    <!-- DELETE FROM ROLE MENU END -->
+    <!-- DELETE CODE END -->
     <div class="container-fluid code-book">
         <div class="row">
             <el-tabs type="border-card" @tab-click="handleClick">
                 <el-tab-pane label="entry">
                     <span slot="label" class="label-icon"><i class="icon icon-entry"></i> Entry</span>
                     <div class="row">
-                        <div class="col-8 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <el-select @change="updatePagination()" v-model="value" placeholder="Records">
                             <el-option
                                 v-for="item in recordsOptions"
@@ -163,7 +250,7 @@
                     <el-table-column sortable property="additionalguidelines" label="Additional Guidelines"></el-table-column>
                     <el-table-column width="140" property="action" label="Action">
                         <div slot-scope="scope">
-                        <div class="element-edit">
+                        <div @click="editCodeModal = true; editSelectedCode(scope.row.sn);" class="element-edit">
                             <i class="icon icon-edit"></i>
                         </div>
                         <div  @click="deleteCodeModal = true; deleteSelectedCode(scope.row.sn);" class="element-delete">
@@ -176,7 +263,7 @@
                 <el-tab-pane label="exit">
                     <span slot="label" class="label-icon"><i class="icon icon-exit"></i> Exit</span>
                     <div class="row">
-                        <div class="col-8 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <el-select @change="updatePagination()" v-model="value" placeholder="Records">
                             <el-option
                                 v-for="item in recordsOptions"
@@ -212,7 +299,7 @@
                     <el-table-column sortable property="additionalguidelines" label="Additional Guidelines"></el-table-column>
                     <el-table-column  width="140" property="action" label="Action">
                         <div slot-scope="scope">
-                        <div class="element-edit">
+                         <div @click="editCodeModal = true; editSelectedCode(scope.row.sn);" class="element-edit">
                             <i class="icon icon-edit"></i>
                         </div>
                         <div @click="deleteCodeModal = true; deleteSelectedCode(scope.row.sn);" class="element-delete">
@@ -225,7 +312,7 @@
                 <el-tab-pane label="attendance">
                     <span slot="label" class="label-icon"><i class="icon icon-attendence"></i> Attendance</span>
                     <div class="row">
-                        <div class="col-8 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <el-select @change="updatePagination()" v-model="value" placeholder="Records">
                             <el-option
                                 v-for="item in recordsOptions"
@@ -260,7 +347,7 @@
                     <el-table-column sortable property="status" width="120"  label="Status"></el-table-column>
                     <el-table-column width="140" property="action" label="Action">
                         <div slot-scope="scope">
-                        <div class="element-edit">
+                        <div @click="editCodeModal = true; editSelectedCode(scope.row.sn);" class="element-edit">
                             <i class="icon icon-edit"></i>
                         </div>
                         <div @click="deleteCodeModal = true; deleteSelectedCode(scope.row.sn);" class="element-delete">
@@ -273,7 +360,7 @@
                 <el-tab-pane label="absentreason">
                     <span slot="label" class="label-icon"><i class="icon icon-absence"></i> Absent Reason</span>
                     <div class="row">
-                        <div class="col-8 col-sm-6 col-md-4">
+                        <div class="col-12 col-sm-6 col-md-4">
                             <el-select @change="updatePagination()" v-model="value" placeholder="Records">
                             <el-option
                                 v-for="item in recordsOptions"
@@ -307,7 +394,7 @@
                     <el-table-column sortable property="description" label="Description"></el-table-column>
                     <el-table-column width="140" property="action" label="Action">
                         <div slot-scope="scope">
-                        <div class="element-edit">
+                        <div @click="editCodeModal = true; editSelectedCode(scope.row.sn);" class="element-edit">
                             <i class="icon icon-edit"></i>
                         </div>
                         <div @click="deleteCodeModal = true; deleteSelectedCode(scope.row.sn);" class="element-delete">
@@ -352,12 +439,92 @@ export default {
         searchName:"",
         tabSelected: "entry",
         codeSelectedToDelete: 0,
+        codeSelectedToEdit:0,
         tabIndex: 0,
         addCodeModal: false,
         deleteCodeModal: false,
+        editCodeModal: false,
         newCode: [],
-        // ADD MENU
+        formEditCode: {
+            // EDIT CODE
+            codeReadyForEditSN: 0,
+            codeReadyForEditCode: "",
+            codeReadyForEditCategory: "",
+            codeReadyForEditCodename: "",
+            codeReadyForEditUsageGuidelines: "",
+            codeReadyForEditAdditionalGuidelines: "",
+            codeReadyForEditADTValue: "",
+            codeReadyForEditADTDecriptor: "",   
+            codeReadyForEditDescription: "",
+            codeReadyForEditStatus: "",
+            rules: {
+                codeReadyForEditCode: [
+                    {
+                        required: true,
+                        message: "Code Label is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+                codeReadyForEditCategory: [
+                    {
+                        required: true,
+                        message: "Code Category is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+                codeReadyForEditCodename: [
+                    {
+                        required: true,
+                        message: "Code Codename is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+                codeReadyForEditUsageGuidelines: [
+                    {
+                        required: true,
+                        message: "Usage Guidelines is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+                codeReadyForEditAdditionalGuidelines: [
+                    {
+                        required: true,
+                        message: "Additional Guidelines is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+                codeReadyForEditADTValue: [
+                    {
+                        required: true,
+                        message: "ADT Value is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+                codeReadyForEditADTDecriptor: [
+                    {
+                        required: true,
+                        message: "ADT Decriptor is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+                codeReadyForEditDescription: [
+                    {
+                        required: true,
+                        message: "Description is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+                codeReadyForEditStatus: [
+                    {
+                        required: true,
+                        message: "Status is Required!",
+                        trigger: "blur"
+                    }                  
+                ],
+            }
+        },
         formAddCode: {
+            //ADD CODE
             codeReadyForAddSN: 0,
             codeReadyForAddCode: "",
             codeReadyForAddCategory: "",
@@ -519,7 +686,6 @@ export default {
 
             codeBookStorage[this.tabIndex][this.tabSelected] = codeDeleted;
 
-
             // UPDATE STORAGE
             localStorage.setItem("codeBookStorageJSONData",JSON.stringify(codeBookStorage));
             this.loadMore();
@@ -556,6 +722,85 @@ export default {
 
             this.busy = false;
         },
+        validateEditForm(){
+            return new Promise((resolve) => {
+                this.$refs.formEditCode.validate((valid) => {
+                this.$emit('on-validate', valid, this.model)
+                resolve(valid);
+                if(valid)
+                    this.editFormSave();
+                });
+            })
+        },
+        editFormSave(){
+            const codeBookStorage = this.loadCodeBookStorage();
+            
+            let codeEditCopy = [
+                ...codeBookStorage[this.tabIndex][this.tabSelected],
+            ];
+
+            let filteredDataSource = codeEditCopy.filter((item) => {
+                if (item.sn === this.codeSelectedToEdit && (this.tabSelected === 'entry' || this.tabSelected === 'exit')) {
+                    item.sn = this.formEditCode.codeReadyForEditSN;
+                    item.code = this.formEditCode.codeReadyForEditCode;
+                    item.category = this.formEditCode.codeReadyForEditCategory;
+                    item.codename = this.formEditCode.codeReadyForEditCodename;
+                    item.usageguidelines = this.formEditCode.codeReadyForEditUsageGuidelines;
+                    item.additionalguidelines = this.formEditCode.codeReadyForEditAdditionalGuidelines;
+                }
+                if (item.sn === this.codeSelectedToEdit && this.tabSelected === 'attendance') {
+                    item.sn = this.formEditCode.codeReadyForEditSN;
+                    item.adtvalue = this.formEditCode.codeReadyForEditCode;
+                    item.adtvaluedecriptor = this.formEditCode.codeReadyForEditCategory;
+                    item.description = this.formEditCode.codeReadyForEditCodename;
+                    item.status = this.formEditCode.codeReadyForEditUsageGuidelines;
+                }
+                if (item.sn === this.codeSelectedToEdit && this.tabSelected === 'absentreason') {
+                    item.sn = this.formEditCode.codeReadyForEditSN;
+                    item.adtvalue = this.formEditCode.codeReadyForEditCode;
+                    item.adtvaluedecriptor = this.formEditCode.codeReadyForEditCategory;
+                    item.description = this.formEditCode.codeReadyForEditCodename;
+                }
+                return item;
+            });
+
+            codeBookStorage[this.tabIndex][this.tabSelected] = filteredDataSource;
+            this.editCodeModal = false;
+
+            // UPDATE STORAGE
+            localStorage.setItem("codeBookStorageJSONData",JSON.stringify(codeBookStorage));
+            this.loadMore();
+        },
+        editSelectedCode(idx){
+            const codeBookStorage = this.loadCodeBookStorage();
+            this.codeSelectedToEdit = idx;
+
+            const editCode = codeBookStorage[this.tabIndex][this.tabSelected].filter(function(item) {
+                return item.sn === idx;
+            });
+
+            if(this.tabSelected === 'entry' || this.tabSelected === 'exit'){
+                this.formEditCode.codeReadyForEditSN = editCode[0].sn;
+                this.formEditCode.codeReadyForEditCode = editCode[0].code;
+                this.formEditCode.codeReadyForEditCategory = editCode[0].category;
+                this.formEditCode.codeReadyForEditCodename = editCode[0].codename;
+                this.formEditCode.codeReadyForEditUsageGuidelines = editCode[0].usageguidelines;
+                this.formEditCode.codeReadyForEditAdditionalGuidelines = editCode[0].additionalguidelines;
+            }
+            if(this.tabSelected === 'attendance'){
+                this.formEditCode.codeReadyForEditSN = editCode[0].sn;
+                this.formEditCode.codeReadyForEditADTValue = editCode[0].adtvalue;
+                this.formEditCode.codeReadyForEditADTDecriptor = editCode[0].adtvaluedecriptor;
+                this.formEditCode.codeReadyForEditDescription = editCode[0].description;
+                this.formEditCode.codeReadyForEditStatus = editCode[0].status;
+            }
+            if(this.tabSelected === 'absentreason'){
+                this.formEditCode.codeReadyForEditSN = editCode[0].sn;
+                this.formEditCode.codeReadyForEditADTValue = editCode[0].adtvalue;
+                this.formEditCode.codeReadyForEditADTDecriptor = editCode[0].adtvaluedecriptor;
+                this.formEditCode.codeReadyForEditDescription = editCode[0].description;
+            }
+        },
         validate() {
         return new Promise((resolve) => {
             this.$refs.formAddCode.validate((valid) => {
@@ -565,6 +810,35 @@ export default {
                this.addNewCodeFormValid();
             });
         })
+        },
+        formInterface(maxSN,form){
+            if(this.tabSelected === 'entry' || this.tabSelected === 'exit'){
+                this.newCode = {
+                    "sn": maxSN+1,
+                    "code": form.codeReadyForAddCode,
+                    "category": form.codeReadyForAddCategory,
+                    "codename": form.codeReadyForAddCodename,
+                    "usageguidelines": form.codeReadyForAddUsageGuidelines,
+                    "additionalguidelines": form.codeReadyForAddAdditionalGuidelines
+                }
+            }
+            if(this.tabSelected === 'attendance'){
+                this.newCode = {
+                    "sn": maxSN+1,
+                    "adtvalue": form.codeReadyForAddADTValue,
+                    "adtvaluedecriptor": form.codeReadyForAddADTDecriptor,
+                    "description": form.codeReadyForAddDescription,
+                    "status": form.codeReadyForAddStatus
+                }
+            }
+            if(this.tabSelected === 'absentreason'){
+                this.newCode = {
+                    "sn": maxSN+1,
+                    "adtvalue": form.codeReadyForAddADTValue,
+                    "adtvaluedecriptor": form.codeReadyForAddADTDecriptor,
+                    "description": form.codeReadyForAddDescription
+                }
+            }
         },
         addNewCodeFormValid(){
             const formAddCode = JSON.parse(JSON.stringify(this.formAddCode));
@@ -576,47 +850,36 @@ export default {
 
             this.newCode = [];
 
-            if(this.tabSelected === 'entry' || this.tabSelected === 'exit'){
-                this.newCode = {
-                    "sn": maxSN+1,
-                    "code": formAddCode.codeReadyForAddCode,
-                    "category": formAddCode.codeReadyForAddCategory,
-                    "codename": formAddCode.codeReadyForAddCodename,
-                    "usageguidelines": formAddCode.codeReadyForAddUsageGuidelines,
-                    "additionalguidelines": formAddCode.codeReadyForAddAdditionalGuidelines
-                }
-            }
-            if(this.tabSelected === 'attendance'){
-                this.newCode = {
-                    "sn": maxSN+1,
-                    "adtvalue": formAddCode.codeReadyForAddADTValue,
-                    "adtvaluedecriptor": formAddCode.codeReadyForAddADTDecriptor,
-                    "description": formAddCode.codeReadyForAddDescription,
-                    "status": formAddCode.codeReadyForAddStatus
-                }
-            }
-            if(this.tabSelected === 'absentreason'){
-                this.newCode = {
-                    "sn": maxSN+1,
-                    "adtvalue": formAddCode.codeReadyForAddADTValue,
-                    "adtvaluedecriptor": formAddCode.codeReadyForAddADTDecriptor,
-                    "description": formAddCode.codeReadyForAddDescription
-                }
-            }
+            this.formInterface(maxSN,formAddCode);
 
             codeBookStorage[this.tabIndex][this.tabSelected].push(this.newCode);
+
             // UPDATE STORAGE
             localStorage.setItem("codeBookStorageJSONData",JSON.stringify(codeBookStorage));
             this.loadMore();
+
+            // CLEAR FORM
+            this.formAddCode.codeReadyForAddSN = 0;
+            this.formAddCode.codeReadyForAddCode = "";
+            this.formAddCode.codeReadyForAddCategory = "";
+            this.formAddCode.codeReadyForAddCodename = "";
+            this.formAddCode.codeReadyForAddUsageGuidelines = "";
+            this.formAddCode.codeReadyForAddAdditionalGuidelines = "";
+            this.formAddCode.codeReadyForAddADTValue = "";
+            this.formAddCode.codeReadyForAddADTDecriptor = "";   
+            this.formAddCode.codeReadyForAddDescription = "";
+            this.formAddCode.codeReadyForAddStatus = "";
+
             this.addCodeModal = false;
         },
         addNewCode(code){
             this.addCodeModal = true;
         },
         updateForm (input, value) {
-        
-        this.formAddCode[input] = value;
-
+            this.formAddCode[input] = value;
+        },
+        updateEditForm (input, value){
+            this.formEditCode[input] = value;
         },
         updatePagination() {
 

@@ -1894,6 +1894,7 @@ Top box
   border:1px solid var(--lightgray);
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  margin-top: 5px;
 }
 
 .code-book .records {
@@ -2014,6 +2015,10 @@ Top box
   top: 3px;
   position: relative;
 } 
+
+.code-book .el-select {
+  margin-bottom: 10px;
+}
 
 /* SEARCH PAGE */
 .search-results .card-box {
@@ -4624,6 +4629,10 @@ UI Elements
 }
 
 @media only screen and (max-width:768px) {
+  .code-book .el-tabs__header .el-tabs__item {
+    padding: 0 10px;
+    font-size: 12px;
+  }
   .container {
     max-width: 98%
   }
