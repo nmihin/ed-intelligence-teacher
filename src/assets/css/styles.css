@@ -1868,6 +1868,163 @@ Top box
   float: left
 }
 
+/* SEARCH PAGE */
+.search-results .card-box {
+  padding: 0;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.search-results .ed_card-boxes {
+  margin-top: 10px;
+}
+
+.search-results .ed_card-boxes .card-title {
+  margin-bottom: 0;
+  padding-left: 10%;
+  color: var(--white);
+  height: 60px;
+  background: var(--primary);
+  background: -moz-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: -webkit-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: linear-gradient(to bottom, var(--primary) 0, var(--tertiary) 100%)
+}
+
+.search-results .ed_card-boxes .card-title h2 {
+  max-width: 85%;
+  line-height: 1.25;
+  float: left;
+  margin-top: 20px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.search-results .ed_card-boxes .card-element {
+  position: absolute;
+  bottom: 10px;
+  left: 48px;
+}
+
+.search-results .ed_card-boxes .edit-search {
+  float: right;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  z-index: 5;
+  font-size: 14px;
+  background-color: var(--tertiary);
+  margin:5px 5px 5px 0;
+}
+
+.search-results .ed_card-boxes .delete-search .icon-delete:before {
+  color: var(--white);
+}
+
+.search-results .ed_card-boxes .delete-search .icon-delete {
+  top:6px;
+}
+
+.search-results .ed_card-boxes .delete-search {
+  float: right;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  z-index: 5;
+  font-size: 14px;
+  background-color: var(--red);
+  margin:5px 5px 5px 0;
+}
+
+.search-results .ed_card-boxes .edit-search .icon-edit:before {
+  color: var(--white);
+}
+
+.search-results .ed_card-boxes .edit-search .icon-edit {
+  top:6px;
+}
+
+.search-results .ed_card-boxes .card-content {
+  padding-left:15px;
+}
+
+.search-results .ed_card-boxes .card-content ul {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 0;
+}
+
+.search-results .ed_card-boxes .card-content ul > li {
+  border-bottom: 0;
+  padding: 8px 0 8px 5%;
+  font-weight: 700;
+  font-size: 14px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  width: 100%;
+}
+
+.search-results .ed_card-boxes .card-content ul > li > h3 {
+  font-size: 15px;
+  margin: 0;
+  padding: 5px 5px 5px 0;
+  width: 40%;
+  position: relative;
+}
+
+.search-results .ed_card-boxes .card-content ul > li > h3:after {
+  background: var(--lightgray);
+  height: 1px;
+  width: 30px;
+  position: absolute;
+  content: '';
+  top: 20px;
+  right: 10px; 
+}
+
+.search-results .ed_card-boxes .card-content .card-picture {
+  float: left;
+  width: 128px;
+  display: flex;
+  height: 128px;
+  border-radius: 50%;
+  position: relative;
+  top:10px;
+  background-color: var(--lightgray);
+}
+
+.search-results .ed_card-boxes .card-content figcaption {
+  display: flex;
+}
+
+
+.search-results .el-select {
+  margin-bottom: 10px;
+}
+
+.search-results .search-by {
+  padding-left: 10px;
+}
+
+.search-results .el-input .icon-search {
+  color: var(--white);
+}
+
+.search-results .el-input .el-button {
+  background-color: var(--primary);
+  outline: none;
+}
+
+.search-results .no-results {
+  text-align: center;
+  padding: 50px 0;
+  width: 100%;
+}
+
 .aside-box {
   background-color: var(--white);
   box-sizing: border-box;
@@ -2507,8 +2664,8 @@ li:hover .megamenu {
   border: 2px solid var(--white)
 }
 
-.student-list .el-select {
-  margin-bottom: 10px;
+.student-list .el-table {
+  margin-top:10px;
 }
 
 .student-list .el-select .el-input {
@@ -2585,6 +2742,43 @@ li:hover .megamenu {
 
 .student-list .student-list-edit > .icon:before {
   color: var(--white);
+}
+
+.student-list .change-view {
+  float: right;
+  margin: 2px 0 10px 10px !important;
+}
+
+.student-list .change-view.menu-list {
+  padding: 7px 25px;;
+}
+
+.student-list .change-view .icon-menu-list {
+  font-size: 20px;
+}
+
+.student-list .search-results {
+  margin-top:10px;
+}
+
+.student-list .search-results .ed_card-boxes .card-content ul > li {
+  padding: 3px 0 3px 5%;
+}
+
+.student-list .search-results .card-element {
+  bottom: auto !important;
+  top:195px;
+}
+
+.student-list .search-results .card-content-days {
+  color: var(--white);
+  font-size: 11px !important;
+  padding: 2px 8px !important;
+  margin:3px;
+  background-color: var(--primary);
+  border-radius: 10px;
+  width: auto !important;
+  margin: 2px;
 }
 
 .side-menu-header h2 {

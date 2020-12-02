@@ -3,8 +3,8 @@
   <div class="main-content">
     <div class="container-fluid student-list">
         <div class="row">
-          <div class="col-6 col-md-8">
-            <el-select @change="updatePagination()" v-model="value" placeholder="Records">
+          <div class="col-8 col-sm-6 col-md-4">
+            <el-select v-if="viewType ==='list'" @change="updatePagination()" v-model="value" placeholder="Records">
               <el-option
                 v-for="item in recordsOptions"
                 :key="item.value"
@@ -12,33 +12,83 @@
                 :value="item.value">
               </el-option>
             </el-select>
-            <span class="records">Records</span>
+            <span v-if="viewType ==='list'" class="records">Records</span>
           </div>
-          <div class="col-6 col-md-4">
+          <div class="col-12 col-sm-6 col-md-4">
+            <button @click="viewTypeList('avatar')" class="change-view button medium ed-btn__primary">
+              <i class="icon icon-manage"></i>
+            </button>
+            <button @click="viewTypeList('list')" class="change-view menu-list button medium ed-btn__primary">
+              <i class="icon icon-menu-list"></i>
+            </button>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4">
             <el-input @input="searchFilter()" placeholder="Search name..." v-model="searchName"></el-input>
           </div>
         </div>
-      <el-table
-        ref="singleTable"
-        :data="posts"
-        highlight-current-row
-        style="width: 100%">
-        <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
-        <el-table-column sortable property="name" label="Name"></el-table-column>
-        <el-table-column sortable property="usi" label="USI"></el-table-column>
-        <el-table-column sortable property="grade" label="Grade"></el-table-column>
-        <el-table-column width="64" property="action" label="Action">
-            <div class="student-list-edit" slot-scope="scope" v-if="scope.row.action.includes('edit')">
-              <i class="icon icon-edit"></i>
+        <!-- LIST VIEW -->
+        <el-table
+          v-if="viewType ==='list'"
+          ref="singleTable"
+          :data="posts"
+          highlight-current-row
+          style="width: 100%">
+          <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
+          <el-table-column sortable property="name" label="Name"></el-table-column>
+          <el-table-column sortable property="surname" label="Surname"></el-table-column>
+          <el-table-column sortable property="usi" label="USI"></el-table-column>
+          <el-table-column sortable property="grade" label="Grade"></el-table-column>
+          <el-table-column width="64" property="action" label="Action">
+              <div class="student-list-edit" slot-scope="scope" v-if="scope.row.action.includes('edit')">
+                <i class="icon icon-edit"></i>
+              </div>
+          </el-table-column>
+          <el-table-column width="100" property="action">
+              <div class="student-list-preview" slot-scope="scope" v-if="scope.row.action.includes('preview')">
+                <i class="icon icon-eye"></i>
+              </div>
+          </el-table-column>
+        </el-table>
+        <!-- AVATAR VIEW -->
+        <div v-if="viewType ==='avatar'" class="row search-results">
+          <div v-for="(post, idx) in posts" :key="idx" class="col-12 col-md-6 col-lg-4 ed_card-boxes">
+          <div class="card-box">
+            <div class="card-title">
+                <h2>{{post.name}} {{post.surname}}</h2>
             </div>
-        </el-table-column>
-        <el-table-column width="100" property="action">
-            <div class="student-list-preview" slot-scope="scope" v-if="scope.row.action.includes('preview')">
-              <i class="icon icon-eye"></i>
+            <div class="card-content">
+                <figure>
+                  <img v-if="!post.avatar" class="card-picture" src="../assets/images/avatar-aux.png" />
+                  <img v-if="post.avatar" class="card-picture" :src="post.avatar" />
+                  <div class="card-element">
+                    <a href="#" class="edit-search">
+                      <i class="icon icon-edit"></i>
+                    </a>
+                    <a href="#" class="delete-search">
+                      <i class="icon icon-delete"></i>
+                    </a>
+                  </div>
+                  <figcaption>
+                    <ul>
+                      <li><h3>USI</h3><span>{{post.usi}}</span></li>
+                      <li><h3>Grade</h3><span>{{post.grade}}</span></li>
+                      <li><h3>Home Room</h3><span>{{post.room}}</span></li>
+                      <li><h3>Class Days</h3>
+                        <ul>
+                          <li class="card-content-days" v-for="(p, idx) in post.classdays" :key="idx">{{p}}</li>
+                        </ul>
+                      </li>
+                      <li><h3>Guardian</h3><span>{{post.guardian}}</span></li>
+                      <li><h3>Phone</h3><span>{{post.phone}}</span></li>
+                    </ul>
+                  </figcaption>
+                </figure>
             </div>
-        </el-table-column>
-      </el-table>
+          </div>
+          </div>
+        </div>
       <el-pagination
+          v-if="viewType ==='list'"
           background
           layout="prev, pager, next"
           @current-change="handleCurrentChange"
@@ -68,6 +118,7 @@ export default {
        posts: [],
        busy: true,
        value: 10,
+       viewType:"list",
        searchName:"",
        recordsOptions: [{
           value: 5,
@@ -178,6 +229,32 @@ export default {
         );
 
         this.posts = append;
+      },
+      viewTypeList(type){
+        if(type === "list")
+          this.viewType = "list"
+        if(type === "avatar"){
+          this.viewType = "avatar"
+          
+          this.busy = true;
+          const studentListStorage = this.loadStudentlistStorage();
+
+          // LOAD ALL STUDENTS 
+          if(studentListStorage){
+            this.posts = studentListStorage;
+            this.busy = false;
+          }
+          else {
+            //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/google-classroom.json").then((response) => {
+              this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-list.json").then((response) => {
+
+                this.posts = response.data;
+
+                localStorage.setItem("studentListStorageJSONData",JSON.stringify(response.data));
+                this.busy = false;
+              }).catch((error) => error.response.data)
+          }  
+        }
       },
       searchFilter(){
         this.busy = true;
