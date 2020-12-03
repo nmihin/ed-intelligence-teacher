@@ -899,7 +899,33 @@ export default {
             this.busy = true;
 
             const codeBookStorage = this.loadCodeBookStorage();
-            this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => data.usageguidelines.toLowerCase().includes(this.searchName.toLowerCase()));
+
+            // SEARCH BY PROPERTY (ANY)
+            if(this.tabSelected === 'entry' || this.tabSelected === 'exit'){
+                this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => 
+                    data.code.toString().toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.category.toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.codename.toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.usageguidelines.toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.additionalguidelines.toLowerCase().includes(this.searchName.toLowerCase())
+                );        
+            }
+            if(this.tabSelected === 'attendance'){
+                this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => 
+                    data.adtvalue.toString().toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.adtvaluedecriptor.toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.description.toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.status.toLowerCase().includes(this.searchName.toLowerCase()) 
+                );   
+            }
+            if(this.tabSelected === 'absentreason'){
+                this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => 
+                    data.adtvalue.toString().toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.adtvaluedecriptor.toLowerCase().includes(this.searchName.toLowerCase()) ||
+                    data.description.toLowerCase().includes(this.searchName.toLowerCase())
+                );   
+            }
+
             this.totalSize = this.posts.length;
 
             this.busy = false;
