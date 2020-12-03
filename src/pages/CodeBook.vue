@@ -750,20 +750,20 @@ export default {
                 }
                 if (item.sn === this.codeSelectedToEdit && this.tabSelected === 'attendance') {
                     item.sn = this.formEditCode.codeReadyForEditSN;
-                    item.adtvalue = this.formEditCode.codeReadyForEditCode;
-                    item.adtvaluedecriptor = this.formEditCode.codeReadyForEditCategory;
-                    item.description = this.formEditCode.codeReadyForEditCodename;
-                    item.status = this.formEditCode.codeReadyForEditUsageGuidelines;
+                    item.adtvalue = this.formEditCode.codeReadyForEditADTValue;
+                    item.adtvaluedecriptor = this.formEditCode.codeReadyForEditADTDecriptor;
+                    item.description = this.formEditCode.codeReadyForEditDescription;
+                    item.status = this.formEditCode.codeReadyForEditStatus;
                 }
                 if (item.sn === this.codeSelectedToEdit && this.tabSelected === 'absentreason') {
                     item.sn = this.formEditCode.codeReadyForEditSN;
-                    item.adtvalue = this.formEditCode.codeReadyForEditCode;
-                    item.adtvaluedecriptor = this.formEditCode.codeReadyForEditCategory;
-                    item.description = this.formEditCode.codeReadyForEditCodename;
+                    item.adtvalue = this.formEditCode.codeReadyForEditADTValue;
+                    item.adtvaluedecriptor = this.formEditCode.codeReadyForEditADTDecriptor;
+                    item.description = this.formEditCode.codeReadyForEditDescription;
                 }
                 return item;
             });
-
+           
             codeBookStorage[this.tabIndex][this.tabSelected] = filteredDataSource;
             this.editCodeModal = false;
 
