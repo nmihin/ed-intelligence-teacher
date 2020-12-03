@@ -2053,8 +2053,13 @@ Top box
 
 .search-results .ed_card-boxes .card-element {
   position: absolute;
-  bottom: 10px;
-  left: 48px;
+  top: 200px;
+  left: 36px;
+  width: 80px;
+}
+
+.search-results .ed_card-boxes .card-element > span {
+  margin: 0 5px;
 }
 
 .search-results .ed_card-boxes .edit-search {
@@ -2175,6 +2180,37 @@ Top box
   text-align: center;
   padding: 50px 0;
   width: 100%;
+}
+
+.search-results .card-element .icon-edit {
+  width: 30px;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 7px;
+  font-size: 14px;
+  background-color: var(--tertiary);
+  right: 0;
+  position: relative;
+}
+
+.search-results .card-element .icon-edit:before {
+  color: var(--white);
+}
+
+.search-results .card-element .icon-eye {
+  width: 30px;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 20px;
+  background-color: var(--green);
+  position: relative;
+
+  top:3px;
 }
 
 .aside-box {
@@ -2913,6 +2949,16 @@ li:hover .megamenu {
   margin-top:10px;
 }
 
+.student-list .search-results .student-list-edit .icon-edit {
+  right:7px;
+  top:7px;
+}
+
+.student-list .search-results .student-list-preview.edit-student-list {
+  position: absolute;
+  top:0;
+}
+
 .student-list .search-results .ed_card-boxes .card-content ul > li {
   padding: 3px 0 3px 5%;
 }
@@ -2920,7 +2966,9 @@ li:hover .megamenu {
 .student-list .search-results .card-element {
   bottom: auto !important;
   top:195px;
+  width:68px;
 }
+
 
 .student-list .search-results .card-content-days {
   color: var(--white);
@@ -4425,6 +4473,62 @@ Wizard
   top:0;
 
 }
+
+/*
+Popover
+*/
+.el-popover.student-list-options {
+  background-color: transparent;
+  border:0;
+  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  text-align: center;
+  margin-bottom: 0 !important;
+}
+
+.el-popover.student-list-options .popper__arrow {
+  display: none;
+}
+
+.el-popover.student-list-options .student-list-preview .icon {
+  background-color: var(--bluewood);
+  width: 30px;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 20px;
+  position: relative;
+  margin-right: 5px;;
+}
+
+.el-popover.student-list-options .student-list-preview .icon-profile {
+  font-size: 16px;
+  padding: 6px;
+  background: var(--green);
+}
+
+.el-popover.student-list-options .student-list-preview .icon-lesson {
+  font-size: 16px;
+  padding: 6px 7px;
+}
+
+.el-popover.student-list-options .student-list-preview .icon-edit {
+  font-size: 14px;
+  padding: 7px;
+  bottom: 2px;
+  background-color: var(--green);
+}
+
+.el-popover.student-list-options .student-list-preview .icon-edit:before {
+  color: var(--white);
+}
+
+.el-popover.student-list-options .student-list-preview .icon-lesson:before {
+  color: var(--white) !important;
+}
+
 /*
 UI Elements
 */

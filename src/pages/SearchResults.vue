@@ -32,12 +32,49 @@
                   <img v-if="!post.avatar" class="card-picture" src="../assets/images/avatar-aux.png" />
                   <img v-if="post.avatar" class="card-picture" :src="post.avatar" />
                   <div class="card-element">
-                    <a href="#" class="edit-search">
-                      <i class="icon icon-edit"></i>
-                    </a>
-                    <a href="#" class="delete-search">
-                      <i class="icon icon-delete"></i>
-                    </a>
+                    <el-popover
+                      placement="top"
+                      popper-class="student-list-options"
+                      width="200"
+                      trigger="hover">
+                      <a class="student-list-preview">
+                        <el-tooltip class="item" effect="dark" content="View Profile" placement="top">
+                          <i @click="viewProfile(scope.row.sn)" class="icon icon-profile"></i>
+                        </el-tooltip> 
+                      </a>
+                      <a class="student-list-preview">
+                        <el-tooltip class="item" effect="dark" content="Feedback List" placement="top">
+                          <i @click="feedBackList(scope.row.sn)" class="icon icon-lesson"></i>
+                        </el-tooltip>
+                      </a>
+                      <a slot="reference" class="student-list-preview">
+                        <i class="icon icon-eye"></i>
+                      </a>
+                    </el-popover>
+                    <el-popover
+                        placement="top"
+                        popper-class="student-list-options"
+                        width="200"
+                        trigger="hover">
+                        <a class="student-list-preview">
+                          <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
+                            <i @click="addFeedback(scope.row.sn)" class="icon icon-follow"></i>
+                          </el-tooltip> 
+                        </a>
+                        <a class="student-list-preview">
+                          <el-tooltip class="item" effect="dark" content="Add Withdrawal" placement="top">
+                            <i @click="addWithdrawal(scope.row.sn)" class="icon icon-exit"></i>
+                          </el-tooltip>
+                        </a>
+                        <a class="student-list-preview">
+                          <el-tooltip class="item" effect="dark" content="Edit Profile" placement="top">
+                            <i @click="editProfile(scope.row.sn)" class="icon icon-edit"></i>
+                          </el-tooltip>
+                        </a>
+                        <a slot="reference" class="student-list-edit">
+                          <i class="icon icon-edit"></i>
+                        </a>
+                    </el-popover>
                   </div>
                   <figcaption>
                     <ul>
