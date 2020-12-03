@@ -54,7 +54,77 @@ export default {
   data() {
     return {
       finalModel: {},
-      activeTabIndex: 0
+      busy:false,
+      activeTabIndex: 0,
+      studentData:[],
+      form: {
+        //DEFINITIONS
+        atRiskIndicator: "",
+        birthDate: "",
+        city: "",
+        email: "",
+        ethnicity: "",
+        firstName: "",
+        gender: "",
+        heightFeet: "",
+        heightInches: "",
+        homelesnessStatus: "",
+        imageUrl: "",
+        lastName: "",
+        lepIndicator: "",
+        lepStatus: "",
+        mealStatus:"",
+        mostRecentIepDate:"",
+        nativeLanguage:"",
+        prefix: "",
+        race:"",
+        sedsLeaType:"",
+        sedsSchoolType:"",
+        sedsPrimaryDisability:"",
+        sedsSpedEnvironment:"",
+        sedsSpedEnvironmentDate:"",
+        socialSecurityNumber: "",
+        specialNeedIndicator: "",
+        specialNeedLevel:"",
+        state: "",
+        stateResidencyStatus: "",
+        stateVerifiedResidencyStatus: "",
+        streetAddress: "",
+        totalHoursEdSettings:"",
+        ward: "",
+        wardStateIndicator: "",
+        weight:"",
+        zipCode: "",
+        contactNumberEmergency: "",
+        contactNumberPrimaryParent: "",
+        contactNumberSecondaryParent: "",
+        emailEmergency: "",
+        emailPrimaryParent: "",
+        emailSecondaryParent: "",
+        firstNameEmergency: "",
+        firstNamePrimaryParent: "",
+        firstNameSecondaryParent: "",
+        lastNameEmergency: "",
+        lastNamePrimaryParent: "",
+        lastNameSecondaryParent: "",
+        parentGuardianRelationPrimaryParent: "",
+        parentGuardianRelationSecondaryParent: "",
+        category: "",
+        dualEnrollment: "",
+        entryCode: "",
+        grade: "",
+        lastSchoolAddress: "",
+        lastSchoolAttended: "",
+        lastSchoolCity: "",
+        lastSchoolZipCode: "",
+        residencyIndicator: "",
+        slotAcceptedDate: "",
+        studentNotificationDate: "",
+        studentRegistrationDate: "",
+        tuitionAmount: "",
+        tuitionIndicator: "",
+        uniqueStudentIdentifier: ""
+      },
     };
   },
   computed: {
@@ -77,6 +147,9 @@ export default {
         this.finalModel = { ...this.finalModel, ...model };
       }
     }
+  },
+  created() {
+   
   }
 };
 </script>

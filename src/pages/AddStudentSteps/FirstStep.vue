@@ -208,17 +208,19 @@
                 placeholder="Pick a date">
             </el-date-picker>
             </el-form-item>
-            <el-upload
-                class="avatar-uploader col-12"
-                action="https://educationalschool.iteg.com.np/images"
-                :multiple="false"
-                accept="image/*"
-                :show-file-list="false">
-                <button class="button medium ed-btn__primary">
-                  <img v-if="form.imageUrl" :src="form.imageUrl" class="avatar">
-                  <i v-else class="icon icon-profile"></i>
-                Upload Avatar Image</button> 
-            </el-upload>
+            <el-form-item class="avatar-image">
+              <img v-if="form.imageUrl" :src="form.imageUrl" class="avatar">
+              <el-upload
+                  class="avatar-uploader col-12"
+                  action="https://educationalschool.iteg.com.np/images"
+                  :multiple="false"
+                  accept="image/*"
+                  :show-file-list="false">
+                  <button class="button medium ed-btn__primary">
+                    <i class="icon icon-profile"></i>
+                  Upload Avatar Image</button> 
+              </el-upload>
+            </el-form-item>
           </div>
         </div>
       </div>
@@ -324,6 +326,7 @@
 export default {
   data() {
     return {
+      studentData:[],
       form: {
         //DEFINITIONS
         atRiskIndicator: "",
@@ -628,6 +631,57 @@ export default {
     };
   },
   methods: {
+    loadMore() {
+    const studentID = parseInt(this.$route.params.id);
+
+    if(this.$route.params.id){
+        this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-list-details.json").then((response) => {
+          this.studentData = response.data.filter(function (student) {
+              return student.sn === studentID;
+          });
+          this.studentData = this.studentData[0];
+
+          if(this.studentData){
+            this.form.atRiskIndicator = this.studentData.atRiskIndicator;
+            this.form.birthDate =  this.studentData.birthDate;
+            this.form.city =  this.studentData.city;
+            this.form.email =  this.studentData.email;
+            this.form.ethnicity =  this.studentData.ethnicity;
+            this.form.firstName = this.studentData.firstName;
+            this.form.gender =  this.studentData.gender;
+            this.form.heightFeet =  this.studentData.heightFeet;
+            this.form.heightInches =  this.studentData.heightInches;
+            this.form.homelesnessStatus =  this.studentData.homelesnessStatus;
+            this.form.imageUrl =  this.studentData.imageUrl;
+            this.form.lastName = this.studentData.lastName;
+            this.form.lepIndicator = this.studentData.lepIndicator;
+            this.form.lepStatus = this.studentData.lepStatus;
+            this.form.mealStatus =  this.studentData.mealStatus;
+            this.form.mostRecentIepDate = this.studentData.mostRecentIepDate;
+            this.form.nativeLanguage = this.studentData.nativeLanguage;
+            this.form.prefix = this.studentData.prefix;
+            this.form.race = this.studentData.race;
+            this.form.sedsLeaType = this.studentData.sedsLeaType;
+            this.form.sedsSchoolType = this.studentData.sedsSchoolType;
+            this.form.sedsPrimaryDisability = this.studentData.sedsPrimaryDisability;
+            this.form.sedsSpedEnvironment = this.studentData.sedsSpedEnvironment;
+            this.form.sedsSpedEnvironmentDate = this.studentData.sedsSpedEnvironmentDate;
+            this.form.socialSecurityNumber = this.studentData.socialSecurityNumber;
+            this.form.specialNeedIndicator = this.studentData.specialNeedIndicator;
+            this.form.specialNeedLevel =  this.studentData.specialNeedLevel;
+            this.form.state = this.studentData.state;
+            this.form.stateResidencyStatus =  this.studentData.stateResidencyStatus;
+            this.form.stateVerifiedResidencyStatus =  this.studentData.stateVerifiedResidencyStatus;
+            this.form.streetAddress =  this.studentData.streetAddress;
+            this.form.totalHoursEdSettings =  this.studentData.totalHoursEdSettings;
+            this.form.ward =  this.studentData.ward;
+            this.form.wardStateIndicator = this.studentData.wardStateIndicator;
+            this.form.weight = this.studentData.weight;
+            this.form.zipCode = this.studentData.zipCode;
+          }
+        }).catch((error) => error.response.data)
+    }
+    },
     openStorage () {
       return JSON.parse(localStorage.getItem('form'))
     },
@@ -650,7 +704,11 @@ export default {
       });
     },
   },
-  created () {
+  mounted () {
+    this.loadMore();
+  },
+  created () { 
+
     const storedForm = this.openStorage()
     if (storedForm) {
       this.form = {

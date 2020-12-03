@@ -222,6 +222,36 @@ export default {
       }
 	}},
   methods: {
+    loadMore(){
+    const studentID = parseInt(this.$route.params.id);
+
+    if(this.$route.params.id){
+        this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-list-details.json").then((response) => {
+          this.studentData = response.data.filter(function (student) {
+              return student.sn === studentID;
+          });
+          this.studentData = this.studentData[0];
+
+          if(this.studentData){
+            this.form.category = this.studentData.category;
+            this.form.dualEnrollment = this.studentData.dualEnrollment;
+            this.form.entryCode = this.studentData.entryCode;
+            this.form.grade = this.studentData.grade;
+            this.form.lastSchoolAddress = this.studentData.lastSchoolAddress;
+            this.form.lastSchoolAttended = this.studentData.lastSchoolAttended;
+            this.form.lastSchoolCity = this.studentData.lastSchoolCity;
+            this.form.lastSchoolZipCode = this.studentData.lastSchoolZipCode;
+            this.form.residencyIndicator = this.studentData.residencyIndicator;
+            this.form.slotAcceptedDate = this.studentData.slotAcceptedDate;
+            this.form.studentNotificationDate = this.studentData.studentNotificationDate;
+            this.form.studentRegistrationDate = this.studentData.studentRegistrationDate;
+            this.form.tuitionAmount = this.studentData.tuitionAmount;
+            this.form.tuitionIndicator = this.studentData.tuitionIndicator;
+            this.form.uniqueStudentIdentifier = this.studentData.uniqueStudentIdentifier;
+      }
+       }).catch((error) => error.response.data)
+    }
+    },
     openStorage () {
       return JSON.parse(localStorage.getItem('form'))
     },
@@ -246,6 +276,8 @@ export default {
     }
   },
   created () {
+    this.loadMore();
+
     const storedForm = this.openStorage()
     if (storedForm) {
       this.form = {

@@ -345,6 +345,9 @@ export default {
         this.busy = false;
         return this.posts;
       },
+      editProfile(id){
+        this.$router.push({path:'/add-student/'+id})
+      },
       viewProfile(id){
         this.$router.push({path:'/student-details/'+id})
       }

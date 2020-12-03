@@ -4370,6 +4370,17 @@ Wizard
   border-radius: 30px;
   padding: 12px 25px;;
 }
+.vue-form-wizard .el-form-item__content .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.vue-form-wizard .avatar-image .el-form-item__content {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
 .el-form  .card-select {
   -webkit-appearance: none;
   background-color: #FFF;

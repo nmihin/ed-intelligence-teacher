@@ -85,6 +85,11 @@ export default new Router({
         component: AddStudent
       },
       {
+        path: "/add-student/:id",
+        name: "Add Student",
+        component: AddStudent
+      },
+      {
         path: "/manage-menu",
         name: "Manage Menu",
         component: ManageMenu

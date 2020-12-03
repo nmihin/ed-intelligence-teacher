@@ -256,6 +256,35 @@ export default {
       }
 	}},
   methods: {
+    loadMore(){
+    const studentID = parseInt(this.$route.params.id);
+
+    if(this.$route.params.id){
+        this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-list-details.json").then((response) => {
+          this.studentData = response.data.filter(function (student) {
+              return student.sn === studentID;
+          });
+          this.studentData = this.studentData[0];
+
+          if(this.studentData){
+          this.form.contactNumberEmergency =  this.studentData.contactNumberEmergency;
+          this.form.contactNumberPrimaryParent = this.studentData.contactNumberPrimaryParent;
+          this.form.contactNumberSecondaryParent = this.studentData.contactNumberSecondaryParent;
+          this.form.emailEmergency = this.studentData.emailEmergency;
+          this.form.emailPrimaryParent = this.studentData.emailPrimaryParent;
+          this.form.emailSecondaryParent = this.studentData.emailSecondaryParent;
+          this.form.firstNameEmergency = this.studentData.firstNameEmergency;
+          this.form.firstNamePrimaryParent = this.studentData.firstNamePrimaryParent;
+          this.form.firstNameSecondaryParent = this.studentData.firstNameSecondaryParent;
+          this.form.lastNameEmergency = this.studentData.lastNameEmergency;
+          this.form.lastNamePrimaryParent = this.studentData.lastNamePrimaryParent;
+          this.form.lastNameSecondaryParent = this.studentData.lastNameSecondaryParent;
+          this.form.parentGuardianRelationPrimaryParent = this.studentData.parentGuardianRelationPrimaryParent;
+          this.form.parentGuardianRelationSecondaryParent = this.studentData.parentGuardianRelationSecondaryParent;
+      }
+      }).catch((error) => error.response.data)
+    }
+    },
     openStorage () {
       return JSON.parse(localStorage.getItem('form'))
     },
@@ -279,6 +308,8 @@ export default {
     },
   },
   created () {
+    this.loadMore();
+
     const storedForm = this.openStorage()
     if (storedForm) {
       this.form = {
@@ -290,7 +321,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>
