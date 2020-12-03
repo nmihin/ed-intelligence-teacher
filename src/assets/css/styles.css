@@ -2969,7 +2969,6 @@ li:hover .megamenu {
   width:68px;
 }
 
-
 .student-list .search-results .card-content-days {
   color: var(--white);
   font-size: 11px !important;
@@ -2979,6 +2978,28 @@ li:hover .megamenu {
   border-radius: 10px;
   width: auto !important;
   margin: 2px;
+}
+
+/* FEEDBACK LIST */
+.feedback-list .el-table {
+  -webkit-box-shadow: 0 0 0 rgba(0,0,0,0);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  border:1px solid var(--gray)
+}
+
+.feedback-list .el-form .el-form-item__content {
+  position: relative;
+}
+
+.feedback-list .el-form .el-upload .el-button {
+  margin: 0 !important;
+}
+
+.feedback-list .el-form .icon-box-plan {
+  position: absolute;
+  bottom: 15px;
+  top: auto;
+  left: 10px;
 }
 
 .side-menu-header h2 {
@@ -4379,7 +4400,6 @@ Wizard
   margin: 0 auto;
   text-align: center;
 }
-
 
 .el-form  .card-select {
   -webkit-appearance: none;
