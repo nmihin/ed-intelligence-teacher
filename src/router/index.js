@@ -13,6 +13,7 @@ import ManageMenu from "../pages/ManageMenu";
 import StudentList from "../pages/StudentList";
 import Attendance from "../pages/Attendance";
 import SearchResults from "../pages/SearchResults";
+import StudentDetails from "../pages/StudentDetails";
 import CodeBook from "../pages/CodeBook";
 
 import Element from 'element-ui'
@@ -102,6 +103,11 @@ export default new Router({
         path: "/student-list/:id",
         name: "Student list",
         component: StudentList
+      },
+      {
+        path: "/student-details/:id",
+        name: "Student Details",
+        component: StudentDetails
       },
       {
         path: "/attendance/:id",

@@ -39,12 +39,12 @@
                       trigger="hover">
                       <a class="student-list-preview">
                         <el-tooltip class="item" effect="dark" content="View Profile" placement="top">
-                          <i @click="viewProfile(scope.row.sn)" class="icon icon-profile"></i>
+                          <i @click="viewProfile(post.sn)" class="icon icon-profile"></i>
                         </el-tooltip> 
                       </a>
                       <a class="student-list-preview">
                         <el-tooltip class="item" effect="dark" content="Feedback List" placement="top">
-                          <i @click="feedBackList(scope.row.sn)" class="icon icon-lesson"></i>
+                          <i @click="feedBackList(post.sn)" class="icon icon-lesson"></i>
                         </el-tooltip>
                       </a>
                       <a slot="reference" class="student-list-preview">
@@ -170,7 +170,7 @@ export default {
         else {
           this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-list.json").then((response) => {
 
-              this.filterSearchTerm(studentListStorage);
+              this.filterSearchTerm(response.data);
 
                 this.busy = false;
           }).catch((error) => error.response.data)
@@ -181,6 +181,9 @@ export default {
       // LOCALSTORAGE
       loadStudentlistStorage() {
         return JSON.parse(localStorage.getItem("studentListStorageJSONData"));
+      },
+      viewProfile(id){
+        this.$router.push({path:'/student-details/'+id})
       },
       updateSearchTerm() {
 
