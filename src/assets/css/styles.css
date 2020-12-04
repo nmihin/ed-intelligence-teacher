@@ -3012,6 +3012,10 @@ li:hover .megamenu {
   left: 10px;
 }
 
+.feedback-list .search-feedback {
+  margin-bottom: 15px;
+}
+
 .side-menu-header h2 {
   color: var(--white);
   display: inline-block;

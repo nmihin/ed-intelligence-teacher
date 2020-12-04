@@ -1,7 +1,7 @@
 <template>
   <!-- Main Content -->
   <div class="main-content">
-  <!-- START FEEDBACK LIST MODAL -->
+  <!-- START ADD FEEDBACK MODAL -->
     <md-dialog :md-active.sync="addFeedbackModal" class="modal-window feedback-list">
         <h2 class="modal-title">Add Feedback for {{feedbackName}}</h2>
         <div class="modal-content">
@@ -94,12 +94,73 @@
             </button>
         </div>
     </md-dialog>
-  <!-- START FEEDBACK LIST MODAL -->   
-
+  <!-- END ADD FEEDBACK MODAL -->   
+  <!-- START ADD WITHDRAWAL MODAL -->
+    <md-dialog :md-active.sync="addWithdrawalModal" class="modal-window feedback-list">
+        <h2 class="modal-title">Add Withdrawal for {{feedbackName}}</h2>
+        <div class="modal-content">
+          <el-form :model="formAddWithdrawal" :rules="formAddWithdrawal.rules" ref="formAddWithdrawal">
+            <div class="row">
+              <el-form-item label="Withdrawal Type" prop="withdrawalType" class="col-12 col-md-6">
+                    <el-select @change="updateWithdrawalForm('withdrawalType', formAddWithdrawal.withdrawalType)" v-model="formAddWithdrawal.withdrawalType" placeholder="Withdrawal Type">
+                      <el-option v-for="pre in formAddWithdrawalOptions.withdrawalTypeOptions"
+                                :key="pre.value"
+                                :label="pre.label"
+                                :value="pre.value">
+                      </el-option>
+                    </el-select>
+              </el-form-item>
+              <el-form-item label="Withdrawal Date" prop="withdrawalDate" class="col-12 col-md-6">
+                <i class="icon icon-box-plan"></i>
+                <el-date-picker 
+                  @change="updateWithdrawalForm('withdrawalDate', formAddWithdrawal.withdrawalDate)"
+                  prop="birthDate" 
+                  v-model="formAddWithdrawal.withdrawalDate" 
+                  type="date" 
+                  format="dd-MM-yyyy" 
+                  value-format="yyyy-MM-dd"  
+                  placeholder="Pick a date">
+              </el-date-picker>
+              </el-form-item>
+              <el-form-item label="Witdrawal Code" prop="withdrawalCode" class="col-12 col-md-12">
+                <el-select @change="updateWithdrawalForm('withdrawalCode', formAddWithdrawal.withdrawalCode)" v-model="formAddWithdrawal.withdrawalCode" placeholder="Withdrawal Code">
+                  <el-option v-for="pre in formAddWithdrawalOptions.withdrawalCodeOptions"
+                            :key="pre.value"
+                            :label="pre.label"
+                            :value="pre.value">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="Supporting Document" class="col-12 col-md-6">
+              <el-upload
+                action="https://educationalschool.iteg.com.np/files"
+                @change="updateWithdrawalForm('supportingDocument', formAddWithdrawal.supportingDocument)" v-model="formAddWithdrawal.supportingDocument"
+                multiple>
+                <el-button class="button medium ed-btn__primary">
+                    Choose A File
+                </el-button> 
+              </el-upload>
+              </el-form-item>
+            </div>
+          </el-form>
+        </div>
+        <div class="modal-footer">
+            <button class="button medium ed-btn__primary" @click="validateAddWithdrawal()">
+              Add
+            </button>
+            <button class="button medium ed-btn__tertiary" @click="addWithdrawalModal = false">
+              Cancel
+            </button>
+        </div>
+    </md-dialog>
+  <!-- END ADD WITHDRAWAL MODAL -->   
   <!-- START FEEDBACK LIST MODAL -->
     <md-dialog :md-active.sync="feedbackModal" class="modal-window filter-modal feedback-list">
         <h2 class="modal-title">Feedback List of {{feedbackName}}</h2>
         <div class="modal-content">
+          <div class="row">
+            <el-input class="col-6 offset-6 search-feedback" @input="searchFeedbackFilter()" placeholder="Search feedback..." v-model="searchFeedback"></el-input>
+          </div>
           <el-table
             stripe
             ref="singleTable"
@@ -177,7 +238,7 @@
                       </a>
                       <a class="student-list-preview">
                         <el-tooltip class="item" effect="dark" content="Add Withdrawal" placement="top">
-                          <i @click="addWithdrawal(scope.row.sn)" class="icon icon-exit"></i>
+                          <i @click="addWithdrawal(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-exit"></i>
                         </el-tooltip>
                       </a>
                       <a class="student-list-preview">
@@ -239,7 +300,7 @@
                       </a>
                       <a class="student-list-preview">
                         <el-tooltip class="item" effect="dark" content="Add Withdrawal" placement="top">
-                          <i @click="addWithdrawal(post.sn)" class="icon icon-exit"></i>
+                          <i @click="addWithdrawal(post.sn,post.name,post.surname)" class="icon icon-exit"></i>
                         </el-tooltip>
                       </a>
                       <a class="student-list-preview">
@@ -323,11 +384,43 @@ export default {
        value: 10,
        viewType:"list",
        searchName:"",
+       searchFeedback:"",
        feedbackName:"",
        feedbackModal: false,
        addFeedbackModal: false,
+       addWithdrawalModal: false,
        addFeedbackModalId: 0,
+       viewFeedbackModalId: 0,
        feedback: [],
+       formAddWithdrawal: {
+         withdrawalType:"",
+         withdrawalDate:"",
+         withdrawalCode:"",
+         supportingDocument:[],
+         rules: {
+          withdrawalType: [
+            {
+              required: true,
+              message: "Withdrawal Type Required!",
+              trigger: "blur",
+            }
+          ],
+          withdrawalDate: [
+            {
+              required: true,
+              message: "Withdrawal Date Required!",
+              trigger: "blur",
+            }
+          ],
+          withdrawalCode: [
+            {
+              required: true,
+              message: "Withdrawal Code Required!",
+              trigger: "blur",
+            }
+          ]
+         }
+       },
        formAddFeedback: {
          occureddate:"",
          schoolResponse:"",
@@ -425,6 +518,18 @@ export default {
             { value: "Out Class Behavioral Plan", label: "Out Class Behavioral Plan" }
           ]
        },
+       formAddWithdrawalOptions: {
+          withdrawalTypeOptions: [
+            { value: "Credential", label: "Credential" },
+            { value: "Exited", label: "Exited" },
+            { value: "Discharge", label: "Discharge" }
+          ],
+          withdrawalCodeOptions: [
+            { value: "Code1", label: "Code1" },
+            { value: "Code2", label: "Code2" },
+            { value: "Code3", label: "Code3" }
+          ]
+       },
        recordsOptions: [{
           value: 5,
           label: '5'
@@ -488,6 +593,19 @@ export default {
       // LOCALSTORAGE
       loadStudentlistStorage() {
         return JSON.parse(localStorage.getItem("studentListStorageJSONData"));
+      },
+      searchFeedbackFilter(){
+          const feedbackListStorage = this.loadFeedbackListStorage();
+
+          // FIND STUDENT INDEX
+          const idx = feedbackListStorage.map( el => el.sn).indexOf(this.viewFeedbackModalId)
+
+          this.feedback = feedbackListStorage[idx].feedback.filter(data => 
+                    data.homeroom.toLowerCase().includes(this.searchFeedback.toLowerCase()) ||
+                    data.period.toLowerCase().includes(this.searchFeedback.toLowerCase()) ||
+                    data.schoolResponse.toLowerCase().includes(this.searchFeedback.toLowerCase()) ||
+                    data.incidentStatus.toLowerCase().includes(this.searchFeedback.toLowerCase())
+          );    
       },
       handleCurrentChange(val) {
           this.busy = true;
@@ -574,6 +692,8 @@ export default {
       feedBackList(id,name,surname){
         this.feedbackName = name+" "+surname;
 
+        this.viewFeedbackModalId = id;
+
         const feedbackListStorage = this.loadFeedbackListStorage();
         if(feedbackListStorage){
             const fdb = feedbackListStorage.filter(function(feedback) {
@@ -616,7 +736,15 @@ export default {
         this.addFeedbackModal = true;
       },
       updateForm (input, value) {
-        this.formAddFeedback[input] = value
+        this.formAddFeedback[input] = value;
+      },
+      updateWithdrawalForm (input, value){
+        this.formAddWithdrawal[input] = value;
+      },
+      addWithdrawal(id,name,surname){
+        this.feedbackName = name+" "+surname;
+        this.addWithdrawalModal = true;
+
       },
       addNewFeedback(){
         const feedbackListStorage = this.loadFeedbackListStorage();
@@ -673,6 +801,22 @@ export default {
             resolve(valid);
             if(valid)
               this.addNewFeedback();
+          });
+        });
+      },
+      validateAddWithdrawal(){
+        return new Promise((resolve) => {
+          this.$refs.formAddWithdrawal.validate((valid) => {
+            this.$emit("on-validate", valid, this.model);
+            resolve(valid);
+            if(valid){
+              this.formAddWithdrawal.withdrawalType = "";
+              this.formAddWithdrawal.withdrawalDate = "";
+              this.formAddWithdrawal.withdrawalCode = "";
+              this.formAddWithdrawal.supportingDocument = [];
+              // TO ADD SUBMIT 
+              this.addWithdrawalModal = false;
+            }
           });
         });
       },

@@ -1,25 +1,25 @@
 <template>
   <!-- Main Content -->
   <div class="main-content">
-  <!-- START ADD FEEDBACK LIST MODAL -->
+  <!-- START ADD FEEDBACK MODAL -->
     <md-dialog :md-active.sync="addFeedbackModal" class="modal-window feedback-list">
         <h2 class="modal-title">Add Feedback for {{feedbackName}}</h2>
         <div class="modal-content">
           <el-form :model="formAddFeedback" :rules="formAddFeedback.rules" ref="formAddFeedback">
             <div class="row">
-              <el-form-item label="Incident Date" class="col-12 col-md-6">
+              <el-form-item label="Incident Date" prop="occureddate" class="col-12 col-md-6">
                 <i class="icon icon-box-plan"></i>
                 <el-date-picker 
-                  @change="updateForm('incidentDate', formAddFeedback.incidentDate)"
+                  @change="updateForm('occureddate', formAddFeedback.occureddate)"
                   prop="birthDate" 
-                  v-model="formAddFeedback.incidentDate" 
+                  v-model="formAddFeedback.occureddate" 
                   type="date" 
                   format="dd-MM-yyyy" 
                   value-format="yyyy-MM-dd"  
                   placeholder="Pick a date">
               </el-date-picker>
               </el-form-item>
-              <el-form-item label="School Response" class="col-12 col-md-6">
+              <el-form-item label="School Response" prop="schoolResponse" class="col-12 col-md-6">
                 <el-select @change="updateForm('schoolResponse', formAddFeedback.schoolResponse)" v-model="formAddFeedback.schoolResponse" placeholder="School Response">
                   <el-option v-for="pre in formAddFeedbackOptions.schoolResponseOptions"
                             :key="pre.value"
@@ -28,7 +28,7 @@
                   </el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="Support Services Recieved" class="col-12 col-md-6">
+              <el-form-item label="Support Services Recieved" prop="supportServicesRecieved" class="col-12 col-md-6">
                 <el-select @change="updateForm('supportServicesRecieved', formAddFeedback.supportServicesRecieved)" v-model="formAddFeedback.supportServicesRecieved" placeholder="Support Services Recieved?">
                   <el-option v-for="pre in formAddFeedbackOptions.supportServicesRecievedOptions"
                             :key="pre.value"
@@ -50,19 +50,19 @@
             </div>
             <div class="row">
               <h3>Incident Comments</h3>
-              <el-form-item label="Teacher Feedback" class="col-12">
-                <el-input type="textarea" @input="updateForm('teacherFeedback', formAddFeedback.teacherFeedback)"  v-model="formAddFeedback.teacherFeedback" prop="teacherFeedback"  placeholder="Teacher Feedback"></el-input>
+              <el-form-item label="Teacher Feedback" prop="teacherFeedback"  class="col-12">
+                <el-input type="textarea" @input="updateForm('teacherFeedback', formAddFeedback.teacherFeedback)"  v-model="formAddFeedback.teacherFeedback"  placeholder="Teacher Feedback"></el-input>
               </el-form-item>
-              <el-form-item label="Parent Feedback" class="col-12">
-                <el-input type="textarea" @input="updateForm('parentFeedback', formAddFeedback.parentFeedback)"  v-model="formAddFeedback.parentFeedback" prop="parentFeedback"  placeholder="Parent Feedback"></el-input>
+              <el-form-item label="Parent Feedback" prop="parentFeedback" class="col-12">
+                <el-input type="textarea" @input="updateForm('parentFeedback', formAddFeedback.parentFeedback)"  v-model="formAddFeedback.parentFeedback"  placeholder="Parent Feedback"></el-input>
               </el-form-item>
-              <el-form-item label="Specialist Feedback" class="col-12">
-                <el-input type="textarea" @input="updateForm('specialistFeedback', formAddFeedback.specialistFeedback)"  v-model="formAddFeedback.specialistFeedback" prop="specialistFeedback"  placeholder="Specialist Feedback"></el-input>
+              <el-form-item label="Specialist Feedback" prop="specialistFeedback"   class="col-12">
+                <el-input type="textarea" @input="updateForm('specialistFeedback', formAddFeedback.specialistFeedback)"  v-model="formAddFeedback.specialistFeedback" placeholder="Specialist Feedback"></el-input>
               </el-form-item>
-              <el-form-item label="Action Outcomes" class="col-12">
-                <el-input type="textarea" @input="updateForm('actionOutcomes', formAddFeedback.actionOutcomes)"  v-model="formAddFeedback.actionOutcomes" prop="actionOutcomes"  placeholder="Specialist Feedback"></el-input>
+              <el-form-item label="Action Outcomes" prop="actionOutcomes" class="col-12">
+                <el-input type="textarea" @input="updateForm('actionOutcomes', formAddFeedback.actionOutcomes)"  v-model="formAddFeedback.actionOutcomes"  placeholder="Specialist Feedback"></el-input>
               </el-form-item>
-              <el-form-item label="Action Date" class="col-12">
+              <el-form-item label="Action Date" prop="actionDate" class="col-12">
                 <i class="icon icon-box-plan"></i>
                 <el-date-picker 
                   @change="updateForm('actionDate', formAddFeedback.actionDate)"
@@ -94,11 +94,73 @@
             </button>
         </div>
     </md-dialog>
-  <!-- END ADD FEEDBACK LIST MODAL -->  
+  <!-- END ADD FEEDBACK MODAL -->   
+  <!-- START ADD WITHDRAWAL MODAL -->
+    <md-dialog :md-active.sync="addWithdrawalModal" class="modal-window feedback-list">
+        <h2 class="modal-title">Add Withdrawal for {{feedbackName}}</h2>
+        <div class="modal-content">
+          <el-form :model="formAddWithdrawal" :rules="formAddWithdrawal.rules" ref="formAddWithdrawal">
+            <div class="row">
+              <el-form-item label="Withdrawal Type" prop="withdrawalType" class="col-12 col-md-6">
+                    <el-select @change="updateWithdrawalForm('withdrawalType', formAddWithdrawal.withdrawalType)" v-model="formAddWithdrawal.withdrawalType" placeholder="Withdrawal Type">
+                      <el-option v-for="pre in formAddWithdrawalOptions.withdrawalTypeOptions"
+                                :key="pre.value"
+                                :label="pre.label"
+                                :value="pre.value">
+                      </el-option>
+                    </el-select>
+              </el-form-item>
+              <el-form-item label="Withdrawal Date" prop="withdrawalDate" class="col-12 col-md-6">
+                <i class="icon icon-box-plan"></i>
+                <el-date-picker 
+                  @change="updateWithdrawalForm('withdrawalDate', formAddWithdrawal.withdrawalDate)"
+                  prop="birthDate" 
+                  v-model="formAddWithdrawal.withdrawalDate" 
+                  type="date" 
+                  format="dd-MM-yyyy" 
+                  value-format="yyyy-MM-dd"  
+                  placeholder="Pick a date">
+              </el-date-picker>
+              </el-form-item>
+              <el-form-item label="Witdrawal Code" prop="withdrawalCode" class="col-12 col-md-12">
+                <el-select @change="updateWithdrawalForm('withdrawalCode', formAddWithdrawal.withdrawalCode)" v-model="formAddWithdrawal.withdrawalCode" placeholder="Withdrawal Code">
+                  <el-option v-for="pre in formAddWithdrawalOptions.withdrawalCodeOptions"
+                            :key="pre.value"
+                            :label="pre.label"
+                            :value="pre.value">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="Supporting Document" class="col-12 col-md-6">
+              <el-upload
+                action="https://educationalschool.iteg.com.np/files"
+                @change="updateWithdrawalForm('supportingDocument', formAddWithdrawal.supportingDocument)" v-model="formAddWithdrawal.supportingDocument"
+                multiple>
+                <el-button class="button medium ed-btn__primary">
+                    Choose A File
+                </el-button> 
+              </el-upload>
+              </el-form-item>
+            </div>
+          </el-form>
+        </div>
+        <div class="modal-footer">
+            <button class="button medium ed-btn__primary" @click="validateAddWithdrawal()">
+              Add
+            </button>
+            <button class="button medium ed-btn__tertiary" @click="addWithdrawalModal = false">
+              Cancel
+            </button>
+        </div>
+    </md-dialog>
+  <!-- END ADD WITHDRAWAL MODAL -->   
   <!-- START FEEDBACK LIST MODAL -->
     <md-dialog :md-active.sync="feedbackModal" class="modal-window filter-modal feedback-list">
-        <h2 class="modal-title">Feedback List of {{feedbackName}}</h2>
+        <h2 class="modal-title">Discipline List of {{feedbackName}}</h2>
         <div class="modal-content">
+          <div class="row">
+            <el-input class="col-6 offset-6 search-feedback" @input="searchFeedbackFilter()" placeholder="Search discipline..." v-model="searchFeedback"></el-input>
+          </div>
           <el-table
             stripe
             ref="singleTable"
@@ -108,9 +170,9 @@
               <el-table-column sortable property="id" label="SN" width="60"></el-table-column>
               <el-table-column sortable property="homeroom" label="Home Room"></el-table-column>
               <el-table-column sortable property="period" label="Period"></el-table-column>
-              <el-table-column sortable property="type" label="Feedback Type"></el-table-column>
+              <el-table-column sortable property="schoolResponse" label="Discipline Type"></el-table-column>
               <el-table-column sortable property="occureddate" label="Occured Date"></el-table-column>
-              <el-table-column sortable property="status" label="Status"></el-table-column>
+              <el-table-column sortable property="incidentStatus" label="Status"></el-table-column>
               <el-table-column sortable property="action" label="Action"></el-table-column>
           </el-table>
           <div v-if="busy" class="preloader">
@@ -166,7 +228,7 @@
                         </el-tooltip> 
                       </a>
                       <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Feedback List" placement="top">
+                        <el-tooltip class="item" effect="dark" content="Discipline List" placement="top">
                           <i @click="feedBackList(post.sn,post.name,post.surname)" class="icon icon-lesson"></i>
                         </el-tooltip>
                       </a>
@@ -180,13 +242,13 @@
                         width="200"
                         trigger="hover">
                         <a class="student-list-preview">
-                          <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
-                            <i @click="addFeedback(post.sn)" class="icon icon-information"></i>
+                          <el-tooltip class="item" effect="dark" content="Add Discipline" placement="top">
+                            <i @click="addFeedback(post.sn,post.name,post.surname)" class="icon icon-information"></i>
                           </el-tooltip> 
                         </a>
                         <a class="student-list-preview">
                           <el-tooltip class="item" effect="dark" content="Add Withdrawal" placement="top">
-                            <i @click="addWithdrawal(post.sn)" class="icon icon-exit"></i>
+                            <i @click="addWithdrawal(post.sn,post.name,post.surname)" class="icon icon-exit"></i>
                           </el-tooltip>
                         </a>
                         <a class="student-list-preview">
@@ -236,6 +298,151 @@ export default {
       addFeedbackModal: false,
       feedback: [],
       searchTerm: "name",
+      busy: true,
+      value: 10,
+      viewType:"list",
+      searchFeedback:"",
+      addWithdrawalModal: false,
+      addFeedbackModalId: 0,
+      viewFeedbackModalId: 0,
+       formAddWithdrawal: {
+         withdrawalType:"",
+         withdrawalDate:"",
+         withdrawalCode:"",
+         supportingDocument:[],
+         rules: {
+          withdrawalType: [
+            {
+              required: true,
+              message: "Withdrawal Type Required!",
+              trigger: "blur",
+            }
+          ],
+          withdrawalDate: [
+            {
+              required: true,
+              message: "Withdrawal Date Required!",
+              trigger: "blur",
+            }
+          ],
+          withdrawalCode: [
+            {
+              required: true,
+              message: "Withdrawal Code Required!",
+              trigger: "blur",
+            }
+          ]
+         }
+       },
+       formAddFeedback: {
+         occureddate:"",
+         schoolResponse:"",
+         supportServicesRecieved:"",
+         supportingDocument:[],
+         teacherFeedback:"",
+         parentFeedback:"",
+         specialistFeedback:"",
+         actionOutcomes:"",
+         actionDate:"",
+         incidentStatus:"",
+         rules: {
+          occureddate: [
+            {
+              required: true,
+              message: "Incident Date Required!",
+              trigger: "blur",
+            }
+          ],
+          schoolResponse: [
+            {
+              required: true,
+              message: "School Response Required!",
+              trigger: "blur",
+            }
+          ],
+          supportServicesRecieved: [
+            {
+              required: true,
+              message: "Support Services Recieved Required!",
+              trigger: "blur",
+            }
+          ],
+          supportingDocument: [
+            {
+              required: true,
+              message: "Supporting Document Required!",
+              trigger: "blur",
+            }
+          ],
+          teacherFeedback: [
+            {
+              required: true,
+              message: "Teacher Feedback Required!",
+              trigger: "blur",
+            }
+          ],
+          parentFeedback: [
+            {
+              required: true,
+              message: "Parent Feedback Required!",
+              trigger: "blur",
+            }
+          ],
+          specialistFeedback: [
+            {
+              required: true,
+              message: "Specialist Feedback Required!",
+              trigger: "blur",
+            }
+          ],
+          actionOutcomes: [
+            {
+              required: true,
+              message: "Action Outcomes Required!",
+              trigger: "blur",
+            }
+          ],
+          actionDate: [
+            {
+              required: true,
+              message: "Action Date Required!",
+              trigger: "blur",
+            }
+          ],
+          incidentStatus: [
+            {
+              required: true,
+              message: "Incident Status Required!",
+              trigger: "blur",
+            }
+          ]
+         }
+       },
+       formAddFeedbackOptions: {
+            schoolResponseOptions: [
+              { value: "Family Phone Call", label: "Family Phone Call" },
+              { value: "Family Meeting", label: "Family Meeting" },
+              { value: "Suspended", label: "Suspended" },
+              { value: "Expelled", label: "Expelled" }
+            ],
+            supportServicesRecievedOptions: [
+              { value: "Family Meeting", label: "Family Meeting" },
+              { value: "In Class Behavioral Plan", label: "In Class Behavioral Plan" },
+              { value: "Out Class Behavioral Plan", label: "Out Class Behavioral Plan" }
+            ]
+        },
+        formAddWithdrawalOptions: {
+          withdrawalTypeOptions: [
+            { value: "Credential", label: "Credential" },
+            { value: "Exited", label: "Exited" },
+            { value: "Discharge", label: "Discharge" }
+          ],
+          withdrawalCodeOptions: [
+            { value: "Code1", label: "Code1" },
+            { value: "Code2", label: "Code2" },
+            { value: "Code3", label: "Code3" }
+          ]
+       },
       searchByOptions: [ {
           value: "name",
           label: 'First Name'
@@ -257,104 +464,7 @@ export default {
           value: "guardian",
           label: 'Guardian Name'
         }
-      ],
-       formAddFeedback: [{
-         incidentDate:"",
-         schoolResponse:"",
-         supportServicesRecieved:"",
-         supportingDocument:[],
-         teacherFeedback:"",
-         parentFeedback:"",
-         specialistFeedback:"",
-         actionOutcomes:"",
-         actionDate:"",
-         incidentStatus:"",
-         rules: {
-          incidentDate: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          schoolResponse: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          supportServicesRecieved: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          supportingDocument: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          teacherFeedback: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          parentFeedback: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          specialistFeedback: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          actionOutcomes: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          actionDate: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ],
-          incidentStatus: [
-            {
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }
-          ]
-         }
-       }],
-       formAddFeedbackOptions: {
-          schoolResponseOptions: [
-            { value: "familyphone", label: "Family Phone Call" },
-            { value: "familymeeting", label: "Family Meeting" },
-            { value: "suspended", label: "Suspended" },
-            { value: "expelled", label: "Expelled" }
-          ],
-          supportServicesRecievedOptions: [
-            { value: "familymeeting", label: "Family Meeting" },
-            { value: "inclassplan", label: "In Class Behavioral Plan" },
-            { value: "outclassplan", label: "Out Class Behavioral Plan" }
-          ]
-       }
+      ]
     }),
     // METHODS
     methods: {
@@ -369,6 +479,19 @@ export default {
               this.busy = false;
         }).catch((error) => error.response.data)
 
+      },
+      searchFeedbackFilter(){
+          const feedbackListStorage = this.loadFeedbackListStorage();
+
+          // FIND STUDENT INDEX
+          const idx = feedbackListStorage.map( el => el.sn).indexOf(this.viewFeedbackModalId)
+
+          this.feedback = feedbackListStorage[idx].feedback.filter(data => 
+                    data.homeroom.toLowerCase().includes(this.searchFeedback.toLowerCase()) ||
+                    data.period.toLowerCase().includes(this.searchFeedback.toLowerCase()) ||
+                    data.schoolResponse.toLowerCase().includes(this.searchFeedback.toLowerCase()) ||
+                    data.incidentStatus.toLowerCase().includes(this.searchFeedback.toLowerCase())
+          );    
       },
       filterSearchTerm(dataSource){
          if(this.searchTerm == "name")
@@ -406,12 +529,20 @@ export default {
       loadStudentlistStorage() {
         return JSON.parse(localStorage.getItem("studentListStorageJSONData"));
       },
+      updateForm (input, value) {
+        this.formAddFeedback[input] = value;
+      },
+      updateWithdrawalForm (input, value){
+        this.formAddWithdrawal[input] = value;
+      },
       // LOCALSTORAGE
       loadFeedbackListStorage() {
         return JSON.parse(localStorage.getItem("feedbackListJSONData"));
       },
       feedBackList(id,name,surname){
         this.feedbackName = name+" "+surname;
+
+        this.viewFeedbackModalId = id;
 
         const feedbackListStorage = this.loadFeedbackListStorage();
         if(feedbackListStorage){
@@ -449,16 +580,89 @@ export default {
       },
       addFeedback(id,name,surname){
         this.feedbackName = name+" "+surname;
+        this.addFeedbackModalId = id;
 
         this.addFeedbackModal = true;
+      },
+      updateWithdrawalForm (input, value){
+        this.formAddWithdrawal[input] = value;
+      },
+      addWithdrawal(id,name,surname){
+        this.feedbackName = name+" "+surname;
+        this.addWithdrawalModal = true;
+
+      },
+      addNewFeedback(){
+        const feedbackListStorage = this.loadFeedbackListStorage();
+
+        // FIND STUDENT INDEX
+        const idx = feedbackListStorage.map( el => el.sn).indexOf(this.addFeedbackModalId)
+
+        // FIND LARGEST ID
+        const maxId = feedbackListStorage[idx].feedback.reduce(
+          (max, character) => (character.id > max ? character.id : max),
+          feedbackListStorage[idx].feedback[0].id
+        );
+
+        const newFeedback = {
+          "id": maxId+1,
+          "occureddate": this.formAddFeedback.occureddate,
+          "schoolResponse": this.formAddFeedback.schoolResponse,
+          "supportServicesRecieved": this.formAddFeedback.supportServicesRecieved,
+          "supportingDocument": this.formAddFeedback.supportingDocument,
+          "teacherFeedback": this.formAddFeedback.teacherFeedback,
+          "parentFeedback": this.formAddFeedback.parentFeedback,
+          "specialistFeedback": this.formAddFeedback.specialistFeedback,
+          "actionOutcomes": this.formAddFeedback.actionOutcomes,
+          "actionDate": this.formAddFeedback.actionDate,
+          "homeroom": "jo baker",
+          "period": "2nd Period",
+          "incidentStatus": this.formAddFeedback.incidentStatus,
+          "action": ["view","edit","feedbackfollowup","listfollowup","delete"]
+        }
+
+        feedbackListStorage[idx].feedback.push(newFeedback);
+
+        // UPDATE STORAGE
+        localStorage.setItem("feedbackListJSONData",JSON.stringify(feedbackListStorage));
+
+        // CLEAR FORM
+         this.formAddFeedback.occureddate = "";
+         this.formAddFeedback.schoolResponse = "";
+         this.formAddFeedback.supportServicesRecieved = "";
+         this.formAddFeedback.supportingDocument = [];
+         this.formAddFeedback.teacherFeedback = "";
+         this.formAddFeedback.parentFeedback = "";
+         this.formAddFeedback.specialistFeedback = "";
+         this.formAddFeedback.actionOutcomes = "";
+         this.formAddFeedback.actionDate = "";
+         this.formAddFeedback.incidentStatus = "";
+
+         this.addFeedbackModal = false;
       },
       validateAddFeedback(){
         return new Promise((resolve) => {
           this.$refs.formAddFeedback.validate((valid) => {
-            this.$emit("on-validate", valid, this.formAddFeedback);
+            this.$emit("on-validate", valid, this.model);
             resolve(valid);
             if(valid)
-              console.log("valid")
+              this.addNewFeedback();
+          });
+        });
+      },
+      validateAddWithdrawal(){
+        return new Promise((resolve) => {
+          this.$refs.formAddWithdrawal.validate((valid) => {
+            this.$emit("on-validate", valid, this.model);
+            resolve(valid);
+            if(valid){
+              this.formAddWithdrawal.withdrawalType = "";
+              this.formAddWithdrawal.withdrawalDate = "";
+              this.formAddWithdrawal.withdrawalCode = "";
+              this.formAddWithdrawal.supportingDocument = [];
+              // TO ADD SUBMIT 
+              this.addWithdrawalModal = false;
+            }
           });
         });
       },
