@@ -7,19 +7,19 @@
         <div class="modal-content">
           <el-form :model="formAddFeedback" :rules="formAddFeedback.rules" ref="formAddFeedback">
             <div class="row">
-              <el-form-item label="Incident Date" class="col-12 col-md-6">
+              <el-form-item label="Incident Date" prop="occureddate" class="col-12 col-md-6">
                 <i class="icon icon-box-plan"></i>
                 <el-date-picker 
-                  @change="updateForm('incidentDate', formAddFeedback.incidentDate)"
+                  @change="updateForm('occureddate', formAddFeedback.occureddate)"
                   prop="birthDate" 
-                  v-model="formAddFeedback.incidentDate" 
+                  v-model="formAddFeedback.occureddate" 
                   type="date" 
                   format="dd-MM-yyyy" 
                   value-format="yyyy-MM-dd"  
                   placeholder="Pick a date">
               </el-date-picker>
               </el-form-item>
-              <el-form-item label="School Response" class="col-12 col-md-6">
+              <el-form-item label="School Response" prop="schoolResponse" class="col-12 col-md-6">
                 <el-select @change="updateForm('schoolResponse', formAddFeedback.schoolResponse)" v-model="formAddFeedback.schoolResponse" placeholder="School Response">
                   <el-option v-for="pre in formAddFeedbackOptions.schoolResponseOptions"
                             :key="pre.value"
@@ -28,7 +28,7 @@
                   </el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="Support Services Recieved" class="col-12 col-md-6">
+              <el-form-item label="Support Services Recieved" prop="supportServicesRecieved" class="col-12 col-md-6">
                 <el-select @change="updateForm('supportServicesRecieved', formAddFeedback.supportServicesRecieved)" v-model="formAddFeedback.supportServicesRecieved" placeholder="Support Services Recieved?">
                   <el-option v-for="pre in formAddFeedbackOptions.supportServicesRecievedOptions"
                             :key="pre.value"
@@ -50,19 +50,19 @@
             </div>
             <div class="row">
               <h3>Incident Comments</h3>
-              <el-form-item label="Teacher Feedback" class="col-12">
-                <el-input type="textarea" @input="updateForm('teacherFeedback', formAddFeedback.teacherFeedback)"  v-model="formAddFeedback.teacherFeedback" prop="teacherFeedback"  placeholder="Teacher Feedback"></el-input>
+              <el-form-item label="Teacher Feedback" prop="teacherFeedback"  class="col-12">
+                <el-input type="textarea" @input="updateForm('teacherFeedback', formAddFeedback.teacherFeedback)"  v-model="formAddFeedback.teacherFeedback"  placeholder="Teacher Feedback"></el-input>
               </el-form-item>
-              <el-form-item label="Parent Feedback" class="col-12">
-                <el-input type="textarea" @input="updateForm('parentFeedback', formAddFeedback.parentFeedback)"  v-model="formAddFeedback.parentFeedback" prop="parentFeedback"  placeholder="Parent Feedback"></el-input>
+              <el-form-item label="Parent Feedback" prop="parentFeedback" class="col-12">
+                <el-input type="textarea" @input="updateForm('parentFeedback', formAddFeedback.parentFeedback)"  v-model="formAddFeedback.parentFeedback"  placeholder="Parent Feedback"></el-input>
               </el-form-item>
-              <el-form-item label="Specialist Feedback" class="col-12">
-                <el-input type="textarea" @input="updateForm('specialistFeedback', formAddFeedback.specialistFeedback)"  v-model="formAddFeedback.specialistFeedback" prop="specialistFeedback"  placeholder="Specialist Feedback"></el-input>
+              <el-form-item label="Specialist Feedback" prop="specialistFeedback"   class="col-12">
+                <el-input type="textarea" @input="updateForm('specialistFeedback', formAddFeedback.specialistFeedback)"  v-model="formAddFeedback.specialistFeedback" placeholder="Specialist Feedback"></el-input>
               </el-form-item>
-              <el-form-item label="Action Outcomes" class="col-12">
-                <el-input type="textarea" @input="updateForm('actionOutcomes', formAddFeedback.actionOutcomes)"  v-model="formAddFeedback.actionOutcomes" prop="actionOutcomes"  placeholder="Specialist Feedback"></el-input>
+              <el-form-item label="Action Outcomes" prop="actionOutcomes" class="col-12">
+                <el-input type="textarea" @input="updateForm('actionOutcomes', formAddFeedback.actionOutcomes)"  v-model="formAddFeedback.actionOutcomes"  placeholder="Specialist Feedback"></el-input>
               </el-form-item>
-              <el-form-item label="Action Date" class="col-12">
+              <el-form-item label="Action Date" prop="actionDate" class="col-12">
                 <i class="icon icon-box-plan"></i>
                 <el-date-picker 
                   @change="updateForm('actionDate', formAddFeedback.actionDate)"
@@ -109,9 +109,9 @@
               <el-table-column sortable property="id" label="SN" width="60"></el-table-column>
               <el-table-column sortable property="homeroom" label="Home Room"></el-table-column>
               <el-table-column sortable property="period" label="Period"></el-table-column>
-              <el-table-column sortable property="type" label="Feedback Type"></el-table-column>
+              <el-table-column sortable property="schoolResponse" label="Feedback Type"></el-table-column>
               <el-table-column sortable property="occureddate" label="Occured Date"></el-table-column>
-              <el-table-column sortable property="status" label="Status"></el-table-column>
+              <el-table-column sortable property="incidentStatus" label="Status"></el-table-column>
               <el-table-column sortable property="action" label="Action"></el-table-column>
           </el-table>
           <div v-if="busy" class="preloader">
@@ -172,7 +172,7 @@
                       trigger="hover">
                       <a class="student-list-preview">
                         <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
-                          <i @click="addFeedback(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-follow"></i>
+                          <i @click="addFeedback(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-information"></i>
                         </el-tooltip> 
                       </a>
                       <a class="student-list-preview">
@@ -234,7 +234,7 @@
                       trigger="hover">
                       <a class="student-list-preview">
                         <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
-                          <i @click="addFeedback(post.sn,post.name,post.surname)" class="icon icon-follow"></i>
+                          <i @click="addFeedback(post.sn,post.name,post.surname)" class="icon icon-information"></i>
                         </el-tooltip> 
                       </a>
                       <a class="student-list-preview">
@@ -326,9 +326,10 @@ export default {
        feedbackName:"",
        feedbackModal: false,
        addFeedbackModal: false,
+       addFeedbackModalId: 0,
        feedback: [],
-       formAddFeedback: [{
-         incidentDate:"",
+       formAddFeedback: {
+         occureddate:"",
          schoolResponse:"",
          supportServicesRecieved:"",
          supportingDocument:[],
@@ -339,7 +340,7 @@ export default {
          actionDate:"",
          incidentStatus:"",
          rules: {
-          incidentDate: [
+          occureddate: [
             {
               required: true,
               message: "Incident Date Required!",
@@ -349,79 +350,79 @@ export default {
           schoolResponse: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "School Response Required!",
               trigger: "blur",
             }
           ],
           supportServicesRecieved: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "Support Services Recieved Required!",
               trigger: "blur",
             }
           ],
           supportingDocument: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "Supporting Document Required!",
               trigger: "blur",
             }
           ],
           teacherFeedback: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "Teacher Feedback Required!",
               trigger: "blur",
             }
           ],
           parentFeedback: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "Parent Feedback Required!",
               trigger: "blur",
             }
           ],
           specialistFeedback: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "Specialist Feedback Required!",
               trigger: "blur",
             }
           ],
           actionOutcomes: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "Action Outcomes Required!",
               trigger: "blur",
             }
           ],
           actionDate: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "Action Date Required!",
               trigger: "blur",
             }
           ],
           incidentStatus: [
             {
               required: true,
-              message: "Incident Date Required!",
+              message: "Incident Status Required!",
               trigger: "blur",
             }
           ]
          }
-       }],
+       },
        formAddFeedbackOptions: {
           schoolResponseOptions: [
-            { value: "familyphone", label: "Family Phone Call" },
-            { value: "familymeeting", label: "Family Meeting" },
-            { value: "suspended", label: "Suspended" },
-            { value: "expelled", label: "Expelled" }
+            { value: "Family Phone Call", label: "Family Phone Call" },
+            { value: "Family Meeting", label: "Family Meeting" },
+            { value: "Suspended", label: "Suspended" },
+            { value: "Expelled", label: "Expelled" }
           ],
           supportServicesRecievedOptions: [
-            { value: "familymeeting", label: "Family Meeting" },
-            { value: "inclassplan", label: "In Class Behavioral Plan" },
-            { value: "outclassplan", label: "Out Class Behavioral Plan" }
+            { value: "Family Meeting", label: "Family Meeting" },
+            { value: "In Class Behavioral Plan", label: "In Class Behavioral Plan" },
+            { value: "Out Class Behavioral Plan", label: "Out Class Behavioral Plan" }
           ]
        },
        recordsOptions: [{
@@ -610,8 +611,60 @@ export default {
       },
       addFeedback(id,name,surname){
         this.feedbackName = name+" "+surname;
+        this.addFeedbackModalId = id;
 
         this.addFeedbackModal = true;
+      },
+      updateForm (input, value) {
+        this.formAddFeedback[input] = value
+      },
+      addNewFeedback(){
+        const feedbackListStorage = this.loadFeedbackListStorage();
+
+        // FIND STUDENT INDEX
+        const idx = feedbackListStorage.map( el => el.sn).indexOf(this.addFeedbackModalId)
+
+        // FIND LARGEST ID
+        const maxId = feedbackListStorage[idx].feedback.reduce(
+          (max, character) => (character.id > max ? character.id : max),
+          feedbackListStorage[idx].feedback[0].id
+        );
+
+        const newFeedback = {
+          "id": maxId+1,
+          "occureddate": this.formAddFeedback.occureddate,
+          "schoolResponse": this.formAddFeedback.schoolResponse,
+          "supportServicesRecieved": this.formAddFeedback.supportServicesRecieved,
+          "supportingDocument": this.formAddFeedback.supportingDocument,
+          "teacherFeedback": this.formAddFeedback.teacherFeedback,
+          "parentFeedback": this.formAddFeedback.parentFeedback,
+          "specialistFeedback": this.formAddFeedback.specialistFeedback,
+          "actionOutcomes": this.formAddFeedback.actionOutcomes,
+          "actionDate": this.formAddFeedback.actionDate,
+          "homeroom": "jo baker",
+          "period": "2nd Period",
+          "incidentStatus": this.formAddFeedback.incidentStatus,
+          "action": ["view","edit","feedbackfollowup","listfollowup","delete"]
+        }
+
+        feedbackListStorage[idx].feedback.push(newFeedback);
+
+        // UPDATE STORAGE
+        localStorage.setItem("feedbackListJSONData",JSON.stringify(feedbackListStorage));
+
+        // CLEAR FORM
+         this.formAddFeedback.occureddate = "";
+         this.formAddFeedback.schoolResponse = "";
+         this.formAddFeedback.supportServicesRecieved = "";
+         this.formAddFeedback.supportingDocument = [];
+         this.formAddFeedback.teacherFeedback = "";
+         this.formAddFeedback.parentFeedback = "";
+         this.formAddFeedback.specialistFeedback = "";
+         this.formAddFeedback.actionOutcomes = "";
+         this.formAddFeedback.actionDate = "";
+         this.formAddFeedback.incidentStatus = "";
+
+         this.addFeedbackModal = false;
       },
       validateAddFeedback(){
         return new Promise((resolve) => {
@@ -619,7 +672,7 @@ export default {
             this.$emit("on-validate", valid, this.model);
             resolve(valid);
             if(valid)
-              console.log("valid")
+              this.addNewFeedback();
           });
         });
       },

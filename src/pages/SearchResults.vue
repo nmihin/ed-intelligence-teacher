@@ -181,7 +181,7 @@
                         trigger="hover">
                         <a class="student-list-preview">
                           <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
-                            <i @click="addFeedback(post.sn)" class="icon icon-follow"></i>
+                            <i @click="addFeedback(post.sn)" class="icon icon-information"></i>
                           </el-tooltip> 
                         </a>
                         <a class="student-list-preview">
@@ -455,7 +455,7 @@ export default {
       validateAddFeedback(){
         return new Promise((resolve) => {
           this.$refs.formAddFeedback.validate((valid) => {
-            this.$emit("on-validate", valid, this.model);
+            this.$emit("on-validate", valid, this.formAddFeedback);
             resolve(valid);
             if(valid)
               console.log("valid")
