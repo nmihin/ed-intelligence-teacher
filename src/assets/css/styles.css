@@ -3029,6 +3029,18 @@ li:hover .megamenu {
   color: var(--primary);
 }
 
+.student-details .student-details-behaviour {
+  margin: 0 15px;
+}
+
+.student-details .side-menu-header h2 {
+  font-size: 18px !important;
+}
+
+.student-details .side-menu-content .card-box {
+  padding: 0;
+}
+
 /* TEACHER PROFILE */
 .teacher-profile > div {
   padding: 10px 0 !important;

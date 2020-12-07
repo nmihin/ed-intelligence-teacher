@@ -9,7 +9,7 @@
                   <div class="side-menu-profile">
                     <img v-if="!post.imageUrl" class="card-picture" src="../assets/images/avatar-aux.png" />
                     <img v-if="post.imageUrl" class="card-picture" :src="post.imageUrl" />
-                    <h2>{{post.name}} {{post.surname}}</h2>
+                    <h2>{{post.firstName}} {{post.lastName}}</h2>
                   </div>
                 </div>
                 <div class="col-12 side-menu-content">
@@ -85,7 +85,21 @@
                             <el-tab-pane label="behaviour">
                                 <span slot="label" class="label-icon"><i class="icon icon-search"></i> Behaviour</span>
                                 <div class="row">
-                                    CONTENT 4
+                                    <el-table
+                                        stripe
+                                        class="student-details-behaviour"
+                                        ref="singleTable"
+                                        :data="feedback"
+                                        highlight-current-row
+                                        style="width: 100%">
+                                        <el-table-column sortable property="id" label="SN" width="60"></el-table-column>
+                                        <el-table-column sortable property="homeroom" label="Home Room"></el-table-column>
+                                        <el-table-column sortable property="period" label="Period"></el-table-column>
+                                        <el-table-column sortable property="schoolResponse" label="Feedback Type"></el-table-column>
+                                        <el-table-column sortable property="occureddate" label="Occured Date"></el-table-column>
+                                        <el-table-column sortable property="incidentStatus" label="Status"></el-table-column>
+                                        <el-table-column sortable property="action" label="Action"></el-table-column>
+                                    </el-table>
                                 </div>
                             </el-tab-pane>
                         </el-tabs>     
@@ -123,6 +137,7 @@ export default {
     // DATA
     data: () => ({
         post: [],
+        feedback: [],
         profileDate: [],
         busy: true
         }),
@@ -130,10 +145,10 @@ export default {
     methods: {
         loadMore(){
             this.busy = true;
-            const studentListStorage = this.loadStudentListStorage();
-
             const studentID = parseInt(this.$route.params.id);
 
+            // STUDENT DETAILS TAB
+            const studentListStorage = this.loadStudentListStorage();
             if(studentListStorage){
                 this.post = studentListStorage.filter(function (student) {
                     return student.sn === studentID;
@@ -154,11 +169,41 @@ export default {
                     this.busy = false;
                 });
             }
+
+            // BEHAVIOUR TAB
+            const feedbackListStorage = this.loadFeedbackListStorage();
+            if(feedbackListStorage){
+                const fdb = feedbackListStorage.filter(function(feedback) {
+                return feedback.sn === studentID;
+                });
+
+                this.feedback = fdb[0].feedback;
+            }
+            else{
+            this.busy = true;
+            this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/feedback-list.json").then((response) => {
+
+                    const fdb = response.data.filter(function(feedback) {
+                        return feedback.sn === studentID;
+                    });
+
+                    this.feedback = fdb[0].feedback;
+
+                    // UPDATE STORAGE
+                    localStorage.setItem("feedbackListJSONData",JSON.stringify(response.data));
+
+                    this.busy = false;
+                }).catch((error) => error.response.data)
+            this.busy = false;
+            }
         },
         // LOCALSTORAGE
         loadStudentListStorage(){
             return JSON.parse(localStorage.getItem("studentListStorageJSONData"));
-        }
+        },
+        loadFeedbackListStorage() {
+            return JSON.parse(localStorage.getItem("feedbackListJSONData"));
+        },
     },
     created() {
         this.loadMore();
