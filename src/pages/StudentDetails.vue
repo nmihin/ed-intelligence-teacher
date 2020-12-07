@@ -2,6 +2,76 @@
   <!-- Main Content -->
   <div class="main-content">
     <div class="container-fluid student-details">
+        <!-- START STUDENT SCHEDULE MODAL -->
+        <md-dialog :md-active.sync="showStudentScheduleDialog" class="modal-window student-details">
+            <h2 class="modal-title">Student Schedule of {{post.firstName}} {{post.lastName}} (KG)</h2>
+            <div class="modal-content">
+                <div class="row">
+                    <!-- LIST VIEW -->
+                    <ul class="col-1 profile-list">
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                    </ul>
+                    <ul class="col-2 profile-list">
+                        <h2>1st Period</h2>
+                        <li v-for="(post, idx) in schedule[0].firstPeriod[0]" :key="idx">
+                            <div>Class Room:<span>{{post[0].room}}</span></div>
+                            <div>Subject:<span>{{post[0].subject}}</span></div>
+                            <div>Time:<span>{{post[0].time}}</span></div>
+                        </li>
+                    </ul>
+                    <ul class="col-2 profile-list">
+                        <h2>2nd Period</h2>
+                        <li v-for="(post, idx) in schedule[1].secondPeriod[0]" :key="idx">
+                            <div>Class Room:<span>{{post[0].room}}</span></div>
+                            <div>Subject:<span>{{post[0].subject}}</span></div>
+                            <div>Time:<span>{{post[0].time}}</span></div>
+                        </li>
+                    </ul>
+                    <ul class="col-1 profile-list">
+                        <h2>Break</h2>
+                        <li><span class="center">--</span></li>
+                        <li><span class="center">--</span></li>
+                        <li><span class="center">--</span></li>
+                        <li><span class="center">--</span></li>
+                        <li><span class="center">--</span></li>
+                    </ul>
+                    <ul class="col-2 profile-list">
+                        <h2>3rd Period</h2>
+                        <li v-for="(post, idx) in schedule[2].thirdPeriod[0]" :key="idx">
+                            <div>Class Room:<span>{{post[0].room}}</span></div>
+                            <div>Subject:<span>{{post[0].subject}}</span></div>
+                            <div>Time:<span>{{post[0].time}}</span></div>
+                        </li>
+                    </ul>
+                    <ul class="col-2 profile-list">
+                        <h2>4th Period</h2>
+                        <li v-for="(post, idx) in schedule[3].fourthPeriod[0]" :key="idx">
+                            <div>Class Room:<span>{{post[0].room}}</span></div>
+                            <div>Subject:<span>{{post[0].subject}}</span></div>
+                            <div>Time:<span>{{post[0].time}}</span></div>
+                        </li>
+                    </ul>
+                    <ul class="col-2 profile-list">
+                        <h2>5th Period</h2>
+                        <li v-for="(post, idx) in schedule[4].fifthPeriod[0]" :key="idx">
+                            <div>Class Room:<span>{{post[0].room}}</span></div>
+                            <div>Subject:<span>{{post[0].subject}}</span></div>
+                            <div>Time:<span>{{post[0].time}}</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button medium ed-btn__tertiary" @click="showStudentScheduleDialog = false">
+                Close
+                </button>
+            </div>
+        </md-dialog>
+        <!-- END STUDENT SCHEDULE MODAL -->  
         <div class="row">
             <div class="col-xs-3 col-md-3">
               <div class="side-menu single profile">
@@ -18,7 +88,7 @@
                     <div class="card-content">
                       <ul>
                           <li>
-                            <el-button class="button medium ed-btn__primary"><i class="icon icon-box-plan"></i>Student Schedule</el-button>
+                            <el-button @click="loadStudentSchedule()" class="button medium ed-btn__primary"><i class="icon icon-box-plan"></i>Student Schedule</el-button>
                           </li>
                           <li>
                             <el-button class="button medium ed-btn__primary"><i class="icon icon-profile"></i>Doctor/Regular Consultant</el-button>
@@ -39,7 +109,7 @@
                   <div class="card-box">
                     <div class="card-content">
                       <div class="row">
-                        <el-tabs type="border-card" @tab-click="handleClick">
+                        <el-tabs type="border-card">
                             <el-tab-pane label="profile">
                                 <span slot="label" class="label-icon"><i class="icon icon-profile"></i> Profile</span>
                                 <div class="row">
@@ -139,6 +209,13 @@ export default {
         post: [],
         feedback: [],
         profileDate: [],
+        schedule: [],
+        showStudentScheduleDialog: false,
+        firstPeriod: [],
+        secondPeriod: [],
+        thirdPeriod: [],
+        fourthPeriod: [],
+        fifthPeriod: [],
         busy: true
         }),
     // METHODS
@@ -196,6 +273,16 @@ export default {
                 }).catch((error) => error.response.data)
             this.busy = false;
             }
+
+            // LOAD SCHEDULE
+            this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-schedule.json").then((response) => {
+
+                this.schedule = response.data;
+
+            }).catch((error) => error.response.data)
+        },
+        loadStudentSchedule(){
+            this.showStudentScheduleDialog = true;
         },
         // LOCALSTORAGE
         loadStudentListStorage(){
