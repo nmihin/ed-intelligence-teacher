@@ -13,6 +13,8 @@
 import Header from './components/layout/header/Header.vue'
 import Subheader from './components/layout/subheader/Subheader.vue'
 import Mobilemenu from './components/navigation/mobilemenu/Mobilemenu.vue'
+import LineChart from './components/charts/LineChart.vue'
+import AreaChart from './components/charts/AreaChart.vue'
 import Home from './pages/Home.vue'
 import Admin from './pages/GoogleClassrom.vue'
 import LessonPlanBank from './pages/LessonPlanBank.vue'
@@ -34,6 +36,8 @@ export default {
     Header,
     Subheader,
     Mobilemenu,
+    LineChart,
+    AreaChart,
     Home,
     Admin,
     LessonPlanBank,

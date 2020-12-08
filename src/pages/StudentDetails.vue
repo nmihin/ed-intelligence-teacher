@@ -8,14 +8,14 @@
             <div class="modal-content">
                 <div class="row">
                     <!-- LIST VIEW -->
-                    <ul class="col-1 profile-list">
+                    <ul class="col-2 profile-list">
                         <li>Mon</li>
                         <li>Tue</li>
                         <li>Wed</li>
                         <li>Thu</li>
                         <li>Fri</li>
                     </ul>
-                    <ul class="col-2 profile-list">
+                    <ul v-if="schedule[1].firstPeriod" class="col-2 profile-list">
                         <h2>1st Period</h2>
                         <li v-for="(post, idx) in schedule[0].firstPeriod[0]" :key="idx">
                             <div>Class Room:<span>{{post[0].room}}</span></div>
@@ -23,7 +23,7 @@
                             <div>Time:<span>{{post[0].time}}</span></div>
                         </li>
                     </ul>
-                    <ul class="col-2 profile-list">
+                    <ul v-if="schedule[1].secondPeriod" class="col-2 profile-list">
                         <h2>2nd Period</h2>
                         <li v-for="(post, idx) in schedule[1].secondPeriod[0]" :key="idx">
                             <div>Class Room:<span>{{post[0].room}}</span></div>
@@ -31,7 +31,7 @@
                             <div>Time:<span>{{post[0].time}}</span></div>
                         </li>
                     </ul>
-                    <ul class="col-1 profile-list">
+                    <ul class="col-2 profile-list">
                         <h2>Break</h2>
                         <li><span class="center">--</span></li>
                         <li><span class="center">--</span></li>
@@ -39,7 +39,7 @@
                         <li><span class="center">--</span></li>
                         <li><span class="center">--</span></li>
                     </ul>
-                    <ul class="col-2 profile-list">
+                    <ul v-if="schedule[2].thirdPeriod" class="col-2 profile-list">
                         <h2>3rd Period</h2>
                         <li v-for="(post, idx) in schedule[2].thirdPeriod[0]" :key="idx">
                             <div>Class Room:<span>{{post[0].room}}</span></div>
@@ -47,7 +47,7 @@
                             <div>Time:<span>{{post[0].time}}</span></div>
                         </li>
                     </ul>
-                    <ul class="col-2 profile-list">
+                    <ul v-if="schedule[3].fourthPeriod" class="col-2 profile-list">
                         <h2>4th Period</h2>
                         <li v-for="(post, idx) in schedule[3].fourthPeriod[0]" :key="idx">
                             <div>Class Room:<span>{{post[0].room}}</span></div>
@@ -55,7 +55,7 @@
                             <div>Time:<span>{{post[0].time}}</span></div>
                         </li>
                     </ul>
-                    <ul class="col-2 profile-list">
+                    <ul v-if="schedule[4].fifthPeriod" class="col-2 profile-list">
                         <h2>5th Period</h2>
                         <li v-for="(post, idx) in schedule[4].fifthPeriod[0]" :key="idx">
                             <div>Class Room:<span>{{post[0].room}}</span></div>
@@ -66,12 +66,51 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="button medium ed-btn__tertiary" @click="showStudentScheduleDialog = false">
+                <button class="button medium ed-btn__tertiary" @click="showStudentScheduleDialog = false;">
                 Close
                 </button>
             </div>
         </md-dialog>
-        <!-- END STUDENT SCHEDULE MODAL -->  
+        <!-- END STUDENT SCHEDULE MODAL -->
+        <!-- START DOCTOR/REGULAR CONSULTANT MODAL -->
+        <md-dialog :md-active.sync="showDoctorConsultantDialog" class="modal-window student-details">
+            <h2 class="modal-title">Doctor/Regular Consultant</h2>
+            <div class="modal-content">
+                <div class="row">
+                    <!-- LIST VIEW -->
+                    <ul class="col-4 profile-list">
+                        <li>Doctor Name</li>
+                    </ul>
+                    <ul class="col-4 profile-list">
+                        <li>Hospital</li>
+                    </ul>
+                    <ul class="col-4 profile-list">
+                        <li>Phone</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button medium ed-btn__tertiary" @click="showDoctorConsultantDialog = false;">
+                Close
+                </button>
+            </div>
+        </md-dialog>
+        <!-- END DOCTOR/REGULAR CONSULTANT MODAL -->  
+        <!-- START OVERVIEW REPORT MODAL -->
+        <md-dialog :md-active.sync="showOverviewReportDialog" class="modal-window student-details">
+            <h2 class="modal-title">Doctor/Regular Consultant</h2>
+            <div class="modal-content">
+                <div class="row">
+                    OVERVIEW EXPORT
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button medium ed-btn__tertiary" @click="showOverviewReportDialog = false;">
+                Close
+                </button>
+            </div>
+        </md-dialog>
+        <!-- END OVERVIEW REPORT MODAL -->  
         <div class="row">
             <div class="col-xs-3 col-md-3">
               <div class="side-menu single profile">
@@ -88,13 +127,13 @@
                     <div class="card-content">
                       <ul>
                           <li>
-                            <el-button @click="loadStudentSchedule()" class="button medium ed-btn__primary"><i class="icon icon-box-plan"></i>Student Schedule</el-button>
+                            <el-button @click="showStudentScheduleDialog = true" class="button medium ed-btn__primary"><i class="icon icon-box-plan"></i>Student Schedule</el-button>
                           </li>
                           <li>
-                            <el-button class="button medium ed-btn__primary"><i class="icon icon-profile"></i>Doctor/Regular Consultant</el-button>
+                            <el-button @click="showDoctorConsultantDialog = true" class="button medium ed-btn__primary"><i class="icon icon-profile"></i>Doctor/Regular Consultant</el-button>
                           </li>
                           <li>
-                            <el-button class="button medium ed-btn__primary"><i class="icon icon-reports"></i>Overview Report</el-button>
+                            <el-button @click="showOverviewReportDialog = true" class="button medium ed-btn__primary"><i class="icon icon-reports"></i>Overview Report</el-button>
                           </li>
                       </ul>
                     </div>
@@ -109,7 +148,7 @@
                   <div class="card-box">
                     <div class="card-content">
                       <div class="row">
-                        <el-tabs type="border-card">
+                        <el-tabs type="border-card" @tab-click="handleClick">
                             <el-tab-pane label="profile">
                                 <span slot="label" class="label-icon"><i class="icon icon-profile"></i> Profile</span>
                                 <div class="row">
@@ -143,13 +182,104 @@
                             <el-tab-pane label="attendance">
                                 <span slot="label" class="label-icon"><i class="icon icon-box-plan"></i> Attendance</span>
                                 <div class="row">
-                                    CONTENT 2
+                                    <div class="col-3 attendance">
+                                        <div class="card-box">
+                                            <div class="card-title">Current Year Attendance</div>
+                                            <div class="card-content">
+                                                <ul>
+                                                    <li><h3>(2020)</h3><span></span></li>
+                                                    <li><h3>1st Period:</h3> <span>31.97%</span></li>
+                                                    <li><h3>2nd Period:</h3> <span>1.36%</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 attendance">
+                                        <div class="card-box">
+                                            <div class="card-title">Prior Year Attendance</div>
+                                            <div class="card-content">
+                                                <ul>
+                                                    <li><h3>(2020)</h3><span></span></li>
+                                                    <li><h3>1st Period:</h3> <span>81.97%</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 attendance">
+                                        <div class="card-box">
+                                            <div class="card-title">Freqent Absent Reason</div>
+                                            <div class="card-content">
+                                                <ul>
+                                                    <li><h3>(2020)</h3><span></span></li>
+                                                    <li><h3>Student Illness:</h3><span>2</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 attendance">
+                                        <div class="card-box">
+                                            <div class="card-title">Freqent Absent Reason</div>
+                                            <div class="card-content">
+                                                <ul>
+                                                    <li><h3>(2019)</h3></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div v-if="tabAttendance" class="col-6">
+                                        <div class="abssence-reason-table">
+                                            <h2>PMF Inseat Attendance by Month (Current Year)</h2>
+                                            <AreaChart/>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="abssence-reason-table">
+                                            <h2>Current Year Frequent Absent Reason</h2>
+                                            <el-table
+                                                stripe
+                                                ref="singleTable"
+                                                :data="currentYearAbsentReason"
+                                                highlight-current-row
+                                                style="width: 100%">
+                                                <el-table-column property="sn" label="SN"></el-table-column>
+                                                <el-table-column sortable property="reason" label="Absent Reason"></el-table-column>
+                                                <el-table-column sortable property="total" label="Total"></el-table-column>
+                                            </el-table>
+                                        </div>
+                                        <div class="abssence-reason-table">
+                                            <h2>Prior Year Frequent Absent Reason</h2>
+                                            <el-table
+                                                stripe
+                                                ref="singleTable"
+                                                :data="priorYearAbsentReason"
+                                                highlight-current-row
+                                                style="width: 100%">
+                                                <el-table-column property="sn" label="SN"></el-table-column>
+                                                <el-table-column sortable property="reason" label="Absent Reason"></el-table-column>
+                                                <el-table-column sortable property="total" label="Total"></el-table-column>
+                                            </el-table>
+                                        </div>
+                                    </div>
                                 </div>
                             </el-tab-pane>
                             <el-tab-pane label="performance">
                                 <span slot="label" class="label-icon"><i class="icon icon-performance"></i> Performance</span>
-                                <div class="row">
-                                    CONTENT 3
+                                <div v-if="tabPerformance" class="row">
+                                    <div class="col-12 col-md-3 col-lg-2">
+                                        <el-button class="performance-button button medium ed-btn__primary">NWEA</el-button>
+                                    </div>
+                                    <div class="col-12 col-md-9 col-lg-10">
+                                        <div class="line-chart-performance">
+                                            <h2>NWEA MAP:Reading</h2>
+                                            <LineChart/>
+                                        </div>
+                                        <div class="line-chart-performance">
+                                            <h2>NWEA MAP:Mathematics</h2>
+                                            <LineChart/>
+                                        </div>
+                                    </div>
                                 </div>
                             </el-tab-pane>
                             <el-tab-pane label="behaviour">
@@ -179,17 +309,6 @@
                 </div>
               </div>
             </div>
-            <!--
-            <div>{{post.name}} {{post.surname}}</div>
-            <div>{{post.usi}}</div>
-            <div>{{post.grade}}</div>
-            <div>{{post.phone}}</div>
-            <div>{{post.avatar}}</div>
-            <div>{{post.guardian}}</div>
-            <div>{{post.email}}</div>
-            <div>{{post.room}}</div>
-            <div>{{post.classdays}}</div>
-            -->
         </div>
         <div v-if="busy" class="preloader">
             <span><img src="../assets/images/preloader.gif" /> Loading...</span>
@@ -200,9 +319,14 @@
 </template>
 
 <script>
+import LineChart from "../components/charts/LineChart.vue"
+import AreaChart from "../components/charts/AreaChart.vue"
+
 export default {
     name: "student-details",
     components: {
+        LineChart,
+        AreaChart
     },
     // DATA
     data: () => ({
@@ -211,15 +335,50 @@ export default {
         profileDate: [],
         schedule: [],
         showStudentScheduleDialog: false,
+        showDoctorConsultantDialog: false,
+        showOverviewReportDialog: false,
         firstPeriod: [],
         secondPeriod: [],
         thirdPeriod: [],
         fourthPeriod: [],
         fifthPeriod: [],
+        tabProfile: false,
+        tabAttendance: false,
+        tabPerformance: false,
+        tabBehaviour: false,
+        currentYearAbsentReason: [
+            {
+                "sn":1,
+                "reason": "Studen Illness",
+                "total": 2 
+            },
+            {
+                "sn":2,
+                "reason": "Legal or judicial requirement",
+                "total": 1 
+            },   
+        ],
+        priorYearAbsentReason: [
+            {
+                "sn":1,
+                "reason": "Studen Illness",
+                "total": 5
+            }
+        ],
         busy: true
         }),
     // METHODS
     methods: {
+        handleClick(tab, event) {
+            if(tab.label === "profile")
+                this.tabProfile = true;
+            if(tab.label === "attendance")
+                this.tabAttendance = true;
+            if(tab.label === "performance")
+                this.tabPerformance = true;
+            if(tab.label == "behaviour")
+                this.tabBehaviour = true;
+        },
         loadMore(){
             this.busy = true;
             const studentID = parseInt(this.$route.params.id);
@@ -280,9 +439,6 @@ export default {
                 this.schedule = response.data;
 
             }).catch((error) => error.response.data)
-        },
-        loadStudentSchedule(){
-            this.showStudentScheduleDialog = true;
         },
         // LOCALSTORAGE
         loadStudentListStorage(){
