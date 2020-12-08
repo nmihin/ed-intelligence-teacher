@@ -3015,6 +3015,7 @@ li:hover .megamenu {
 .student-details .side-menu__results .card-box {
   padding: 0;
   margin-top: 0;
+  margin: 0;
 }
 
 .student-details .profile-list li {
@@ -3092,6 +3093,9 @@ li:hover .megamenu {
 .student-details .performance-button {
   width: 100%;
 }
+.student-details .attendance {
+  margin-bottom: 20px;
+}
 .student-details .attendance ul li {
   border-bottom: 0;
 }
@@ -3109,7 +3113,7 @@ li:hover .megamenu {
 }
 .student-details .attendance .card-content ul li h3{
   font-size: 14px;
-  width: 70%;
+  width: 100%;
   position: relative;
   margin-bottom: 0;
 }
@@ -3140,6 +3144,53 @@ li:hover .megamenu {
 }
 .student-details .abssence-reason-table h2 {
   font-size: 18px;
+}
+.student-details .side-menu.profile {
+  margin-bottom: 20px;
+}
+.student-details .el-table {
+  padding: 0;
+}
+
+.student-report .el-table {
+  margin: 0 15px 15px 15px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.student-report .student-report-title {
+  font-size: 24px;
+  color: var(--primary);
+}
+.student-report .student-report-subtitle {
+  font-size: 21px;
+  color: var(--tertiary);
+}
+.student-report .student-report-header {
+  background: var(--primary);
+  background: -moz-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: -webkit-linear-gradient(top, var(--primary) 0, var(--tertiary) 100%);
+  background: linear-gradient(to bottom, var(--primary) 0, var(--tertiary) 100%);
+  color: var(--white);
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+}
+.student-report #line-chart {
+  height: 400px;
+}
+.student-report .student-report-chart-table {
+  margin: 0 0 20px 0;
+}
+.student-report .student-report-header.inside {
+  margin-top: 20px !important;
+}
+.student-report .student-information {
+  padding: 0 15px 25px 15px;
+}
+.student-report .card-box {
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  margin: 0 0 20px 0;
+  border-radius: 0 0 10px 10px;
 }
 
 /* TEACHER PROFILE */

@@ -100,8 +100,175 @@
         <md-dialog :md-active.sync="showOverviewReportDialog" class="modal-window student-details">
             <h2 class="modal-title">Doctor/Regular Consultant</h2>
             <div class="modal-content">
-                <div class="row">
-                    OVERVIEW EXPORT
+                <div class="row student-report">
+                    <div class="col-6">
+                        <h2 class="student-report-title">ED-Intelligence</h2>
+                        <h3 class="student-report-subtitle">Student Overview Report</h3>
+                    </div>
+                    <div class="col-6"> 
+                        <h2 class="student-report-title">Student Details</h2>
+                        <div class="row student-information">
+                            <ul>
+                                <li>Name: <span>{{post.firstName}} {{post.lastName}}</span></li>
+                                <li>Grade: <span>{{post.grade}}</span></li>
+                                <li>School Year: <span>2020</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12"> 
+                        <div class="student-report-header">Attendance</div>
+                        <div class="row">
+                            <el-table
+                                stripe
+                                ref="singleTable"
+                                :data="attendanceData"
+                                highlight-current-row
+                                style="width: 100%"> 
+                                <el-table-column property="year" label="Year"></el-table-column>
+                                <el-table-column property="percentage" label="Percentage Attendance"></el-table-column>
+                            </el-table>
+                        </div>
+                    </div>
+                    <div class="col-12"> 
+                        <div class="student-report-header">Current Year (2020)</div>
+                        <div class="row">
+                            <el-table
+                                stripe
+                                ref="singleTable"
+                                :data="currentYearBehaviour"
+                                highlight-current-row
+                                style="width: 100%"> 
+                                <el-table-column property="totalSuspension" label="Total Suspension"></el-table-column>
+                                <el-table-column property="totalInSchoolSuspension" label="Total In School Suspension"></el-table-column>
+                                <el-table-column property="totalOutOfSchoolSuspension" label="Total Out of School Suspension"></el-table-column>
+                                <el-table-column property="totalSpecialistIntervention" label="Total Specialist Intervention"></el-table-column>
+                                <el-table-column property="totalFamilyMeeting" label="Total Family Meeting"></el-table-column>
+                                <el-table-column property="totalFamilyPhoneCall" label="Total Family Phone Call"></el-table-column>
+                                <el-table-column property="others" label="Others"></el-table-column>
+                                <el-table-column property="totalExpelled" label="Total Expelled"></el-table-column>
+                            </el-table>
+                        </div>
+                    </div>
+                    <div class="col-12"> 
+                        <div class="student-report-header">Prior Year (2020)</div>
+                        <div class="row">
+                            <el-table
+                                stripe
+                                ref="singleTable"
+                                :data="priorYearBehaviour"
+                                highlight-current-row
+                                style="width: 100%">
+                                <el-table-column property="totalSuspension" label="Total Suspension"></el-table-column>
+                                <el-table-column property="totalInSchoolSuspension" label="Total In School Suspension"></el-table-column>
+                                <el-table-column property="totalOutOfSchoolSuspension" label="Total Out of School Suspension"></el-table-column>
+                                <el-table-column property="totalSpecialistIntervention" label="Total Specialist Intervention"></el-table-column>
+                                <el-table-column property="totalFamilyMeeting" label="Total Family Meeting"></el-table-column>
+                                <el-table-column property="totalFamilyPhoneCall" label="Total Family Phone Call"></el-table-column>
+                                <el-table-column property="others" label="Others"></el-table-column>
+                                <el-table-column property="totalExpelled" label="Total Expelled"></el-table-column>
+                            </el-table>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="student-report-header">Grade Current Year (2020)</div> 
+                        <div class="row">
+                            <el-table
+                                stripe
+                                ref="singleTable"
+                                :data="currentYearGrades"
+                                highlight-current-row
+                                style="width: 100%">
+                                <el-table-column property="r" label="R" width="80"></el-table-column>
+                                <el-table-column property="subjectDance" label="5th Grade Dance"></el-table-column>
+                                <el-table-column property="subjectMath" label="5th Grade Math"></el-table-column>
+                                <el-table-column property="subjectReading" label="5th Grade Reading"></el-table-column>
+                                <el-table-column property="subjectScience" label="5th Grade Science"></el-table-column>
+                                <el-table-column property="subjectSocialStudies" label="5th Grade Social Studies"></el-table-column>
+                                <el-table-column property="subjectWriting" label="5th Grade Writing"></el-table-column>
+                            </el-table>
+                        </div>
+                        <div class="student-report-header">Grade Prior Year (2019)</div>
+                        <div class="row">                   
+                            <el-table
+                                stripe
+                                ref="singleTable"
+                                :data="priorYearGrades"
+                                highlight-current-row
+                                style="width: 100%">
+                                <el-table-column property="r" label="R" width="80"></el-table-column>
+                                <el-table-column property="subjectDance" label="4th Grade Dance"></el-table-column>
+                                <el-table-column property="subjectMath" label="4th Grade Math"></el-table-column>
+                                <el-table-column property="subjectReading" label="4th Grade Readind"></el-table-column>
+                                <el-table-column property="subjectScience" label="4th Grade Science"></el-table-column>
+                                <el-table-column property="subjectSocialStudies" label="4th Grade Social Studies"></el-table-column>
+                                <el-table-column property="subjectWriting" label="4th Grade Writing"></el-table-column>
+                            </el-table>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="student-report-header">Reading</div> 
+                            <div class="row card-box"> 
+                                <div class="col-8">
+                                    <LineChart />
+                                </div>
+                                <div class="col-4">
+                                    <div class="student-report-header inside">PARCC</div> 
+                                    <el-table
+                                        stripe
+                                        class="student-report-chart-table"
+                                        ref="singleTable"
+                                        :data="readingPARCC"
+                                        highlight-current-row
+                                        style="width: 100%">
+                                        <el-table-column property="year" label="Year" ></el-table-column>
+                                        <el-table-column property="score" label="Score"></el-table-column>
+                                    </el-table>
+                                    <div class="student-report-header inside">SGP</div> 
+                                    <el-table
+                                        stripe
+                                        class="student-report-chart-table"
+                                        ref="singleTable"
+                                        :data="readingSGP"
+                                        highlight-current-row
+                                        style="width: 100%">
+                                        <el-table-column property="year" label="Year" ></el-table-column>
+                                        <el-table-column property="score" label="Score"></el-table-column>
+                                    </el-table>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="student-report-header">Mathematics</div> 
+                            <div class="row card-box"> 
+                                <div class="col-8">
+                                    <LineChart />
+                                </div>
+                                <div class="col-4">
+                                    <div class="student-report-header inside">PARCC</div> 
+                                    <el-table
+                                        stripe
+                                        class="student-report-chart-table"
+                                        ref="singleTable"
+                                        :data="mathematicsPARCC"
+                                        highlight-current-row
+                                        style="width: 100%">
+                                        <el-table-column property="year" label="Year" ></el-table-column>
+                                        <el-table-column property="score" label="Score"></el-table-column>
+                                    </el-table>
+                                    <div class="student-report-header inside">SGP</div> 
+                                    <el-table
+                                        stripe
+                                        class="student-report-chart-table"
+                                        ref="singleTable"
+                                        :data="mathematicsSGP"
+                                        highlight-current-row
+                                        style="width: 100%">
+                                        <el-table-column property="year" label="Year" ></el-table-column>
+                                        <el-table-column property="score" label="Score"></el-table-column>
+                                    </el-table>
+                                </div>
+                            </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -142,7 +309,6 @@
               </div>
             </div>
             <div class="col-xs-9 col-md-9">
-              <div class="row">
                 <div class="side-menu__results card-boxes code-book">
                   <!-- Box -->
                   <div class="card-box">
@@ -153,7 +319,7 @@
                                 <span slot="label" class="label-icon"><i class="icon icon-profile"></i> Profile</span>
                                 <div class="row">
                                     <!-- LIST VIEW -->
-                                    <ul class="col-6 profile-list">
+                                    <ul class="col-12 col-md-6 profile-list">
                                         <li>USI:<span>{{post.usi}}</span></li>
                                         <li>Local ID:<span>{{post.sn}}</span></li>
                                         <li>Date od Birth:<span>{{post.birthDate}}</span></li>
@@ -165,7 +331,7 @@
                                         <li>Slot Accepted:<span>{{post.slotAcceptedDate}}</span></li>
                                         <li>Dual Enrollment:<span>{{post.dualEnrollment}}</span></li>
                                     </ul>
-                                    <ul class="col-6 profile-list">
+                                    <ul class="col-12 col-md-6 profile-list">
                                         <li>Gender:<span>{{post.gender}}</span></li>
                                         <li>Grade:<span>{{post.grade}}</span></li>
                                         <li>Registered Date:<span>{{post.studentRegistrationDate}}</span></li>
@@ -182,7 +348,7 @@
                             <el-tab-pane label="attendance">
                                 <span slot="label" class="label-icon"><i class="icon icon-box-plan"></i> Attendance</span>
                                 <div class="row">
-                                    <div class="col-3 attendance">
+                                    <div class="col-12 col-md-3 attendance">
                                         <div class="card-box">
                                             <div class="card-title">Current Year Attendance</div>
                                             <div class="card-content">
@@ -194,7 +360,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-3 attendance">
+                                    <div class="col-12 col-md-3 attendance">
                                         <div class="card-box">
                                             <div class="card-title">Prior Year Attendance</div>
                                             <div class="card-content">
@@ -205,7 +371,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-3 attendance">
+                                    <div class="col-12 col-md-3 attendance">
                                         <div class="card-box">
                                             <div class="card-title">Freqent Absent Reason</div>
                                             <div class="card-content">
@@ -216,7 +382,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-3 attendance">
+                                    <div class="col-12 col-md-3 attendance">
                                         <div class="card-box">
                                             <div class="card-title">Freqent Absent Reason</div>
                                             <div class="card-content">
@@ -228,13 +394,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div v-if="tabAttendance" class="col-6">
+                                    <div v-if="tabAttendance" class="col-12 col-md-6">
                                         <div class="abssence-reason-table">
                                             <h2>PMF Inseat Attendance by Month (Current Year)</h2>
                                             <AreaChart/>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12 col-md-6">
                                         <div class="abssence-reason-table">
                                             <h2>Current Year Frequent Absent Reason</h2>
                                             <el-table
@@ -243,9 +409,9 @@
                                                 :data="currentYearAbsentReason"
                                                 highlight-current-row
                                                 style="width: 100%">
-                                                <el-table-column property="sn" label="SN"></el-table-column>
-                                                <el-table-column sortable property="reason" label="Absent Reason"></el-table-column>
-                                                <el-table-column sortable property="total" label="Total"></el-table-column>
+                                                <el-table-column property="sn" label="SN" width="60"></el-table-column>
+                                                <el-table-column property="reason" label="Absent Reason"></el-table-column>
+                                                <el-table-column property="total" label="Total" width="80"></el-table-column>
                                             </el-table>
                                         </div>
                                         <div class="abssence-reason-table">
@@ -256,9 +422,9 @@
                                                 :data="priorYearAbsentReason"
                                                 highlight-current-row
                                                 style="width: 100%">
-                                                <el-table-column property="sn" label="SN"></el-table-column>
-                                                <el-table-column sortable property="reason" label="Absent Reason"></el-table-column>
-                                                <el-table-column sortable property="total" label="Total"></el-table-column>
+                                                <el-table-column property="sn" label="SN" width="60"></el-table-column>
+                                                <el-table-column property="reason" label="Absent Reason"></el-table-column>
+                                                <el-table-column property="total" label="Total" width="80"></el-table-column>
                                             </el-table>
                                         </div>
                                     </div>
@@ -307,7 +473,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
         </div>
         <div v-if="busy" class="preloader">
@@ -346,6 +511,80 @@ export default {
         tabAttendance: false,
         tabPerformance: false,
         tabBehaviour: false,
+        readingPARCC: [
+            {
+                "year":2019,
+                "score": "--"
+            },
+            {
+                "year":2020,
+                "score": "--"
+            }
+        ],
+        readingSGP: [
+            {
+                "year":2019,
+                "score": "--"
+            },
+            {
+                "year":2020,
+                "score": "--"
+            }
+        ],
+        mathematicsPARCC: [
+            {
+                "year":2019,
+                "score": "--"
+            },
+            {
+                "year":2020,
+                "score": "--"
+            }
+        ],
+        mathematicsSGP: [
+            {
+                "year":2019,
+                "score": "--"
+            },
+            {
+                "year":2020,
+                "score": "--"
+            }
+        ],
+        attendanceData: [
+            {
+                "year":"2020",
+                "percentage":"31.97%"
+            },
+            {
+                "year":"2019",
+                "percentage":"81.97%"
+            }
+        ],
+        currentYearBehaviour: [
+            {
+                "totalSuspension": "N/A",
+                "totalInSchoolSuspension": "N/A",
+                "totalOutOfSchoolSuspension": "N/A",
+                "totalSpecialistIntervention": "N/A",
+                "totalFamilyMeeting": "N/A",
+                "totalFamilyPhoneCall": "N/A",
+                "others": "N/A",
+                "totalExpelled": "N/A"
+            }
+        ],
+        priorYearBehaviour: [
+            {
+                "totalSuspension": "N/A",
+                "totalInSchoolSuspension": "N/A",
+                "totalOutOfSchoolSuspension": "N/A",
+                "totalSpecialistIntervention": "N/A",
+                "totalFamilyMeeting": "N/A",
+                "totalFamilyPhoneCall": "N/A",
+                "others": "N/A",
+                "totalExpelled": "N/A"
+            }
+        ],
         currentYearAbsentReason: [
             {
                 "sn":1,
@@ -363,6 +602,64 @@ export default {
                 "sn":1,
                 "reason": "Studen Illness",
                 "total": 5
+            }
+        ],
+        currentYearGrades: [
+            {
+                "r":"R1, Final",
+                "subjectDance":"C+",
+                "subjectMath":"A",
+                "subjectReading":"A",
+                "subjectScience":"B-",
+                "subjectSocialStudies":"B",
+                "subjectWriting":"C"
+            },
+            {
+                "r":"R2, Final",
+                "subjectDance":"C+",
+                "subjectMath":"A",
+                "subjectReading":"A",
+                "subjectScience":"B-",
+                "subjectSocialStudies":"B",
+                "subjectWriting":"C"
+            },
+            {
+                "r":"R3, Final",
+                "subjectDance":"C+",
+                "subjectMath":"A",
+                "subjectReading":"A",
+                "subjectScience":"B-",
+                "subjectSocialStudies":"B",
+                "subjectWriting":"C"
+            }
+        ],
+        priorYearGrades: [
+            {
+                "r":"R1",
+                "subjectDance":"C+",
+                "subjectMath":"A",
+                "subjectReading":"A",
+                "subjectScience":"B-",
+                "subjectSocialStudies":"B",
+                "subjectWriting":"C"
+            },
+            {
+                "r":"R2",
+                "subjectDance":"C+",
+                "subjectMath":"A",
+                "subjectReading":"A",
+                "subjectScience":"B-",
+                "subjectSocialStudies":"B",
+                "subjectWriting":"C"
+            },
+            {
+                "r":"R3",
+                "subjectDance":"C+",
+                "subjectMath":"A",
+                "subjectReading":"A",
+                "subjectScience":"B-",
+                "subjectSocialStudies":"B",
+                "subjectWriting":"C"
             }
         ],
         busy: true
