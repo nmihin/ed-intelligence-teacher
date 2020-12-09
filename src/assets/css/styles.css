@@ -533,6 +533,11 @@ ICONS
   color: var(--white)
 }
 
+.el-icon-arrow-up:before {
+  content: "\e901";
+  color: var(--mediumgray) 
+}
+
 .icon-arrow-gray:before {
   content: "\e901";
   color: var(--mediumgray)
@@ -2997,6 +3002,29 @@ li:hover .megamenu {
   margin: 2px;
 }
 
+.student-list .el-icon-arrow-up {
+  font-size: 10px;
+  right: 5px;
+  position: relative;
+  top:2px;
+}
+
+.student-list.attendance .el-select .el-input {
+  width: auto;
+}
+
+.student-list.attendance .attendance-bottom {
+  position: relative;
+}
+
+.student-list.attendance .attendence-save-changes {
+  position: absolute;
+  margin: 0 auto !important;
+  left: 0;
+  right: 0;
+  top: 15px;
+}
+
 /* STUDENT DETAILS */
 .student-details .side-menu-profile {
   width: 100%;
@@ -5022,6 +5050,13 @@ UI Elements
 }
 
 @media only screen and (max-width:768px) {
+  .student-list.attendance .attendance-bottom {
+    position: relative;
+    padding-bottom: 85px;
+  }
+  .student-list.attendance .attendence-save-changes {
+    right: auto;
+  }
   .code-book .el-tabs__header .el-tabs__item {
     padding: 0 10px;
     font-size: 12px;
