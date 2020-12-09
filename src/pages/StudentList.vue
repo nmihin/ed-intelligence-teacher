@@ -351,14 +351,14 @@
           </div>
           </div>
         </div>
-      <el-pagination
-          v-if="viewType ==='list'"
-          background
-          layout="prev, pager, next"
-          @current-change="handleCurrentChange"
-          :page-size="pageSize"
-          :total="totalSize">
-      </el-pagination>
+        <el-pagination
+            v-if="viewType ==='list'"
+            background
+            layout="prev, pager, next"
+            @current-change="handleCurrentChange"
+            :page-size="pageSize"
+            :total="totalSize">
+        </el-pagination>
       <div v-if="busy" class="preloader">
         <span><img src="../assets/images/preloader.gif" /> Loading...</span>
       </div>

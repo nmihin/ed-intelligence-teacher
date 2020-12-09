@@ -3,18 +3,43 @@
   <div class="main-content">
     <div class="container-fluid student-list attendance">
         <div class="row">
-          <div class="col-8 col-sm-6 col-md-4">
-            <el-select v-if="viewType ==='list'" @change="updatePagination()" v-model="value" placeholder="Records">
-              <el-option
-                v-for="item in recordsOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
+          <div class="col-12 col-sm-12 col-md-12">
+            <div class="date-select">
+              <i class="icon icon-box-plan"></i>
+              <el-date-picker 
+                  @change="updateDateSelect(actionDate)"
+                  prop="birthDate" 
+                  v-model="actionDate" 
+                  type="date" 
+                  format="dd-MM-yyyy" 
+                  value-format="yyyy-MM-dd"  
+                  placeholder="Pick a date">
+              </el-date-picker>
+               <span class="records">Date</span>
+            </div>
+          </div>
+          <div v-if="viewType ==='list'" class="col-8 col-sm-6 col-md-4">
+              <el-select class="records-input" @change="updatePagination()" v-model="value" placeholder="Records">
+                <el-option
+                  v-for="item in recordsOptions"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
             <span v-if="viewType ==='list'" class="records">Records</span>
           </div>
+           <div v-if="viewType ==='avatar'" class="col-12 col-sm-6 col-md-4"></div>
+          <div v-if="viewType ==='download'" class="col-12 col-sm-6 col-md-8">
+            <button v-if="viewType ==='download'" class="download-button button medium ed-btn__primary" @click="downloadExcelTemplate()">
+                <span class="icon icon-download-excel"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                <span>Download Excel Template</span>
+            </button>
+          </div>
           <div class="col-12 col-sm-6 col-md-4">
+            <button @click="viewTypeList('download')" class="change-view upload button medium ed-btn__secondary">
+              <i class="icon icon-upload"></i>
+            </button>
             <button @click="viewTypeList('avatar')" class="change-view button medium ed-btn__primary">
               <i class="icon icon-manage"></i>
             </button>
@@ -22,7 +47,7 @@
               <i class="icon icon-menu-list"></i>
             </button>
           </div>
-          <div class="col-12 col-sm-12 col-md-4">
+          <div v-if="viewType ==='list' || viewType ==='avatar'" class="col-12 col-sm-12 col-md-4">
             <el-input @input="searchFilter()" placeholder="Search name..." v-model="searchName"></el-input>
           </div>
         </div>
@@ -70,8 +95,23 @@
                     <img v-if="post.avatar" class="card-picture" :src="post.avatar" />
                     <figcaption>
                       <ul>
-                        <li><h3>Status</h3><span>{{post.status}}</span></li>
-                        <li><h3>Reason</h3><span>{{post.reason}}</span></li>
+                        <li class="attendance-list-avatar">
+                          <h3>Status</h3>
+                          <el-radio-group @change="updateAttendanceList(post.sn,post.status,'status')" v-model="post.status" >
+                              <el-radio label="Present">Present</el-radio>
+                              <el-radio label="Absent">Absent</el-radio>
+                          </el-radio-group>  
+                        </li>
+                        <li class="attendance-list-avatar">
+                          <h3>Reason</h3>
+                            <el-select @change="updateAttendanceList(post.sn,post.reason,'reason')" v-model="post.reason" placeholder="Reason">
+                                <el-option v-for="pre in reasonOptionsSelect"
+                                          :key="pre.value"
+                                          :label="pre.label"
+                                          :value="pre.value">
+                                </el-option>
+                            </el-select>
+                        </li>
                       </ul>
                     </figcaption>
                   </figure>
@@ -79,8 +119,27 @@
             </div>
             </div>
           </div>
+          <!-- DOWNLOAD VIEW -->
+          <div v-if="viewType ==='download'">
+            <div class="side-menu__results card-boxes upload-document">
+              <div class="card-box">
+                <div class="card-content">
+                  <el-upload
+                    class="upload"
+                    ref="upload"
+                    action="https://jsonplaceholder.typicode.com/posts/"
+                    :auto-upload="false">
+                    <el-button slot="trigger" class="button medium ed-btn__primary">Select File</el-button>
+                    <span>and</span>
+                    <el-button  class="button medium ed-btn__secondary" @click="submitUploadedDocument()"><i class="icon icon-upload"></i>Upload to server</el-button>
+                    <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+                  </el-upload>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="attendance-bottom">
-            <button class="attendence-save-changes button medium ed-btn__primary" @click="saveAttendanceChanges()">
+            <button v-if="viewType ==='list' || viewType ==='avatar'" class="attendence-save-changes button medium ed-btn__primary" @click="saveAttendanceChanges()">
                 Save Changes
             </button>
             <el-pagination
@@ -118,6 +177,7 @@ export default {
           viewType:"list",
           searchName:"",
           feedback: [],
+          actionDate: "",
           statusOptionsSelect: [
             { value: "Present", label: "Present" },
             { value: "Absent", label: "Absent" }
@@ -219,13 +279,35 @@ export default {
 
           this.busy = false;
       },
-      updateAttendanceList (id,value,prop) {
-        console.log(id);
-        console.log(value);
-        console.log(prop)
+      updateAttendanceList(id,value,prop) {
+        const studentAttendanceStorage = this.loadStudentAttendanceStorage();
+
+        // FIND STUDENT INDEX
+        const idx = studentAttendanceStorage.map( el => el.sn).indexOf(id)
+
+        if(prop==="status"){
+          studentAttendanceStorage[idx].status = value;
+        }
+        if(prop==="reason"){
+          studentAttendanceStorage[idx].reason = value;
+        }
+
+        
+        localStorage.setItem("studentAttendanceStorageJSONData",JSON.stringify(studentAttendanceStorage));
       },
       saveAttendanceChanges(){
-
+        const studentAttendanceStorage = this.loadStudentAttendanceStorage();
+        // POST data from localstorage via axios
+      },
+      submitUploadedDocument(){
+        // POST to backend via axios
+      },
+      downloadExcelTemplate(){
+        // GET data based on date via axios
+      },
+      updateDateSelect(date){
+        console.log(date)
+        // GET data based on date via axios
       },
       searchFilter(){
         this.busy = true;
@@ -279,6 +361,9 @@ export default {
                 this.busy = false;
               }).catch((error) => error.response.data)
           }  
+        }
+        if(type === "download"){
+          this.viewType = "download"
         }
       }
     },

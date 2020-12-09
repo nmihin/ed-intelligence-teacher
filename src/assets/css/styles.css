@@ -258,6 +258,10 @@ ICONS
   -moz-osx-font-smoothing: grayscale
 }
 
+.icon-upload:before {
+  content: "\e95e";
+  color: #fff;
+}
 .icon-performance:before {
   content: "\e95d";
   color: #fff;
@@ -531,11 +535,6 @@ ICONS
 .icon-arrow:before {
   content: "\e900";
   color: var(--white)
-}
-
-.el-icon-arrow-up:before {
-  content: "\e901";
-  color: var(--mediumgray) 
 }
 
 .icon-arrow-gray:before {
@@ -2960,11 +2959,19 @@ li:hover .megamenu {
 }
 
 .student-list .change-view.menu-list {
-  padding: 7px 25px;;
+  padding: 6px 25px;;
 }
 
 .student-list .change-view .icon-menu-list {
-  font-size: 20px;
+  font-size: 22px;
+}
+
+.student-list .change-view.upload {
+  padding: 5px 25px;
+}
+
+.student-list .change-view.upload .icon {
+  font-size: 24px;
 }
 
 .student-list .search-results {
@@ -3023,6 +3030,75 @@ li:hover .megamenu {
   left: 0;
   right: 0;
   top: 15px;
+}
+
+.student-list.attendance .attendance-list-avatar {
+  display: inline-block !important;
+  padding: 5% 5% 0 5% !important;
+}
+
+.student-list.attendance .attendance-list-avatar > h3 {
+  margin-bottom: 5px !important;
+}
+
+.student-list.attendance .attendance-list-avatar > h3:after {
+  display: none;
+}
+
+.student-list.attendance .upload-document .card-box {
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.student-list.attendance .upload-document .upload span {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.student-list.attendance .el-icon-arrow-up:before {
+  content: "\e901";
+  color: var(--mediumgray) 
+}
+
+.student-list.attendance .download-button {
+  background-color: var(--bluewood) !important;
+  padding:5px 25px ;
+}
+
+.student-list.attendance .download-button .icon-download-excel {
+  font-size: 24px;
+  padding-right: 5px;
+}
+
+.student-list.attendance .date-select {
+  float: left;
+  margin-bottom: 15px;
+}
+
+.student-list.attendance .date-select .icon-box-plan {
+  position: absolute;
+  left: 27px;
+  top: 12px;
+  font-size: 14px;
+  z-index: 1;
+}
+
+.student-list.attendance .date-select .icon-box-plan:before {
+  color: var(--bluewood);
+}
+
+.student-list.attendance .date-select .el-input {
+  width: 200px;
+}
+
+.student-list.attendance .records-input .el-input {
+  width: 100px;
+}
+
+.student-list.attendance .records-input .el-icon-arrow-up {
+  display: none;
 }
 
 /* STUDENT DETAILS */
