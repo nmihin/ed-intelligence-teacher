@@ -72,8 +72,22 @@
             </el-table-column>
             <el-table-column sortable property="reason" label="Reason">
               <div slot-scope="scope">
-                  <el-select @change="updateAttendanceList(scope.row.sn,scope.row.reason,'reason')" v-model="scope.row.reason" placeholder="Reason">
-                    <el-option v-for="pre in reasonOptionsSelect"
+                  <el-select v-if="scope.row.status ==='Present'" @change="updateAttendanceList(scope.row.sn,scope.row.reason,'present')" v-model="scope.row.reason" placeholder="Reason">
+                    <el-option v-for="pre in reasonPresentOptionsSelect"
+                              :key="pre.value"
+                              :label="pre.label"
+                              :value="pre.value">
+                    </el-option>
+                  </el-select>
+                  <el-select v-if="scope.row.status ==='Absent'" @change="updateAttendanceList(scope.row.sn,scope.row.reason,'absent')" v-model="scope.row.reason" placeholder="Reason">
+                    <el-option v-for="pre in reasonAbsentOptionsSelect"
+                              :key="pre.value"
+                              :label="pre.label"
+                              :value="pre.value">
+                    </el-option>
+                  </el-select>
+                  <el-select v-if="scope.row.status ==='Absent'" @change="updateAttendanceList(scope.row.sn,scope.row.absentReason,'absentreason')" v-model="scope.row.absentReason" placeholder="Reason">
+                    <el-option v-for="pre in reasonAbsentReasonOptionsSelect"
                               :key="pre.value"
                               :label="pre.label"
                               :value="pre.value">
@@ -84,7 +98,7 @@
           </el-table>
           <!-- AVATAR VIEW -->
           <div v-if="viewType ==='avatar'" class="row search-results">
-            <div v-for="(post, idx) in posts" :key="idx" class="col-12 col-md-6 col-lg-4 ed_card-boxes">
+            <div v-for="(post, idx) in posts" :key="idx" class="col-12 col-md-6 col-lg-6 col-xl-4 ed_card-boxes">
             <div class="card-box">
               <div class="card-title">
                   <h2>{{post.name}} {{post.surname}}</h2>
@@ -104,12 +118,26 @@
                         </li>
                         <li class="attendance-list-avatar">
                           <h3>Reason</h3>
-                            <el-select @change="updateAttendanceList(post.sn,post.reason,'reason')" v-model="post.reason" placeholder="Reason">
-                                <el-option v-for="pre in reasonOptionsSelect"
+                            <el-select v-if="post.status ==='Present'" @change="updateAttendanceList(post.sn,post.reason,'present')" v-model="post.reason" placeholder="Reason">
+                                <el-option v-for="pre in reasonPresentOptionsSelect"
                                           :key="pre.value"
                                           :label="pre.label"
                                           :value="pre.value">
                                 </el-option>
+                            </el-select>
+                            <el-select v-if="post.status ==='Absent'" @change="updateAttendanceList(post.sn,post.reason,'absent')" v-model="post.reason" placeholder="Reason">
+                                <el-option v-for="pre in reasonAbsentOptionsSelect"
+                                          :key="pre.value"
+                                          :label="pre.label"
+                                          :value="pre.value">
+                                </el-option>
+                            </el-select>
+                            <el-select v-if="post.status ==='Absent'" @change="updateAttendanceList(post.sn,post.absentReason,'absentreason')" v-model="post.absentReason" placeholder="Reason">
+                              <el-option v-for="pre in reasonAbsentReasonOptionsSelect"
+                                        :key="pre.value"
+                                        :label="pre.label"
+                                        :value="pre.value">
+                              </el-option>
                             </el-select>
                         </li>
                       </ul>
@@ -182,11 +210,29 @@ export default {
             { value: "Present", label: "Present" },
             { value: "Absent", label: "Absent" }
           ],
-          reasonOptionsSelect: [
+          reasonPresentOptionsSelect: [
             { value: "[PF] Present Full", label: "[PF] Present Full" },
             { value: "[PPE] Present Partial Excused", label: "[PPE] Present Partial Excused" },
             { value: "[PPU] Present Partial Unexcused", label: "[PPU] Present Partial Unexcused" },
             { value: "[NE] Not Explained", label: "[NE] Not Explained" }
+          ],
+          reasonAbsentOptionsSelect: [
+            { value: "[AOS] Absent - Out of School Suspension", label: "[AOS] Absent - Out of School Suspension" },
+            { value: "[ANS] Absent - Adult Ed Bo Session", label: "[ANS] Absent - Adult Ed Bo Session" },
+            { value: "[APE] Absent Partial Excused", label: "[APE] Absent Partial Excused" },
+            { value: "[APU] Absent Partial Unexcused", label: "[APU] Absent Partial Unexcused" },
+            { value: "[AFE] Absent - Full Excused", label: "[AFE] Absent - Full Excused" },
+            { value: "[AFU] Absent - Full Unexcused", label: "[AFU] Absent - Full Unexcused" },
+            { value: "[NE] Absent - Not Explained", label: "[NE] Absent - Not Explained" }
+          ],
+          reasonAbsentReasonOptionsSelect: [
+            { value: "[11] Illness", label: "[11] Illness" },
+            { value: "[12] Student Illness", label: "[12] Student Illness" },
+            { value: "[13] Death Student Family", label: "[13] Death Student Family" },
+            { value: "[14] Attending judiciary or administrative proceedings", label: "[14] Attending judiciary or administrative proceedings" },
+            { value: "[15] Observance od a religious holiday", label: "[15] Observance od a religious holiday" },
+            { value: "[16] Lawfull suspension or exclusion from school", label: "[16] Lawfull suspension or exclusion from school" },
+            { value: "[17] Temporary relocation due to closing of facilities or suspension of classes", label: "[17] Temporary relocation due to closing of facilities or suspension of classes" }
           ],
           recordsOptions: [{
               value: 5,
@@ -282,17 +328,28 @@ export default {
       updateAttendanceList(id,value,prop) {
         const studentAttendanceStorage = this.loadStudentAttendanceStorage();
 
+        // status,present,absent,absentreason
         // FIND STUDENT INDEX
-        const idx = studentAttendanceStorage.map( el => el.sn).indexOf(id)
+        const idxPosts = this.posts.map( el => el.sn).indexOf(id)
+        const idxStorage = studentAttendanceStorage.map( el => el.sn).indexOf(id)
 
         if(prop==="status"){
-          studentAttendanceStorage[idx].status = value;
+  
+          studentAttendanceStorage[idxStorage].status = value;
+          this.posts[idxPosts].reason = "";
+          studentAttendanceStorage[idxStorage].reason = "";
         }
-        if(prop==="reason"){
-          studentAttendanceStorage[idx].reason = value;
+        if(prop==="present"){
+          studentAttendanceStorage[idxStorage].reason = value;
+          studentAttendanceStorage[idxStorage].absentReason = "";
+        }
+        if(prop==="absent"){
+          studentAttendanceStorage[idxStorage].reason = value;
+        }
+        if(prop==="absentreason"){
+          studentAttendanceStorage[idxStorage].absentReason = value;
         }
 
-        
         localStorage.setItem("studentAttendanceStorageJSONData",JSON.stringify(studentAttendanceStorage));
       },
       saveAttendanceChanges(){
@@ -343,7 +400,7 @@ export default {
           this.viewType = "list"
         if(type === "avatar"){
           this.viewType = "avatar"
-          
+
           this.busy = true;
           const studentAttendanceStorage = this.loadStudentAttendanceStorage();
 
