@@ -3022,6 +3022,7 @@ li:hover .megamenu {
 
 .student-list.attendance .attendance-bottom {
   position: relative;
+  background-color: transparent;
 }
 
 .student-list.attendance .attendence-save-changes {
