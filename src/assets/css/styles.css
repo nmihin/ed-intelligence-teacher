@@ -3317,6 +3317,10 @@ li:hover .megamenu {
   margin: 0 auto;
 }
 
+.teacher-profile .side-menu.profile .side-menu-header {
+  border-radius: 30px 30px 15px 15px;
+}
+
 /* CHANGE PASSWORD */
 .change-password {
   padding: 0 10px;

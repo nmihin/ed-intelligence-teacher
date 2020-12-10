@@ -35,21 +35,6 @@
                       </el-button>
                   </div>
                 </div>
-                <div class="col-12 side-menu-content">
-                  <!-- Box -->
-                  <div class="card-box">
-                    <div class="card-title">
-                      <h2>Teacher information</h2>
-                    </div>
-                    <div class="card-content">
-                      <p>
-                        Conventions of standard English: Demostrate command of the
-                        conventions of the standard English grammar and usage when
-                        writing or speaking.
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <div class="col-xs-9 col-md-9">
