@@ -213,196 +213,51 @@
             <el-tabs type="border-card" @tab-click="handleClick">
                 <el-tab-pane label="entry">
                     <span slot="label" class="label-icon"><i class="icon icon-entry"></i> Entry</span>
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <el-select @change="updatePagination()" v-model="value" placeholder="Records">
-                            <el-option
-                                v-for="item in recordsOptions"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
-                            </el-option>
-                            </el-select>
-                            <span class="records">Records</span>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <button @click="addNewCode('entry')" class="add-element button medium ed-btn__primary">
-                                <i class="icon icon-add"></i>
-                                <span>Add Entry Code</span>
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4">
-                            <el-input @input="searchFilter()" placeholder="Search..." v-model="searchName"></el-input>
-                        </div>
-                    </div>
-                    <!-- LIST VIEW -->
-                    <el-table
-                    ref="singleTable"
-                    stripe
-                    :data="posts"
-                    highlight-current-row
-                    style="width: 100%">
-                    <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
-                    <el-table-column sortable property="code" width="80" label="Code"></el-table-column>
-                    <el-table-column sortable property="category" width="120" label="Category"></el-table-column>
-                    <el-table-column sortable property="codename" label="Codename"></el-table-column>
-                    <el-table-column sortable property="usageguidelines" label="Usage Guidelines"></el-table-column>
-                    <el-table-column sortable property="additionalguidelines" label="Additional Guidelines"></el-table-column>
-                    <el-table-column width="140" property="action" label="Action">
-                        <div slot-scope="scope">
-                        <div @click="editCodeModal = true; editSelectedCode(scope.row.sn);" class="element-edit">
-                            <i class="icon icon-edit"></i>
-                        </div>
-                        <div  @click="deleteCodeModal = true; deleteSelectedCode(scope.row.sn);" class="element-delete">
-                            <i class="icon icon-delete"></i>
-                        </div>
-                        </div>
-                    </el-table-column>
-                    </el-table>
+                    <CodeBookTabEntry 
+                    v-if="tabSelected === 'entry'"
+                    :parentData="postsTab" 
+                    :addNewCodeParent = "addNewCode"
+                    :searchFilterParent="searchFilter"
+                    :updatePagination="updatePagination"
+                    :deleteSelectedCodeParent="deleteSelectedCode"
+                    :editSelectedCodeParent="editSelectedCode"
+                    />
                 </el-tab-pane>
                 <el-tab-pane label="exit">
                     <span slot="label" class="label-icon"><i class="icon icon-exit"></i> Exit</span>
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <el-select @change="updatePagination()" v-model="value" placeholder="Records">
-                            <el-option
-                                v-for="item in recordsOptions"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
-                            </el-option>
-                            </el-select>
-                            <span class="records">Records</span>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <button @click="addNewCode('exit')" class="add-element button medium ed-btn__primary">
-                                <i class="icon icon-add"></i>
-                                <span>Add Exit Code</span>
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4">
-                            <el-input @input="searchFilter()" placeholder="Search..." v-model="searchName"></el-input>
-                        </div>
-                    </div>
-                    <!-- LIST VIEW -->
-                    <el-table
-                    ref="singleTable"
-                    stripe
-                    :data="posts"
-                    highlight-current-row
-                    style="width: 100%">
-                    <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
-                    <el-table-column sortable property="code" width="80" label="Code"></el-table-column>
-                    <el-table-column sortable property="category" width="120" label="Category"></el-table-column>
-                    <el-table-column sortable property="codename" label="Codename"></el-table-column>
-                    <el-table-column sortable property="usageguidelines" label="Usage Guidelines"></el-table-column>
-                    <el-table-column sortable property="additionalguidelines" label="Additional Guidelines"></el-table-column>
-                    <el-table-column  width="140" property="action" label="Action">
-                        <div slot-scope="scope">
-                         <div @click="editCodeModal = true; editSelectedCode(scope.row.sn);" class="element-edit">
-                            <i class="icon icon-edit"></i>
-                        </div>
-                        <div @click="deleteCodeModal = true; deleteSelectedCode(scope.row.sn);" class="element-delete">
-                            <i class="icon icon-delete"></i>
-                        </div>
-                        </div>
-                    </el-table-column>
-                    </el-table>
+                    <CodeBookTabExit 
+                    v-if="tabSelected === 'exit'"
+                    :parentData="postsTab" 
+                    :addNewCodeParent = "addNewCode"
+                    :searchFilterParent="searchFilter"
+                    :updatePagination="updatePagination"
+                    :deleteSelectedCodeParent="deleteSelectedCode"
+                    :editSelectedCodeParent="editSelectedCode"
+                    />
                 </el-tab-pane>
                 <el-tab-pane label="attendance">
                     <span slot="label" class="label-icon"><i class="icon icon-attendence"></i> Attendance</span>
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <el-select @change="updatePagination()" v-model="value" placeholder="Records">
-                            <el-option
-                                v-for="item in recordsOptions"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
-                            </el-option>
-                            </el-select>
-                            <span class="records">Records</span>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <button @click="addNewCode('attendance')" class="add-element button medium ed-btn__primary">
-                                <i class="icon icon-add"></i>
-                                <span>Add Attendance Code</span>
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4">
-                            <el-input @input="searchFilter()" placeholder="Search..." v-model="searchName"></el-input>
-                        </div>
-                    </div>
-                    <!-- LIST VIEW -->
-                    <el-table
-                    ref="singleTable"
-                    stripe
-                    :data="posts"
-                    highlight-current-row
-                    style="width: 100%">
-                    <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
-                    <el-table-column sortable property="adtvalue" width="120" label="ADT Value"></el-table-column>
-                    <el-table-column sortable property="adtvaluedecriptor" width="200" label="ADT Value Decriptor"></el-table-column>
-                    <el-table-column sortable property="description" label="Description"></el-table-column>
-                    <el-table-column sortable property="status" width="120"  label="Status"></el-table-column>
-                    <el-table-column width="140" property="action" label="Action">
-                        <div slot-scope="scope">
-                        <div @click="editCodeModal = true; editSelectedCode(scope.row.sn);" class="element-edit">
-                            <i class="icon icon-edit"></i>
-                        </div>
-                        <div @click="deleteCodeModal = true; deleteSelectedCode(scope.row.sn);" class="element-delete">
-                            <i class="icon icon-delete"></i>
-                        </div>
-                        </div>
-                    </el-table-column>
-                    </el-table>
+                    <CodeBookTabAttendance
+                    v-if="tabSelected === 'attendance'"
+                    :parentData="postsTab" 
+                    :addNewCodeParent = "addNewCode"
+                    :searchFilterParent="searchFilter"
+                    :updatePagination="updatePagination"
+                    :deleteSelectedCodeParent="deleteSelectedCode"
+                    :editSelectedCodeParent="editSelectedCode"
+                    />
                 </el-tab-pane>
                 <el-tab-pane label="absentreason">
                     <span slot="label" class="label-icon"><i class="icon icon-absence"></i> Absent Reason</span>
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <el-select @change="updatePagination()" v-model="value" placeholder="Records">
-                            <el-option
-                                v-for="item in recordsOptions"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
-                            </el-option>
-                            </el-select>
-                            <span class="records">Records</span>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-4">
-                            <button @click="addNewCode('absentreason')" class="add-element button medium ed-btn__primary">
-                                <i class="icon icon-add"></i>
-                                <span>Add Absent Reason Code</span>
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4">
-                            <el-input @input="searchFilter()" placeholder="Search..." v-model="searchName"></el-input>
-                        </div>
-                    </div>
-                    <!-- LIST VIEW -->
-                    <el-table
-                    ref="singleTable"
-                    stripe
-                    :data="posts"
-                    highlight-current-row
-                    style="width: 100%">
-                    <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
-                    <el-table-column sortable property="adtvalue" width="120" label="ADT Value"></el-table-column>
-                    <el-table-column sortable property="adtvaluedecriptor" width="200" label="ADT Value Decriptor"></el-table-column>
-                    <el-table-column sortable property="description" label="Description"></el-table-column>
-                    <el-table-column width="140" property="action" label="Action">
-                        <div slot-scope="scope">
-                        <div @click="editCodeModal = true; editSelectedCode(scope.row.sn);" class="element-edit">
-                            <i class="icon icon-edit"></i>
-                        </div>
-                        <div @click="deleteCodeModal = true; deleteSelectedCode(scope.row.sn);" class="element-delete">
-                            <i class="icon icon-delete"></i>
-                        </div>
-                        </div>
-                    </el-table-column>
-                    </el-table>
+                    <CodeBookTabAbsentReason
+                    v-if="tabSelected === 'absentreason'"
+                    :parentData="postsTab" 
+                    :addNewCodeParent = "addNewCode"
+                    :searchFilterParent="searchFilter"
+                    :updatePagination="updatePagination"
+                    :deleteSelectedCodeParent="deleteSelectedCode"
+                    :editSelectedCodeParent="editSelectedCode"
+                    />
                 </el-tab-pane>
             </el-tabs>
         </div>
@@ -422,9 +277,19 @@
 </template>
 
 <script>
+// TABS
+import CodeBookTabEntry from './CodeBookTabs/CodeBookTabEntry.vue';
+import CodeBookTabExit from './CodeBookTabs/CodeBookTabExit.vue';
+import CodeBookTabAttendance from './CodeBookTabs/CodeBookTabAttendance.vue';
+import CodeBookTabAbsentReason from './CodeBookTabs/CodeBookTabAbsentReason.vue';
+
 export default {
     name: "code-book",
     components: {
+        CodeBookTabEntry,
+        CodeBookTabExit,
+        CodeBookTabAttendance,
+        CodeBookTabAbsentReason
     },
     // DATA
     data: () => ({
@@ -434,6 +299,10 @@ export default {
         pageSize: 10,
         totalSize: 0,
         posts: [],
+        postsTab: [],
+        postsTabExit: [],
+        postsTabAttendance: [],
+        postsTabAbsentReason: [],
         busy: true,
         value: 10,
         searchName:"",
@@ -629,6 +498,7 @@ export default {
                 this.totalSize = codeBookStorage[this.tabIndex][this.tabSelected].length;
 
                 this.posts = [];
+                this.postsTab = codeBookStorage;
 
                 const append = codeBookStorage[this.tabIndex][this.tabSelected].slice(
                     this.posts.length,
@@ -643,7 +513,9 @@ export default {
 
                 this.totalSize = response.data[this.tabIndex][this.tabSelected].length;
 
-                 this.posts = [];
+                this.posts = [];
+
+                this.postsTab = response.data;
 
                 const append = response.data[this.tabIndex][this.tabSelected].slice(
                     this.posts.length,
@@ -658,6 +530,7 @@ export default {
                 this.next_page_url = response.next_page_url;
 
                 localStorage.setItem("codeBookStorageJSONData",JSON.stringify(response.data));
+
                 this.busy = false;
                 }).catch((error) => error.response.data)
             }
@@ -673,6 +546,7 @@ export default {
             this.loadMore();
         },
         deleteSelectedCode(sn){
+            this.deleteCodeModal = true;
             this.codeSelectedToDelete = sn;
         },
         deleteCodeConfirm(){
@@ -706,6 +580,7 @@ export default {
                 );
 
                 this.posts = append;
+                this.postsTab = append;
             }
             else {
                 this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => data.usageguidelines.toLowerCase().includes(this.searchName.toLowerCase()));
@@ -718,6 +593,7 @@ export default {
                 );
 
                 this.posts = append;
+                this.postsTab = append;
             }
 
             this.busy = false;
@@ -772,6 +648,8 @@ export default {
             this.loadMore();
         },
         editSelectedCode(idx){
+            this.editCodeModal = true;
+
             const codeBookStorage = this.loadCodeBookStorage();
             this.codeSelectedToEdit = idx;
 
@@ -881,21 +759,21 @@ export default {
         updateEditForm (input, value){
             this.formEditCode[input] = value;
         },
-        updatePagination() {
+        updatePagination(v) {
+            this.pageSize = v;
 
-            this.pageSize = this.value;
-
-            const codeBookStorage = this.loadCodeBookStorage();
+            const codeBookStorage = this.loadCodeBookStorage(); 
 
             this.posts = [];
             const append = codeBookStorage[this.tabIndex][this.tabSelected].slice(
                 this.posts.length,
-                this.posts.length + this.pageSize
+                this.posts.length + v
             );
 
             this.posts = append;
+            this.postsTab = append;
         },
-        searchFilter(){
+        searchFilter(v){
             this.busy = true;
 
             const codeBookStorage = this.loadCodeBookStorage();
@@ -903,33 +781,35 @@ export default {
             // SEARCH BY PROPERTY (ANY)
             if(this.tabSelected === 'entry' || this.tabSelected === 'exit'){
                 this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => 
-                    data.code.toString().toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.category.toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.codename.toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.usageguidelines.toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.additionalguidelines.toLowerCase().includes(this.searchName.toLowerCase())
+                    data.code.toString().toLowerCase().includes(v.toLowerCase()) ||
+                    data.category.toLowerCase().includes(v.toLowerCase()) ||
+                    data.codename.toLowerCase().includes(v.toLowerCase()) ||
+                    data.usageguidelines.toLowerCase().includes(v.toLowerCase()) ||
+                    data.additionalguidelines.toLowerCase().includes(v.toLowerCase())
                 );        
             }
             if(this.tabSelected === 'attendance'){
                 this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => 
-                    data.adtvalue.toString().toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.adtvaluedecriptor.toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.description.toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.status.toLowerCase().includes(this.searchName.toLowerCase()) 
+                    data.adtvalue.toString().toLowerCase().includes(v.toLowerCase()) ||
+                    data.adtvaluedecriptor.toLowerCase().includes(v.toLowerCase()) ||
+                    data.description.toLowerCase().includes(v.toLowerCase()) ||
+                    data.status.toLowerCase().includes(v.toLowerCase()) 
                 );   
             }
             if(this.tabSelected === 'absentreason'){
                 this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => 
-                    data.adtvalue.toString().toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.adtvaluedecriptor.toLowerCase().includes(this.searchName.toLowerCase()) ||
-                    data.description.toLowerCase().includes(this.searchName.toLowerCase())
+                    data.adtvalue.toString().toLowerCase().includes(v.toLowerCase()) ||
+                    data.adtvaluedecriptor.toLowerCase().includes(v.toLowerCase()) ||
+                    data.description.toLowerCase().includes(v.toLowerCase())
                 );   
             }
 
             this.totalSize = this.posts.length;
 
             this.busy = false;
-            return this.posts;
+            //return this.posts;
+            this.postsTab = this.posts;
+            return this.postsTab;
         }
     },
     created() {
