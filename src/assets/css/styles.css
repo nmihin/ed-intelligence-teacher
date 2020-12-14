@@ -4996,6 +4996,17 @@ UI Elements
   right:5px;
 }
 
+.preloader-lesson {
+  padding: 20px 10px 20px 30px;
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  margin: 0px 15px;
+}
+
+.preloader-lesson > img {
+  width: 100%;
+}
+
 /* add-custom-standard */
 .add-custom-standard {
   position: relative;
