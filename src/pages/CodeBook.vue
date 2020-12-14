@@ -278,10 +278,10 @@
 
 <script>
 // TABS
-import CodeBookTabEntry from './CodeBookTabs/CodeBookTabEntry.vue';
-import CodeBookTabExit from './CodeBookTabs/CodeBookTabExit.vue';
-import CodeBookTabAttendance from './CodeBookTabs/CodeBookTabAttendance.vue';
-import CodeBookTabAbsentReason from './CodeBookTabs/CodeBookTabAbsentReason.vue';
+import CodeBookTabEntry from './CodeBookComponents/Tabs/CodeBookTabEntry.vue';
+import CodeBookTabExit from './CodeBookComponents/Tabs/CodeBookTabExit.vue';
+import CodeBookTabAttendance from './CodeBookComponents/Tabs/CodeBookTabAttendance.vue';
+import CodeBookTabAbsentReason from './CodeBookComponents/Tabs/CodeBookTabAbsentReason.vue';
 
 export default {
     name: "code-book",
