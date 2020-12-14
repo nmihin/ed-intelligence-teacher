@@ -3017,7 +3017,7 @@ li:hover .megamenu {
 }
 
 .student-list.attendance .el-select .el-input {
-  width: auto;
+  width: 160px;
 }
 
 .student-list.attendance .attendance-bottom {
@@ -3100,6 +3100,10 @@ li:hover .megamenu {
 
 .student-list.attendance .records-input .el-icon-arrow-up {
   display: none;
+}
+
+.student-list.attendance .el-table {
+  padding: 0 20px;
 }
 
 /* STUDENT DETAILS */
@@ -5099,6 +5103,15 @@ UI Elements
 }
 
 @media only screen and (max-width:991px) {
+  .student-list.attendance .el-table__body-wrapper {
+    overflow-x: scroll;
+  }
+  .student-list.attendance .el-table__body {
+    min-width: 640px;
+  }
+  .student-list.attendance .el-select .el-input {
+    width:110px;
+  }
   .ed_card-boxes.aside .card-content .item-content {
     position: relative;
     float: left
