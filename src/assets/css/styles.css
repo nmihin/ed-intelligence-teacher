@@ -4969,6 +4969,10 @@ Wizard
 /*
 Popover
 */
+.el-popover {
+  z-index: 6 !important;
+}
+
 .el-popover.student-list-options {
   background-color: transparent;
   border:0;
