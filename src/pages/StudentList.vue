@@ -200,7 +200,7 @@
             </button>
           </div>
           <div class="col-12 col-sm-12 col-md-4">
-            <el-input @input="searchFilter()" placeholder="Search name..." v-model="searchName"></el-input>
+            <SearchContentComponent :searchFilterParent="searchFilter" />
           </div>
         </div>
         <!-- LIST VIEW -->
@@ -233,13 +233,18 @@
 import StudentListAvatarView from './StudentListComponents/Views/StudentListAvatarView.vue';
 import StudentListListView from './StudentListComponents/Views/StudentListListView.vue';
 import RecordsComponent from '../components/records/RecordsComponent.vue';
+import SearchContentComponent from '../components/search/SearchContentComponent.vue';
 
 export default {
     name: "student-list",
     components: {
       StudentListAvatarView,
       StudentListListView,
-      RecordsComponent
+      RecordsComponent,
+      SearchContentComponent
+    },
+    props: {
+      searchFilterParent:Function
     },
     // DATA
     data: () => ({
@@ -532,11 +537,11 @@ export default {
           }  
         }
       },
-      searchFilter(){
+      searchFilter(value){
         this.busy = true;
 
         const studentListStorage = this.loadStudentlistStorage();
-        this.posts = studentListStorage.filter(data => data.name.toLowerCase().includes(this.searchName.toLowerCase()));
+        this.posts = studentListStorage.filter(data => data.name.toLowerCase().includes(value.toLowerCase()));
         this.totalSize = this.posts.length;
 
         this.busy = false;

@@ -36,7 +36,7 @@
           </button>
         </div>
         <div v-if="viewType === 'list' || viewType === 'avatar'" class="col-12 col-sm-12 col-md-4">
-          <el-input @input="searchFilter()" placeholder="Search name..." v-model="searchName"></el-input>
+          <SearchContentComponent :searchFilterParent="searchFilter" />
         </div>
       </div>
       <el-form :model="studentAttendances" :rules="rules" ref="studentAttendances">
@@ -164,11 +164,13 @@
 
 <script>
   import RecordsComponent from '../components/records/RecordsComponent.vue';
+  import SearchContentComponent from '../components/search/SearchContentComponent.vue';
 
   export default {
     name: "attendance",
     components: {
-      RecordsComponent
+      RecordsComponent,
+      SearchContentComponent
     },
     data() {
       return {
