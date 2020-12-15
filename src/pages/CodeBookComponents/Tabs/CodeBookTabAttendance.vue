@@ -67,22 +67,6 @@ export default {
             else{
                 this.posts = this.parentData;
             }
-
-            /*
-            if(typeof this.parentData[2].attendance === "undefined")
-            console.log("undefined")
-            else
-            console.log("nije undefined")
-            */
-
-            /*
-            if(this.parentData[2].attendance === "undefined"){
-                this.posts = this.parentData[2].attendance;
-            }
-            else{
-                this.posts = this.parentData;
-            }
-            */
         }
     },
     // DATA

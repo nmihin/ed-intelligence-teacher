@@ -212,145 +212,15 @@
           </div>
         </div>
         <!-- LIST VIEW -->
-        <el-table
+        <StudentListListView 
           v-if="viewType ==='list'"
-          stripe
-          ref="singleTable"
-          :data="posts"
-          highlight-current-row
-          style="width: 100%">
-          <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
-          <el-table-column sortable property="name" label="Name"></el-table-column>
-          <el-table-column sortable property="surname" label="Surname"></el-table-column>
-          <el-table-column sortable property="usi" label="USI"></el-table-column>
-          <el-table-column sortable property="grade" label="Grade"></el-table-column>
-          <el-table-column width="64" property="action" label="Action">
-              <div class="student-list-edit" slot-scope="scope" v-if="scope.row.action.includes('edit')">
-                  <el-popover
-                      placement="top"
-                      popper-class="student-list-options"
-                      width="200"
-                      trigger="hover">
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
-                          <i @click="addFeedback(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-information"></i>
-                        </el-tooltip> 
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Add Withdrawal" placement="top">
-                          <i @click="addWithdrawal(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-exit"></i>
-                        </el-tooltip>
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Edit Profile" placement="top">
-                          <i @click="editProfile(scope.row.sn)" class="icon icon-edit"></i>
-                        </el-tooltip>
-                      </a>
-                      <a slot="reference" class="student-list-edit">
-                        <i class="icon icon-edit"></i>
-                      </a>
-                  </el-popover>
-              </div>
-          </el-table-column>
-          <el-table-column width="100" property="action">
-              <div class="student-list-preview" slot-scope="scope" v-if="scope.row.action.includes('preview')">
-                    <el-popover
-                      placement="top"
-                      popper-class="student-list-options"
-                      width="200"
-                      trigger="hover">
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="View Profile" placement="top">
-                          <i @click="viewProfile(scope.row.sn)" class="icon icon-profile"></i>
-                        </el-tooltip> 
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Feedback List" placement="top">
-                          <i @click="feedBackList(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-lesson"></i>
-                        </el-tooltip>
-                      </a>
-                      <a slot="reference" class="student-list-preview">
-                        <i class="icon icon-eye"></i>
-                      </a>
-                    </el-popover>
-              </div>
-          </el-table-column>
-        </el-table>
+          :parentData.sync="posts" 
+        />
         <!-- AVATAR VIEW -->
-        <div v-if="viewType ==='avatar'" class="row search-results">
-          <div v-for="(post, idx) in posts" :key="idx" class="col-12 col-md-6 col-lg-4 ed_card-boxes">
-          <div class="card-box">
-            <div class="card-title">
-                <h2>{{post.name}} {{post.surname}}</h2>
-            </div>
-            <div class="card-content">
-                <figure>
-                  <img v-if="!post.avatar" class="card-picture" src="../assets/images/avatar-aux.png" />
-                  <img v-if="post.avatar" class="card-picture" :src="post.avatar" />
-                  <div class="card-element">
-                    <el-popover
-                      placement="top"
-                      popper-class="student-list-options"
-                      width="200"
-                      trigger="hover">
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
-                          <i @click="addFeedback(post.sn,post.name,post.surname)" class="icon icon-information"></i>
-                        </el-tooltip> 
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Add Withdrawal" placement="top">
-                          <i @click="addWithdrawal(post.sn,post.name,post.surname)" class="icon icon-exit"></i>
-                        </el-tooltip>
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Edit Profile" placement="top">
-                          <i @click="editProfile(post.sn)" class="icon icon-edit"></i>
-                        </el-tooltip>
-                      </a>
-                      <a slot="reference" class="student-list-edit">
-                        <i class="icon icon-edit"></i>
-                      </a>
-                    </el-popover>
-                    <el-popover
-                      placement="top"
-                      popper-class="student-list-options"
-                      width="200"
-                      trigger="hover">
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="View Profile" placement="top">
-                          <i @click="viewProfile(post.sn)" class="icon icon-profile"></i>
-                        </el-tooltip> 
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Feedback List" placement="top">
-                          <i @click="feedBackList(post.sn,post.name,post.surname)" class="icon icon-lesson"></i>
-                        </el-tooltip>
-                      </a>
-                      <a slot="reference" class="student-list-preview edit-student-list">
-                        <i class="icon icon-eye"></i>
-                      </a>
-                    </el-popover>
-                  </div>
-                  <figcaption>
-                    <ul>
-                      <li><h3>USI</h3><span>{{post.usi}}</span></li>
-                      <li><h3>Grade</h3><span>{{post.grade}}</span></li>
-                      <li><h3>Home Room</h3><span>{{post.room}}</span></li>
-                      <li><h3>Class Days</h3>
-                        <ul>
-                          <li class="card-content-days" v-for="(p, idx) in post.classdays" :key="idx">{{p}}</li>
-                        </ul>
-                      </li>
-                      <li><h3>Guardian</h3><span>{{post.guardian}}</span></li>
-                      <li><h3>Phone</h3><span>{{post.phone}}</span></li>
-                    </ul>
-                  </figcaption>
-                </figure>
-            </div>
-          </div>
-          </div>
-        </div>
+        <StudentListAvatarView 
+          v-if="viewType ==='avatar'"
+          :parentData.sync="posts" 
+        />
         <el-pagination
             v-if="viewType ==='list'"
             background
@@ -368,9 +238,14 @@
 </template>
 
 <script>
+import StudentListAvatarView from './StudentListComponents/Views/StudentListAvatarView.vue';
+import StudentListListView from './StudentListComponents/Views/StudentListListView.vue';
+
 export default {
     name: "student-list",
     components: {
+      StudentListAvatarView,
+      StudentListListView
     },
     // DATA
     data: () => ({
