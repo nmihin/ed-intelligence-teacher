@@ -11,7 +11,7 @@
         </button>
         </div>
         <div class="col-12 col-sm-12 col-md-4">
-        <el-input @input="searchFilter(searchName)" placeholder="Search..." v-model="searchName"></el-input>
+            <SearchContentComponent :searchFilterParent="searchFilter" />
         </div>
     </div>
     <!-- LIST VIEW -->
@@ -36,11 +36,13 @@
 
 <script>
 import RecordsComponent from '../../../components/records/RecordsComponent.vue';
+import SearchContentComponent from '../../../components/search/SearchContentComponent.vue'
 
 export default {
     name: "code-book-absentreason",
     components: {
-        RecordsComponent
+        RecordsComponent,
+        SearchContentComponent
     },
     props: {
         parentData: Array,
@@ -67,7 +69,6 @@ export default {
     },
     // DATA
     data: () => ({
-        searchName:"",
         posts: [],
         page: 1,
         pageSize: 10,

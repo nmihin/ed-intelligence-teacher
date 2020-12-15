@@ -2091,6 +2091,10 @@ Top box
 }
 
 /* SEARCH PAGE */
+.search-results {
+  margin-bottom: 20px;
+}
+
 .search-results .card-box {
   padding: 0;
   -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -3072,6 +3076,10 @@ li:hover .megamenu {
   right: 5px;
   position: relative;
   top:2px;
+}
+
+.student-list.attendance .search-results {
+  padding: 20px 0 !important;
 }
 
 .student-list.attendance .el-select .el-input {

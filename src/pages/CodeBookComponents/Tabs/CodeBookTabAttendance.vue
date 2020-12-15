@@ -2,7 +2,7 @@
     <div>
     <div class="row">
         <div class="col-12 col-sm-6 col-md-4">
-         <RecordsComponent :updatePaginationParent="updatePagination" />
+            <RecordsComponent :updatePaginationParent="updatePagination" />
         </div>
         <div class="col-12 col-sm-6 col-md-4">
         <button @click="addNewCode('attendance')" class="add-element button medium ed-btn__primary">
@@ -11,7 +11,7 @@
         </button>
         </div>
         <div class="col-12 col-sm-12 col-md-4">
-        <el-input @input="searchFilter(searchName)" placeholder="Search..." v-model="searchName"></el-input>
+            <SearchContentComponent :searchFilterParent="searchFilter" />
         </div>
     </div>
     <!-- LIST VIEW -->
@@ -37,11 +37,13 @@
 
 <script>
 import RecordsComponent from '../../../components/records/RecordsComponent.vue';
+import SearchContentComponent from '../../../components/search/SearchContentComponent.vue'
 
 export default {
     name: "code-book-attendance",
     components: {
-        RecordsComponent
+        RecordsComponent,
+        SearchContentComponent
     },
     props: {
         parentData: Array,
@@ -69,7 +71,6 @@ export default {
     },
     // DATA
     data: () => ({
-        searchName:"",
         posts: [],
         page: 1,
         pageSize: 10,
