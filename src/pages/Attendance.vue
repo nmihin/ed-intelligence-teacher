@@ -81,7 +81,7 @@
         </el-table>
         <!-- AVATAR VIEW -->
         <div v-if="viewType === 'avatar'" class="row search-results">
-          <div v-for="(item, index) in studentAttendances.formData" :key="index" class="col-12 col-md-6 col-lg-6 col-xl-4 ed_card-boxes">
+          <div v-for="(item, index) in studentAttendances.formData" :key="index" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 ed_card-boxes">
             <div class="card-box">
               <div class="card-title">
                 <h2>{{ item.name }} {{ item.surname }}</h2>
@@ -102,7 +102,7 @@
                           </el-radio-group>
                         </el-form-item>
                       </li>
-                      <li class="attendance-list-avatar">
+                      <li class="attendance-list-avatar selection">
                         <h3>Reason</h3>
                         <el-form-item v-if="item.status === 'Present'" :prop="'formData.' + index + '.reason'" :rules="rules.reason">
                           <el-select @change="updateAttendanceList(item.sn,item.reason,'present')" v-model="item.reason" placeholder="Reason">

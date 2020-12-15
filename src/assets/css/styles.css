@@ -2103,6 +2103,7 @@ Top box
 
 .search-results .ed_card-boxes .card-title {
   margin-bottom: 0;
+  overflow: hidden;
   padding-left: 10%;
   color: var(--white);
   height: 60px;
@@ -3093,6 +3094,18 @@ li:hover .megamenu {
 .student-list.attendance .attendance-list-avatar {
   display: inline-block !important;
   padding: 5% 5% 0 5% !important;
+}
+
+.student-list.attendance .attendance-list-avatar.selection {
+  padding-top: 0 !important;
+}
+
+.student-list.attendance .attendance-list-avatar.selection .el-form-item {
+  margin-bottom: 5px;
+}
+
+.student-list.attendance .attendance-list-avatar.selection .el-form-item .el-input {
+  width:100% !important;
 }
 
 .student-list.attendance .attendance-list-avatar > h3 {
@@ -5230,6 +5243,18 @@ UI Elements
 }
 
 @media only screen and (max-width:768px) {
+  .student-list .search-results {
+    padding: 0;
+  }
+  .search-results .ed_card-boxes .card-title h2 {
+    margin-top:0;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+  }
   .side-menu__results.card-boxes.code-book {
     margin-bottom: 50px;
   }
