@@ -189,15 +189,7 @@
     <div class="container-fluid student-list">
         <div class="row">
           <div class="col-8 col-sm-6 col-md-4">
-            <el-select v-if="viewType ==='list'" @change="updatePagination()" v-model="value" placeholder="Records">
-              <el-option
-                v-for="item in recordsOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-            <span v-if="viewType ==='list'" class="records">Records</span>
+            <RecordsComponent v-if="viewType ==='list'" :updatePaginationParent="updatePagination" />
           </div>
           <div class="col-12 col-sm-6 col-md-4">
             <button @click="viewTypeList('avatar')" class="change-view button medium ed-btn__primary">
@@ -240,12 +232,14 @@
 <script>
 import StudentListAvatarView from './StudentListComponents/Views/StudentListAvatarView.vue';
 import StudentListListView from './StudentListComponents/Views/StudentListListView.vue';
+import RecordsComponent from '../components/records/RecordsComponent.vue';
 
 export default {
     name: "student-list",
     components: {
       StudentListAvatarView,
-      StudentListListView
+      StudentListListView,
+      RecordsComponent
     },
     // DATA
     data: () => ({
@@ -256,7 +250,6 @@ export default {
        totalSize: 0,
        posts: [],
        busy: true,
-       value: 10,
        viewType:"list",
        searchName:"",
        searchFeedback:"",
@@ -404,23 +397,7 @@ export default {
             { value: "Code2", label: "Code2" },
             { value: "Code3", label: "Code3" }
           ]
-       },
-       recordsOptions: [{
-          value: 5,
-          label: '5'
-        }, {
-          value: 10,
-          label: '10'
-        }, {
-          value: 25,
-          label: '25'
-        }, {
-          value: 50,
-          label: '50'
-        }, {
-          value: 100,
-          label: '100'
-        }],
+       }
     }),
     // METHODS
     methods: {
@@ -514,9 +491,9 @@ export default {
 
           this.busy = false;
       },
-      updatePagination() {
+      updatePagination(value) {
 
-        this.pageSize = this.value;
+        this.pageSize = value;
 
         const studentListStorage = this.loadStudentlistStorage();
 
@@ -529,8 +506,9 @@ export default {
         this.posts = append;
       },
       viewTypeList(type){
-        if(type === "list")
+        if(type === "list"){
           this.viewType = "list"
+        }
         if(type === "avatar"){
           this.viewType = "avatar"
           

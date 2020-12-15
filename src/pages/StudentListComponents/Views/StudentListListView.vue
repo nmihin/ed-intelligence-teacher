@@ -72,6 +72,7 @@ export default {
     },
     data:() => ({
         posts: [],
+        pageSize: 10,
     }),
     props: {
         parentData: Array,
@@ -84,8 +85,14 @@ export default {
     },
     watch: {
         parentData: function() {
-           this.posts = this.parentData;
-           console.log(this.posts)
+            this.posts = [];
+
+            const append = this.parentData.slice(
+                    this.posts.length,
+                    this.posts.length + this.pageSize
+            );
+
+            this.posts = append;  
         }
     },
     methods: {
@@ -102,8 +109,7 @@ export default {
                     this.posts.length + this.pageSize
                 );
 
-                this.posts = append;
-                console.log(append)      
+                this.posts = append;    
             }
             else{
                 setTimeout(() => {
@@ -115,7 +121,6 @@ export default {
                     );
  
                     this.posts = append; 
-                    console.log(append)
                 }, 1000)
             } 
         },

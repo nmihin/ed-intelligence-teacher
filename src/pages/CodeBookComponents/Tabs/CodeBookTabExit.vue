@@ -2,11 +2,7 @@
     <div>
     <div class="row">
         <div class="col-12 col-sm-6 col-md-4">
-        <el-select @change="updatePagination(value)" v-model="value" placeholder="Records">
-            <el-option v-for="item in recordsOptions" :key="item.value" :label="item.label" :value="item.value">
-            </el-option>
-        </el-select>
-        <span class="records">Records</span>
+            <RecordsComponent :updatePaginationParent="updatePagination" />
         </div>
         <div class="col-12 col-sm-6 col-md-4">
         <button @click="addNewCode('exit')" class="add-element button medium ed-btn__primary">
@@ -41,10 +37,12 @@
 </template>
 
 <script>
+import RecordsComponent from '../../../components/records/RecordsComponent.vue';
+
 export default {
     name: "code-book-exit",
     components: {
-    
+        RecordsComponent
     },
     props: {
         parentData: Array,
@@ -61,7 +59,7 @@ export default {
     },
     watch: {     	
         parentData: function() {
-            if(this.parentData[1].exit){
+            if(typeof this.parentData[1].sn === "undefined"){
                 this.posts = this.parentData[1].exit;
             }
             else{
@@ -71,28 +69,11 @@ export default {
     },
     // DATA
     data: () => ({
-        value: 10,
         searchName:"",
         posts: [],
         page: 1,
         pageSize: 10,
-        totalSize: 0,
-        recordsOptions: [{
-            value: 5,
-            label: '5'
-            }, {
-            value: 10,
-            label: '10'
-            }, {
-            value: 25,
-            label: '25'
-            }, {
-            value: 50,
-            label: '50'
-            }, {
-            value: 100,
-            label: '100'
-        }]
+        totalSize: 0
     }),
     methods: {
         searchFilter(searchName){

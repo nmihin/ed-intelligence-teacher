@@ -12,11 +12,10 @@
           </div>
         </div>
         <div v-if="viewType === 'list'" class="col-8 col-sm-6 col-md-4">
-          <el-select class="records-input" @change="updatePagination()" v-model="value" placeholder="Records">
-            <el-option v-for="item in recordsOptions" :key="item.value" :label="item.label" :value="item.value">
-            </el-option>
-          </el-select>
-          <span v-if="viewType === 'list'" class="records">Records</span>
+            <RecordsComponent 
+              v-if="viewType ==='list'"
+              :updatePaginationParent="updatePagination"
+            />
         </div>
         <div v-if="viewType === 'avatar'" class="col-12 col-sm-6 col-md-4"></div>
         <div v-if="viewType === 'download'" class="col-12 col-sm-6 col-md-8">
@@ -164,9 +163,13 @@
 </template>
 
 <script>
+  import RecordsComponent from '../components/records/RecordsComponent.vue';
+
   export default {
     name: "attendance",
-    components: {},
+    components: {
+      RecordsComponent
+    },
     data() {
       return {
         search: "",
@@ -175,7 +178,6 @@
         totalSize: 0,
         posts: [],
         busy: true,
-        value: 10,
         viewType: "list",
         searchName: "",
         feedback: [],
@@ -288,27 +290,6 @@
           {
             value: "[17] Temporary relocation due to closing of facilities or suspension of classes",
             label: "[17] Temporary relocation due to closing of facilities or suspension of classes",
-          },
-        ],
-        recordsOptions: [{
-            value: 5,
-            label: "5",
-          },
-          {
-            value: 10,
-            label: "10",
-          },
-          {
-            value: 25,
-            label: "25",
-          },
-          {
-            value: 50,
-            label: "50",
-          },
-          {
-            value: 100,
-            label: "100",
           },
         ],
       };
