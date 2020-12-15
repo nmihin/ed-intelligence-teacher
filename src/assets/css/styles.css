@@ -1898,6 +1898,62 @@ Top box
   border-radius: 8px;
 }
 
+.code-book .el-tabs .el-tabs__nav-wrap {
+  position: relative;
+}
+
+.code-book .el-tabs .el-tabs__nav-wrap .el-tabs__nav-prev {
+  position: absolute;
+}
+
+.code-book .el-tabs .el-tabs__nav-wrap .el-tabs__nav-prev .el-icon-arrow-left {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 8px;
+  left: -7px;
+}
+
+.code-book .el-tabs .el-tabs__nav-wrap .el-tabs__nav-prev .el-icon-arrow-left:before {
+  content: '←';
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.75;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.code-book .el-tabs .el-tabs__nav-scroll {
+  width: 95%;
+}
+
+.code-book .el-tabs .el-tabs__nav-wrap .el-tabs__nav-next {
+  position: absolute;
+}
+
+.code-book .el-tabs .el-tabs__nav-wrap .el-tabs__nav-next .el-icon-arrow-right {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 8px;
+  left: -26px;
+}
+
+.code-book .el-tabs .el-tabs__nav-wrap .el-tabs__nav-next .el-icon-arrow-right:before {
+  content: '→';
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.75;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .code-book .el-table {
   border:1px solid var(--lightgray);
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
@@ -2314,6 +2370,7 @@ html {
   overflow-x: hidden;
   font-size: 16px;
   position: relative;
+  overflow-x: hidden;
 }
 
 .theme-layout {
@@ -2421,11 +2478,11 @@ html {
 }
 
 .user-profile {
-  flex-basis: 200px;
+  flex-basis: 190px;
   flex-shrink: 0;
   display: flex;
   position: relative;
-  max-width: 200px;
+  max-width: 190px;
   float: left
 }
 
@@ -2523,7 +2580,7 @@ html {
   display: block;
   padding: 20px;
   font-size: 14px;
-  padding: 10px 25px;
+  padding: 10px 20px;
   font-weight: 500;
   text-decoration: none
 }
@@ -2695,7 +2752,7 @@ li:hover .megamenu {
   display: none;
   position: fixed;
   bottom: 0;
-  z-index: 9999;
+  z-index: 5;
   width: 100%;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
@@ -4164,6 +4221,7 @@ button[disabled="true"] {
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
+  margin-top:10px;
 }
 
 .card-boxes.lessons_teacher {
@@ -4310,6 +4368,7 @@ button[disabled="true"] {
     content: "/";
     position: absolute;
     right: -7px;
+    top:0;
 }
 
 .card-boxes.lessons_teacher .card-breadcrumb > li:last-child:after {
@@ -5158,6 +5217,10 @@ UI Elements
   .filter-card .md-menu {
     margin-left: 10%;
   }
+  .sub-header > .container {
+    max-width: 660px;
+    padding-right: 20px;
+  }
 }
 
 @media only screen and (max-width:768px) {
@@ -5243,8 +5306,24 @@ UI Elements
   .side-menu-content>ul>li.active .icon.right {
     transform: rotate(0)!important
   }
+  .side-menu__results.card-boxes.lessons {
+    padding: 0 !important;
+    padding-bottom: 100px !important;
+    overflow:visible;
+  }
+  .side-menu.single .side-menu-content {
+    margin-bottom: 50px;
+  }
+  .filter-card .icon-arrow {
+    top:10px !important;
+    right: 3px !important;
+  }
   .main-menu {
-    position: initial
+    position: initial;
+    display: none;
+  }
+  .header .user-profile {
+    margin-left: auto;
   }
   .card-boxes.lessons {
     position: absolute !important;
@@ -5267,6 +5346,15 @@ UI Elements
 }
 
 @media only screen and (max-width:620px) {
+  .el-tabs__nav-wrap.is-scrollable {
+    padding: 0 25px;
+  }
+  .code-book .el-tabs__header {
+    padding-left: 5px;
+  }
+  .code-book .el-tabs .el-tabs__nav-wrap .el-tabs__nav-prev .el-icon-arrow-left {
+    left: 0;
+  }
   .ed_card-boxes.upcoming>div {
     width: 100%
   }
@@ -5328,6 +5416,9 @@ UI Elements
   }
   ul.side-menu__results {
     padding: 15px 15px 15px 15px!important
+  }
+  .card-boxes.lessons_teacher .card-box .card-title h2 {
+    max-width: 70%;
   }
 }
 
