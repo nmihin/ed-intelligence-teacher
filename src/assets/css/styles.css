@@ -4967,6 +4967,13 @@ Wizard
 }
 
 /*
+Scrollbar
+*/
+.el-scrollbar__wrap {
+  max-width: 95vw;
+}
+
+/*
 Popover
 */
 .el-popover {
