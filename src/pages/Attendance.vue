@@ -380,6 +380,7 @@
           this.posts = append;
           this.studentAttendances.formData = this.posts;
         } else {
+
           this.posts = studentAttendanceStorage.filter((data) =>
             data.name.toLowerCase().includes(this.searchName.toLowerCase())
           );
@@ -408,8 +409,6 @@
         const idxStorage = studentAttendanceStorage
           .map((el) => el.sn)
           .indexOf(id);
-
-        console.log(prop)
 
         if (prop === "status") {
           studentAttendanceStorage[idxStorage].status = value;
@@ -488,7 +487,7 @@
         );
 
         this.posts = append;
-        this.studentAttendances.formData = this.post;
+        this.studentAttendances.formData = this.posts;
       },
       viewTypeSelect(type) {
         if (type === "list") this.viewType = "list";
