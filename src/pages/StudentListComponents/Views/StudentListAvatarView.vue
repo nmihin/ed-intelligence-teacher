@@ -81,10 +81,12 @@ export default {
     components: {
 
     },
-    data:() => ({
-        posts: [],
-    }),
     props: {
+        addFeedbackParent: Function,
+        addWithdrawalParent: Function,
+        editProfileParent: Function,
+        viewProfileParent: Function,
+        feedBackListParent: Function,
         parentData: Array,
         updatePagination: {
             type: Function,
@@ -93,32 +95,56 @@ export default {
             }
         }
     },
+    data:() => ({
+        posts: [],
+        pageSize:100
+    }),
+    computed: {
+        listJson: function(){
+            return JSON.parse(JSON.stringify(this.parentData));
+        }
+    },
     watch: {
         parentData: function() {
            this.posts = this.parentData;
         }
     },
     methods: {
+        addFeedback(sn,name,surname){
+            this.addFeedbackParent(sn,name,surname);
+        },
+        addWithdrawal(sn,name,surname){
+            this.addWithdrawalParent(sn,name,surname);
+        },
+        editProfile(sn){
+            this.editProfileParent(sn);
+        },
+        viewProfile(sn){
+            this.viewProfileParent(sn);
+        },
+        feedBackList(sn,name,surname){
+            this.addFeedbackParent(sn,name,surname);
+        },
         loadMore(){
             const studentListStorage = this.loadStudentlistStorage();
             this.posts = [];
-            this.parentData = JSON.parse(JSON.stringify(this.parentData));
 
             if(studentListStorage){
-                this.totalSize = this.parentData.length;
 
-                const append = this.parentData.slice(
+                this.totalSize = this.listJson.length;
+
+                const append = this.listJson.slice(
                     this.posts.length,
                     this.posts.length + this.pageSize
                 );
 
-                this.posts = append;    
+                this.posts = append;  
             }
             else{
                 setTimeout(() => {
-                    this.totalSize = this.parentData.length;
+                    this.totalSize = this.listJson.length;
 
-                    const append = this.parentData.slice(
+                    const append = this.listJson.slice(
                         this.posts.length,
                         this.posts.length + this.pageSize
                     );

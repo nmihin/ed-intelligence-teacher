@@ -206,12 +206,22 @@
         <!-- LIST VIEW -->
         <StudentListListView 
           v-if="viewType ==='list'"
-          :parentData.sync="posts" 
+          :parentData.sync="posts"
+          :addFeedbackParent="addFeedback"
+          :addWithdrawalParent="addWithdrawal"
+          :editProfileParent="editProfile"
+          :viewProfileParent="viewProfile"
+          :feedBackListParent="feedBackList" 
         />
         <!-- AVATAR VIEW -->
         <StudentListAvatarView 
           v-if="viewType ==='avatar'"
           :parentData.sync="posts" 
+          :addFeedbackParent="addFeedback"
+          :addWithdrawalParent="addWithdrawal"
+          :editProfileParent="editProfile"
+          :viewProfileParent="viewProfile"
+          :feedBackListParent="feedBackList" 
         />
         <el-pagination
             v-if="viewType ==='list'"
