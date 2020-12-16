@@ -98,7 +98,7 @@
         <!-- END DOCTOR/REGULAR CONSULTANT MODAL -->  
         <!-- START OVERVIEW REPORT MODAL -->
         <md-dialog :md-active.sync="showOverviewReportDialog" class="modal-window student-details">
-            <h2 class="modal-title">Doctor/Regular Consultant</h2>
+            <h2 class="modal-title">Student Overview Report</h2>
             <div class="modal-content">
                 <div class="row student-report">
                     <div class="col-6">

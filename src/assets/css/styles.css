@@ -2399,6 +2399,10 @@ html {
   margin: 0 auto;
 }
 
+.main-content  .container-fluid {
+  z-index: 4;
+}
+
 .logo {
   position: relative;
   left: 0;
@@ -3245,6 +3249,14 @@ li:hover .megamenu {
   padding: 5px;
   font-size: 15px;
 }
+
+.student-details .side-menu-content .card-content button > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
 .student-details.modal-window .modal-content {
   padding: 30px 20px;
 }
@@ -5262,6 +5274,9 @@ UI Elements
 }
 
 @media only screen and (max-width:768px) {
+  .card-boxes.lessons .card-box .card-title h2 {
+    max-width: 75%;
+  }
   .student-list .search-results {
     padding: 0;
   }
