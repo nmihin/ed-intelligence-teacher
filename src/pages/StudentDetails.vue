@@ -317,156 +317,22 @@
                         <el-tabs type="border-card" @tab-click="handleClick">
                             <el-tab-pane label="profile">
                                 <span slot="label" class="label-icon"><i class="icon icon-profile"></i> Profile</span>
-                                <div class="row">
-                                    <!-- LIST VIEW -->
-                                    <ul class="col-12 col-md-6 profile-list">
-                                        <li>USI:<span>{{post.usi}}</span></li>
-                                        <li>Local ID:<span>{{post.sn}}</span></li>
-                                        <li>Date od Birth:<span>{{post.birthDate}}</span></li>
-                                        <li>Primary Parent/Guardian Name:<span>{{post.firstNamePrimaryParent}} {{post.lastNamePrimaryParent}}</span></li>
-                                        <li>Emergency Parent/Guardian Name:<span>{{post.firstNameEmergency}} {{post.lastNameEmergency}}</span></li>
-                                        <li>City:<span>{{post.city}}</span></li>
-                                        <li>Risk Status:<span>{{post.atRiskIndicator}}</span></li>
-                                        <li>Special Need Indicator:<span>{{post.specialNeedIndicator}}</span></li>
-                                        <li>Slot Accepted:<span>{{post.slotAcceptedDate}}</span></li>
-                                        <li>Dual Enrollment:<span>{{post.dualEnrollment}}</span></li>
-                                    </ul>
-                                    <ul class="col-12 col-md-6 profile-list">
-                                        <li>Gender:<span>{{post.gender}}</span></li>
-                                        <li>Grade:<span>{{post.grade}}</span></li>
-                                        <li>Registered Date:<span>{{post.studentRegistrationDate}}</span></li>
-                                        <li>Primary Parent/Guardian Contact Number:<span>{{post.contactNumberPrimaryParent}}</span></li>
-                                        <li>Emergency Parent/Guardian Contact Number:<span>{{post.contactNumberEmergency}}</span></li>
-                                        <li>Street:<span>{{post.streetAddress}}</span></li>
-                                        <li>District Verified:<span>{{post.stateVerifiedResidencyStatus}}</span></li>
-                                        <li>Homeless Status:<span>{{post.homelesnessStatus}}</span></li>
-                                        <li>Tuition Indicator:<span>{{post.tuitionIndicator}}</span></li>
-                                        <li>Residency Indicator:<span>{{post.residencyIndicator}}</span></li>
-                                    </ul>
-                                </div>
+                                <StudentDetailsTabProfile :parentData="post" />
                             </el-tab-pane>
                             <el-tab-pane label="attendance">
                                 <span slot="label" class="label-icon"><i class="icon icon-box-plan"></i> Attendance</span>
-                                <div class="row">
-                                    <div class="col-12 col-md-3 attendance">
-                                        <div class="card-box">
-                                            <div class="card-title">Current Year Attendance</div>
-                                            <div class="card-content">
-                                                <ul>
-                                                    <li><h3>(2020)</h3><span></span></li>
-                                                    <li><h3>1st Period:</h3> <span>31.97%</span></li>
-                                                    <li><h3>2nd Period:</h3> <span>1.36%</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-3 attendance">
-                                        <div class="card-box">
-                                            <div class="card-title">Prior Year Attendance</div>
-                                            <div class="card-content">
-                                                <ul>
-                                                    <li><h3>(2020)</h3><span></span></li>
-                                                    <li><h3>1st Period:</h3> <span>81.97%</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-3 attendance">
-                                        <div class="card-box">
-                                            <div class="card-title">Freqent Absent Reason</div>
-                                            <div class="card-content">
-                                                <ul>
-                                                    <li><h3>(2020)</h3><span></span></li>
-                                                    <li><h3>Student Illness:</h3><span>2</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-3 attendance">
-                                        <div class="card-box">
-                                            <div class="card-title">Freqent Absent Reason</div>
-                                            <div class="card-content">
-                                                <ul>
-                                                    <li><h3>(2019)</h3></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div v-if="tabAttendance" class="col-12 col-md-6">
-                                        <div class="abssence-reason-table">
-                                            <h2>PMF Inseat Attendance by Month (Current Year)</h2>
-                                            <AreaChart/>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="abssence-reason-table">
-                                            <h2>Current Year Frequent Absent Reason</h2>
-                                            <el-table
-                                                stripe
-                                                ref="singleTable"
-                                                :data="currentYearAbsentReason"
-                                                highlight-current-row
-                                                style="width: 100%">
-                                                <el-table-column property="sn" label="SN" width="60"></el-table-column>
-                                                <el-table-column property="reason" label="Absent Reason"></el-table-column>
-                                                <el-table-column property="total" label="Total" width="80"></el-table-column>
-                                            </el-table>
-                                        </div>
-                                        <div class="abssence-reason-table">
-                                            <h2>Prior Year Frequent Absent Reason</h2>
-                                            <el-table
-                                                stripe
-                                                ref="singleTable"
-                                                :data="priorYearAbsentReason"
-                                                highlight-current-row
-                                                style="width: 100%">
-                                                <el-table-column property="sn" label="SN" width="60"></el-table-column>
-                                                <el-table-column property="reason" label="Absent Reason"></el-table-column>
-                                                <el-table-column property="total" label="Total" width="80"></el-table-column>
-                                            </el-table>
-                                        </div>
-                                    </div>
-                                </div>
+                                 <StudentDetailsTabAttendance
+                                    :currentYearAbsentReasonParent="currentYearAbsentReason"
+                                    :priorYearAbsentReasonParent="priorYearAbsentReason"
+                                 />
                             </el-tab-pane>
                             <el-tab-pane label="performance">
                                 <span slot="label" class="label-icon"><i class="icon icon-performance"></i> Performance</span>
-                                <div v-if="tabPerformance" class="row">
-                                    <div class="col-12 col-md-3 col-lg-2">
-                                        <el-button class="performance-button button medium ed-btn__primary">NWEA</el-button>
-                                    </div>
-                                    <div class="col-12 col-md-9 col-lg-10">
-                                        <div class="line-chart-performance">
-                                            <h2>NWEA MAP:Reading</h2>
-                                            <LineChart/>
-                                        </div>
-                                        <div class="line-chart-performance">
-                                            <h2>NWEA MAP:Mathematics</h2>
-                                            <LineChart/>
-                                        </div>
-                                    </div>
-                                </div>
+                                <StudentDetailsTabPerformance v-if="tabPerformance" />
                             </el-tab-pane>
                             <el-tab-pane label="behaviour">
-                                <span slot="label" class="label-icon"><i class="icon icon-search"></i> Behaviour</span>
-                                <div class="row">
-                                    <el-table
-                                        stripe
-                                        class="student-details-behaviour"
-                                        ref="singleTable"
-                                        :data="feedback"
-                                        highlight-current-row
-                                        style="width: 100%">
-                                        <el-table-column sortable property="id" label="SN" width="60"></el-table-column>
-                                        <el-table-column sortable property="homeroom" label="Home Room"></el-table-column>
-                                        <el-table-column sortable property="period" label="Period"></el-table-column>
-                                        <el-table-column sortable property="schoolResponse" label="Feedback Type"></el-table-column>
-                                        <el-table-column sortable property="occureddate" label="Occured Date"></el-table-column>
-                                        <el-table-column sortable property="incidentStatus" label="Status"></el-table-column>
-                                        <el-table-column sortable property="action" label="Action"></el-table-column>
-                                    </el-table>
-                                </div>
+                                <span slot="label" class="label-icon"><i class="icon icon-search"></i> Behaviour</span> 
+                                <StudentDetailsTabBehaviour :parentData="feedback" />
                             </el-tab-pane>
                         </el-tabs>     
                       </div>
@@ -484,14 +350,18 @@
 </template>
 
 <script>
-import LineChart from "../components/charts/LineChart.vue"
-import AreaChart from "../components/charts/AreaChart.vue"
+import StudentDetailsTabBehaviour from "../pages/StudentDetailsComponents/StudentDetailsTabBehaviour.vue";
+import StudentDetailsTabPerformance from "../pages/StudentDetailsComponents/StudentDetailsTabPerformance.vue";
+import StudentDetailsTabAttendance from "../pages/StudentDetailsComponents/StudentDetailsTabAttendance.vue";
+import StudentDetailsTabProfile from "../pages/StudentDetailsComponents/StudentDetailsTabProfile.vue";
 
 export default {
     name: "student-details",
     components: {
-        LineChart,
-        AreaChart
+        StudentDetailsTabBehaviour,
+        StudentDetailsTabPerformance,
+        StudentDetailsTabAttendance,
+        StudentDetailsTabProfile
     },
     // DATA
     data: () => ({
