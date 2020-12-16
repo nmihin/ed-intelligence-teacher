@@ -32,7 +32,7 @@
     name: "student-details-profile",
     components: {},
     props: {
-      parentData: Array
+      parentData: Object
     },
     watch: {
       parentData: function() {

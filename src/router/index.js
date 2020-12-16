@@ -13,7 +13,7 @@ import ManageMenu from "../pages/ManageMenu";
 import StudentList from "../pages/StudentList";
 import Attendance from "../pages/Attendance";
 import SearchResults from "../pages/SearchResults";
-import StudentDetails from "../pages/StudentDetails";
+import StudentDetails from "../pages/StudentDetailsComponents/StudentDetails.vue";
 import CodeBook from "../pages/CodeBook";
 
 import Element from 'element-ui'
