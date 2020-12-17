@@ -176,7 +176,7 @@
               <el-table-column sortable property="action" label="Action"></el-table-column>
           </el-table>
           <div v-if="busy" class="preloader">
-            <span><img src="../assets/images/preloader.gif" /> Loading...</span>
+            <span><img src="../../assets/images/preloader.gif" /> Loading...</span>
           </div>
         </div>
         <div class="modal-footer">
@@ -232,7 +232,7 @@
             :total="totalSize">
         </el-pagination>
       <div v-if="busy" class="preloader">
-        <span><img src="../assets/images/preloader.gif" /> Loading...</span>
+        <span><img src="../../assets/images/preloader.gif" /> Loading...</span>
       </div>
     </div>
   </div>
@@ -240,10 +240,10 @@
 </template>
 
 <script>
-import StudentListAvatarView from './StudentListComponents/Views/StudentListAvatarView.vue';
-import StudentListListView from './StudentListComponents/Views/StudentListListView.vue';
-import RecordsComponent from '../components/records/RecordsComponent.vue';
-import SearchContentComponent from '../components/search/SearchContentComponent.vue';
+import StudentListAvatarView from './Views/StudentListAvatarView.vue';
+import StudentListListView from './Views/StudentListListView.vue';
+import RecordsComponent from '../../components/records/RecordsComponent.vue';
+import SearchContentComponent from '../../components/search/SearchContentComponent.vue';
 
 export default {
     name: "student-list",

@@ -31,10 +31,10 @@
 </template>
 
 <script>
-import FirstStep from "./AddStudentSteps/FirstStep.vue";
-import SecondStep from "./AddStudentSteps/SecondStep.vue";
-import ThirdStep from "./AddStudentSteps/ThirdStep.vue";
-import prettyJSON from "../prettyJson.js";
+import FirstStep from "./Steps/FirstStep.vue";
+import SecondStep from "./Steps/SecondStep.vue";
+import ThirdStep from "./Steps/ThirdStep.vue";
+import prettyJSON from "../../prettyJson.js";
 import { FormWizard, TabContent } from "vue-form-wizard";
 import { validationMixin } from "vuelidate";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
