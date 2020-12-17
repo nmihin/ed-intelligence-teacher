@@ -137,17 +137,8 @@
     props: {
         editCodeModalParent: Boolean,
         tabSelectedParent: String,
-        codeReadyForEditSNParent: Number,
-        codeReadyForEditCodeParent: String,
-        codeReadyForEditCategoryParent: String,
-        codeReadyForEditCodenameParent: String,
-        codeReadyForEditUsageGuidelinesParent: String,
-        codeReadyForEditAdditionalGuidelinesParent: String,
-        codeReadyForEditADTValueParent: String,
-        codeReadyForEditADTDecriptorParent: String,
-        codeReadyForEditDescriptionParent: String,
-        codeReadyForEditStatusParent: String,
-        editFormSaveParent: Function
+        editFormSaveParent: Function,
+        parentFormData: Object
     },
     watch: {
        editCodeModalParent: function(){
@@ -156,36 +147,9 @@
        tabSelectedParent: function(){
             this.tabSelected = this.tabSelectedParent;
        },
-       codeReadyForEditSNParent: function(){
-            this.formEditCode.codeReadyForEditSN = this.codeReadyForEditSNParent;
-       },
-       codeReadyForEditCodeParent: function(){
-            this.formEditCode.codeReadyForEditCode = this.codeReadyForEditCodeParent;
-       },
-       codeReadyForEditCategoryParent: function(){
-            this.formEditCode.codeReadyForEditCategory = this.codeReadyForEditCategoryParent;
-       },
-       codeReadyForEditCodenameParent: function(){
-            this.formEditCode.codeReadyForEditCodename = this.codeReadyForEditCodenameParent;
-       },
-       codeReadyForEditUsageGuidelinesParent: function(){
-            this.formEditCode.codeReadyForEditUsageGuidelines = this.codeReadyForEditUsageGuidelinesParent;
-       },
-       codeReadyForEditAdditionalGuidelinesParent: function(){
-            this.formEditCode.codeReadyForEditAdditionalGuidelines = this.codeReadyForEditAdditionalGuidelinesParent;
-       },
-       codeReadyForEditADTValueParent: function(){
-            this.formEditCode.codeReadyForEditADTValue = this.codeReadyForEditADTValueParent;
-       },
-       codeReadyForEditADTDecriptorParent: function(){
-            this.formEditCode.codeReadyForEditADTDecriptor = this.codeReadyForEditADTDecriptorParent;
-       },
-       codeReadyForEditDescriptionParent: function(){
-            this.formEditCode.codeReadyForEditDescription = this.codeReadyForEditDescriptionParent;
-       },
-       codeReadyForEditStatusParent: function(){
-            this.formEditCode.codeReadyForEditStatus = this.codeReadyForEditStatusParent;
-       },
+       parentFormData: function(){
+            this.formEditCode = this.parentFormData;
+       }
     },
     methods: {
         validateEditForm(){

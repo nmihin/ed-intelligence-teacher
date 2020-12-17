@@ -12,16 +12,7 @@
     <CodeBookModalEditCode 
         :editCodeModalParent="editCodeModal"
         :tabSelectedParent="tabSelected"
-        :codeReadyForEditSNParent="formEditCode.codeReadyForEditSN"
-        :codeReadyForEditCodeParent="formEditCode.codeReadyForEditCode"
-        :codeReadyForEditCategoryParent="formEditCode.codeReadyForEditCategory"
-        :codeReadyForEditCodenameParent="formEditCode.codeReadyForEditCodename"
-        :codeReadyForEditUsageGuidelinesParent="formEditCode.codeReadyForEditUsageGuidelines"
-        :codeReadyForEditAdditionalGuidelinesParent="formEditCode.codeReadyForEditAdditionalGuidelines"
-        :codeReadyForEditADTValueParent="formEditCode.codeReadyForEditADTValue"
-        :codeReadyForEditADTDecriptorParent="formEditCode.codeReadyForEditADTDecriptor"
-        :codeReadyForEditDescriptionParent="formEditCode.codeReadyForEditDescription"
-        :codeReadyForEditStatusParent="formEditCode.codeReadyForEditStatus"
+        :parentFormData="newFormEditCode"
         :editFormSaveParent="editFormSave"
     />
     <!-- END EDIT CODE MODAL -->
@@ -148,22 +139,7 @@ export default {
         deleteCodeModal: false,
         editCodeModal: false,
         newCode: [],
-        recordsOptions: [{
-            value: 5,
-            label: '5'
-            }, {
-            value: 10,
-            label: '10'
-            }, {
-            value: 25,
-            label: '25'
-            }, {
-            value: 50,
-            label: '50'
-            }, {
-            value: 100,
-            label: '100'
-        }],
+        newFormEditCode: {},
         formEditCode: {
             // EDIT CODE
             codeReadyForEditSN: 0,
@@ -426,6 +402,8 @@ export default {
                 this.formEditCode.codeReadyForEditADTDecriptor = editCode[0].adtvaluedecriptor;
                 this.formEditCode.codeReadyForEditDescription = editCode[0].description;
             }
+
+            this.newFormEditCode = this.formEditCode;
         },
         formInterface(maxSN,form){
             if(this.tabSelected === 'entry' || this.tabSelected === 'exit'){
@@ -488,11 +466,8 @@ export default {
 
             this.addCodeModal = false;
         },
-        addNewCode(code){
+        addNewCode(){
             this.addCodeModal = true;
-        },
-        updateEditForm (input, value){
-            this.formEditCode[input] = value;
         },
         updatePagination(v) {
             this.pageSize = v;
