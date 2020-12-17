@@ -3,7 +3,7 @@ import Router from "vue-router";
 import Home from "../pages/Home";
 import LessonPlan from "../pages/LessonPlan";
 import LessonPlanBank from "../pages/LessonPlanBank";
-import LessonPlanSingle from "../pages/LessonPlanSingle";
+import LessonPlanSingle from "../pages/LessonPlanSingleComponents/LessonPlanSingle.vue";
 import GoogleClassrom from "../pages/GoogleClassrom";
 import ProfileSettings from "../pages/ProfileSettings";
 import ChangePassword from "../pages/ChangePassword";
