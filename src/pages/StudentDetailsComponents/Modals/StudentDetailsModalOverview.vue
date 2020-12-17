@@ -231,6 +231,9 @@ import LineChart from "../../../components/charts/LineChart.vue"
         this.readingSGP = this.readingSGPParent;
         this.mathematicsPARCC = this.mathematicsPARCCParent;
         this.mathematicsSGP = this.mathematicsSGPParent;
+      },
+      openModal(){
+          this.showOverviewReportDialog = true;
       }
     },
     created() {

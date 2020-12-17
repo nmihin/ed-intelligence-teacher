@@ -3,17 +3,22 @@
   <div class="main-content">
     <div class="container-fluid student-details">
         <!-- START STUDENT SCHEDULE MODAL -->
-        <StudentDetailsModalSchedule 
+        <StudentDetailsModalSchedule
+        ref="StudentDetailsModalSchedule" 
         :showStudentScheduleDialogParent="showStudentScheduleDialog" 
         :parentData="post"
         :parentDataSchedule="schedule"
         />
         <!-- END STUDENT SCHEDULE MODAL -->
         <!-- START DOCTOR/REGULAR CONSULTANT MODAL -->
-        <StudentDetailsModalDoctor :showDoctorConsultantDialogParent="showDoctorConsultantDialog" />
+        <StudentDetailsModalDoctor
+        ref="StudentDetailsModalDoctor"
+        :showDoctorConsultantDialogParent="showDoctorConsultantDialog" 
+        />
         <!-- END DOCTOR/REGULAR CONSULTANT MODAL -->  
         <!-- START OVERVIEW REPORT MODAL -->
         <StudentDetailsModalOverview 
+            ref="StudentDetailsModalOverview"
             :showOverviewReportDialogParent="showOverviewReportDialog"
             :attendanceDataParent="attendanceData"
             :currentYearBehaviourParent="currentYearBehaviour"
@@ -42,13 +47,13 @@
                     <div class="card-content">
                       <ul>
                           <li>
-                            <el-button @click="showStudentScheduleDialog = true" class="button medium ed-btn__primary"><i class="icon icon-box-plan"></i>Student Schedule</el-button>
+                            <el-button @click="showStudentScheduleDialogModal()" class="button medium ed-btn__primary"><i class="icon icon-box-plan"></i>Student Schedule</el-button>
                           </li>
                           <li>
-                            <el-button @click="showDoctorConsultantDialog = true" class="button medium ed-btn__primary"><i class="icon icon-profile"></i>Doctor/Regular Consultant</el-button>
+                            <el-button @click="showDoctorConsultantDialogModal()" class="button medium ed-btn__primary"><i class="icon icon-profile"></i>Doctor/Regular Consultant</el-button>
                           </li>
                           <li>
-                            <el-button @click="showOverviewReportDialog = true" class="button medium ed-btn__primary"><i class="icon icon-reports"></i>Overview Report</el-button>
+                            <el-button @click="showOverviewReportDialogModal()" class="button medium ed-btn__primary"><i class="icon icon-reports"></i>Overview Report</el-button>
                           </li>
                       </ul>
                     </div>
@@ -371,6 +376,15 @@ export default {
         loadFeedbackListStorage() {
             return JSON.parse(localStorage.getItem("feedbackListJSONData"));
         },
+        showStudentScheduleDialogModal(){
+            this.$refs.StudentDetailsModalSchedule.openModal();
+        },
+        showDoctorConsultantDialogModal(){
+            this.$refs.StudentDetailsModalDoctor.openModal();
+        },
+        showOverviewReportDialogModal(){
+            this.$refs.StudentDetailsModalOverview.openModal();
+        }
     },
     created() {
         this.loadMore();

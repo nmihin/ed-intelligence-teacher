@@ -40,7 +40,9 @@
      showDoctorConsultantDialog: false
     }),
     methods: {
-
+        openModal(){
+          this.showDoctorConsultantDialog = true;
+        }
     }
   }
 

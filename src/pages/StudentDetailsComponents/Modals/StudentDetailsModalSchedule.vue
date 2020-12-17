@@ -96,7 +96,9 @@
       }
     },
     methods: {
-
+      openModal(){
+          this.showStudentScheduleDialog = true;
+      }
     }
   }
 
