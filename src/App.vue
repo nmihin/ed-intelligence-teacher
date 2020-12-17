@@ -25,7 +25,7 @@ import ProfileSettings from './pages/ProfileSettings.vue'
 import NotificationsTable from './pages/NotificationsTable.vue'
 import LessonPlan from './pages/LessonPlan.vue'
 import SearchResults from './pages/SearchResults.vue'
-import CodeBook from './pages/CodeBook.vue'
+import CodeBook from './pages/CodeBookComponents/CodeBook.vue'
 import StudentDetails from './pages/StudentDetailsComponents/StudentDetails.vue'
 import Footer from './components/layout/footer/Footer.vue'
 

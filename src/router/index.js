@@ -14,7 +14,7 @@ import StudentList from "../pages/StudentList";
 import Attendance from "../pages/Attendance";
 import SearchResults from "../pages/SearchResults";
 import StudentDetails from "../pages/StudentDetailsComponents/StudentDetails.vue";
-import CodeBook from "../pages/CodeBook";
+import CodeBook from "../pages/CodeBookComponents/CodeBook.vue";
 
 import Element from 'element-ui'
 import FormWizard from "vue-form-wizard";

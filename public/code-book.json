@@ -3,7 +3,7 @@
         "entry": [
               {
                 "sn": 1,
-                "code": 1800,
+                "code": "1800",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -11,7 +11,7 @@
               },
               {
                 "sn": 2,
-                "code": 1801,
+                "code": "1801",
                 "category": "Original Entry",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -19,7 +19,7 @@
               },
               {
                 "sn": 3,
-                "code": 1802,
+                "code": "1802",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -27,7 +27,7 @@
               },
               {
                 "sn": 4,
-                "code": 1803,
+                "code": "1803",
                 "category": "Entry",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -35,7 +35,7 @@
               },
               {
                 "sn": 5,
-                "code": 1804,
+                "code": "1804",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -43,7 +43,7 @@
               },
               {
                 "sn": 6,
-                "code": 1805,
+                "code": "1805",
                 "category": "Entry",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -51,7 +51,7 @@
               },
               {
                 "sn": 7,
-                "code": 1806,
+                "code": "1806",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -59,7 +59,7 @@
               },
               {
                 "sn": 8,
-                "code": 1807,
+                "code": "1807",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -67,7 +67,7 @@
               },
               {
                 "sn": 9,
-                "code": 1808,
+                "code": "1808",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -75,7 +75,7 @@
               },
               {
                 "sn": 10,
-                "code": 1809,
+                "code": "1809",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -83,7 +83,7 @@
               },
               {
                 "sn": 11,
-                "code": 1810,
+                "code": "1810",
                 "category": "Entry",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -91,7 +91,7 @@
               },
               {
                 "sn": 12,
-                "code": 1811,
+                "code": "1811",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -103,7 +103,7 @@
         "exit": [
               {
                 "sn": 1,
-                "code": 1800,
+                "code": "1800",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -111,7 +111,7 @@
               },
               {
                 "sn": 2,
-                "code": 1801,
+                "code": "1801",
                 "category": "Original Entry",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -119,7 +119,7 @@
               },
               {
                 "sn": 3,
-                "code": 1802,
+                "code": "1802",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -127,7 +127,7 @@
               },
               {
                 "sn": 4,
-                "code": 1803,
+                "code": "1803",
                 "category": "Entry",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -135,7 +135,7 @@
               },
               {
                 "sn": 5,
-                "code": 1804,
+                "code": "1804",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -143,7 +143,7 @@
               },
               {
                 "sn": 6,
-                "code": 1805,
+                "code": "1805",
                 "category": "Entry",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -151,7 +151,7 @@
               },
               {
                 "sn": 7,
-                "code": 1806,
+                "code": "1806",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -159,7 +159,7 @@
               },
               {
                 "sn": 8,
-                "code": 1807,
+                "code": "1807",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -167,7 +167,7 @@
               },
               {
                 "sn": 9,
-                "code": 1808,
+                "code": "1808",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -175,7 +175,7 @@
               },
               {
                 "sn": 10,
-                "code": 1809,
+                "code": "1809",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -183,7 +183,7 @@
               },
               {
                 "sn": 11,
-                "code": 1810,
+                "code": "1810",
                 "category": "Entry",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
@@ -191,7 +191,7 @@
               },
               {
                 "sn": 12,
-                "code": 1811,
+                "code": "1811",
                 "category": "Continuing",
                 "codename": "Student provided school with required enrollment forms and letter of enrollment agreement; school has completed registration of the student in the Student Information System (SIS)",
                 "usageguidelines": "Stage 4 pre-enrollment should be completed when the student or student’s family has completed all enrollment paperwork, thereby completing the registration process. On July 1st, the LEA will assume responsibility of the student from his/her previous LEA. The LEA must then request record for the student from the previous LEA in the OSSE Support Tool.",
