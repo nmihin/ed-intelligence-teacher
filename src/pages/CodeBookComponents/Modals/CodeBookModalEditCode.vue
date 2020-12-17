@@ -165,6 +165,9 @@
         editFormSave(formEditCode){
           this.editFormSaveParent(formEditCode)
           this.editCodeModal = false;
+        },
+        openModal(){
+          this.editCodeModal = true;
         }
     }
   }

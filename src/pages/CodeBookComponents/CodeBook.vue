@@ -3,6 +3,7 @@
   <div class="main-content">
     <!-- START ADD CODE MODAL -->
     <CodeBookModalAddCode 
+        ref="CodeBookModalAddCode"
         :addCodeModalParent="addCodeModal"
         :tabSelectedParent="tabSelected"
         :addFormSaveParent="addFormSave"
@@ -10,6 +11,7 @@
     <!-- END ADD CODE MODAL -->
     <!-- START EDIT CODE MODAL -->
     <CodeBookModalEditCode 
+        ref="CodeBookModalEditCode"
         :editCodeModalParent="editCodeModal"
         :tabSelectedParent="tabSelected"
         :parentFormData="newFormEditCode"
@@ -18,6 +20,7 @@
     <!-- END EDIT CODE MODAL -->
     <!-- DELETE CODE START -->
     <CodeBookModalDeleteCode 
+        ref="CodeBookModalDeleteCode"
         :deleteCodeModalParent="deleteCodeModal"
         :tabSelectedParent="tabSelected"
         :codeSelectedToDeleteParent="codeSelectedToDelete"
@@ -278,7 +281,7 @@ export default {
             this.loadMore();
         },
         deleteSelectedCode(sn){
-            this.deleteCodeModal = true;
+            this.$refs.CodeBookModalDeleteCode.openModal();
             this.codeSelectedToDelete = sn;
         },
         deleteCodeConfirm(code){
@@ -293,7 +296,7 @@ export default {
             codeBookStorage[this.tabIndex][this.tabSelected] = codeDeleted;
 
             // UPDATE STORAGE
-            localStorage.setItem("codeBookStorageJSONData",JSON.stringify(codeBookStorage));
+            localStorage.setItem("codeBookStorageJSONData",JSON.stringify(codeBookStorage));          
             this.loadMore();
         },
         handleCurrentChange(val) {
@@ -372,7 +375,7 @@ export default {
             this.loadMore();
         },
         editSelectedCode(idx){
-            this.editCodeModal = true;
+            this.$refs.CodeBookModalEditCode.openModal();
 
             const codeBookStorage = this.loadCodeBookStorage();
             this.codeSelectedToEdit = idx;
@@ -467,7 +470,7 @@ export default {
             this.addCodeModal = false;
         },
         addNewCode(){
-            this.addCodeModal = true;
+            this.$refs.CodeBookModalAddCode.openModal();
         },
         updatePagination(v) {
             this.pageSize = v;

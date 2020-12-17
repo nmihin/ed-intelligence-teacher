@@ -164,6 +164,9 @@
         addFormSave(formAddCode){
           this.addFormSaveParent(formAddCode)
           this.addCodeModal = false;
+        },
+        openModal(){
+          this.addCodeModal = true;
         }
     }
   }

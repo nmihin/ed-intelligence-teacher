@@ -9,7 +9,6 @@
     </div>
     <md-dialog-actions>
       <md-button class="button medium ed-btn__tertiary" @click="
-            deleteCodeModal = false;
             deleteCodeConfirm(codeSelectedToDelete);
           ">Delete</md-button>
       <md-button class="button medium ed-btn__primary" @click="deleteCodeModal = false">Cancel</md-button>
@@ -45,8 +44,12 @@
        }
     },
     methods: {
+      openModal(){
+        this.deleteCodeModal = true;
+      },
       deleteCodeConfirm(sn){
         this.deleteCodeConfirmParent(sn);
+        this.deleteCodeModal = false;
       }
     }
   }
