@@ -2,9 +2,7 @@
   <md-dialog :md-active.sync="deleteFeedbackModal" class="modal-window filter-modal feedback-list">
     <h2 class="modal-title">Delete Feedback</h2>
     <div class="modal-content">
-        You are about to delete feedback SN <span style="color:var(--primary)">"{{ data.id }}"</span>
-        from user <span style="color:var(--primary)">"{{ data.id }}"</span>
-        Are you sure you want to do this?
+        You are about to delete feedback <span style="color:var(--primary)">"{{ data.id }}"</span> Are you sure you want to do this?
     </div>
     <div class="modal-footer">
       <button class="button medium ed-btn__primary" @click="deleteFeedback(data.id)">

@@ -75,10 +75,10 @@
                 <h2 class="student-report-title">Student Details</h2>
                 <div class="row student-information">
                   <ul>
-                    <li>Name: <span></span></li>
-                    <li>Grade: <span>One</span></li>
-                    <li>Homeroom: <span>jo baker</span></li>
-                    <li>Class Period: <span>2nd Period</span></li>
+                    <li>Name: <span>{{name}} {{surname}}</span></li>
+                    <li>Grade: <span>{{grade}}</span></li>
+                    <li>Homeroom: <span>{{room}}</span></li>
+                    <li>Class Period: <span>{{report.period}}</span></li>
                     <li>School Year: <span>2020</span></li>
                   </ul>
                 </div>
@@ -105,7 +105,7 @@
                       </li>
                       <li class="row">
                          <p class="col-4">Supporting Document</p>
-                         <span class="col-8" v-if="report.supportingDocument">{{report.supportingDocument}}</span>
+                         <span class="col-8" v-if="report.supportingDocument.length > 0">{{report.supportingDocument}}</span>
                       </li>
                       <li class="row">
                          <p class="col-4">Incident Status</p>
@@ -139,11 +139,11 @@
                     <ul class="profile-list">
                       <li class="row">
                         <p class="col-4">Action Outcomes</p>
-                        <span class="col-8"></span>
+                        <span class="col-8">{{report.actionOutcomes}}</span>
                       </li>
                       <li class="row">
                         <p class="col-4">Action Date</p>
-                        <span class="col-8"></span>
+                        <span class="col-8">{{report.actionDate}}</span>
                       </li>
                     </ul>
                 </div>
@@ -196,7 +196,12 @@
       searchFeedback: "",
       studentId:0,
       report:[],
-      toggleReport:false
+      toggleReport:false,
+      name:"",
+      surname:"",
+      grade:"",
+      room:"",
+      period:""
     }),
     methods: {
       deleteFeedbac(code){
@@ -215,13 +220,19 @@
       sendEmailStudentBehaviour(){
 
       },
-      openModal(sn, name, surname) {
+      openModal(sn, name, surname, grade, room) {
         this.feedbackModal = true;
         this.feedbackName = name + ' ' + surname;
         this.studentId = sn;
+        this.name = name;
+        this.surname = surname;
+        this.grade = grade;
+        this.room = room;
+
         this.feedBackList(sn, name, surname);
       },
       viewBehaviouralReport(id, data) {
+
         if(this.toggleReport)
           this.toggleReport = false;
         else
@@ -274,6 +285,8 @@
 
         const feedbackListStorage = this.loadFeedbackListStorage();
 
+  
+
         if (feedbackListStorage) {
           const fdb = feedbackListStorage.filter(function(feedback) {
             return feedback.sn === id;
@@ -288,7 +301,6 @@
             });
 
             this.feedback = fdb[0].feedback;
-
             // UPDATE STORAGE
             localStorage.setItem("feedbackListJSONData", JSON.stringify(response.data));
           }).catch((error) => error.response.data)

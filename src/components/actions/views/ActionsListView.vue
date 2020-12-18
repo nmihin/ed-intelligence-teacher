@@ -39,14 +39,17 @@
     data: () => ({
       sn:0,
       name:"",
-      surname:""
+      surname:"",
+      period:""
     }),
     methods: {
       openStudentListFeedbackListModal(){
           this.$refs.StudentListFeedbackListModal.openModal(
             this.sn = this.postsParent[this.indexParent].sn,
             this.name = this.postsParent[this.indexParent].name,
-            this.surname = this.postsParent[this.indexParent].surname
+            this.surname = this.postsParent[this.indexParent].surname,
+            this.grade = this.postsParent[this.indexParent].grade,
+            this.room = this.postsParent[this.indexParent].room
           );
       },
       viewProfile(){
