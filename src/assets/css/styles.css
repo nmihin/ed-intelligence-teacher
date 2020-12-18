@@ -3523,6 +3523,67 @@ li:hover .megamenu {
   margin-bottom: 15px;
 }
 
+.feedback-list .behavioural-report {
+
+}
+
+.feedback-list .behavioural-report > li {
+  float: left;
+  width: 28px;
+  height: 28px;
+  position: relative;
+  right: 5px;
+  margin-left: 5px;
+}
+
+.feedback-list .behavioural-report > li > .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 50%;
+  background-color: var(--bluewood);
+}
+
+.feedback-list .behavioural-report > li:hover {
+  cursor: pointer;
+}
+
+.feedback-list .behavioural-report > li.behavioural-report-view > .icon {
+  background-color: var(--primary);
+}
+
+.feedback-list .behavioural-report > li.behavioural-report-edit > .icon {
+  background-color: var(--green);
+  font-size: 14px;
+  padding: 7px;
+}
+
+.feedback-list .behavioural-report > li.behavioural-report-edit > .icon::before {
+  color: var(--white);
+}
+
+.feedback-list .behavioural-report > li.behavioural-report-follow-up > .icon {
+  background-color: var(--tertiary);
+}
+
+.feedback-list .behavioural-report > li.behavioural-report-list > .icon {
+  background-color: var(--primary);
+}
+
+.feedback-list .behavioural-report > li.behavioural-report-delete > .icon {
+  background-color: var(--red);
+}
+
+.feedback-list .behavioural-report > li.behavioural-report-delete > .icon::before {
+  color: var(--white);
+}
+
+/* SIDE MENU */
 .side-menu-header h2 {
   color: var(--white);
   display: inline-block;
