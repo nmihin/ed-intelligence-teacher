@@ -1,9 +1,10 @@
 <template>
   <div>
     <AddFollowUpModal ref="AddFollowUpModal" />
-    <DeleteFeedbackModal ref="DeleteFeedbackModal" />
+    <DeleteFeedbackModal :deleteFeedbackParent="deleteFeedbac" ref="DeleteFeedbackModal" />
     <EditFeedbackModal ref="EditFeedbackModal" />
     <ListFollowUpModal ref="ListFollowUpModal" />
+    <StudentListAddFeedbackModal ref="StudentListAddFeedbackModal" />
     <md-dialog :md-active.sync="feedbackModal" class="modal-window filter-modal feedback-list">
       <h2 class="modal-title">Feedback List of {{feedbackName}}</h2>
       <div class="modal-content">
@@ -28,7 +29,7 @@
                   </li>
                   <li v-if="scope.row.action.includes('edit')" class="behavioural-report-edit">
                     <el-tooltip class="item" effect="dark" content="Edit Feedback" placement="top">
-                      <i class="icon icon-edit" @click="editFeedbackModal(scope.$index,scope.row)"></i>
+                      <i class="icon icon-edit" @click="openEditFeedbackModal(scope.$index,scope.row,studentId)"></i>
                     </el-tooltip>
                   </li>
                   <li v-if="scope.row.action.includes('feedbackfollowup')" class="behavioural-report-follow-up">
@@ -43,7 +44,7 @@
                   </li>
                   <li v-if="scope.row.action.includes('delete')" class="behavioural-report-delete">
                     <el-tooltip class="item" effect="dark" content="Delete Feedback" placement="top">
-                      <i class="icon icon-delete" @click="deleteFeedbackModal(scope.$index,scope.row)"></i>
+                      <i class="icon icon-delete" @click="deleteFeedbackModal(scope.$index,scope.row,studentId)"></i>
                     </el-tooltip>
                   </li>
                 </ul>
@@ -51,7 +52,7 @@
             </el-table-column>
           </el-table>
         </div>
-        <div class="row student-details">
+        <div v-if="toggleReport" class="row student-details">
           <div class="modal-content student-behaviour-preview">
             <div class="row student-report">
               <div class="col-6">
@@ -74,7 +75,7 @@
                 <h2 class="student-report-title">Student Details</h2>
                 <div class="row student-information">
                   <ul>
-                    <li>Name: <span>name surname</span></li>
+                    <li>Name: <span></span></li>
                     <li>Grade: <span>One</span></li>
                     <li>Homeroom: <span>jo baker</span></li>
                     <li>Class Period: <span>2nd Period</span></li>
@@ -85,39 +86,66 @@
               <div class="col-12">
                 <div class="student-behaviour-table">
                   <div class="student-report-header">Student Behaviour</div>
-                  <div class="row">
-                    <ul class="col-12 profile-list">
-                      <li>Incident Occured Date<span></span></li>
-                      <li>School Response<span></span></li>
-                      <li>Incident Reason<span></span></li>
-                      <li>Support Service Received<span></span></li>
-                      <li>Supporting Document<span></span></li>
-                      <li>Incident Status<span></span></li>
+                    <ul class="profile-list">
+                      <li class="row">
+                        <p class="col-4">Incident Occured Date</p>
+                        <span class="col-8">{{report.occureddate}}</span>
+                      </li>
+                      <li class="row">
+                         <p class="col-4">School Response</p>
+                        <span class="col-8">{{report.schoolResponse}}</span>
+                      </li>
+                      <li class="row">
+                         <p class="col-4">Incident Reason</p>
+                        <span class="col-8">{{report.actionOutcomes}}</span>
+                      </li>
+                      <li class="row">
+                         <p class="col-4">Support Service Received</p>
+                        <span class="col-8">{{report.supportServicesRecieved}}</span>
+                      </li>
+                      <li class="row">
+                         <p class="col-4">Supporting Document</p>
+                         <span class="col-8" v-if="report.supportingDocument">{{report.supportingDocument}}</span>
+                      </li>
+                      <li class="row">
+                         <p class="col-4">Incident Status</p>
+                        <span class="col-8">{{report.incidentStatus}}</span>
+                      </li>
                     </ul>
-                  </div>
                 </div>
               </div>
               <div class="col-12">
                 <div class="student-behaviour-table">
                   <div class="student-report-header">Student Feedbacks</div>
-                  <div class="row">
-                    <ul class="col-12 profile-list">
-                      <li>Teacher Feedback<span></span></li>
-                      <li>Parent Feedback<span></span></li>
-                      <li>Specialist Feedback<span></span></li>
+                    <ul class="profile-list">
+                      <li class="row">
+                        <p class="col-4">Teacher Feedback</p>
+                        <span class="col-8">{{report.teacherFeedback}}</span>
+                      </li>
+                      <li class="row">
+                        <p class="col-4">Parent Feedback</p>
+                        <span class="col-8">{{report.parentFeedback}}</span>
+                      </li>
+                      <li class="row">
+                        <p class="col-4">Specialist Feedback</p>
+                        <span class="col-8">{{report.specialistFeedback}}</span>
+                      </li>
                     </ul>
-                  </div>
                 </div>
               </div>
               <div class="col-12">
                 <div class="student-behaviour-table">
                   <div class="student-report-header">Action Status</div>
-                  <div class="row">
-                    <ul class="col-12 profile-list">
-                      <li>Action Outcomes<span></span></li>
-                      <li>Action Date<span></span></li>
+                    <ul class="profile-list">
+                      <li class="row">
+                        <p class="col-4">Action Outcomes</p>
+                        <span class="col-8"></span>
+                      </li>
+                      <li class="row">
+                        <p class="col-4">Action Date</p>
+                        <span class="col-8"></span>
+                      </li>
                     </ul>
-                  </div>
                 </div>
               </div>
             </div>
@@ -139,6 +167,8 @@
   import EditFeedbackModal from './EditFeedbackModal.vue';
   import ListFollowUpModal from './ListFollowUpModal.vue';
 
+  import StudentListAddFeedbackModal from './StudentListAddFeedbackModal.vue'
+
 
   export default {
     name: "student-list-add-withdrawal-modal",
@@ -146,7 +176,8 @@
       AddFollowUpModal,
       DeleteFeedbackModal,
       EditFeedbackModal,
-      ListFollowUpModal
+      ListFollowUpModal,
+      StudentListAddFeedbackModal
     },
     props: {
       feedbackModalParent: Boolean
@@ -163,8 +194,21 @@
       feedback: [],
       viewFeedbackModalId: 0,
       searchFeedback: "",
+      studentId:0,
+      report:[],
+      toggleReport:false
     }),
     methods: {
+      deleteFeedbac(code){
+        this.feedback = code;
+      },
+      openEditFeedbackModal(sn,data,studentId){
+          this.$refs.StudentListAddFeedbackModal.openModalEdit(
+            this.sn = sn,
+            this.data = data,
+            this.studentId = studentId
+          );
+      },
       downloadPdfStudentBehaviour(){
 
       },
@@ -174,10 +218,16 @@
       openModal(sn, name, surname) {
         this.feedbackModal = true;
         this.feedbackName = name + ' ' + surname;
+        this.studentId = sn;
         this.feedBackList(sn, name, surname);
       },
       viewBehaviouralReport(id, data) {
+        if(this.toggleReport)
+          this.toggleReport = false;
+        else
+          this.toggleReport = true;
 
+        this.report = data;
       },
       editFeedbackModal(id, data) {
         this.$refs.EditFeedbackModal.openModal(
@@ -197,10 +247,11 @@
           this.posts = data
         );
       },
-      deleteFeedbackModal(id, data) {
+      deleteFeedbackModal(id, data, studentId) {
         this.$refs.DeleteFeedbackModal.openModal(
           this.sn = id,
-          this.posts = data
+          this.posts = data,
+          this.studentId = studentId
         );
       },
       searchFeedbackFilter() {

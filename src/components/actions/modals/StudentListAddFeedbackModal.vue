@@ -60,8 +60,11 @@
       </el-form>
     </div>
     <div class="modal-footer">
-      <button class="button medium ed-btn__primary" @click="validateAddFeedback()">
+      <button v-if="!formEdit" class="button medium ed-btn__primary" @click="validateAddFeedback(false)">
         Add
+      </button>
+      <button v-if="formEdit" class="button medium ed-btn__primary" @click="validateAddFeedback(true)">
+        Edit
       </button>
       <button class="button medium ed-btn__tertiary" @click="addFeedbackModal = false">
         Cancel
@@ -75,187 +78,217 @@
     name: "student-list-add-feedback-modal",
     components: {},
     props: {
-        addFeedbackModalParent: Boolean
+      addFeedbackModalParent: Boolean
     },
     watch: {
-       addFeedbackModalParent: function(){
-            this.addFeedbackModal = true;
-       }
+      addFeedbackModalParent: function() {
+        this.addFeedbackModal = true;
+      }
     },
     // DATA
     data: () => ({
-      feedbackName:"",
-      sn:0,
+      feedbackName: "",
+      sn: 0,
       addFeedbackModalId: 0,
       addFeedbackModal: false,
-        formAddFeedback: {
-          occureddate: "",
-          schoolResponse: "",
-          supportServicesRecieved: "",
-          supportingDocument: [],
-          teacherFeedback: "",
-          parentFeedback: "",
-          specialistFeedback: "",
-          actionOutcomes: "",
-          actionDate: "",
-          incidentStatus: "",
-          rules: {
-            occureddate: [{
-              required: true,
-              message: "Incident Date Required!",
-              trigger: "blur",
-            }],
-            schoolResponse: [{
-              required: true,
-              message: "School Response Required!",
-              trigger: "blur",
-            }],
-            supportServicesRecieved: [{
-              required: true,
-              message: "Support Services Recieved Required!",
-              trigger: "blur",
-            }],
-            supportingDocument: [{
-              required: true,
-              message: "Supporting Document Required!",
-              trigger: "blur",
-            }],
-            teacherFeedback: [{
-              required: true,
-              message: "Teacher Feedback Required!",
-              trigger: "blur",
-            }],
-            parentFeedback: [{
-              required: true,
-              message: "Parent Feedback Required!",
-              trigger: "blur",
-            }],
-            specialistFeedback: [{
-              required: true,
-              message: "Specialist Feedback Required!",
-              trigger: "blur",
-            }],
-            actionOutcomes: [{
-              required: true,
-              message: "Action Outcomes Required!",
-              trigger: "blur",
-            }],
-            actionDate: [{
-              required: true,
-              message: "Action Date Required!",
-              trigger: "blur",
-            }],
-            incidentStatus: [{
-              required: true,
-              message: "Incident Status Required!",
-              trigger: "blur",
-            }]
+      studentId: 0,
+      formEdit: false,
+      formAddFeedback: {
+        occureddate: "",
+        schoolResponse: "",
+        supportServicesRecieved: "",
+        supportingDocument: [],
+        teacherFeedback: "",
+        parentFeedback: "",
+        specialistFeedback: "",
+        actionOutcomes: "",
+        actionDate: "",
+        incidentStatus: "",
+        rules: {
+          occureddate: [{
+            required: true,
+            message: "Incident Date Required!",
+            trigger: "blur",
+          }],
+          schoolResponse: [{
+            required: true,
+            message: "School Response Required!",
+            trigger: "blur",
+          }],
+          supportServicesRecieved: [{
+            required: true,
+            message: "Support Services Recieved Required!",
+            trigger: "blur",
+          }],
+          supportingDocument: [{
+            required: true,
+            message: "Supporting Document Required!",
+            trigger: "blur",
+          }],
+          teacherFeedback: [{
+            required: true,
+            message: "Teacher Feedback Required!",
+            trigger: "blur",
+          }],
+          parentFeedback: [{
+            required: true,
+            message: "Parent Feedback Required!",
+            trigger: "blur",
+          }],
+          specialistFeedback: [{
+            required: true,
+            message: "Specialist Feedback Required!",
+            trigger: "blur",
+          }],
+          actionOutcomes: [{
+            required: true,
+            message: "Action Outcomes Required!",
+            trigger: "blur",
+          }],
+          actionDate: [{
+            required: true,
+            message: "Action Date Required!",
+            trigger: "blur",
+          }],
+          incidentStatus: [{
+            required: true,
+            message: "Incident Status Required!",
+            trigger: "blur",
+          }]
+        }
+      },
+      formAddFeedbackOptions: {
+        schoolResponseOptions: [{
+            value: "Family Phone Call",
+            label: "Family Phone Call"
+          },
+          {
+            value: "Family Meeting",
+            label: "Family Meeting"
+          },
+          {
+            value: "Suspended",
+            label: "Suspended"
+          },
+          {
+            value: "Expelled",
+            label: "Expelled"
           }
-        },
-        formAddFeedbackOptions: {
-          schoolResponseOptions: [{
-              value: "Family Phone Call",
-              label: "Family Phone Call"
-            },
-            {
-              value: "Family Meeting",
-              label: "Family Meeting"
-            },
-            {
-              value: "Suspended",
-              label: "Suspended"
-            },
-            {
-              value: "Expelled",
-              label: "Expelled"
-            }
-          ],
-          supportServicesRecievedOptions: [{
-              value: "Family Meeting",
-              label: "Family Meeting"
-            },
-            {
-              value: "In Class Behavioral Plan",
-              label: "In Class Behavioral Plan"
-            },
-            {
-              value: "Out Class Behavioral Plan",
-              label: "Out Class Behavioral Plan"
-            }
-          ]
-        },
+        ],
+        supportServicesRecievedOptions: [{
+            value: "Family Meeting",
+            label: "Family Meeting"
+          },
+          {
+            value: "In Class Behavioral Plan",
+            label: "In Class Behavioral Plan"
+          },
+          {
+            value: "Out Class Behavioral Plan",
+            label: "Out Class Behavioral Plan"
+          }
+        ]
+      },
     }),
     methods: {
-        validateAddFeedback() {
-          return new Promise((resolve) => {
-            this.$refs.formAddFeedback.validate((valid) => {
-              this.$emit("on-validate", valid, this.model);
-              resolve(valid);
-              if (valid)
-                this.addNewFeedback(this.sn);
-            });
+      validateAddFeedback(value) {
+        return new Promise((resolve) => {
+          this.$refs.formAddFeedback.validate((valid) => {
+            this.$emit("on-validate", valid, this.model);
+            resolve(valid);
+            if (valid && !value)
+              this.addNewFeedback(this.sn);
+            if (valid && value)
+              this.editFeedback(this.sn);
           });
-        },
-        addNewFeedback(id) {
-          const feedbackListStorage = this.loadFeedbackListStorage();
+        });
+      },
+      editFeedback(id) {
+        const feedbackListStorage = this.loadFeedbackListStorage();
+        const studentId = this.studentId;
+        const feedbackId = id;
 
-          // FIND STUDENT INDEX
-          const idx = feedbackListStorage.map(el => el.sn).indexOf(id)
+        // FIND STUDENT INDEX
+        const studentIdx = feedbackListStorage.map(el => el.sn).indexOf(studentId)
 
-          // FIND LARGEST ID
-          const maxId = feedbackListStorage[idx].feedback.reduce(
-            (max, character) => (character.id > max ? character.id : max),
-            feedbackListStorage[idx].feedback[0].id
-          );
+        feedbackListStorage[studentIdx].feedback[feedbackId] = this.formAddFeedback;
+        // UPDATE STORAGE
+        localStorage.setItem("feedbackListJSONData", JSON.stringify(feedbackListStorage));
 
-          const newFeedback = {
-            "id": maxId + 1,
-            "occureddate": this.formAddFeedback.occureddate,
-            "schoolResponse": this.formAddFeedback.schoolResponse,
-            "supportServicesRecieved": this.formAddFeedback.supportServicesRecieved,
-            "supportingDocument": this.formAddFeedback.supportingDocument,
-            "teacherFeedback": this.formAddFeedback.teacherFeedback,
-            "parentFeedback": this.formAddFeedback.parentFeedback,
-            "specialistFeedback": this.formAddFeedback.specialistFeedback,
-            "actionOutcomes": this.formAddFeedback.actionOutcomes,
-            "actionDate": this.formAddFeedback.actionDate,
-            "homeroom": "jo baker",
-            "period": "2nd Period",
-            "incidentStatus": this.formAddFeedback.incidentStatus,
-            "action": ["view", "edit", "feedbackfollowup", "listfollowup", "delete"]
-          }
+        this.addFeedbackModal = false;
+      },
+      addNewFeedback(id) {
+        const feedbackListStorage = this.loadFeedbackListStorage();
 
-          feedbackListStorage[idx].feedback.push(newFeedback);
+        // FIND STUDENT INDEX
+        const idx = feedbackListStorage.map(el => el.sn).indexOf(id)
 
-          // UPDATE STORAGE
-          localStorage.setItem("feedbackListJSONData", JSON.stringify(feedbackListStorage));
+        // FIND LARGEST ID
+        const maxId = feedbackListStorage[idx].feedback.reduce(
+          (max, character) => (character.id > max ? character.id : max),
+          feedbackListStorage[idx].feedback[0].id
+        );
 
-          // CLEAR FORM
-          this.formAddFeedback.occureddate = "";
-          this.formAddFeedback.schoolResponse = "";
-          this.formAddFeedback.supportServicesRecieved = "";
-          this.formAddFeedback.supportingDocument = [];
-          this.formAddFeedback.teacherFeedback = "";
-          this.formAddFeedback.parentFeedback = "";
-          this.formAddFeedback.specialistFeedback = "";
-          this.formAddFeedback.actionOutcomes = "";
-          this.formAddFeedback.actionDate = "";
-          this.formAddFeedback.incidentStatus = "";
-
-          this.addFeedbackModal = false;
-        },
-        // LOCALSTORAGE
-        loadFeedbackListStorage() {
-          return JSON.parse(localStorage.getItem("feedbackListJSONData"));
-        },
-        updateForm(input, value) {
-          this.formAddFeedback[input] = value;
-        },
-        openModal(sn,name,surname){
-          this.sn = sn;
-          this.feedbackName = name+ " "+ surname;
-          this.addFeedbackModal = true;
+        const newFeedback = {
+          "id": maxId + 1,
+          "occureddate": this.formAddFeedback.occureddate,
+          "schoolResponse": this.formAddFeedback.schoolResponse,
+          "supportServicesRecieved": this.formAddFeedback.supportServicesRecieved,
+          "supportingDocument": this.formAddFeedback.supportingDocument,
+          "teacherFeedback": this.formAddFeedback.teacherFeedback,
+          "parentFeedback": this.formAddFeedback.parentFeedback,
+          "specialistFeedback": this.formAddFeedback.specialistFeedback,
+          "actionOutcomes": this.formAddFeedback.actionOutcomes,
+          "actionDate": this.formAddFeedback.actionDate,
+          "homeroom": "jo baker",
+          "period": "2nd Period",
+          "incidentStatus": this.formAddFeedback.incidentStatus,
+          "action": ["view", "edit", "feedbackfollowup", "listfollowup", "delete"]
         }
+
+        feedbackListStorage[idx].feedback.push(newFeedback);
+
+        // UPDATE STORAGE
+        localStorage.setItem("feedbackListJSONData", JSON.stringify(feedbackListStorage));
+
+        // CLEAR FORM
+        this.formAddFeedback.occureddate = "";
+        this.formAddFeedback.schoolResponse = "";
+        this.formAddFeedback.supportServicesRecieved = "";
+        this.formAddFeedback.supportingDocument = [];
+        this.formAddFeedback.teacherFeedback = "";
+        this.formAddFeedback.parentFeedback = "";
+        this.formAddFeedback.specialistFeedback = "";
+        this.formAddFeedback.actionOutcomes = "";
+        this.formAddFeedback.actionDate = "";
+        this.formAddFeedback.incidentStatus = "";
+
+        this.addFeedbackModal = false;
+      },
+      // LOCALSTORAGE
+      loadFeedbackListStorage() {
+        return JSON.parse(localStorage.getItem("feedbackListJSONData"));
+      },
+      updateForm(input, value) {
+        this.formAddFeedback[input] = value;
+      },
+      openModal(sn, name, surname) {
+        this.formEdit = false;
+
+        this.sn = sn;
+        this.feedbackName = name + " " + surname;
+        this.addFeedbackModal = true;
+      },
+      openModalEdit(sn, data, studentId) {
+
+        this.formEdit = true;
+
+        this.sn = sn;
+        this.studentId = studentId;
+        this.formAddFeedback = data;
+        this.addFeedbackModal = true;
+      }
     }
   }
+
 </script>

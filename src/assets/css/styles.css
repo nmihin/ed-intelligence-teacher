@@ -3620,7 +3620,7 @@ li:hover .megamenu {
 
 .student-behaviour-preview .document-download li.send-email .icon {
   padding: 7px;
-  font-size: 15px;
+  font-size: 14px;
   position: absolute;
 }
 
@@ -3636,6 +3636,11 @@ li:hover .megamenu {
 
 .student-behaviour-table ul li:last-child {
   border-radius: 0 0 10px 10px;
+}
+
+.student-behaviour-table .profile-list {
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 /* SIDE MENU */
@@ -3941,6 +3946,10 @@ ul.side-menu__results>li>ul>li a:hover {
 /* Modals */
 .modal-window > div {
   border-radius: 30px;
+}
+
+.modal-window + .modal-window {
+  z-index: 10;
 }
 
 .modal-window .modal-title {
