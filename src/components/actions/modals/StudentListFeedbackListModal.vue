@@ -34,12 +34,12 @@
                   </li>
                   <li v-if="scope.row.action.includes('feedbackfollowup')" class="behavioural-report-follow-up">
                     <el-tooltip class="item" effect="dark" content="Add Follow Up" placement="top">
-                      <i class="icon icon-add" @click="addFollowUpModal(scope.$index,scope.row)"></i>
+                      <i class="icon icon-add" @click="addFollowUpModal(scope.$index,scope.row,studentId)"></i>
                     </el-tooltip>
                   </li>
                   <li v-if="scope.row.action.includes('listfollowup')" class="behavioural-report-list">
                     <el-tooltip class="item" effect="dark" content="List Follow Up" placement="top">
-                      <i class="icon icon-menu-list" @click="listFollowUpModal(scope.$index,scope.row)"></i>
+                      <i class="icon icon-menu-list" @click="listFollowUpModal(scope.$index,scope.row,studentId)"></i>
                     </el-tooltip>
                   </li>
                   <li v-if="scope.row.action.includes('delete')" class="behavioural-report-delete">
@@ -246,16 +246,18 @@
           this.posts = data
         );
       },
-      addFollowUpModal(id, data) {
+      addFollowUpModal(id, data, studentId) {
         this.$refs.AddFollowUpModal.openModal(
           this.sn = id,
-          this.posts = data
+          this.posts = data,
+          this.studentId = studentId
         );
       },
-      listFollowUpModal(id, data) {
+      listFollowUpModal(id, data, studentId) {
         this.$refs.ListFollowUpModal.openModal(
           this.sn = id,
-          this.posts = data
+          this.posts = data,
+          this.studentId = studentId
         );
       },
       deleteFeedbackModal(id, data, studentId) {

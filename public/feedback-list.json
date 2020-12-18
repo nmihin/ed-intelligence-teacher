@@ -33,7 +33,27 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": [
+                {
+                  "followUpDate": "12/02/2020",
+                  "followUpTitle": "Title",
+                  "supportingDocument": [],
+                  "guardianInformed": "Yes",
+                  "parentFeedback": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet urna vitae porttitor mollis.",
+                  "followUpDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet urna vitae porttitor mollis.",
+                  "incidentStatus": "Closed"
+                },
+                {
+                  "followUpDate": "12/02/2020",
+                  "followUpTitle": "Title 2",
+                  "supportingDocument": [],
+                  "guardianInformed": "No",
+                  "parentFeedback": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet urna vitae porttitor mollis.",
+                  "followUpDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet urna vitae porttitor mollis.",
+                  "incidentStatus": "Closed"
+                }
+              ]
     },
     {
         "sn":2,
@@ -53,7 +73,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":3,
@@ -72,7 +93,7 @@
                 "homeroom": "jo baker",
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
-                "action": ["view","edit"]
+                "action": ["view","edit","feedbackfollowup","listfollowup","delete"]
               },
               {
                 "id": 2,
@@ -89,7 +110,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":4,
@@ -125,7 +147,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":5,
@@ -144,7 +167,7 @@
                 "homeroom": "jo baker",
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
-                "action": ["view","edit"]
+                "action": ["view","edit","feedbackfollowup","listfollowup","delete"]
               },
               {
                 "id": 2,
@@ -161,7 +184,27 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+        "followup": [
+          {
+            "followUpDate": "12/02/2020",
+            "followUpTitle": "Title",
+            "supportingDocument": [],
+            "guardianInformed": "Yes",
+            "parentFeedback": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet urna vitae porttitor mollis.",
+            "followUpDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet urna vitae porttitor mollis.",
+            "incidentStatus": "Closed"
+          },
+          {
+            "followUpDate": "12/02/2020",
+            "followUpTitle": "Title 2",
+            "supportingDocument": [],
+            "guardianInformed": "No",
+            "parentFeedback": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet urna vitae porttitor mollis.",
+            "followUpDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet urna vitae porttitor mollis.",
+            "incidentStatus": "Closed"
+          }
+        ]
     },
     {
         "sn":6,
@@ -197,7 +240,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":7,
@@ -233,7 +277,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":8,
@@ -269,7 +314,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":9,
@@ -305,7 +351,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":10,
@@ -341,7 +388,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":11,
@@ -377,7 +425,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":12,
@@ -413,7 +462,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":13,
@@ -449,7 +499,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":14,
@@ -485,7 +536,8 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     },
     {
         "sn":15,
@@ -506,7 +558,8 @@
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
               }
-            ]
+            ],
+            "followup": []
     },
     {
         "sn":16,
@@ -526,6 +579,7 @@
                 "period": "2nd Period",
                 "incidentStatus": "Pending",
                 "action": ["view","edit"]
-              }]
+              }],
+              "followup": []
     }
 ]

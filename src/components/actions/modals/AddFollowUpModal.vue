@@ -55,6 +55,7 @@
     // DATA
     data: () => ({
       addFollowUpModal: false,
+      studentId: 0,
       formAddFollowUp: {
         followUpDate:"",
         followUpTitle:"",
@@ -102,15 +103,15 @@
             this.$emit("on-validate", valid, this.model);
             resolve(valid);
             if (valid)
-              this.addNewFollowup();
+              this.addNewFollowUp();
           });
         });
       },
-      addNewFollowup(){
+      addNewFollowUp(){
         const feedbackListStorage = this.loadFeedbackListStorage();
-
-        if(feedbackListStorage){
-
+  
+          // FIND STUDENT INDEX
+          const idx = feedbackListStorage.map(el => el.sn).indexOf(this.studentId)
 
           const newFollowUp = {
             "followUpDate": this.formAddFollowUp.followUpDate,
@@ -120,14 +121,17 @@
             "followUpDescription": this.formAddFollowUp.followUpDescription,
             "incidentStatus": this.formAddFollowUp.incidentStatus
           }
-        }
+          feedbackListStorage[idx].followup.push(newFollowUp)
+
+          localStorage.setItem("feedbackListJSONData",JSON.stringify(feedbackListStorage));
+          this.addFollowUpModal = false;
       },
       // LOCALSTORAGE
       loadFeedbackListStorage() {
         return JSON.parse(localStorage.getItem("feedbackListJSONData"));
       },
-      openModal(sn, data) {
-        console.log(sn)
+      openModal(sn, data, studentId) {
+          this.studentId = studentId;
           this.addFollowUpModal = true;
       }
     }
