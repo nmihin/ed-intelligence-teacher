@@ -10,45 +10,119 @@
         <div class="row">
           <el-input class="col-6 offset-6 search-feedback" @input="searchFeedbackFilter()" placeholder="Search feedback..." v-model="searchFeedback"></el-input>
         </div>
-        <el-table stripe ref="singleTable" :data="feedback" highlight-current-row style="width: 100%">
-          <el-table-column sortable property="id" label="SN" width="60"></el-table-column>
-          <el-table-column sortable property="homeroom" label="Home Room"></el-table-column>
-          <el-table-column sortable property="period" label="Period"></el-table-column>
-          <el-table-column sortable property="schoolResponse" label="Feedback Type"></el-table-column>
-          <el-table-column sortable property="occureddate" label="Occured Date"></el-table-column>
-          <el-table-column sortable property="incidentStatus" label="Status"></el-table-column>
-          <el-table-column sortable property="action" width="220" label="Action">
-            <template slot-scope="scope">
-              <ul class="behavioural-report">
-                <li v-if="scope.row.action.includes('view')" class="behavioural-report-view">
-                  <el-tooltip class="item" effect="dark" content="View Behavioural Report" placement="top">
-                    <i class="icon icon-eye" @click="viewBehaviouralReport(scope.$index,scope.row)"></i>
-                  </el-tooltip>
-                </li>
-                <li v-if="scope.row.action.includes('edit')" class="behavioural-report-edit">
-                  <el-tooltip class="item" effect="dark" content="Edit Feedback" placement="top">
-                    <i class="icon icon-edit" @click="editFeedbackModal(scope.$index,scope.row)"></i>
-                  </el-tooltip>
-                </li>
-                <li v-if="scope.row.action.includes('feedbackfollowup')" class="behavioural-report-follow-up">
-                  <el-tooltip class="item" effect="dark" content="Add Follow Up" placement="top">
-                    <i class="icon icon-add" @click="addFollowUpModal(scope.$index,scope.row)"></i>
-                  </el-tooltip>
-                </li>
-                <li v-if="scope.row.action.includes('listfollowup')" class="behavioural-report-list">
-                  <el-tooltip class="item" effect="dark" content="List Follow Up" placement="top">
-                    <i class="icon icon-menu-list" @click="listFollowUpModal(scope.$index,scope.row)"></i>
-                  </el-tooltip>
-                </li>
-                <li v-if="scope.row.action.includes('delete')" class="behavioural-report-delete">
-                  <el-tooltip class="item" effect="dark" content="Delete Feedback" placement="top">
-                    <i class="icon icon-delete" @click="deleteFeedbackModal(scope.$index,scope.row)"></i>
-                  </el-tooltip>
-                </li>
-              </ul>
-            </template>
-          </el-table-column>
-        </el-table>
+        <div class="row">
+          <el-table stripe ref="singleTable" :data="feedback" highlight-current-row style="width: 100%">
+            <el-table-column sortable property="id" label="SN" width="60"></el-table-column>
+            <el-table-column sortable property="homeroom" label="Home Room"></el-table-column>
+            <el-table-column sortable property="period" label="Period"></el-table-column>
+            <el-table-column sortable property="schoolResponse" label="Feedback Type"></el-table-column>
+            <el-table-column sortable property="occureddate" label="Occured Date"></el-table-column>
+            <el-table-column sortable property="incidentStatus" label="Status"></el-table-column>
+            <el-table-column sortable property="action" width="220" label="Action">
+              <template slot-scope="scope">
+                <ul class="behavioural-report">
+                  <li v-if="scope.row.action.includes('view')" class="behavioural-report-view">
+                    <el-tooltip class="item" effect="dark" content="View Behavioural Report" placement="top">
+                      <i class="icon icon-eye" @click="viewBehaviouralReport(scope.$index,scope.row)"></i>
+                    </el-tooltip>
+                  </li>
+                  <li v-if="scope.row.action.includes('edit')" class="behavioural-report-edit">
+                    <el-tooltip class="item" effect="dark" content="Edit Feedback" placement="top">
+                      <i class="icon icon-edit" @click="editFeedbackModal(scope.$index,scope.row)"></i>
+                    </el-tooltip>
+                  </li>
+                  <li v-if="scope.row.action.includes('feedbackfollowup')" class="behavioural-report-follow-up">
+                    <el-tooltip class="item" effect="dark" content="Add Follow Up" placement="top">
+                      <i class="icon icon-add" @click="addFollowUpModal(scope.$index,scope.row)"></i>
+                    </el-tooltip>
+                  </li>
+                  <li v-if="scope.row.action.includes('listfollowup')" class="behavioural-report-list">
+                    <el-tooltip class="item" effect="dark" content="List Follow Up" placement="top">
+                      <i class="icon icon-menu-list" @click="listFollowUpModal(scope.$index,scope.row)"></i>
+                    </el-tooltip>
+                  </li>
+                  <li v-if="scope.row.action.includes('delete')" class="behavioural-report-delete">
+                    <el-tooltip class="item" effect="dark" content="Delete Feedback" placement="top">
+                      <i class="icon icon-delete" @click="deleteFeedbackModal(scope.$index,scope.row)"></i>
+                    </el-tooltip>
+                  </li>
+                </ul>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <div class="row student-details">
+          <div class="modal-content student-behaviour-preview">
+            <div class="row student-report">
+              <div class="col-6">
+                <h2 class="student-report-title">ED-Intelligence</h2>
+                <h3 class="student-report-subtitle">Student Behaviour Report</h3>
+                <ul class="document-download">
+                  <li class="download-pdf" @click="downloadPdfStudentBehaviour()">    
+                    <el-tooltip class="item" effect="dark" content="Export to PDF" placement="top">       
+                      <i class="icon icon-download-pdf"></i>
+                    </el-tooltip>
+                  </li>
+                  <li class="send-email" @click="sendEmailStudentBehaviour()">
+                    <el-tooltip class="item" effect="dark" content="Email to Parent" placement="top">       
+                      <i class="icon icon-mail"></i>
+                    </el-tooltip>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-6">
+                <h2 class="student-report-title">Student Details</h2>
+                <div class="row student-information">
+                  <ul>
+                    <li>Name: <span>name surname</span></li>
+                    <li>Grade: <span>One</span></li>
+                    <li>Homeroom: <span>jo baker</span></li>
+                    <li>Class Period: <span>2nd Period</span></li>
+                    <li>School Year: <span>2020</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="student-behaviour-table">
+                  <div class="student-report-header">Student Behaviour</div>
+                  <div class="row">
+                    <ul class="col-12 profile-list">
+                      <li>Incident Occured Date<span></span></li>
+                      <li>School Response<span></span></li>
+                      <li>Incident Reason<span></span></li>
+                      <li>Support Service Received<span></span></li>
+                      <li>Supporting Document<span></span></li>
+                      <li>Incident Status<span></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="student-behaviour-table">
+                  <div class="student-report-header">Student Feedbacks</div>
+                  <div class="row">
+                    <ul class="col-12 profile-list">
+                      <li>Teacher Feedback<span></span></li>
+                      <li>Parent Feedback<span></span></li>
+                      <li>Specialist Feedback<span></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="student-behaviour-table">
+                  <div class="student-report-header">Action Status</div>
+                  <div class="row">
+                    <ul class="col-12 profile-list">
+                      <li>Action Outcomes<span></span></li>
+                      <li>Action Date<span></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="button medium ed-btn__tertiary" @click="feedbackModal = false">
@@ -91,37 +165,43 @@
       searchFeedback: "",
     }),
     methods: {
+      downloadPdfStudentBehaviour(){
+
+      },
+      sendEmailStudentBehaviour(){
+
+      },
       openModal(sn, name, surname) {
         this.feedbackModal = true;
         this.feedbackName = name + ' ' + surname;
         this.feedBackList(sn, name, surname);
       },
       viewBehaviouralReport(id, data) {
-        
+
       },
       editFeedbackModal(id, data) {
-          this.$refs.EditFeedbackModal.openModal(
-            this.sn = id,
-            this.posts = data
-          );
+        this.$refs.EditFeedbackModal.openModal(
+          this.sn = id,
+          this.posts = data
+        );
       },
       addFollowUpModal(id, data) {
-          this.$refs.AddFollowUpModal.openModal(
-            this.sn = id,
-            this.posts = data
-          );
+        this.$refs.AddFollowUpModal.openModal(
+          this.sn = id,
+          this.posts = data
+        );
       },
       listFollowUpModal(id, data) {
-          this.$refs.ListFollowUpModal.openModal(
-            this.sn = id,
-            this.posts = data
-          );
+        this.$refs.ListFollowUpModal.openModal(
+          this.sn = id,
+          this.posts = data
+        );
       },
       deleteFeedbackModal(id, data) {
-          this.$refs.DeleteFeedbackModal.openModal(
-            this.sn = id,
-            this.posts = data
-          );
+        this.$refs.DeleteFeedbackModal.openModal(
+          this.sn = id,
+          this.posts = data
+        );
       },
       searchFeedbackFilter() {
         const feedbackListStorage = this.loadFeedbackListStorage();

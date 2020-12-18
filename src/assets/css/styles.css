@@ -258,6 +258,10 @@ ICONS
   -moz-osx-font-smoothing: grayscale
 }
 
+.icon-download-pdf:before {
+  content: "\e95f";
+  color: #fff;
+}
 .icon-upload:before {
   content: "\e95e";
   color: #fff;
@@ -3581,6 +3585,57 @@ li:hover .megamenu {
 
 .feedback-list .behavioural-report > li.behavioural-report-delete > .icon::before {
   color: var(--white);
+}
+
+/* STUDENT BEHAVIOUR */
+.student-behaviour-preview {
+  background-color: var(--white) !important;
+  margin-top: 40px;
+  border: 1px solid var(--gray) !important;
+}
+
+.student-behaviour-preview .document-download li {
+  width: 28px;
+  height: 28px;
+  float: left;
+  margin-right: 10px;
+}
+
+.student-behaviour-preview .document-download li.download-pdf {
+  background-color: var(--red);
+  border-radius: 50%;
+}
+
+.student-behaviour-preview .document-download li.download-pdf .icon {
+  padding: 7px;
+  font-size: 15px;
+  color: var(--white);
+  position: absolute;
+}
+
+.student-behaviour-preview .document-download li.send-email {
+  background-color: var(--primary);
+  border-radius: 50%;
+}
+
+.student-behaviour-preview .document-download li.send-email .icon {
+  padding: 7px;
+  font-size: 15px;
+  position: absolute;
+}
+
+.student-behaviour-preview .document-download li.send-email .icon:before {
+  color: var(--white);
+}
+
+.student-behaviour-table {
+  border:1px solid var(--gray);
+  border-radius:10px;
+  margin-bottom: 20px;
+}
+
+.student-behaviour-table ul li:last-child {
+  border-radius: 0 0 10px 10px;
 }
 
 /* SIDE MENU */
