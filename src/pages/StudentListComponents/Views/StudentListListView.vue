@@ -12,74 +12,38 @@
           <el-table-column sortable property="grade" label="Grade"></el-table-column>
           <el-table-column width="64" property="action" label="Action">
               <div class="student-list-edit" slot-scope="scope" v-if="scope.row.action.includes('edit')">
-                  <el-popover
-                      placement="top"
-                      popper-class="student-list-options"
-                      width="200"
-                      trigger="hover">
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
-                          <i @click="addFeedback(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-information"></i>
-                        </el-tooltip> 
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Add Withdrawal" placement="top">
-                          <i @click="addWithdrawal(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-exit"></i>
-                        </el-tooltip>
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Edit Profile" placement="top">
-                          <i @click="editProfile(scope.row.sn)" class="icon icon-edit"></i>
-                        </el-tooltip>
-                      </a>
-                      <a slot="reference" class="student-list-edit">
-                        <i class="icon icon-edit"></i>
-                      </a>
-                  </el-popover>
+                  <ActionsListEdit 
+                    :indexParent="scope.$index"
+                    :postsParent="posts"
+                  />
               </div>
           </el-table-column>
           <el-table-column width="100" property="action">
               <div class="student-list-preview" slot-scope="scope" v-if="scope.row.action.includes('preview')">
-                    <el-popover
-                      placement="top"
-                      popper-class="student-list-options"
-                      width="200"
-                      trigger="hover">
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="View Profile" placement="top">
-                          <i @click="viewProfile(scope.row.sn)" class="icon icon-profile"></i>
-                        </el-tooltip> 
-                      </a>
-                      <a class="student-list-preview">
-                        <el-tooltip class="item" effect="dark" content="Feedback List" placement="top">
-                          <i @click="feedBackList(scope.row.sn,scope.row.name,scope.row.surname)" class="icon icon-lesson"></i>
-                        </el-tooltip>
-                      </a>
-                      <a slot="reference" class="student-list-preview">
-                        <i class="icon icon-eye"></i>
-                      </a>
-                    </el-popover>
+                    <ActionsListView 
+                    :indexParent="scope.$index"
+                    :postsParent="posts"
+                    />
               </div>
           </el-table-column>
         </el-table>
 </template>
 
 <script>
+import ActionsListEdit from '../../../components/actions/views/ActionsListEdit.vue';
+import ActionsListView from '../../../components/actions/views/ActionsListView.vue';
+
 export default {
     name: "student-list-list",
     components: {
-
+      ActionsListEdit,
+      ActionsListView
     },
     data:() => ({
         posts: [],
-        pageSize: 10,
+        pageSize: 10
     }),
     props: {
-        addFeedbackParent: Function,
-        addWithdrawalParent: Function,
-        editProfileParent: Function,
-        viewProfileParent: Function,
-        feedBackListParent: Function,
         parentData: Array,
         updatePagination: {
             type: Function,
@@ -107,21 +71,6 @@ export default {
         }
     },
     methods: {
-        addFeedback(sn,name,surname){
-            this.addFeedbackParent(sn,name,surname);
-        },
-        addWithdrawal(sn,name,surname){
-            this.addWithdrawalParent(sn,name,surname);
-        },
-        editProfile(sn){
-            this.editProfileParent(sn);
-        },
-        viewProfile(sn){
-            this.viewProfileParent(sn);
-        },
-        feedBackList(sn,name,surname){
-            this.addFeedbackParent(sn,name,surname);
-        },
         loadMore(){
             const studentListStorage = this.loadStudentlistStorage();
             this.posts = [];

@@ -3044,6 +3044,22 @@ li:hover .megamenu {
   margin-top:10px;
 }
 
+.student-list .search-results.avatar-view .student-list-preview > .icon {
+  left: 8px;
+  right: 0;
+}
+
+.search-results.avatar-view-search .student-list-preview {
+  position: absolute;
+  left: 7px;
+  top: -7px;
+}
+
+.search-results.avatar-view-search .student-list-edit {
+  position: absolute;
+  right: 6px;
+}
+
 .student-list .search-results .student-list-edit .icon-edit {
   right:7px;
   top:7px;

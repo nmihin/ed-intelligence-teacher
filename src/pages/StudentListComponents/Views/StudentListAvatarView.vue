@@ -1,5 +1,5 @@
 <template>
-  <div class="row search-results">
+  <div class="row search-results avatar-view">
     <div v-for="(post, idx) in posts" :key="idx" class="col-12 col-md-6 col-lg-4 ed_card-boxes">
       <div class="card-box">
               <div class="card-title">
@@ -10,49 +10,14 @@
                     <img v-if="!post.avatar" class="card-picture" src="../../../assets/images/avatar-aux.png" />
                     <img v-if="post.avatar" class="card-picture" :src="post.avatar" />
                     <div class="card-element">
-                      <el-popover
-                        placement="top"
-                        popper-class="student-list-options"
-                        width="200"
-                        trigger="hover">
-                        <a class="student-list-preview">
-                          <el-tooltip class="item" effect="dark" content="Add Feedback" placement="top">
-                            <i @click="addFeedback(post.sn,post.name,post.surname)" class="icon icon-information"></i>
-                          </el-tooltip> 
-                        </a>
-                        <a class="student-list-preview">
-                          <el-tooltip class="item" effect="dark" content="Add Withdrawal" placement="top">
-                            <i @click="addWithdrawal(post.sn,post.name,post.surname)" class="icon icon-exit"></i>
-                          </el-tooltip>
-                        </a>
-                        <a class="student-list-preview">
-                          <el-tooltip class="item" effect="dark" content="Edit Profile" placement="top">
-                            <i @click="editProfile(post.sn)" class="icon icon-edit"></i>
-                          </el-tooltip>
-                        </a>
-                        <a slot="reference" class="student-list-edit">
-                          <i class="icon icon-edit"></i>
-                        </a>
-                      </el-popover>
-                      <el-popover
-                        placement="top"
-                        popper-class="student-list-options"
-                        width="200"
-                        trigger="hover">
-                        <a class="student-list-preview">
-                          <el-tooltip class="item" effect="dark" content="View Profile" placement="top">
-                            <i @click="viewProfile(post.sn)" class="icon icon-profile"></i>
-                          </el-tooltip> 
-                        </a>
-                        <a class="student-list-preview">
-                          <el-tooltip class="item" effect="dark" content="Feedback List" placement="top">
-                            <i @click="feedBackList(post.sn,post.name,post.surname)" class="icon icon-lesson"></i>
-                          </el-tooltip>
-                        </a>
-                        <a slot="reference" class="student-list-preview edit-student-list">
-                          <i class="icon icon-eye"></i>
-                        </a>
-                      </el-popover>
+                      <ActionsListEdit 
+                        :indexParent="idx"
+                        :postsParent="posts"
+                      />
+                      <ActionsListView 
+                        :indexParent="idx"
+                        :postsParent="posts"
+                      />
                     </div>
                     <figcaption>
                       <ul>
@@ -76,17 +41,16 @@
 </template>
 
 <script>
+import ActionsListEdit from '../../../components/actions/views/ActionsListEdit.vue';
+import ActionsListView from '../../../components/actions/views/ActionsListView.vue';
+
 export default {
     name: "student-list-avatar",
     components: {
-
+      ActionsListEdit,
+      ActionsListView
     },
     props: {
-        addFeedbackParent: Function,
-        addWithdrawalParent: Function,
-        editProfileParent: Function,
-        viewProfileParent: Function,
-        feedBackListParent: Function,
         parentData: Array,
         updatePagination: {
             type: Function,
@@ -110,21 +74,6 @@ export default {
         }
     },
     methods: {
-        addFeedback(sn,name,surname){
-            this.addFeedbackParent(sn,name,surname);
-        },
-        addWithdrawal(sn,name,surname){
-            this.addWithdrawalParent(sn,name,surname);
-        },
-        editProfile(sn){
-            this.editProfileParent(sn);
-        },
-        viewProfile(sn){
-            this.viewProfileParent(sn);
-        },
-        feedBackList(sn,name,surname){
-            this.addFeedbackParent(sn,name,surname);
-        },
         loadMore(){
             const studentListStorage = this.loadStudentlistStorage();
             this.posts = [];

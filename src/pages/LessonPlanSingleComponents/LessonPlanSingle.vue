@@ -10,19 +10,6 @@
     <LessonPlanSingleDocumentPreview
     ref="LessonPlanSingleDocumentPreview"
     />
-  <!--
-    <md-dialog :md-active.sync="showDocumentPreview" class="modal-window filter-modal document">
-      <h2 class="modal-title">Document Preview</h2>
-      <div class="modal-content">     
-        <img v-if="showImage" src="https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher/main/public/Styleguide-Ed-Intelligence_home.png" />
-        <VueDocPreview v-if="!showImage" value="newteach.pbworks.com%2Ff%2Fele%2Bnewsletter.docx" type="office" />
-      </div>
-      <div class="modal-footer">
-        <button class="button medium ed-btn__tertiary" @click="showDocumentPreview = false; showImage=false">
-          Close
-        </button>
-      </div>
-    </md-dialog>-->
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12 col-md-12">
