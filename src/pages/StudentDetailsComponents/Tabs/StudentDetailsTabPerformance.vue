@@ -1,18 +1,30 @@
 <template>
   <div class="row">
-    <div class="col-12 col-md-3 col-lg-2">
-      <el-button class="performance-button button medium ed-btn__primary">NWEA</el-button>
-    </div>
-    <div class="col-12 col-md-9 col-lg-10">
-      <div class="line-chart-performance">
-        <h2>NWEA MAP:Reading</h2>
-        <LineChart />
+    <el-tabs :tab-position="tabPosition">
+      <el-tab-pane label="NWEA">
+      <div class="row">
+        <ul class="document-download">
+          <li class="download-pdf" @click="downloadPdfReport()">    
+            <el-tooltip class="item" effect="dark" content="Export to PDF" placement="top">       
+              <i class="icon icon-download-pdf"></i>
+            </el-tooltip>
+          </li>
+        </ul>
       </div>
-      <div class="line-chart-performance">
-        <h2>NWEA MAP:Mathematics</h2>
-        <LineChart />
+      <div class="row">
+        <div class="line-chart-performance">
+          <h2>NWEA MAP:Reading</h2>
+          <LineChart />
+        </div>
+        <div class="line-chart-performance">
+          <h2>NWEA MAP:Mathematics</h2>
+          <LineChart />
+        </div>
       </div>
-    </div>
+      </el-tab-pane>
+      <el-tab-pane label="PARCC"></el-tab-pane>
+      <el-tab-pane label="SGP"></el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -24,22 +36,34 @@ import LineChart from "../../../components/charts/LineChart.vue"
     components: {
         LineChart
     },
-    props: {
-    },
-    watch: {
-
-    },
     // DATA
     data: () => ({
-    
-    }),
-    methods: {
-      loadMore() {
-
+      tabPosition: 'left',
+      window: {
+        width: 0
       }
+    }),
+    props: {
     },
     created() {
-      this.loadMore();
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    destroyed() {
+        window.removeEventListener('resize', this.handleResize);
+    },
+    methods: {
+      downloadPdfReport(){
+
+      },
+      handleResize() {
+          this.window.width = window.innerWidth;
+
+          if(this.window.width >= 940)
+            this.tabPosition = "left";
+          else
+            this.tabPosition = "top";
+      }
     }
   }
 
