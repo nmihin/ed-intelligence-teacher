@@ -3060,6 +3060,7 @@ li:hover .megamenu {
   height: 28px;
   position: relative;
   left:10px;
+  background-color: transparent !important;
 }
 
 .student-list .student-list-edit:hover {
@@ -3167,10 +3168,6 @@ li:hover .megamenu {
   padding: 20px 0 !important;
 }
 
-.student-list.attendance .el-select .el-input {
-  width: 235px;
-}
-
 .student-list.attendance .attendance-bottom {
   position: relative;
   background-color: transparent;
@@ -3268,6 +3265,37 @@ li:hover .megamenu {
 .student-list.attendance .el-table {
   padding: 0 20px;
 }
+
+.student-list.attendance .el-select .el-input {
+  width: 100%;
+}
+
+
+.student-list.attendance  .el-table__body-wrapper .el-table__row td:last-child {
+  padding-right: 40px;
+}
+/*
+.student-list.attendance .el-table__body,
+.student-list.attendance .el-table__header
+{
+  width: 100% !important;
+  display: inline-block;
+}
+
+.student-list.attendance .el-table__body tbody, 
+.student-list.attendance .el-table__header thead
+{
+  width: 100% !important;
+  display: table;
+}
+
+.student-list.attendance .el-table__body tbody tr,
+.student-list.attendance .el-table__header thead tr
+{
+  width: 100% !important;
+  display: table-row;
+}
+*/
 
 /* STUDENT DETAILS */
 .student-details .side-menu-profile {
@@ -3394,6 +3422,7 @@ li:hover .megamenu {
   width: 100%;
   padding: 0;
   margin-bottom: 20px;
+  padding: 0 15px;
 }
 .student-details .line-chart-performance h2 {
   font-size: 18px;
@@ -4022,7 +4051,10 @@ ul.side-menu__results>li>ul>li a:hover {
   font-size: 18px;
   line-height: 1.25;
   color: var(--white);
-  padding: 20px 30px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .modal-window  .md-dialog-container {
@@ -4064,6 +4096,11 @@ ul.side-menu__results>li>ul>li a:hover {
 
 .modal-window .modal-footer {
   background-color: var(--background);
+  min-height: 73px;
+}
+
+.modal-window .modal-title {
+  min-height: 62px ;
 }
 
 .modal-window .modal-content p {
@@ -5407,9 +5444,6 @@ UI Elements
 }
 
 @media only screen and (max-width:1280px) {
-  .student-list.attendance .el-select .el-input {
-    width: 190px;
-  }
   .sub-header ul {
     margin-left: 12%
   }
@@ -5429,8 +5463,9 @@ UI Elements
   .container {
     max-width: 80%
   }
-  .student-list.attendance .el-select .el-input {
-    width: 160px;
+  .md-dialog-container {
+    max-width: 90vw !important;
+    max-height: 85vh !important;
   }
 }
 
@@ -5450,14 +5485,14 @@ UI Elements
 }
 
 @media only screen and (max-width:991px) {
+  .student-list.attendance  .el-table__body-wrapper .el-table__row td:last-child {
+    padding-right: 0;
+  }
   .student-list.attendance .el-table__body-wrapper {
     overflow-x: scroll;
   }
   .student-list.attendance .el-table__body {
     min-width: 640px;
-  }
-  .student-list.attendance .el-select .el-input {
-    width:110px;
   }
   .ed_card-boxes.aside .card-content .item-content {
     position: relative;

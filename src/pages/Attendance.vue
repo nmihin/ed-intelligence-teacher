@@ -437,13 +437,13 @@
         console.log(date);
         // GET data based on date via axios
       },
-      searchFilter() {
+      searchFilter(value) {
         this.busy = true;
 
         const studentAttendanceStorage = this.loadStudentAttendanceStorage();
 
         this.posts = studentAttendanceStorage.filter((data) =>
-          data.name.toLowerCase().includes(this.searchName.toLowerCase())
+          data.name.toLowerCase().includes(value.toLowerCase())
         );
         this.studentAttendances.formData = this.posts;
 
@@ -458,8 +458,8 @@
           localStorage.getItem("studentAttendanceStorageJSONData")
         );
       },
-      updatePagination() {
-        this.pageSize = this.value;
+      updatePagination(value) {
+        this.pageSize = value;
 
         const studentAttendanceStorage = this.loadStudentAttendanceStorage();
 

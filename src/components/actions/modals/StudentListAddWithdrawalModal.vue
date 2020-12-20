@@ -131,7 +131,8 @@
         updateWithdrawalForm(input, value) {
           this.formAddWithdrawal[input] = value;
         },
-        openModal(){
+        openModal(sn,name,surname){
+          this.feedbackName = name + " " + surname;
           this.addWithdrawalModal = true;
         }
     }
