@@ -5,7 +5,7 @@
                <div class="card-title">
                  <h2>My Test Lesson - English 1</h2>
                </div>
-               <div class="card-element">
+               <div class="card-element options">
                  <a href="#" class="edit">
                    <i class="icon icon-edit"></i>
                  </a>
@@ -37,7 +37,7 @@
                <div class="card-title">
                  <h2>My Test Lesson - English 2</h2>
                </div>
-               <div class="card-element">
+               <div class="card-element options">
                  <a href="#" class="edit">
                    <i class="icon icon-edit"></i>
                  </a>
@@ -69,7 +69,7 @@
                <div class="card-title">
                  <h2>My Test Lesson - English 3</h2>
                </div>
-               <div class="card-element">
+               <div class="card-element options">
                  <a href="#" class="edit">
                    <i class="icon icon-edit"></i>
                  </a>
@@ -101,7 +101,7 @@
                <div class="card-title">
                  <h2>My Test Lesson - English 4</h2>
                </div>
-               <div class="card-element">
+               <div class="card-element options">
                  <a href="#" class="edit">
                    <i class="icon icon-edit"></i>
                  </a>

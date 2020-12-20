@@ -3063,6 +3063,7 @@ li:hover .megamenu {
   height: 28px;
   position: relative;
   left:10px;
+  outline: none !important;
   background-color: transparent !important;
 }
 
@@ -4459,10 +4460,38 @@ button[disabled="true"] {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   margin-bottom: 30px;
 }
+
 .card-boxes.lessons .card-box .card-element {
   position: absolute;
   right: 20px;
   top: 20px;
+}
+
+.card-boxes.lessons .card-box .card-element.options .edit {
+  outline: none !important;
+}
+
+.card-boxes.lessons .card-box .card-element.options .edit .icon {
+  background-color: var(--green);
+  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  font-size: 14px;
+}
+.card-boxes.lessons .card-box .card-element.options .edit .icon::before {
+  color: var(--white);
+}
+
+.card-boxes.lessons .card-box .card-element.options .delete {
+  outline: none !important;
+}
+
+.card-boxes.lessons .card-box .card-element.options .delete .icon {
+  background-color: var(--red);
+  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+}
+.card-boxes.lessons .card-box .card-element.options .delete .icon::before {
+  color: var(--white);
 }
 
 .card-boxes.lessons .card-box .card-title {
