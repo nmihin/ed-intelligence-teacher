@@ -1596,7 +1596,8 @@ Top box
 }
 
 .ed_card-boxes .card-content .card-element a {
-  text-decoration: none!important
+  text-decoration: none !important;
+  outline: none !important;
 }
 
 .ed_card-boxes .card-content #ed_barChart {
