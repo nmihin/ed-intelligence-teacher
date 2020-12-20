@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="records-select">
         <el-select @change="updatePagination(value)" v-model="value" placeholder="Records">
             <el-option v-for="item in recordsOptions" :key="item.value" :label="item.label" :value="item.value">
             </el-option>

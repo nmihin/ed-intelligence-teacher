@@ -3,7 +3,7 @@
   <div class="main-content">   
     <div class="container-fluid student-list">
         <div class="row">
-          <div class="col-12 col-sm-6 col-md-4">
+          <div class="col-8 col-sm-6 col-md-4">
             <RecordsComponent v-if="viewType ==='list'" :updatePaginationParent="updatePagination" />
           </div>
           <div class="col-12 col-sm-6 col-md-4">

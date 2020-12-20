@@ -3021,6 +3021,8 @@ li:hover .megamenu {
 
 .student-list .records {
   padding-left: 10px;
+  position: absolute;
+  top:10px;
 }
 
 .student-list .student-list-preview {
@@ -3029,6 +3031,7 @@ li:hover .megamenu {
   width: 28px;
   height: 28px;
   position: relative;
+  outline: none !important;
 }
 
 .student-list .student-list-preview:hover {
@@ -3236,6 +3239,15 @@ li:hover .megamenu {
 .student-list.attendance .date-select {
   float: left;
   margin-bottom: 15px;
+}
+
+.student-list.attendance .records-select {
+  float: left;
+  margin-bottom: 15px;
+}
+
+.student-list.attendance .records-select input {
+  width: 100px;
 }
 
 .student-list.attendance .date-select .icon-box-plan {
