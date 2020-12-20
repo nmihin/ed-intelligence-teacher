@@ -4468,30 +4468,30 @@ button[disabled="true"] {
   top: 20px;
 }
 
-.card-boxes.lessons .card-box .card-element.options .edit {
+.card-boxes .card-box .card-element.options .edit {
   outline: none !important;
 }
 
-.card-boxes.lessons .card-box .card-element.options .edit .icon {
+.card-boxes .card-box .card-element.options .edit .icon {
   background-color: var(--green);
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   font-size: 14px;
 }
-.card-boxes.lessons .card-box .card-element.options .edit .icon::before {
+.card-boxes .card-box .card-element.options .edit .icon::before {
   color: var(--white);
 }
 
-.card-boxes.lessons .card-box .card-element.options .delete {
+.card-boxes .card-box .card-element.options .delete {
   outline: none !important;
 }
 
-.card-boxes.lessons .card-box .card-element.options .delete .icon {
+.card-boxes .card-box .card-element.options .delete .icon {
   background-color: var(--red);
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
 }
-.card-boxes.lessons .card-box .card-element.options .delete .icon::before {
+.card-boxes .card-box .card-element.options .delete .icon::before {
   color: var(--white);
 }
 

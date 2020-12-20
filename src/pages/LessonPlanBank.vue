@@ -248,7 +248,7 @@
                 <div class="card-title">
                   <h2>{{ post.title }}</h2>
                 </div>
-                <div class="card-element">
+                <div class="card-element options">
                   <a href="#" class="edit">
                     <i class="icon icon-edit"></i>
                   </a>
@@ -378,7 +378,7 @@
               <div class="card-title">
                 <h2>{{ post.title }}</h2>
               </div>
-              <div class="card-element">
+              <div class="card-element options">
                 <a href="#" class="edit">
                   <i class="icon icon-edit"></i>
                 </a>
