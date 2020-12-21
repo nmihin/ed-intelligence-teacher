@@ -1044,7 +1044,7 @@ Manage Menu
 }
 
 .card-boxes.manage-menu .card-box .card-option .icon-edit {
-  background-color: var(--tertiary);
+  background-color: var(--green);
 }
 
 .card-boxes.manage-menu .card-box .card-option .icon:before {
@@ -1989,7 +1989,7 @@ Top box
   border-radius: 50%;
   padding: 7px;
   font-size: 14px;
-  background-color: var(--tertiary);
+  background-color: var(--green);
   position: relative;
 }
 
@@ -2210,7 +2210,7 @@ Top box
   height: 28px;
   z-index: 5;
   font-size: 14px;
-  background-color: var(--tertiary);
+  background-color: var(--green);
   margin:5px 5px 5px 0;
 }
 
@@ -2331,7 +2331,7 @@ Top box
   border-radius: 50%;
   padding: 7px;
   font-size: 14px;
-  background-color: var(--tertiary);
+  background-color: var(--green);
   right: 0;
   position: relative;
 }
@@ -3047,7 +3047,7 @@ li:hover .megamenu {
   border-radius: 50%;
   padding: 4px;
   font-size: 20px;
-  background-color: var(--green);
+  background-color: var(--tertiary);
   position: relative;
   right:10px;
   top:4px;
@@ -3080,7 +3080,7 @@ li:hover .megamenu {
   border-radius: 50%;
   padding: 7px;
   font-size: 14px;
-  background-color: var(--tertiary);
+  background-color: var(--green);
   right: 20px;
   position: relative;
   top:4px;
@@ -3663,7 +3663,7 @@ li:hover .megamenu {
 }
 
 .feedback-list .behavioural-report > li.behavioural-report-view > .icon {
-  background-color: var(--primary);
+  background-color: var(--tertiary);
 }
 
 .feedback-list .behavioural-report > li.behavioural-report-edit > .icon {
@@ -3681,7 +3681,7 @@ li:hover .megamenu {
 }
 
 .feedback-list .behavioural-report > li.behavioural-report-list > .icon {
-  background-color: var(--primary);
+  background-color: var(--tertiary);
 }
 
 .feedback-list .behavioural-report > li.behavioural-report-delete > .icon {
@@ -5325,7 +5325,7 @@ Popover
 }
 
 .el-popover.student-list-options .student-list-preview .icon {
-  background-color: var(--bluewood);
+  background-color: var(--tertiary);
   width: 30px;
   height: auto;
   -o-object-fit: cover;
@@ -5337,10 +5337,14 @@ Popover
   margin-right: 5px;;
 }
 
+.el-popover.student-list-options .student-list-preview .icon.feedback {
+  background-color: var(--bluewood);
+}
+
 .el-popover.student-list-options .student-list-preview .icon-profile {
   font-size: 16px;
   padding: 6px;
-  background: var(--green);
+  background: var(--tertiary);
 }
 
 .el-popover.student-list-options .student-list-preview .icon-lesson {
@@ -5455,6 +5459,12 @@ UI Elements
   height: 36px;
   width: 36px;
   padding: 0;
+  background-color: var(--tertiary) !important;
+}
+
+.add-lesson-plan:hover {
+  background-color: var(--tertiary) !important;
+  opacity: 0.85;
 }
 
 .add-lesson-plan > .icon {

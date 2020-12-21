@@ -13,7 +13,7 @@
     </a>
     <a class="student-list-preview">
       <el-tooltip class="item" effect="dark" content="Feedback List" placement="top">
-        <i @click="openStudentListFeedbackListModal()" class="icon icon-lesson"></i>
+        <i @click="openStudentListFeedbackListModal()" class="icon icon-lesson feedback"></i>
       </el-tooltip>
     </a>
     <a slot="reference" class="student-list-preview">
