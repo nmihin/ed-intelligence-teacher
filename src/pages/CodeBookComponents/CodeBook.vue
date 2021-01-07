@@ -84,6 +84,7 @@
             background
             layout="prev, pager, next"
             @current-change="handleCurrentChange"
+            :current-page.sync="currentPage"
             :page-size="pageSize"
             :total="totalSize">
         </el-pagination>
@@ -125,6 +126,7 @@ export default {
         page: 1,
         pageSize: 10,
         totalSize: 0,
+        currentPage:1,
         posts: [],
         postsTab: [],
         postsTabExit: [],
@@ -271,14 +273,9 @@ export default {
             }
 
         },
-        // LOCALSTORAGE
+        // localStorage
         loadCodeBookStorage() {
             return JSON.parse(localStorage.getItem("codeBookStorageJSONData"));
-        },
-        handleClick(tab) {
-            this.tabIndex = tab.index;
-            this.tabSelected = tab.label; 
-            this.loadMore();
         },
         deleteSelectedCode(sn){
             this.$refs.CodeBookModalDeleteCode.openModal();
@@ -299,12 +296,22 @@ export default {
             localStorage.setItem("codeBookStorageJSONData",JSON.stringify(codeBookStorage));          
             this.loadMore();
         },
+        handleClick(tab) {
+            this.tabIndex = tab.index;
+            this.tabSelected = tab.label; 
+
+            this.pageSize = 10;
+            this.totalSize = 0;
+            this.currentPage = 1;
+  
+            this.loadMore();
+        },
         handleCurrentChange(val) {
             this.busy = true;
             const codeBookStorage = this.loadCodeBookStorage();
             
             this.page = val;
-
+   
             // CHECK IF SEARCH EMPTY
             if(this.searchName === ''){
                 this.totalSize = codeBookStorage[this.tabIndex][this.tabSelected].length;
@@ -474,6 +481,7 @@ export default {
         },
         updatePagination(v) {
             this.pageSize = v;
+            this.currentPage = 1;
 
             const codeBookStorage = this.loadCodeBookStorage(); 
 

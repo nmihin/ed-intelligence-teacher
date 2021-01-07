@@ -114,7 +114,7 @@ export default {
                 }, 1000)
             }     
         },
-        // LOCALSTORAGE
+        // localStorage
         loadCodeBookStorage() {
             return JSON.parse(localStorage.getItem("codeBookStorageJSONData"));
         },
