@@ -41,121 +41,43 @@
       </div>
       <el-form :model="studentAttendances" :rules="rules" ref="studentAttendances">
         <!-- LIST VIEW -->
-        <el-table v-if="viewType === 'list'" stripe ref="singleTable" :data="studentAttendances.formData" highlight-current-row style="width: 100%">
-          <el-table-column sortable property="sn" label="SN" width="80"></el-table-column>
-          <el-table-column sortable property="name" label="Name"></el-table-column>
-          <el-table-column sortable property="surname" label="Surname"></el-table-column>
-          <el-table-column sortable property="status" label="Status">
-            <div slot-scope="scope">
-              <el-form-item>
-                <el-radio-group @change="updateAttendanceList(scope.row.sn,scope.row.status,'status')" v-model="scope.row.status">
-                  <el-radio label="Present">Present</el-radio>
-                  <el-radio label="Absent">Absent</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </div>
-          </el-table-column>
-          <el-table-column  sortable property="reason" label="Reason">
-            <div slot-scope="scope">
-              <el-form-item :prop="'formData.' + scope.$index + '.reason'" :rules="rules.reason" v-if="scope.row.status === 'Present'">
-                <el-select @change="updateAttendanceList(scope.row.sn,scope.row.reason,'present')" v-model="scope.row.reason" placeholder="Present">
-                  <el-option v-for="pre in reasonPresentOptionsSelect" :key="pre.value" :label="pre.label" :value="pre.value">
-                  </el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item :prop="'formData.' + scope.$index + '.reason'" :rules="rules.reason" v-if="scope.row.status === 'Absent'">
-                <el-select @change="updateAttendanceList(scope.row.sn,scope.row.reason,'absent')" v-model="scope.row.reason" placeholder="Absent">
-                  <el-option v-for="pre in reasonAbsentOptionsSelect" :key="pre.value" :label="pre.label" :value="pre.value">
-                  </el-option>
-                </el-select>
-              </el-form-item>
-              <el-form-item :prop="'formData.' + scope.$index + '.absentReason'" :rules="rules.absentReason" v-if="scope.row.status === 'Absent'">
-                <el-select @change="updateAttendanceList(scope.row.sn,scope.row.absentReason,'absentReason')" v-model="scope.row.absentReason" placeholder="Absent Reason">
-                  <el-option v-for="pre in reasonAbsentReasonOptionsSelect" :key="pre.value" :label="pre.label" :value="pre.value">
-                  </el-option>
-                </el-select>
-              </el-form-item>
-            </div>
-          </el-table-column>
-        </el-table>
+        <section v-if="viewType === 'list'" >
+         <AttendanceListViewTab 
+         :parentData="studentAttendances.formData"
+         :parentDataUpdate="updateData"
+         />
+        </section>
         <!-- AVATAR VIEW -->
-        <div v-if="viewType === 'avatar'" class="row search-results">
-          <div v-for="(item, index) in studentAttendances.formData" :key="index" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 ed_card-boxes">
-            <div class="card-box">
-              <div class="card-title">
-                <h2>{{ item.name }} {{ item.surname }}</h2>
-              </div>
-              <div class="card-content">
-                <figure>
-                  <img v-if="!item.avatar" class="card-picture" src="../assets/images/avatar-aux.png" />
-                  <img v-if="item.avatar" class="card-picture" :src="item.avatar" />
-
-                  <figcaption>
-                    <ul>
-                      <li class="attendance-list-avatar">
-                        <h3>Status</h3>
-                        <el-form-item :prop="'formData.' + index + '.status'" :rules="rules.status">
-                          <el-radio-group @change="updateAttendanceList(item.sn,item.status,'status')" v-model="item.status">
-                            <el-radio label="Present">Present</el-radio>
-                            <el-radio label="Absent">Absent</el-radio>
-                          </el-radio-group>
-                        </el-form-item>
-                      </li>
-                      <li class="attendance-list-avatar selection">
-                        <h3>Reason</h3>
-                        <el-form-item v-if="item.status === 'Present'" :prop="'formData.' + index + '.reason'" :rules="rules.reason">
-                          <el-select @change="updateAttendanceList(item.sn,item.reason,'present')" v-model="item.reason" placeholder="Reason">
-                            <el-option v-for="pre in reasonPresentOptionsSelect" :key="pre.value" :label="pre.label" :value="pre.value">
-                            </el-option>
-                          </el-select>
-                        </el-form-item>
-                        <el-form-item v-if="item.status === 'Absent'" :prop="'formData.' + index + '.reason'" :rules="rules.reason">
-                          <el-select @change="updateAttendanceList(item.sn,item.reason,'absent')" v-model="item.reason" placeholder="Reason">
-                            <el-option v-for="pre in reasonAbsentOptionsSelect" :key="pre.value" :label="pre.label" :value="pre.value">
-                            </el-option>
-                          </el-select>
-                        </el-form-item>
-                        <el-form-item v-if="item.status === 'Absent'" :prop="'formData.' + index + '.absentReason'" :rules="rules.absentReason">
-                          <el-select @change="updateAttendanceList(item.sn,item.reason,'absentReason')" v-model="item.absentReason" placeholder="Reason">
-                            <el-option v-for="pre in reasonAbsentReasonOptionsSelect" :key="pre.value" :label="pre.label" :value="pre.value">
-                            </el-option>
-                          </el-select>
-                        </el-form-item>
-                      </li>
-                    </ul>
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
+        <section v-if="viewType === 'avatar'">
+         <AttendanceAvatarViewTab 
+         :parentData="studentAttendances.formData"
+         :parentDataUpdate="updateData"
+         />
+        </section>
         <!-- DOWNLOAD VIEW -->
-        <div v-if="viewType === 'download'">
-          <div class="side-menu__results card-boxes upload-document">
-            <div class="card-box">
-              <div class="card-content">
-                <el-upload class="upload" ref="upload" action="https://jsonplaceholder.typicode.com/posts/" :auto-upload="false">
-                  <el-button slot="trigger" class="button medium ed-btn__primary">Select File</el-button>
-                  <span>and</span>
-                  <el-button class="button medium ed-btn__secondary" @click="submitUploadedDocument()"><i class="icon icon-upload"></i>Upload to server</el-button>
-                  <div class="el-upload__tip" slot="tip">
-                    jpg/png files with a size less than 500kb
-                  </div>
-                </el-upload>
-              </div>
-            </div>
-          </div>
-        </div>
+        <section v-if="viewType === 'download'">
+        <AttendanceDownloadViewTab 
+        :parentData="studentAttendances.formData"
+        :parentDataUpdate="updateUploadedDocument"
+        />
+        </section>
       </el-form>
       <div class="attendance-bottom">
         <button v-if="viewType === 'list' || viewType === 'avatar'" class="attendence-save-changes button medium ed-btn__primary" @click="validatestudentAttendances()">
           Save Changes
         </button>
-        <el-pagination v-if="viewType === 'list'" background layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="pageSize" :total="totalSize">
+        <el-pagination 
+          v-if="viewType === 'list'" 
+          background layout="prev, pager, next" 
+          @current-change="handleCurrentChange" 
+          :current-page.sync="currentPage"
+          :page-size="pageSize" 
+          :total="totalSize"
+          >
         </el-pagination>
       </div>
       <div v-if="busy" class="preloader">
-        <span><img src="../assets/images/preloader.gif" /> Loading...</span>
+        <span><img src="../../assets/images/preloader.gif" /> Loading...</span>
       </div>
     </div>
   </div>
@@ -163,14 +85,21 @@
 </template>
 
 <script>
-  import RecordsComponent from '../components/records/RecordsComponent.vue';
-  import SearchContentComponent from '../components/search/SearchContentComponent.vue';
+  import RecordsComponent from '../../components/records/RecordsComponent.vue';
+  import SearchContentComponent from '../../components/search/SearchContentComponent.vue';
+
+  import AttendanceAvatarViewTab from './Tabs/AttendanceAvatarViewTab.vue';
+  import AttendanceDownloadViewTab from './Tabs/AttendanceDownloadViewTab.vue';
+  import AttendanceListViewTab from './Tabs/AttendanceListViewTab.vue';
 
   export default {
     name: "attendance",
     components: {
       RecordsComponent,
-      SearchContentComponent
+      SearchContentComponent,
+      AttendanceAvatarViewTab,
+      AttendanceDownloadViewTab,
+      AttendanceListViewTab
     },
     data() {
       return {
@@ -178,6 +107,7 @@
         page: 1,
         pageSize: 10,
         totalSize: 0,
+        currentPage:1,
         posts: [],
         busy: true,
         viewType: "list",
@@ -218,85 +148,19 @@
             value: "Absent",
             label: "Absent"
           },
-        ],
-        reasonPresentOptionsSelect: [{
-            value: "[PF] Present Full",
-            label: "[PF] Present Full"
-          },
-          {
-            value: "[PPE] Present Partial Excused",
-            label: "[PPE] Present Partial Excused",
-          },
-          {
-            value: "[PPU] Present Partial Unexcused",
-            label: "[PPU] Present Partial Unexcused",
-          },
-          {
-            value: "[NE] Not Explained",
-            label: "[NE] Not Explained"
-          },
-        ],
-        reasonAbsentOptionsSelect: [{
-            value: "[AOS] Absent - Out of School Suspension",
-            label: "[AOS] Absent - Out of School Suspension",
-          },
-          {
-            value: "[ANS] Absent - Adult Ed Bo Session",
-            label: "[ANS] Absent - Adult Ed Bo Session",
-          },
-          {
-            value: "[APE] Absent Partial Excused",
-            label: "[APE] Absent Partial Excused",
-          },
-          {
-            value: "[APU] Absent Partial Unexcused",
-            label: "[APU] Absent Partial Unexcused",
-          },
-          {
-            value: "[AFE] Absent - Full Excused",
-            label: "[AFE] Absent - Full Excused",
-          },
-          {
-            value: "[AFU] Absent - Full Unexcused",
-            label: "[AFU] Absent - Full Unexcused",
-          },
-          {
-            value: "[NE] Absent - Not Explained",
-            label: "[NE] Absent - Not Explained",
-          },
-        ],
-        reasonAbsentReasonOptionsSelect: [{
-            value: "[11] Illness",
-            label: "[11] Illness"
-          },
-          {
-            value: "[12] Student Illness",
-            label: "[12] Student Illness"
-          },
-          {
-            value: "[13] Death Student Family",
-            label: "[13] Death Student Family",
-          },
-          {
-            value: "[14] Attending judiciary or administrative proceedings",
-            label: "[14] Attending judiciary or administrative proceedings",
-          },
-          {
-            value: "[15] Observance od a religious holiday",
-            label: "[15] Observance od a religious holiday",
-          },
-          {
-            value: "[16] Lawfull suspension or exclusion from school",
-            label: "[16] Lawfull suspension or exclusion from school",
-          },
-          {
-            value: "[17] Temporary relocation due to closing of facilities or suspension of classes",
-            label: "[17] Temporary relocation due to closing of facilities or suspension of classes",
-          },
-        ],
+        ]
       };
     },
     methods: {
+      updateUploadedDocument(data){
+        // TO ADD UPDATE DOCUMENT UPLOADED
+        console.log(data)
+      },
+      updateData(data){
+        this.studentAttendances.formData = data;
+        // TO ADD UPDATE INSTEAD LOCALSTORAGE 
+        localStorage.setItem("studentAttendanceStorageJSONData",JSON.stringify(data));
+      },
       loadMore() {
         this.busy = true;
         const studentAttendanceStorage = this.loadStudentAttendanceStorage();
@@ -429,7 +293,8 @@
           this.$refs.studentAttendances.validate((valid) => {
             this.$emit("on-validate", valid, this.model);
             resolve(valid);
-            if (valid) console.log("valid studentAttendances");
+            if (valid) 
+              console.log("valid studentAttendances");
           });
         });
       },
@@ -460,6 +325,7 @@
       },
       updatePagination(value) {
         this.pageSize = value;
+        this.currentPage = 1;
 
         const studentAttendanceStorage = this.loadStudentAttendanceStorage();
 

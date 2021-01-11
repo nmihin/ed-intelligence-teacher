@@ -11,7 +11,7 @@ import NotificationsTable from "../pages/NotificationsTable";
 import AddStudent from "../pages/AddStudentComponents/AddStudent.vue";
 import ManageMenu from "../pages/ManageMenu";
 import StudentList from "../pages/StudentListComponents/StudentList.vue";
-import Attendance from "../pages/Attendance";
+import Attendance from "../pages/Attendance/Attendance.vue";
 import SearchResults from "../pages/SearchResults";
 import StudentDetails from "../pages/StudentDetailsComponents/StudentDetails.vue";
 import CodeBook from "../pages/CodeBookComponents/CodeBook.vue";
