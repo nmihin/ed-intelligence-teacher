@@ -492,6 +492,7 @@ export default {
             const codeBookStorage = this.loadCodeBookStorage();
 
             // SEARCH BY PROPERTY (ANY)
+            
             if(this.tabSelected === 'entry' || this.tabSelected === 'exit'){
                 this.posts = codeBookStorage[this.tabIndex][this.tabSelected].filter(data => 
                     data.code.toString().toLowerCase().includes(v.toLowerCase()) ||
@@ -516,13 +517,15 @@ export default {
                     data.description.toLowerCase().includes(v.toLowerCase())
                 );   
             }
-
+            
             this.totalSize = this.posts.length;
 
             this.busy = false;
-            //return this.posts;
-            this.postsTab = this.posts;
-            return this.postsTab;
+ 
+            if(this.posts.length !== 0){
+                this.postsTab = this.posts;
+                return this.postsTab;
+            }
         }
     },
     created() {
