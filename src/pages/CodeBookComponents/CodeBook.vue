@@ -530,10 +530,9 @@ export default {
 
             this.busy = false;
  
-            if(this.posts.length !== 0){
-                this.postsTab = this.posts;
-                return this.postsTab;
-            }
+            this.postsTab = this.posts;
+            return this.postsTab;
+            
         }
     },
     created() {

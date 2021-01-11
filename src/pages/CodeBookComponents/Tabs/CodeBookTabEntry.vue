@@ -61,10 +61,10 @@ export default {
     },
     watch: {     	
         parentData: function() {
-            if(typeof this.parentData[0].sn === "undefined"){
+            if(typeof this.parentData === "undefined"){
                 this.posts = this.parentData[0].entry;
             }
-            else{
+            else {
                 this.posts = this.parentData;
             }
         }
