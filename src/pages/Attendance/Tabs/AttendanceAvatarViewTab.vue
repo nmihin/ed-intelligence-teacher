@@ -168,45 +168,12 @@
        loadMore() {
         this.studentAttendances.formData = JSON.parse(JSON.stringify(this.parentData));
       },
-      updateAttendanceList(id, value, prop) {
-          this.axios
-            .get(
-              "https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-attendance.json"
-            )
-            .then((response) => {
-              this.responseData = response.data;
-
-              // status,present,absent,absentreason
-              // FIND STUDENT INDEX
-              const idxPosts = this.studentAttendances.formData
-                .map((el) => el.sn)
-                .indexOf(id);
-              const idxStorage = this.responseData
-                .map((el) => el.sn)
-                .indexOf(id);
-
-              if (prop === "status") {
-                this.responseData[idxStorage].status = value;
-                //this.posts[idxPosts].reason = "";
-                this.studentAttendances.formData[idxPosts].reason = "";
-                this.responseData[idxStorage].reason = "";
-              }
-              if (prop === "present") {
-                this.responseData[idxStorage].reason = value;
-                this.responseData[idxStorage].absentReason = "";
-              }
-              if (prop === "absent") {
-                this.responseData[idxStorage].reason = value;
-              }
-              if (prop === "absentReason") {
-                this.responseData[idxStorage].absentReason = value;
-              }
-
-              this.parentDataUpdate(this.responseData)
-            })
-            .catch((error) => error.response);
-
-      }
+      updateAttendanceList(id, value, prop) {}
+    },
+    mounted() {
+        this.$root.$on('eventing', data => {
+          this.studentAttendances.formData = data;
+        });
     },
     created() {
       this.loadMore();

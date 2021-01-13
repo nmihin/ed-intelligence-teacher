@@ -41,21 +41,21 @@
       </div>
       <el-form :model="studentAttendances" :rules="rules" ref="studentAttendances">
         <!-- LIST VIEW -->
-        <section v-if="viewType === 'list'" >
+        <section  v-show="viewType === 'list'">
          <AttendanceListViewTab 
          :parentData="studentAttendances.formData"
          :parentDataUpdate="updateData"
          />
         </section>
         <!-- AVATAR VIEW -->
-        <section v-if="viewType === 'avatar'">
+        <section  v-show="viewType === 'avatar'">
          <AttendanceAvatarViewTab 
          :parentData="studentAttendances.formData"
          :parentDataUpdate="updateData"
          />
         </section>
         <!-- DOWNLOAD VIEW -->
-        <section v-if="viewType === 'download'">
+        <section v-show="viewType === 'download'">
         <AttendanceDownloadViewTab 
         :parentData="studentAttendances.formData"
         :parentDataUpdate="updateUploadedDocument"
@@ -113,6 +113,7 @@
         viewType: "list",
         searchName: "",
         feedback: [],
+        loadedData: [],
         actionDate: "",
         post: {
           reason: "",
@@ -153,31 +154,13 @@
     },
     methods: {
       updateUploadedDocument(data){
-        // TO ADD UPDATE DOCUMENT UPLOADED
-        console.log(data)
+        // TO ADD UPDATE DOCUMENT UPLOADE
       },
       updateData(data){
         this.studentAttendances.formData = data;
-        // TO ADD UPDATE INSTEAD LOCALSTORAGE 
-        localStorage.setItem("studentAttendanceStorageJSONData",JSON.stringify(data));
       },
       loadMore() {
         this.busy = true;
-        const studentAttendanceStorage = this.loadStudentAttendanceStorage();
-
-        if (studentAttendanceStorage) {
-          this.totalSize = studentAttendanceStorage.length;
-
-          const append = studentAttendanceStorage.slice(
-            this.posts.length,
-            this.posts.length + this.pageSize
-          );
-
-          this.posts = append;
-          this.studentAttendances.formData = this.posts;
-
-          this.busy = false;
-        } else {
           this.axios
             .get(
               "https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-attendance.json"
@@ -193,25 +176,19 @@
               this.posts = append;
               this.studentAttendances.formData = this.posts;
 
-              //this.posts = response.data;
-
               this.current_page = response.current_page;
               this.per_page = response.per_page;
               this.total = response.total;
               this.next_page_url = response.next_page_url;
 
-              localStorage.setItem(
-                "studentAttendanceStorageJSONData",
-                JSON.stringify(response.data)
-              );
+              this.loadedData = response.data;
               this.busy = false;
             })
             .catch((error) => error.response.data);
-        }
       },
       handleCurrentChange(val) {
         this.busy = true;
-        const studentAttendanceStorage = this.loadStudentAttendanceStorage();
+        const studentAttendanceStorage = this.loadedData;
 
         this.page = val;
 
@@ -246,7 +223,7 @@
         this.busy = false;
       },
       updateAttendanceList(id, value, prop) {
-        const studentAttendanceStorage = this.loadStudentAttendanceStorage();
+        const studentAttendanceStorage = this.loadedData;
 
         // status,present,absent,absentreason
         // FIND STUDENT INDEX
@@ -274,10 +251,12 @@
           studentAttendanceStorage[idxStorage].absentReason = value;
         }
 
+        /*
         localStorage.setItem(
           "studentAttendanceStorageJSONData",
           JSON.stringify(studentAttendanceStorage)
         );
+        */
       },
       submitUploadedDocument() {
         // POST to backend via axios
@@ -305,10 +284,11 @@
       searchFilter(value) {
         this.busy = true;
 
-        const studentAttendanceStorage = this.loadStudentAttendanceStorage();
+        const studentAttendanceStorage = this.loadedData;
 
         this.posts = studentAttendanceStorage.filter((data) =>
-          data.name.toLowerCase().includes(value.toLowerCase())
+          data.name.toLowerCase().includes(value.toLowerCase()) ||
+          data.surname.toLowerCase().includes(value.toLowerCase())
         );
         this.studentAttendances.formData = this.posts;
 
@@ -317,17 +297,11 @@
         this.busy = false;
         return this.studentAttendances.formData;
       },
-      // LOCALSTORAGE
-      loadStudentAttendanceStorage() {
-        return JSON.parse(
-          localStorage.getItem("studentAttendanceStorageJSONData")
-        );
-      },
       updatePagination(value) {
         this.pageSize = value;
         this.currentPage = 1;
 
-        const studentAttendanceStorage = this.loadStudentAttendanceStorage();
+        const studentAttendanceStorage = this.loadedData;
 
         this.posts = [];
         const append = studentAttendanceStorage.slice(
@@ -339,40 +313,20 @@
         this.studentAttendances.formData = this.posts;
       },
       viewTypeSelect(type) {
-        if (type === "list") this.viewType = "list";
-        if (type === "avatar") {
-          this.viewType = "avatar";
-
-          this.busy = true;
-          const studentAttendanceStorage = this.loadStudentAttendanceStorage();
-
-          // LOAD ALL STUDENTS
-          if (studentAttendanceStorage) {
-            this.posts = studentAttendanceStorage;
-            this.studentAttendances.formData = this.posts;
-            this.busy = false;
-          } else {
-            this.axios
-              .get(
-                "https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-attendance.json"
-              )
-              .then((response) => {
-                this.posts = response.data;
-                this.studentAttendances.formData = this.posts;
-
-                localStorage.setItem(
-                  "studentAttendanceStorageJSONData",
-                  JSON.stringify(response.data)
-                );
-                this.busy = false;
-              })
-              .catch((error) => error.response.data);
-          }
+        switch(type) {
+          case "list":
+              this.viewType = "list";
+            break;
+          case "avatar":
+              this.viewType = "avatar";
+            break;
+          case "download":
+              this.viewType = "download";
+            break;
+          default:
+            break;
         }
-        if (type === "download") {
-          this.viewType = "download";
-        }
-      },
+      }
     },
     created() {
       this.loadMore();
