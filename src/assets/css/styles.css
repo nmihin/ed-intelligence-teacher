@@ -4763,11 +4763,11 @@ button[disabled="true"] {
 .single-lesson .collapsible {
   max-height: 200px;
   overflow:hidden;
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -moz-transition: max-height 1s linear;
+  -ms-transition: max-height 1s linear;
+  -o-transition: max-height 1s linear;
+  -webkit-transition: max-height 1s linear;
+  transition: max-height 1s linear;
 }
 
 .single-lesson .collapsible p {
@@ -4776,11 +4776,12 @@ button[disabled="true"] {
 
 .single-lesson .collapsible.active {
   max-height: initial;
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -moz-transition: max-height 1s linear;
+  -ms-transition: max-height 1s linear;
+  -o-transition: max-height 1s linear;
+  -webkit-transition: max-height 1s linear;
+  transition: max-height 1s linear;
+  padding-bottom: 50px;
 }
 
 .single-lesson .collapsible.active .expand-panel {

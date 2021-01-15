@@ -114,6 +114,25 @@
                   <div class="card-content">
                     <p>{{ post[0].modificationsAccommodations }}</p>
                   </div>
+                  <h6>Attached documents:</h6>
+                  <ul class="document-uploaded">
+                    <li @click="showDocumentPreviewModal('document')" class="type-image">           
+                        <span class="document-name">lesson-plan-bank.docx</span>
+                        <span class="icon icon-download-word"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                    </li>
+                    <li @click="showDocumentPreviewModal('document')" class="type-xls">
+                        <span class="document-name">lesson-plan-bank.xls</span>
+                        <span class="icon icon-download-excel"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                    </li>
+                    <li @click="showDocumentPreviewModal('document')" class="type-ppt">
+                        <span class="document-name">lesson-plan-bank.ppt</span>
+                        <span class="icon icon-download-powerpoint"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span></span>
+                    </li>
+                    <li @click="showDocumentPreviewModal('image')" class="type-img"> 
+                        <span class="document-name">lesson-plan-bank.img</span>
+                        <span class="icon icon-download-image"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
+                    </li>
+                  </ul>
               </CollapsibleComponent>
               <!-- Box -->
               <CollapsibleComponent :toggleCollapsibleParent="toggleCollapsible">
