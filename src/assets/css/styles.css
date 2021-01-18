@@ -772,7 +772,7 @@ ICONS
 }
 
 .card-boxes .card-box .icon {
-  width: 30px;
+  width: 28px;
   height: auto;
   object-fit: cover;
   border-radius: 50%;
@@ -1035,8 +1035,8 @@ Manage Menu
 }
 
 .card-boxes.manage-menu .card-box .card-option .icon {
-  top:2px;
-  position: relative;
+  top:0;
+  position: absolute;
 }
 
 .card-boxes.manage-menu .card-box .card-option .icon-delete {
@@ -1982,7 +1982,7 @@ Top box
 }
 
 .code-book .element-edit .icon-edit {
-  width: 30px;
+  width: 28px;
   height: auto;
   -o-object-fit: cover;
   object-fit: cover;
@@ -1990,7 +1990,8 @@ Top box
   padding: 7px;
   font-size: 14px;
   background-color: var(--green);
-  position: relative;
+  position: absolute;
+  top:0;
 }
 
 .code-book .element-edit {
@@ -2000,7 +2001,7 @@ Top box
   height: 28px;
   position: relative;
   margin-right: 10px;
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 .code-book .element-edit:hover {
@@ -2012,7 +2013,7 @@ Top box
 }
 
 .code-book .element-delete .icon-delete {
-  width: 30px;
+  width: 28px;
   height: auto;
   -o-object-fit: cover;
   object-fit: cover;
@@ -2020,7 +2021,8 @@ Top box
   padding: 7px;
   font-size: 14px;
   background-color: var(--red);
-  position: relative;
+  position: absolute;
+  top:0;
 }
 
 .code-book .element-delete:hover {
@@ -2034,7 +2036,7 @@ Top box
   height: 28px;
   position: relative;
   margin-right: 10px;
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 .code-book .element-delete .icon-delete:before {
@@ -3040,7 +3042,7 @@ li:hover .megamenu {
 }
 
 .student-list .student-list-preview > .icon {
-  width: 30px;
+  width: 28px;
   height: auto;
   -o-object-fit: cover;
   object-fit: cover;
@@ -3048,9 +3050,9 @@ li:hover .megamenu {
   padding: 4px;
   font-size: 20px;
   background-color: var(--tertiary);
-  position: relative;
+  position: absolute;
   right:10px;
-  top:4px;
+  top:0;
 }
 
 .student-list .student-list-preview > .icon:before {
@@ -3064,7 +3066,6 @@ li:hover .megamenu {
   height: 28px;
   position: relative;
   left:10px;
-  top:1.5px;
   outline: none !important;
   background-color: transparent !important;
 }
@@ -3074,7 +3075,7 @@ li:hover .megamenu {
 }
 
 .student-list .student-list-edit > .icon {
-  width: 30px;
+  width: 28px;
   height: auto;
   -o-object-fit: cover;
   object-fit: cover;
@@ -3083,8 +3084,8 @@ li:hover .megamenu {
   font-size: 14px;
   background-color: var(--green);
   right: 20px;
-  position: relative;
-  top:4px;
+  position: absolute;
+  top:0;
 }
 
 .student-list .student-list-edit > .icon:before {
