@@ -12,18 +12,18 @@
           <el-table-column sortable property="grade" label="Grade"></el-table-column>
           <el-table-column width="64" property="action" label="Action">
               <div class="student-list-edit" slot-scope="scope" v-if="scope.row.action.includes('edit')">
-                  <ActionsListEdit 
-                    :indexParent="scope.$index"
-                    :postsParent="posts"
-                  />
-              </div>
-          </el-table-column>
-          <el-table-column width="100" property="action">
-              <div class="student-list-preview" slot-scope="scope" v-if="scope.row.action.includes('preview')">
                     <ActionsListView 
                     :indexParent="scope.$index"
                     :postsParent="posts"
                     />
+              </div>
+          </el-table-column>
+          <el-table-column width="100" property="action">
+              <div class="student-list-preview" slot-scope="scope" v-if="scope.row.action.includes('preview')">
+                  <ActionsListEdit 
+                    :indexParent="scope.$index"
+                    :postsParent="posts"
+                  />
               </div>
           </el-table-column>
         </el-table>

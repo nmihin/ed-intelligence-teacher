@@ -10,11 +10,11 @@
                     <img v-if="!post.avatar" class="card-picture" src="../../../assets/images/avatar-aux.png" />
                     <img v-if="post.avatar" class="card-picture" :src="post.avatar" />
                     <div class="card-element">
-                      <ActionsListEdit 
+                      <ActionsListView 
                         :indexParent="idx"
                         :postsParent="posts"
                       />
-                      <ActionsListView 
+                      <ActionsListEdit 
                         :indexParent="idx"
                         :postsParent="posts"
                       />

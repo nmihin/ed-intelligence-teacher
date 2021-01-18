@@ -33,6 +33,7 @@
             background
             layout="prev, pager, next"
             @current-change="handleCurrentChange"
+            :current-page.sync="currenPage"
             :page-size="pageSize"
             :total="totalSize">
         </el-pagination>
@@ -66,6 +67,7 @@ export default {
        filtered: [],
        search: '',
        page: 1,
+       currenPage: 1,
        pageSize: 10,
        totalSize: 0,
        posts: [],
@@ -155,6 +157,7 @@ export default {
       updatePagination(value) {
 
         this.pageSize = value;
+        this.currenPage = 1;
 
         const studentListStorage = this.loadStudentlistStorage();
 
@@ -177,12 +180,7 @@ export default {
           const studentListStorage = this.loadStudentlistStorage();
 
           // LOAD ALL STUDENTS 
-          if(studentListStorage){
-            this.posts = studentListStorage;
-            this.busy = false;
-          }
-          else {
-            //this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/google-classroom.json").then((response) => {
+          if(!studentListStorage){
               this.axios.get("https://raw.githubusercontent.com/nmihin/ed-intelligence-teacher__deploy/master/student-list.json").then((response) => {
 
                 this.posts = response.data;
@@ -190,7 +188,9 @@ export default {
                 localStorage.setItem("studentListStorageJSONData",JSON.stringify(response.data));
                 this.busy = false;
               }).catch((error) => error.response.data)
-          }  
+          }
+
+          this.busy = false;
         }
       },
       searchFilter(value){
