@@ -7,7 +7,7 @@ import $ from 'jquery';
 import Notifications from 'vue-notification';
 import VueLazyload from 'vue-lazyload';
 
-import './assets/css/styles.css';
+import './assets/css/styles.scss';
 
 Vue.use(Vuex);
 Vue.use(Notifications);

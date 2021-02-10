@@ -424,8 +424,7 @@
               </div>
             </div>
           </div>
-         <!--<div v-if="busy" class="preloader-lesson">-->
-         <div class="preloader-lesson">
+         <div v-if="busy" class="preloader-lesson">
             <img src="../assets/images/preloader-lesson.svg" />
           </div>
         </div>
