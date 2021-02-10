@@ -11,10 +11,6 @@
 </template>
 
 <script>
-  // Import required dependencies 
-  import '../../../assets/css/bootstrap-datetimepicker.min.css';
-  import '../../../assets/css/pmd-datetimepicker.css';
-
   // Import this component
   import datePicker from 'vue-bootstrap-datetimepicker';
 

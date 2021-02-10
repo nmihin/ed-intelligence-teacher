@@ -8,10 +8,10 @@
       </p>
     </div>
     <md-dialog-actions>
-      <md-button class="button medium ed-btn__tertiary" @click="
+      <button class="button medium ed-btn__tertiary" @click="
             deleteCodeConfirm(codeSelectedToDelete);
-          ">Delete</md-button>
-      <md-button class="button medium ed-btn__primary" @click="deleteCodeModal = false">Cancel</md-button>
+          ">Delete</button>
+      <button class="button medium ed-btn__primary" @click="deleteCodeModal = false">Cancel</button>
     </md-dialog-actions>
   </md-dialog>
 </template>

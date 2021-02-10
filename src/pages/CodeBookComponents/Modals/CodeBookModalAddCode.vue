@@ -41,8 +41,8 @@
       </el-form>
     </div>
     <md-dialog-actions>
-      <md-button class="button medium ed-btn__secondary" @click="validateAddForm()">Save</md-button>
-      <md-button class="button medium ed-btn__tertiary" @click="addCodeModal = false">Cancel</md-button>
+      <button class="button medium ed-btn__secondary" @click="validateAddForm()">Save</button>
+      <button class="button medium ed-btn__tertiary" @click="addCodeModal = false">Cancel</button>
     </md-dialog-actions>
   </md-dialog>
 </template>

@@ -8,10 +8,6 @@ import Notifications from 'vue-notification';
 import VueLazyload from 'vue-lazyload';
 
 import './assets/css/styles.css';
-import './assets/css/swiper.min.css';
-import './assets/css/bootstrap-grid.min.css';
-import './assets/css/ui-elements.css';
-import './assets/css/bootstrap.min.css';
 
 Vue.use(Vuex);
 Vue.use(Notifications);
